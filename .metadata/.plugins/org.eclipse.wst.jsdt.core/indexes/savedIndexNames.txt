@@ -1,0 +1,8 @@
+INDEX VERSION 1.4+C:\Users\mlavarello\Documents\OSPYM\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
+1373889839.index
+307636471.index
+4293006927.index
+417820333.index
+283099890.index
+210068567.index
+4033020095.index

@@ -1,0 +1,5 @@
+package com.osdepym.controller;
+
+public class HelloWorldController {
+
+}
