@@ -1,9 +1,0 @@
-CREATE TABLE TESTPERSONA (
-    ID					int				NOT NULL	IDENTITY	PRIMARY KEY,
-	NOMBRE				varchar(255),
-    APELLIDO			varchar(255)	NOT NULL,
-    DIRECCION			varchar(255),
-    CIUDAD				varchar(255),
-	FECHANACIMIENTO		date,
-	NROCLIENTE			int
-);
