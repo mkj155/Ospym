@@ -1,4 +1,4 @@
-package com.osdepym.model;
+package hibernate.model;
 
 import java.util.Date;
 
@@ -11,7 +11,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="TESTPERSONA")
-public class TestPersona {
+public class Persona {
 	
 	@Id
 	@Column(name="ID")
