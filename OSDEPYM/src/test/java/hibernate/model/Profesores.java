@@ -24,7 +24,7 @@ public class Profesores {
         joinColumns = @JoinColumn(name = "IDPROFESOR"), 
         inverseJoinColumns = @JoinColumn(name = "IDCURSO")
     ) 
-	Set<Cursos> cursos = new HashSet<>();
+	Set<Cursos> cursos = new HashSet<Cursos>();
 	
 	@Id
 	@Column(name="IDPROFESOR")

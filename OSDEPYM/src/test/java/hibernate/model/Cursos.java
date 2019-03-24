@@ -16,7 +16,7 @@ import javax.persistence.Table;
 public class Cursos {
 	
     @ManyToMany(mappedBy = "cursos")
-    private Set<Profesores> profesores = new HashSet<>();
+    private Set<Profesores> profesores = new HashSet<Profesores>();
     
 	@Id
 	@Column(name="IDCURSO")
