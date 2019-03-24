@@ -8,9 +8,9 @@
 
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
 		<property name="driverClassName" value="com.microsoft.sqlserver.jdbc.SQLServerDriver" />
-		<property name="url" value="jdbc:sqlserver://localhost:1434;DatabaseName=osdepym" />
-		<property name="username" value="sa" />
-		<property name="password" value="password123" />
+		<property name="url" value="jdbc:sqlserver://I120073:1433;DatabaseName=LocalOspymTest" />
+		<property name="username" value="DAMIAN" />
+		<property name="password" value="DAMIAN123" />
 	</bean>
 
 <!-- Hibernate 3 Annotation SessionFactory Bean definition-->
@@ -19,7 +19,9 @@
 		<property name="dataSource" ref="dataSource" />
 		<property name="annotatedClasses">
 			<list>
-				<value>com.osdepym.model.TestPersona</value>
+				<value>hibernate.model.Persona</value>
+				<value>hibernate.model.Profesores</value>
+				<value>hibernate.model.Cursos</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">
@@ -31,7 +33,10 @@
 		</property>
 	</bean>
 	
-	<bean id="testPersonaDAO" class="com.osdepym.dao.TestPersonaDAOImpl">
+	<bean id="testPersonaDAO" class="hibernate.dao.TestPersonaDAOImpl">
+		<property name="sessionFactory" ref="hibernate3AnnotatedSessionFactory" />
+	</bean>
+	<bean id="testProfesoresDAO" class="hibernate.dao.TestProfesoresDAOImpl">
 		<property name="sessionFactory" ref="hibernate3AnnotatedSessionFactory" />
 	</bean>
 	

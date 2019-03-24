@@ -9,11 +9,11 @@ import org.springframework.web.servlet.ModelAndView;
 public class HelloWorldController {
 
 	@RequestMapping("/hello")
-	public ModelAndView welcomeMessage(
-			@RequestParam(value = "name", required = false) String name) {
+	public ModelAndView welcomeMessage(@RequestParam(value = "name", required = false) String name) {		
 		// Name of your jsp file as parameter
 		ModelAndView view = new ModelAndView("hello");
 		view.addObject("name", name);
 		return view;
 	}
+		
 }
