@@ -1,8 +1,9 @@
 package tests;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import hibernate.dao.TestPersonaDAO;
-import hibernate.model.Persona;
+import com.osdepym.hibernate.dao.interfaces.TestPersonaDAO;
+import com.osdepym.hibernate.model.Persona;
+
 import junit.framework.TestCase;
 
 public class TestHibernateMappingPersona extends TestCase {

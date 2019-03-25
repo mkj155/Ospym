@@ -2,8 +2,9 @@ package tests;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import hibernate.dao.TestProfesoresDAO;
-import hibernate.model.Profesores;
+import com.osdepym.hibernate.dao.interfaces.TestProfesoresDAO;
+import com.osdepym.hibernate.model.Profesores;
+
 import junit.framework.TestCase;
 
 public class TestHibernateMappingManyToMany extends TestCase {

@@ -1,4 +1,4 @@
-package hibernate.dao;
+package com.osdepym.hibernate.dao.implementation;
 
 import java.util.List;
 
@@ -8,7 +8,8 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 
-import hibernate.model.Persona;
+import com.osdepym.hibernate.dao.interfaces.TestPersonaDAO;
+import com.osdepym.hibernate.model.Persona;
 
 public class TestPersonaDAOImpl implements TestPersonaDAO {
 	
@@ -19,7 +20,7 @@ public class TestPersonaDAOImpl implements TestPersonaDAO {
     }
 
 	@Override
-	public List<Persona> listarPersonas() {
+	public List<Persona> getAll() {
 		List<Persona> personas = null;
 		try {
 			Session session = this.sessionFactory.openSession();
@@ -32,7 +33,7 @@ public class TestPersonaDAOImpl implements TestPersonaDAO {
 	}
 
 	@Override
-	public boolean savePersona(Persona persona) {
+	public boolean save(Persona persona) {
 		boolean result;
 		Session session = null;
 		try {
@@ -51,7 +52,7 @@ public class TestPersonaDAOImpl implements TestPersonaDAO {
 	}
 
 	@Override
-	public boolean deletePersona(Persona persona) {
+	public boolean delete(Persona persona) {
 		boolean result;
 		Session session = null;
 		try {
@@ -70,7 +71,7 @@ public class TestPersonaDAOImpl implements TestPersonaDAO {
 	}
 
 	@Override
-	public boolean updatePersona(Persona persona) {
+	public boolean update(Persona persona) {
 		boolean result;
 		Session session = null;
 		try {
@@ -89,7 +90,27 @@ public class TestPersonaDAOImpl implements TestPersonaDAO {
 	}
 
 	@Override
-	public Persona getPersona(String nombre) {
+	public Persona get(long id) {
+		Session session = null;
+		Persona persona = null;
+		try {
+			session = this.sessionFactory.openSession();
+			Criteria cr = session.createCriteria(Persona.class);
+			cr.add(Restrictions.eq("id", id));
+			List<Persona> results = cr.list();
+			if (results != null && results.size() > 0) {
+				persona = results.get(0);
+			} 
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (session != null && session.isOpen()) session.close();
+		}
+		return persona;
+	}
+	
+	@Override
+	public Persona getByName(String nombre) {
 		Session session = null;
 		Persona persona = null;
 		try {

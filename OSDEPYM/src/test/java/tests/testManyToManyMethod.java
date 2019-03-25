@@ -3,9 +3,9 @@ package tests;
 import java.util.HashSet;
 import java.util.List;
 
-import hibernate.dao.TestProfesoresDAO;
-import hibernate.model.Cursos;
-import hibernate.model.Profesores;
+import com.osdepym.hibernate.dao.interfaces.TestProfesoresDAO;
+import com.osdepym.hibernate.model.Cursos;
+import com.osdepym.hibernate.model.Profesores;
 
 public class testManyToManyMethod {
 
@@ -31,13 +31,13 @@ public class testManyToManyMethod {
 	}
 	
 	public void testListProfesores(TestProfesoresDAO profesoresDAO){
-		List<Profesores> profesores = profesoresDAO.listProfesores();
+		List<Profesores> profesores = profesoresDAO.getAll();
 		System.out.println("Resultado SELECT: " + (profesores != null ? "OK" : "KO"));
 	}
 	
 	public void testAddProfesor(TestProfesoresDAO profesoresDAO, Profesores profesor) {
 		boolean result;
-		result = profesoresDAO.addProfesor(profesor);
+		result = profesoresDAO.save(profesor);
 		System.out.println("Resultado INSERT: " + (result ? "OK" : "KO"));
 	}
 

@@ -4,8 +4,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
-import hibernate.dao.TestPersonaDAO;
-import hibernate.model.Persona;
+import com.osdepym.hibernate.dao.interfaces.TestPersonaDAO;
+import com.osdepym.hibernate.model.Persona;
 
 public class TestPersonaMethod {
 	
@@ -29,17 +29,17 @@ public class TestPersonaMethod {
 	
 	public void testingInsertPersona(TestPersonaDAO personDAO, Persona persona) {
 		boolean result;
-		result = personDAO.savePersona(persona);
+		result = personDAO.save(persona);
 		System.out.println("Resultado INSERT: " + (result ? "OK" : "KO"));
 	}
 
 	public void testingUpdatePersona(TestPersonaDAO personDAO, Persona persona) {
 		boolean result = false;
-		List<Persona> personas = personDAO.listarPersonas();
+		List<Persona> personas = personDAO.getAll();
 		if (personas != null && personas.size() > 0) {
 			persona = personas.get(0);
 			persona.setApellido("Kirchner");
-			result = personDAO.updatePersona(persona);
+			result = personDAO.update(persona);
 		} else { 
 			System.out.println("Error buscando la persona a actualizar");
 		}
@@ -47,21 +47,21 @@ public class TestPersonaMethod {
 	}
 	
 	public void testingSelectPersona(TestPersonaDAO personDAO) {
-		List<Persona> personas = personDAO.listarPersonas();
+		List<Persona> personas = personDAO.getAll();
 		System.out.println("Resultado SELECT: " + (personas != null ? "OK" : "KO"));
 	}
 	
 	public void testingDeletePersona(TestPersonaDAO personDAO) {
 		boolean result;
-		List<Persona> personas = personDAO.listarPersonas();
+		List<Persona> personas = personDAO.getAll();
 		for (Persona per : personas) {
-			result = personDAO.deletePersona(per);
+			result = personDAO.delete(per);
 			System.out.println("Resultado DELETE: " + (result ? "OK" : "KO"));
 		}
 	}
 	
 	public void testingGetPersona(TestPersonaDAO personDAO, String nombre) {
-		Persona persona = personDAO.getPersona(nombre);
+		Persona persona = personDAO.getByName(nombre);
 		System.out.println("Resultado SELECT: " + (persona != null ? "OK" : "KO"));
 	}
 	

@@ -1,4 +1,4 @@
-package hibernate.model;
+package com.osdepym.hibernate.model;
 
 import java.util.Date;
 
