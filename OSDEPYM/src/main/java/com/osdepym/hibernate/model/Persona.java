@@ -16,7 +16,7 @@ public class Persona {
 	@Id
 	@Column(name="ID")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int id;
+	private Integer id;
 	
 	private String nombre;
 
@@ -29,6 +29,10 @@ public class Persona {
 	private Date fechaNacimiento;
 	
 	private int nroCliente;
+	
+	public boolean isNew() {
+		return (this.id == null);
+	}
 
 	public int getId() {
 		return id;
