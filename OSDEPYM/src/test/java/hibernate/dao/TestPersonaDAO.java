@@ -11,4 +11,5 @@ public interface TestPersonaDAO {
 	boolean savePersona(Persona persona);
 	boolean deletePersona(Persona persona);
 	boolean updatePersona(Persona persona);
+	Persona getPersonaByNroCliente(int nroCliente);
 }

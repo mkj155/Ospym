@@ -7,7 +7,7 @@ import junit.framework.TestCase;
 
 public class TestHibernateMappingPersona extends TestCase {
 	
-	protected ClassPathXmlApplicationContext context;
+    protected ClassPathXmlApplicationContext context;
 	protected TestPersonaDAO personDAO;
 	Persona persona;
 	TestPersonaMethod methods;
@@ -19,12 +19,12 @@ public class TestHibernateMappingPersona extends TestCase {
 	}
 	
 	public void testMain() {
-		persona = methods.testingInstancePersona();
-		methods.testingInsertPersona(personDAO, persona);
-		methods.testingUpdatePersona(personDAO, persona);
-		methods.testingSelectPersona(personDAO);
-		methods.testingGetPersona(personDAO, "Mauricio");
-		methods.testingDeletePersona(personDAO);
+		persona = methods.instancePersona();
+		methods.insertPersona(personDAO, persona);
+		methods.updatePersona(personDAO, persona);
+		methods.selectPersona(personDAO);
+		methods.getPersona(personDAO, "Mauricio");
+		// methods.deletePersona(personDAO);
 	}
 		
     protected void tearDown() {

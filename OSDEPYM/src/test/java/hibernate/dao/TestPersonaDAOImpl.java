@@ -108,4 +108,23 @@ public class TestPersonaDAOImpl implements TestPersonaDAO {
 		return persona;
 	}
 	
+	@Override
+	public Persona getPersonaByNroCliente(int nroCliente) {
+		Session session = null;
+		Persona persona = null;
+		try {
+			session = this.sessionFactory.openSession();
+			Criteria cr = session.createCriteria(Persona.class);
+			cr.add(Restrictions.eq("nroCliente", nroCliente));
+			List<Persona> results = cr.list();
+			if (results != null && results.size() > 0) {
+				persona = results.get(0);
+			} 
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (session != null && session.isOpen()) session.close();
+		}
+		return persona;
+	}
 }
