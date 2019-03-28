@@ -20,6 +20,7 @@ public class TestPersonaMethod {
 		persona.setFechaNacimiento(new Date("06/06/1966"));
 		persona.setNroCliente(randomNumber());
 		persona.setVegetariano(true);
+		instanceHijo(persona);
 		return persona;
 	}
 
@@ -29,6 +30,7 @@ public class TestPersonaMethod {
 		hijo1.setNombre("Kristina");
 		hijo1.setApellido("kirchner");
 		hijos.add(hijo1);
+		hijo1.setPersona(persona);
 		persona.setHijos(hijos);
 	}
 	

@@ -16,7 +16,7 @@ import javax.persistence.Table;
 public class Hijos {
 
 	@ManyToOne(fetch=FetchType.LAZY, cascade=CascadeType.ALL)
-	@JoinColumn(name="IDPERSONA")
+	@JoinColumn(name="IDPERSONA",insertable=true,updatable=true)
     private Persona persona;
 
 	@Id
