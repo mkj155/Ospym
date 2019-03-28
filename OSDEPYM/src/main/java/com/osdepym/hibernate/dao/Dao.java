@@ -1,4 +1,4 @@
-package com.osdepym.hibernate.dao.interfaces;
+package com.osdepym.hibernate.dao;
 
 import java.util.List;
 
