@@ -1,9 +1,6 @@
 package com.osdepym.hibernate.dao;
 
 import java.util.List;
-
-import javax.transaction.Transactional;
-
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -15,7 +12,6 @@ import org.springframework.stereotype.Repository;
 import com.osdepym.hibernate.entity.Cursos;
 
 @Repository
-@Transactional
 public class TestCursoDAOImpl implements TestCursoDAO{
 
 	@Autowired
@@ -30,7 +26,7 @@ public class TestCursoDAOImpl implements TestCursoDAO{
 		List<Cursos> cursos = null;
 		try {
 			Session session = this.sessionFactory.getCurrentSession();
-			cursos = session.createQuery("FROM hibernate.entity.Persona").list();
+			cursos = session.createQuery("FROM com.osdepym.hibernate.entity.Persona").list();
 			session.close();
 		} catch (Exception e) {
 			e.printStackTrace();

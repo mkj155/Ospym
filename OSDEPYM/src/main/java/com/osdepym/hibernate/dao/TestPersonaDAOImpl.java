@@ -1,4 +1,4 @@
-package com.osdepym.hibernate.dao.implementation;
+package com.osdepym.hibernate.dao;
 
 import java.util.List;
 
@@ -8,8 +8,8 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 
-import com.osdepym.hibernate.dao.interfaces.TestPersonaDAO;
-import com.osdepym.hibernate.model.Persona;
+import com.osdepym.hibernate.dao.TestPersonaDAO;
+import com.osdepym.hibernate.entity.Persona;
 
 public class TestPersonaDAOImpl implements TestPersonaDAO {
 	

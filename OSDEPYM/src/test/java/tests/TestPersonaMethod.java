@@ -4,8 +4,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
-import com.osdepym.hibernate.dao.interfaces.TestPersonaDAO;
-import com.osdepym.hibernate.model.Persona;
+import com.osdepym.hibernate.dao.TestPersonaDAO;
+import com.osdepym.hibernate.entity.Persona;
 
 public class TestPersonaMethod {
 	

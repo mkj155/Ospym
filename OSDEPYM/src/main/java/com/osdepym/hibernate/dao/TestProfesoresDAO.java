@@ -1,6 +1,6 @@
-package com.osdepym.hibernate.dao.interfaces;
+package com.osdepym.hibernate.dao;
 
-import com.osdepym.hibernate.model.Profesores;
+import com.osdepym.hibernate.entity.Profesores;
 
 public interface TestProfesoresDAO extends Dao<Profesores>{
 	

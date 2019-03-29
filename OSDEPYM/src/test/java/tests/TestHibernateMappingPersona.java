@@ -1,8 +1,8 @@
 package tests;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.osdepym.hibernate.dao.interfaces.TestPersonaDAO;
-import com.osdepym.hibernate.model.Persona;
+import com.osdepym.hibernate.dao.TestPersonaDAO;
+import com.osdepym.hibernate.entity.Persona;
 
 import junit.framework.TestCase;
 

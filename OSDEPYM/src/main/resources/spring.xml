@@ -8,20 +8,21 @@
 
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
 		<property name="driverClassName" value="com.microsoft.sqlserver.jdbc.SQLServerDriver" />
-		<property name="url" value="jdbc:sqlserver://I120073:1433;DatabaseName=LocalOspymTest" />
-		<property name="username" value="DAMIAN" />
-		<property name="password" value="DAMIAN123" />
+		<property name="url" value="jdbc:sqlserver://localhost:1434;DatabaseName=osdepym" />
+		<property name="username" value="sa" />
+		<property name="password" value="password123" />
 	</bean>
+	
 
-<!-- Hibernate 3 Annotation SessionFactory Bean definition-->
-	<bean id="hibernate3AnnotatedSessionFactory"
-		class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+<!-- Hibernate 5 Annotation SessionFactory Bean definition-->
+	<bean id="localSessionFactory"
+		class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
 		<property name="annotatedClasses">
 			<list>
-				<value>hibernate.model.Persona</value>
-				<value>hibernate.model.Profesores</value>
-				<value>hibernate.model.Cursos</value>
+				<value>com.osdepym.hibernate.entity.Persona</value>
+				<value>com.osdepym.hibernate.entity.Profesores</value>
+				<value>com.osdepym.hibernate.entity.Cursos</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">
@@ -33,11 +34,22 @@
 		</property>
 	</bean>
 	
-	<bean id="testPersonaDAO" class="hibernate.dao.TestPersonaDAOImpl">
-		<property name="sessionFactory" ref="hibernate3AnnotatedSessionFactory" />
+	<bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager" >
+        <property name="sessionFactory" ref="localSessionFactory" />
+    </bean>
+    
+	<bean id="testService" class="com.osdepym.service.TestService">
+		<property name="cursosDAO" ref="testCursoDAO" />
 	</bean>
-	<bean id="testProfesoresDAO" class="hibernate.dao.TestProfesoresDAOImpl">
-		<property name="sessionFactory" ref="hibernate3AnnotatedSessionFactory" />
+	<bean id="testCursoDAO" class="com.osdepym.hibernate.dao.TestCursoDAOImpl">
+		<property name="sessionFactory" ref="localSessionFactory" />
+	</bean>
+	
+	<bean id="testPersonaDAO" class="com.osdepym.hibernate.dao.TestPersonaDAOImpl">
+		<property name="sessionFactory" ref="localSessionFactory" />
+	</bean>
+	<bean id="testProfesoresDAO" class="com.osdepym.hibernate.dao.TestProfesoresDAOImpl">
+		<property name="sessionFactory" ref="localSessionFactory" />
 	</bean>
 	
 </beans>

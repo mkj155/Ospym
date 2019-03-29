@@ -2,8 +2,8 @@ package tests;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.osdepym.hibernate.dao.interfaces.TestProfesoresDAO;
-import com.osdepym.hibernate.model.Profesores;
+import com.osdepym.hibernate.dao.TestProfesoresDAO;
+import com.osdepym.hibernate.entity.Profesores;
 
 import junit.framework.TestCase;
 

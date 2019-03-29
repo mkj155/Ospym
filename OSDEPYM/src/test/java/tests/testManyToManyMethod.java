@@ -3,9 +3,9 @@ package tests;
 import java.util.HashSet;
 import java.util.List;
 
-import com.osdepym.hibernate.dao.interfaces.TestProfesoresDAO;
-import com.osdepym.hibernate.model.Cursos;
-import com.osdepym.hibernate.model.Profesores;
+import com.osdepym.hibernate.dao.TestProfesoresDAO;
+import com.osdepym.hibernate.entity.Cursos;
+import com.osdepym.hibernate.entity.Profesores;
 
 public class testManyToManyMethod {
 

@@ -1,6 +1,6 @@
-package com.osdepym.hibernate.dao.interfaces;
+package com.osdepym.hibernate.dao;
 
-import com.osdepym.hibernate.model.Persona;
+import com.osdepym.hibernate.entity.Persona;
 
 public interface TestPersonaDAO extends Dao<Persona>{
 

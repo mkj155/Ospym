@@ -1,4 +1,4 @@
-package com.osdepym.hibernate.model;
+package com.osdepym.hibernate.entity;
 
 import java.util.HashSet;
 import java.util.Set;
