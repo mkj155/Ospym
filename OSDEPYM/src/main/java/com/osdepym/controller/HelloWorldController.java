@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.osdepym.hibernate.model.Persona;
+import com.osdepym.hibernate.entity.Persona;
 
 @Controller
 public class HelloWorldController {
@@ -62,11 +62,6 @@ public class HelloWorldController {
 		testPersona.setCiudad("San Isidro");
 		testPersona.setFechaNacimiento(new Date("06/09/1983"));
 		testPersona.setNroCliente(5008);
-		
-		if (testPersona == null) {
-			model.addAttribute("css", "danger");
-			model.addAttribute("msg", "User not found");
-		}
 		
 		model.addAttribute("persona", testPersona);
 
