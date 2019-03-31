@@ -1,22 +1,19 @@
 package tests;
 
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import com.osdepym.configuration.ConfigurationEnviroment;
+import com.osdepym.hibernate.dao.TestProfesoresDAO;
+import com.osdepym.hibernate.entity.Profesores;
 
-import hibernate.dao.TestProfesoresDAO;
-import hibernate.model.Profesores;
 import junit.framework.TestCase;
 
 public class TestHibernateMappingManyToMany extends TestCase {
 
-	
-	protected ClassPathXmlApplicationContext context;
 	protected TestProfesoresDAO profesoresDAO;
 	protected testManyToManyMethod testMethod;
 	protected Profesores profesor;
 	
 	protected void setUp() {
-		context = new ClassPathXmlApplicationContext("spring.xml");
-		profesoresDAO = context.getBean(TestProfesoresDAO.class);
+		profesoresDAO = ConfigurationEnviroment.getInstance().getContext().getBean(TestProfesoresDAO.class);
 		testMethod = new testManyToManyMethod();
 	}
 	
@@ -27,7 +24,7 @@ public class TestHibernateMappingManyToMany extends TestCase {
 	}
 	
     protected void tearDown() {
-		context.close();
+    	ConfigurationEnviroment.getInstance().getContext().close();
     }
     
 }

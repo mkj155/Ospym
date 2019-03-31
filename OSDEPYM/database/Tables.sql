@@ -6,7 +6,9 @@ CREATE TABLE TESTPERSONA (
     CIUDAD				varchar(255),
 	FECHANACIMIENTO		date,
 	NROCLIENTE			int,
-	VEGETARIANO			bit
+	VEGETARIANO			bit,
+	CURSO				varchar(255),
+	SEXO				varchar(50)
 );
 
 CREATE TABLE HIJOS (

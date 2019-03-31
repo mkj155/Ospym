@@ -2,42 +2,16 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
 	xmlns:tx="http://www.springframework.org/schema/tx"
-	xsi:schemaLocation="
-		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
 
-	<!-- Hibernate 3 Annotation SessionFactory Bean definition-->
-	<bean id="hibernate3AnnotatedSessionFactory"
-		class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
-		<property name="dataSource" ref="dataSource" />
-		<property name="annotatedClasses">
-			<list>
-				<value>hibernate.model.Persona</value>
-				<value>hibernate.model.Hijos</value>
-				<value>hibernate.model.Profesores</value>
-				<value>hibernate.model.Cursos</value>
-			</list>
-		</property>
-		<property name="hibernateProperties">
-			<props>
-				<prop key="hibernate.dialect">org.hibernate.dialect.SQLServerDialect</prop>
-				<prop key="hibernate.current_session_context_class">thread</prop>
-				<prop key="hibernate.show_sql">true</prop>
-			</props>
-		</property>
-	</bean>
-	
-	<!-- Data base connection -->
-<!-- 	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"> -->
-<!-- 		<property name="locations" value="classpath:configuration.properties" /> -->
-<!-- 	</bean> -->
 	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 	    <property name="ignoreResourceNotFound" value="true" />
 	    <property name="locations">
 	        <list>
 	            <value>classpath:configuration.properties</value>
-	            <value>file:/C:\repositorios\WorkSpaceOsdepym\configuration.properties</value>
+<!-- 	            <value>file:/C:\repositorios\WorkSpaceOsdepym\configuration.properties</value> -->
 	        </list>
 	    </property>
 	</bean>
@@ -47,13 +21,50 @@
         <property name="username" value="${jdbc.username}" />
         <property name="password" value="${jdbc.password}" />
    	</bean>
-   	
-	<!-- Aplication Beans -->
-	<bean id="testPersonaDAO" class="hibernate.dao.TestPersonaDAOImpl">
-		<property name="sessionFactory" ref="hibernate3AnnotatedSessionFactory" />
+	
+
+<!-- Hibernate 5 Annotation SessionFactory Bean definition-->
+	<bean id="localSessionFactory"
+		class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="annotatedClasses">
+			<list>
+				<value>com.osdepym.hibernate.entity.Hijos</value>
+				<value>com.osdepym.hibernate.entity.Persona</value>
+				<value>com.osdepym.hibernate.entity.Profesores</value>
+				<value>com.osdepym.hibernate.entity.Cursos</value>
+			</list>
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.SQLServerDialect</prop>
+				<prop key="hibernate.current_session_context_class">thread</prop>
+				<prop key="hibernate.show_sql">false</prop>
+			</props>
+		</property>
 	</bean>
-	<bean id="testProfesoresDAO" class="hibernate.dao.TestProfesoresDAOImpl">
-		<property name="sessionFactory" ref="hibernate3AnnotatedSessionFactory" />
+	
+	<bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager" >
+        <property name="sessionFactory" ref="localSessionFactory" />
+    </bean>
+    
+    <bean id="testCursoDAO" class="com.osdepym.hibernate.dao.TestCursoDAOImpl">
+		<property name="sessionFactory" ref="localSessionFactory" />
 	</bean>
-   	
+	<bean id="testService" class="com.osdepym.service.TestService">
+		<property name="cursosDAO" ref="testCursoDAO" />
+		<property name="personaDAO" ref="testPersonaDAO" />
+		<property name="hijosDAO" ref="hijosDAO" />
+	</bean>
+	
+	<bean id="testPersonaDAO" class="com.osdepym.hibernate.dao.TestPersonaDAOImpl">
+		<property name="sessionFactory" ref="localSessionFactory" />
+	</bean>
+	<bean id="testProfesoresDAO" class="com.osdepym.hibernate.dao.TestProfesoresDAOImpl">
+		<property name="sessionFactory" ref="localSessionFactory" />
+	</bean>
+	<bean id="hijosDAO" class="com.osdepym.hibernate.dao.HijosDAOImpl">
+		<property name="sessionFactory" ref="localSessionFactory" />
+	</bean>
+	
 </beans>
