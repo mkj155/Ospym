@@ -1,15 +1,17 @@
 package tests;
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
 
 import com.osdepym.hibernate.dao.TestPersonaDAO;
+import com.osdepym.hibernate.entity.Hijos;
 import com.osdepym.hibernate.entity.Persona;
 
 public class TestPersonaMethod {
 	
-	public Persona testingInstancePersona() {
+	public Persona instancePersona() {
 		Persona persona = new Persona();
 		persona.setNombre("Mauricio");
 		persona.setApellido("Macri");
@@ -17,7 +19,19 @@ public class TestPersonaMethod {
 		persona.setCiudad("Gatolandia");
 		persona.setFechaNacimiento(new Date("06/06/1966"));
 		persona.setNroCliente(randomNumber());
+		persona.setVegetariano(true);
+		instanceHijo(persona);
 		return persona;
+	}
+
+	private void instanceHijo(Persona persona) {
+		HashSet<Hijos> hijos = new HashSet<Hijos>();
+		Hijos hijo1 = new Hijos();
+		hijo1.setNombre("Kristina");
+		hijo1.setApellido("kirchner");
+		hijo1.setPersona(persona);
+		hijos.add(hijo1);
+		persona.setHijos(hijos);
 	}
 	
 	private int randomNumber() {
@@ -27,13 +41,13 @@ public class TestPersonaMethod {
 		return r.nextInt(high-low) + low;
 	}
 	
-	public void testingInsertPersona(TestPersonaDAO personDAO, Persona persona) {
+	public void insertPersona(TestPersonaDAO personDAO, Persona persona) {
 		boolean result;
 		result = personDAO.save(persona);
-		System.out.println("Resultado INSERT: " + (result ? "OK" : "KO"));
+		System.out.println("Resultado INSERT solo persona: " + (result ? "OK" : "KO"));
 	}
-
-	public void testingUpdatePersona(TestPersonaDAO personDAO, Persona persona) {
+	
+	public void updatePersona(TestPersonaDAO personDAO, Persona persona) {
 		boolean result = false;
 		List<Persona> personas = personDAO.getAll();
 		if (personas != null && personas.size() > 0) {
@@ -46,12 +60,12 @@ public class TestPersonaMethod {
 		System.out.println("Resultado UPDATE: " + (result ? "OK" : "KO"));
 	}
 	
-	public void testingSelectPersona(TestPersonaDAO personDAO) {
+	public void selectPersona(TestPersonaDAO personDAO) {
 		List<Persona> personas = personDAO.getAll();
 		System.out.println("Resultado SELECT: " + (personas != null ? "OK" : "KO"));
 	}
 	
-	public void testingDeletePersona(TestPersonaDAO personDAO) {
+	public void deletePersona(TestPersonaDAO personDAO) {
 		boolean result;
 		List<Persona> personas = personDAO.getAll();
 		for (Persona per : personas) {
@@ -60,7 +74,7 @@ public class TestPersonaMethod {
 		}
 	}
 	
-	public void testingGetPersona(TestPersonaDAO personDAO, String nombre) {
+	public void getPersona(TestPersonaDAO personDAO, String nombre) {
 		Persona persona = personDAO.getByName(nombre);
 		System.out.println("Resultado SELECT: " + (persona != null ? "OK" : "KO"));
 	}

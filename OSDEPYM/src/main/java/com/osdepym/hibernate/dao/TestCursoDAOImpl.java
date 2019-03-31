@@ -1,20 +1,22 @@
 package com.osdepym.hibernate.dao;
 
 import java.util.List;
+
+import javax.transaction.Transactional;
+
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.osdepym.hibernate.entity.Cursos;
 
-@Repository
+@Repository("testCursoDAO")
 public class TestCursoDAOImpl implements TestCursoDAO{
 
-	@Autowired
+	
 	private SessionFactory sessionFactory;
 	
 	public void setSessionFactory(SessionFactory sessionFactory) {
@@ -22,11 +24,13 @@ public class TestCursoDAOImpl implements TestCursoDAO{
 	}
 
 	@Override
+	@Transactional
 	public List<Cursos> getAll() {
 		List<Cursos> cursos = null;
 		try {
 			Session session = this.sessionFactory.getCurrentSession();
-			cursos = session.createQuery("FROM com.osdepym.hibernate.entity.Persona").list();
+			session.beginTransaction();
+			cursos = session.createQuery("FROM com.osdepym.hibernate.entity.Cursos").list();
 			session.close();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -92,7 +96,7 @@ public class TestCursoDAOImpl implements TestCursoDAO{
 	}
 
 	@Override
-	public Cursos get(long id) {
+	public Cursos get(Integer id) {
 		Session session = null;
 		Cursos persona = null;
 		try {

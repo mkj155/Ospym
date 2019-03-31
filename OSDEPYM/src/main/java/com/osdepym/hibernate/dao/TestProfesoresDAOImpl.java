@@ -23,7 +23,7 @@ public class TestProfesoresDAOImpl implements TestProfesoresDAO {
 		List<Profesores> profesores = null;
 		try {
 			Session session = this.sessionFactory.openSession();
-			profesores = session.createQuery("FROM hibernate.model.Profesores").list();
+			profesores = session.createQuery("FROM com.osdepym.hibernate.entity.Profesores").list();
 			session.close();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -89,7 +89,7 @@ public class TestProfesoresDAOImpl implements TestProfesoresDAO {
 	}
 
 	@Override
-	public Profesores get(long id) {
+	public Profesores get(Integer id) {
 		Session session = null;
 		Profesores profesor = null;
 		try {

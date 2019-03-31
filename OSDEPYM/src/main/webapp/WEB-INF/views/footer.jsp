@@ -2,7 +2,7 @@
 <div class="container">
 	<hr>
 	<footer>
-		<p>&copy; Maria Romero TE AMO</p>
+		<p>&copy;Footer Example</p>
 	</footer>
 </div>
 

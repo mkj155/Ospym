@@ -1,11 +1,8 @@
 package com.osdepym.controller;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -18,10 +15,17 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.osdepym.hibernate.entity.Persona;
+import com.osdepym.configuration.ConfigurationEnviroment;
+import com.osdepym.dto.PersonaDTO;
+import com.osdepym.service.TestService;
+
 
 @Controller
 public class HelloWorldController {
+	
+	protected ClassPathXmlApplicationContext context;
+	
+	private TestService service;
 
 	@RequestMapping("/hello")
 	public ModelAndView welcomeMessage(@RequestParam(value = "name", required = false) String name) {		
@@ -34,125 +38,102 @@ public class HelloWorldController {
 	@RequestMapping("/persona")
 	public ModelAndView welcomePersona(@RequestParam(value = "name", required = false) String name) {
 		
-		Persona testPersona = new Persona();
-		testPersona.setNombre("Maria");
-		testPersona.setApellido("Romero");
-		testPersona.setDireccion("Rivadavia 222 1°B");
-		testPersona.setCiudad("San Isidro");
-		testPersona.setFechaNacimiento(new Date("06/09/1983"));
-		testPersona.setNroCliente(5008);
-		
-		List<Persona> testPersonas = new ArrayList<Persona>();
-		testPersonas.add(testPersona);
+		service = ConfigurationEnviroment.getInstance().getContext().getBean(TestService.class);
+		List<PersonaDTO> personasDTO = service.getAllPersonas();
 		
 		// Name of your jsp file as parameter
 		ModelAndView view = new ModelAndView("persona");
-		view.addObject("personas", testPersonas);
-		view.addObject("name", name);
+		view.addObject("personas", personasDTO);
 		return view;
 	}
 	
 	@RequestMapping(value = "/persona/{id}", method = RequestMethod.GET)
 	public String showUser(@PathVariable("id") int id, Model model) {
 
-		Persona testPersona = new Persona();
-		testPersona.setNombre("Maria");
-		testPersona.setApellido("Romero");
-		testPersona.setDireccion("Rivadavia 222 1°B");
-		testPersona.setCiudad("San Isidro");
-		testPersona.setFechaNacimiento(new Date("06/09/1983"));
-		testPersona.setNroCliente(5008);
+		service = ConfigurationEnviroment.getInstance().getContext().getBean(TestService.class);
+		PersonaDTO personaDTO = service.getPersonaById(id);
 		
-		model.addAttribute("persona", testPersona);
+		if (personaDTO == null) {
+			model.addAttribute("css", "danger");
+			model.addAttribute("msg", "User not found");
+		}
+		
+		model.addAttribute("persona", personaDTO);
 
 		return "show";
 
 	}
 	
 	// show add user form
+	@RequestMapping(value = "/persona/{id}/update", method = RequestMethod.GET)
+	public String showAddPersonForm(@PathVariable("id") Integer id,Model model) {
+
+		service = ConfigurationEnviroment.getInstance().getContext().getBean(TestService.class);
+		PersonaDTO personaDTO = service.getPersonaById(id);
+
+		model.addAttribute("personaForm", personaDTO);
+		model.addAttribute("cursoList", service.getAllCursosName());
+		model.addAttribute("childrensList", service.getAllHijos());
+
+		return "personaform";
+	}
+	
+	@RequestMapping(value = "/persona/{id}/delete", method = RequestMethod.GET)
+	public String deletePersona(@PathVariable("id") Integer id, Model model) {
+
+		service = ConfigurationEnviroment.getInstance().getContext().getBean(TestService.class);
+		service.deletePersona(id);
+
+		return "redirect:/persona?name=Sally";
+	}
+	
+	// show add user form
 	@RequestMapping(value = "/persona/add", method = RequestMethod.GET)
 	public String showAddPersonForm(Model model) {
 
-		Persona testPersona = new Persona();
-		testPersona.setNombre("Maria");
-		testPersona.setApellido("Romero");
-		testPersona.setDireccion("Rivadavia 222 1°B");
-		testPersona.setCiudad("San Isidro");
-		testPersona.setFechaNacimiento(new Date("06/09/1983"));
-		testPersona.setNroCliente(5008);
+		service = ConfigurationEnviroment.getInstance().getContext().getBean(TestService.class);
 
-		model.addAttribute("personaForm", testPersona);
-
-		populateDefaultModel(model);
+		model.addAttribute("personaForm", new PersonaDTO());
+		model.addAttribute("cursoList", service.getAllCursosName());
+		model.addAttribute("childrensList", service.getAllHijos());
 
 		return "personaform";
 
 	}
 	
-	private void populateDefaultModel(Model model) {
+	// save or update user
+	@RequestMapping(value = "/personaSave", method = RequestMethod.POST)
+	public String saveOrUpdateUser(@ModelAttribute("userForm") @Validated PersonaDTO user,
+			BindingResult result, Model model, final RedirectAttributes redirectAttributes) {
 
-		List<String> frameworksList = new ArrayList<String>();
-		frameworksList.add("Spring MVC");
-		frameworksList.add("Struts 2");
-		frameworksList.add("JSF 2");
-		frameworksList.add("GWT");
-		frameworksList.add("Play");
-		frameworksList.add("Apache Wicket");
-		model.addAttribute("frameworkList", frameworksList);
+		if (result.hasErrors()) {
+			return "personaform";
+		} else {
 
-		Map<String, String> skill = new LinkedHashMap<String, String>();
-		skill.put("Hibernate", "Hibernate");
-		skill.put("Spring", "Spring");
-		skill.put("Struts", "Struts");
-		skill.put("Groovy", "Groovy");
-		skill.put("Grails", "Grails");
-		model.addAttribute("javaSkillList", skill);
-
-		List<Integer> numbers = new ArrayList<Integer>();
-		numbers.add(1);
-		numbers.add(2);
-		numbers.add(3);
-		numbers.add(4);
-		numbers.add(5);
-		model.addAttribute("numberList", numbers);
-
-		Map<String, String> country = new LinkedHashMap<String, String>();
-		country.put("US", "United Stated");
-		country.put("CN", "China");
-		country.put("SG", "Singapore");
-		country.put("MY", "Malaysia");
-		model.addAttribute("countryList", country);
-
-	}
-	
-		// save or update user
-		@RequestMapping(value = "/personaSave", method = RequestMethod.POST)
-		public String saveOrUpdateUser(@ModelAttribute("userForm") @Validated Persona user,
-				BindingResult result, Model model, final RedirectAttributes redirectAttributes) {
-
-			if (result.hasErrors()) {
-				populateDefaultModel(model);
-				return "personaform";
-			} else {
-
-				redirectAttributes.addFlashAttribute("css", "success");
-				
-				if(user.isNew()){
-					redirectAttributes.addFlashAttribute("msg", "User added successfully!");
-				}else{
-					redirectAttributes.addFlashAttribute("msg", "User updated successfully!");
-				}
-				
-				//userService.saveOrUpdate(user);
-				
-				// POST/REDIRECT/GET
-				return "redirect:/persona/" + user.getNroCliente();
-
-				// POST/FORWARD/GET
-				// return "user/list";
-
+			redirectAttributes.addFlashAttribute("css", "success");
+			
+			if(user.isNew()){
+				redirectAttributes.addFlashAttribute("msg", "User added successfully!");
+			}else{
+				redirectAttributes.addFlashAttribute("msg", "User updated successfully!");
 			}
+			
+			service = ConfigurationEnviroment.getInstance().getContext().getBean(TestService.class);
+			
+			if(user.isNew()) {
+				service.savePersona(user);
+			}else {
+				service.updatePersona(user);
+			}
+			
+			// POST/REDIRECT/GET
+			return "redirect:/persona/" + user.getNroCliente();
+
+			// POST/FORWARD/GET
+			// return "user/list";
 
 		}
+
+	}
 		
 }

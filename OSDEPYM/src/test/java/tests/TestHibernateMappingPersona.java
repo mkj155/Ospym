@@ -1,6 +1,5 @@
 package tests;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-
+import com.osdepym.configuration.ConfigurationEnviroment;
 import com.osdepym.hibernate.dao.TestPersonaDAO;
 import com.osdepym.hibernate.entity.Persona;
 
@@ -8,28 +7,26 @@ import junit.framework.TestCase;
 
 public class TestHibernateMappingPersona extends TestCase {
 	
-	protected ClassPathXmlApplicationContext context;
 	protected TestPersonaDAO personDAO;
 	Persona persona;
 	TestPersonaMethod methods;
 	
 	protected void setUp() {
-		context = new ClassPathXmlApplicationContext("spring.xml");
-		personDAO = context.getBean(TestPersonaDAO.class);
+		personDAO = ConfigurationEnviroment.getInstance().getContext().getBean(TestPersonaDAO.class);
 		methods = new TestPersonaMethod();
 	}
 	
 	public void testMain() {
-		persona = methods.testingInstancePersona();
-		methods.testingInsertPersona(personDAO, persona);
-		methods.testingUpdatePersona(personDAO, persona);
-		methods.testingSelectPersona(personDAO);
-		methods.testingGetPersona(personDAO, "Mauricio");
-		methods.testingDeletePersona(personDAO);
+		persona = methods.instancePersona();
+		methods.insertPersona(personDAO, persona);
+		methods.updatePersona(personDAO, persona);
+		methods.selectPersona(personDAO);
+		methods.getPersona(personDAO, "Mauricio");
+		//methods.deletePersona(personDAO);
 	}
 		
     protected void tearDown() {
-		context.close();
+    	ConfigurationEnviroment.getInstance().getContext().close();
     }
     
 }

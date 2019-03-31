@@ -1,18 +1,27 @@
 package com.osdepym.hibernate.entity;
 
 import java.util.Date;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Type;
 
 @Entity
 @Table(name="TESTPERSONA")
 public class Persona {
 	
+	@OneToMany(mappedBy="persona", fetch = FetchType.EAGER, cascade=CascadeType.ALL)
+	private Set<Hijos> hijos;
+
 	@Id
 	@Column(name="ID")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -28,17 +37,20 @@ public class Persona {
 	
 	private Date fechaNacimiento;
 	
-	private int nroCliente;
+	private Integer nroCliente;
 	
-	public boolean isNew() {
-		return (this.id == null);
-	}
+	@Type(type = "numeric_boolean")
+	private boolean vegetariano;
+	
+	private String curso;
+	
+	private String sexo;
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -82,12 +94,44 @@ public class Persona {
 		this.fechaNacimiento = fechaNacimiento;
 	}
 
-	public int getNroCliente() {
+	public Integer getNroCliente() {
 		return nroCliente;
 	}
 
-	public void setNroCliente(int nroCliente) {
+	public void setNroCliente(Integer nroCliente) {
 		this.nroCliente = nroCliente;
 	}
 
+	public Set<Hijos> getHijos() {
+		return hijos;
+	}
+
+	public void setHijos(Set<Hijos> hijos) {
+		this.hijos = hijos;
+	}
+
+	public boolean isVegetariano() {
+		return vegetariano;
+	}
+
+	public void setVegetariano(boolean vegetariano) {
+		this.vegetariano = vegetariano;
+	}
+
+	public String getCurso() {
+		return curso;
+	}
+
+	public void setCurso(String curso) {
+		this.curso = curso;
+	}
+
+	public String getSexo() {
+		return sexo;
+	}
+
+	public void setSexo(String sexo) {
+		this.sexo = sexo;
+	}
+	
 }

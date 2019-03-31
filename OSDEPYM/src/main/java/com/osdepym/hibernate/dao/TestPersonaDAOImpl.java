@@ -8,7 +8,6 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 
-import com.osdepym.hibernate.dao.TestPersonaDAO;
 import com.osdepym.hibernate.entity.Persona;
 
 public class TestPersonaDAOImpl implements TestPersonaDAO {
@@ -24,7 +23,7 @@ public class TestPersonaDAOImpl implements TestPersonaDAO {
 		List<Persona> personas = null;
 		try {
 			Session session = this.sessionFactory.openSession();
-			personas = session.createQuery("FROM hibernate.model.Persona").list();
+			personas = session.createQuery("FROM com.osdepym.hibernate.entity.Persona").list();
 			session.close();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -90,13 +89,13 @@ public class TestPersonaDAOImpl implements TestPersonaDAO {
 	}
 
 	@Override
-	public Persona get(long id) {
+	public Persona get(Integer id) {
 		Session session = null;
 		Persona persona = null;
 		try {
 			session = this.sessionFactory.openSession();
 			Criteria cr = session.createCriteria(Persona.class);
-			cr.add(Restrictions.eq("id", id));
+			cr.add(Restrictions.eq("nroCliente", id));
 			List<Persona> results = cr.list();
 			if (results != null && results.size() > 0) {
 				persona = results.get(0);

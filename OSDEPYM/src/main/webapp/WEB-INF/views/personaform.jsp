@@ -27,7 +27,7 @@
 
 		<form:hidden path="id" />
 
-		<spring:bind path="name">
+		<spring:bind path="nombre">
 			<div class="form-group ${status.error ? 'has-error' : ''}">
 				<label class="col-sm-2 control-label">Nombre</label>
 				<div class="col-sm-10">
@@ -79,7 +79,7 @@
 
 		<spring:bind path="fechaNacimiento">
 			<div class="form-group ${status.error ? 'has-error' : ''}">
-				<label class="col-sm-2 control-label">Fecha de Nacimiento</label>
+				<label class="col-sm-2 control-label">Fecha de Nacimiento (YYYY-MM-DD)</label>
 				<div class="col-sm-10">
 					<form:textarea path="fechaNacimiento" rows="5" class="form-control" id="fechaNacimiento" placeholder="Fecha de Nacimiento" />
 					<form:errors path="fechaNacimiento" class="control-label" />
@@ -87,52 +87,52 @@
 			</div>
 		</spring:bind>
 
-		<spring:bind path="newsletter">
+		<spring:bind path="vegetariano">
 			<div class="form-group ${status.error ? 'has-error' : ''}">
-				<label class="col-sm-2 control-label">Newsletter</label>
+				<label class="col-sm-2 control-label">Vegetariano</label>
 				<div class="col-sm-10">
 					<div class="checkbox">
-						<label> <form:checkbox path="newsletter" id="newsletter" />
+						<label> <form:checkbox path="vegetariano" id="vegetariano" />
 						</label>
-						<form:errors path="newsletter" class="control-label" />
+						<form:errors path="vegetariano" class="control-label" />
 					</div>
 				</div>
 			</div>
 		</spring:bind>
 
-		<spring:bind path="framework">
-			<div class="form-group ${status.error ? 'has-error' : ''}">
-				<label class="col-sm-2 control-label">Web Frameworks</label>
-				<div class="col-sm-10">
-					<form:checkboxes path="framework" items="${frameworkList}" element="label class='checkbox-inline'" />
-					<br />
-					<form:errors path="framework" class="control-label" />
-				</div>
-			</div>
-		</spring:bind>
+<%-- 		<spring:bind path="framework"> --%>
+<%-- 			<div class="form-group ${status.error ? 'has-error' : ''}"> --%>
+<!-- 				<label class="col-sm-2 control-label">Web Frameworks</label> -->
+<!-- 				<div class="col-sm-10"> -->
+<%-- 					<form:checkboxes path="framework" items="${frameworkList}" element="label class='checkbox-inline'" /> --%>
+<!-- 					<br /> -->
+<%-- 					<form:errors path="framework" class="control-label" /> --%>
+<!-- 				</div> -->
+<!-- 			</div> -->
+<%-- 		</spring:bind> --%>
 
-		<spring:bind path="sex">
+		<spring:bind path="sexo">
 			<div class="form-group ${status.error ? 'has-error' : ''}">
 				<label class="col-sm-2 control-label">Sex</label>
 				<div class="col-sm-10">
-					<label class="radio-inline"> <form:radiobutton path="sex" value="M" /> Male
-					</label> <label class="radio-inline"> <form:radiobutton path="sex" value="F" /> Female
+					<label class="radio-inline"> <form:radiobutton path="sexo" value="M" /> Male
+					</label> <label class="radio-inline"> <form:radiobutton path="sexo" value="F" /> Female
 					</label> <br />
-					<form:errors path="sex" class="control-label" />
+					<form:errors path="sexo" class="control-label" />
 				</div>
 			</div>
 		</spring:bind>
 
-		<spring:bind path="number">
-			<div class="form-group ${status.error ? 'has-error' : ''}">
-				<label class="col-sm-2 control-label">Number</label>
-				<div class="col-sm-10">
-					<form:radiobuttons path="number" items="${numberList}" element="label class='radio-inline'" />
-					<br />
-					<form:errors path="number" class="control-label" />
-				</div>
-			</div>
-		</spring:bind>
+<%-- 		<spring:bind path="number"> --%>
+<%-- 			<div class="form-group ${status.error ? 'has-error' : ''}"> --%>
+<!-- 				<label class="col-sm-2 control-label">Number</label> -->
+<!-- 				<div class="col-sm-10"> -->
+<%-- 					<form:radiobuttons path="number" items="${numberList}" element="label class='radio-inline'" /> --%>
+<!-- 					<br /> -->
+<%-- 					<form:errors path="number" class="control-label" /> --%>
+<!-- 				</div> -->
+<!-- 			</div> -->
+<%-- 		</spring:bind> --%>
 
 		<!-- Custom Script, Spring map to model via 'name' attribute
 		<div class="form-group">
@@ -150,26 +150,26 @@
 		</div>
  		-->
 
-		<spring:bind path="country">
+		<spring:bind path="curso">
 			<div class="form-group ${status.error ? 'has-error' : ''}">
-				<label class="col-sm-2 control-label">Country</label>
+				<label class="col-sm-2 control-label">Curso Favorito</label>
 				<div class="col-sm-5">
-					<form:select path="country" class="form-control">
+					<form:select path="curso" class="form-control">
 						<form:option value="NONE" label="--- Select ---" />
-						<form:options items="${countryList}" />
+						<form:options items="${cursoList}" />
 					</form:select>
-					<form:errors path="country" class="control-label" />
+					<form:errors path="curso" class="control-label" />
 				</div>
 				<div class="col-sm-5"></div>
 			</div>
 		</spring:bind>
 
-		<spring:bind path="skill">
+		<spring:bind path="hijos">
 			<div class="form-group ${status.error ? 'has-error' : ''}">
-				<label class="col-sm-2 control-label">Java Skills</label>
+				<label class="col-sm-2 control-label">Hijos</label>
 				<div class="col-sm-5">
-					<form:select path="skill" items="${javaSkillList}" multiple="true" size="5" class="form-control" />
-					<form:errors path="skill" class="control-label" />
+					<form:select path="hijos" items="${childrensList}" multiple="true" size="5" class="form-control" />
+					<form:errors path="hijos" class="control-label" />
 				</div>
 				<div class="col-sm-5"></div>
 			</div>

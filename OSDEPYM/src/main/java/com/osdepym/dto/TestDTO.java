@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 public class TestDTO implements Serializable{
 	
+	private static final long serialVersionUID = 2910682746320052416L;
 	private int id;
 	private String nombre;
 	
