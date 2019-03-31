@@ -25,9 +25,7 @@ import com.osdepym.hibernate.entity.Persona;
 public class TestService{
 	
 	private TestCursoDAOImpl cursosDAO;
-	
 	private TestPersonaDAOImpl personaDAO;
-	
 	private HijosDAOImpl hijosDAO;
 	
 	@Transactional
@@ -97,7 +95,6 @@ public class TestService{
 	@Transactional
 	public List<String> getAllCursosName() {
 		List<TestDTO> cursosDTO = getAllCursos();
-		
 		List<String> cursosNames = new ArrayList<String>();
 		
 		if(cursosDTO != null){
@@ -227,7 +224,7 @@ public class TestService{
 		persona.setCurso(personaDTO.getCurso());
 		List<Hijos> hijos = getHijos(personaDTO.getHijos());
 		setPersonToChildrens(hijos,persona);
-
+		
 		Set<Hijos> hijosS = new HashSet<Hijos>();
 		for (Hijos hijo : hijos) {
 			hijosS.add(hijo);

@@ -2,11 +2,14 @@ package com.osdepym.hibernate.dao;
 
 import java.util.List;
 
-import org.hibernate.Criteria;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.criterion.Restrictions;
+import org.hibernate.query.Query;
 
 import com.osdepym.hibernate.entity.Profesores;
 
@@ -23,7 +26,7 @@ public class TestProfesoresDAOImpl implements TestProfesoresDAO {
 		List<Profesores> profesores = null;
 		try {
 			Session session = this.sessionFactory.openSession();
-			profesores = session.createQuery("FROM com.osdepym.hibernate.entity.Profesores").list();
+			profesores = session.createQuery("FROM com.osdepym.hibernate.entity.Profesores", Profesores.class).list();
 			session.close();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -94,12 +97,14 @@ public class TestProfesoresDAOImpl implements TestProfesoresDAO {
 		Profesores profesor = null;
 		try {
 			session = this.sessionFactory.openSession();
-			Criteria cr = session.createCriteria(Profesores.class);
-			cr.add(Restrictions.eq("id", id));
-			List<Profesores> results = cr.list();
-			if (results != null && results.size() > 0) {
-				profesor = results.get(0);
-			} 
+			// creando query
+			CriteriaBuilder builder = session.getCriteriaBuilder();
+			CriteriaQuery<Profesores> criteria = builder.createQuery(Profesores.class);
+			Root<Profesores> root = criteria.from(Profesores.class);
+			criteria.select(root).where(builder.equal(root.get("idProfesor"), id));
+			Query<Profesores> query = session.createQuery(criteria);
+			// obteniendo resultado
+			profesor = query.getSingleResult();
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {

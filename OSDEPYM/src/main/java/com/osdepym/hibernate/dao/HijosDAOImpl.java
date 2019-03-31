@@ -2,10 +2,13 @@ package com.osdepym.hibernate.dao;
 
 import java.util.List;
 
-import org.hibernate.Criteria;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.criterion.Restrictions;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -26,7 +29,7 @@ public class HijosDAOImpl implements HijosDAO{
 		List<Hijos> hijos = null;
 		try {
 			Session session = this.sessionFactory.openSession();
-			hijos = session.createQuery("FROM com.osdepym.hibernate.entity.Hijos").list();
+			hijos = session.createQuery("FROM com.osdepym.hibernate.entity.Hijos", Hijos.class).list();
 			session.close();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -50,13 +53,14 @@ public class HijosDAOImpl implements HijosDAO{
 		Hijos hijo = null;
 		try {
 			session = this.sessionFactory.openSession();
-			Criteria cr = session.createCriteria(Hijos.class);
-			cr.add(Restrictions.eq("nombre", nombre));
-			cr.add(Restrictions.eq("apellido", apellido));
-			List<Hijos> results = cr.list();
-			if (results != null && results.size() > 0) {
-				hijo = results.get(0);
-			} 
+			// creando query
+			CriteriaBuilder builder = session.getCriteriaBuilder();
+			CriteriaQuery<Hijos> criteria = builder.createQuery(Hijos.class);
+			Root<Hijos> root = criteria.from(Hijos.class);
+			criteria.select(root).where(builder.equal(root.get("nombre"), nombre),builder.equal(root.get("apellido"), apellido));
+			Query<Hijos> query = session.createQuery(criteria);
+			// obteniendo resultado
+			hijo = query.getSingleResult();
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {

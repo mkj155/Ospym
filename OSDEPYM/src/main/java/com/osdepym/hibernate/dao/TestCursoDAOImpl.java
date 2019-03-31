@@ -2,13 +2,15 @@ package com.osdepym.hibernate.dao;
 
 import java.util.List;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import javax.transaction.Transactional;
 
-import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.criterion.Restrictions;
+import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
 
 import com.osdepym.hibernate.entity.Cursos;
@@ -30,7 +32,7 @@ public class TestCursoDAOImpl implements TestCursoDAO{
 		try {
 			Session session = this.sessionFactory.getCurrentSession();
 			session.beginTransaction();
-			cursos = session.createQuery("FROM com.osdepym.hibernate.entity.Cursos").list();
+			cursos = session.createQuery("FROM com.osdepym.hibernate.entity.Cursos", Cursos.class).list();
 			session.close();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -98,21 +100,23 @@ public class TestCursoDAOImpl implements TestCursoDAO{
 	@Override
 	public Cursos get(Integer id) {
 		Session session = null;
-		Cursos persona = null;
+		Cursos curso = null;
 		try {
 			session = this.sessionFactory.openSession();
-			Criteria cr = session.createCriteria(Cursos.class);
-			cr.add(Restrictions.eq("id", id));
-			List<Cursos> results = cr.list();
-			if (results != null && results.size() > 0) {
-				persona = results.get(0);
-			} 
+			// creando query
+			CriteriaBuilder builder = session.getCriteriaBuilder();
+			CriteriaQuery<Cursos> criteria = builder.createQuery(Cursos.class);
+			Root<Cursos> root = criteria.from(Cursos.class);
+			criteria.select(root).where(builder.equal(root.get("idCurso"), id));
+			Query<Cursos> query = session.createQuery(criteria);
+			// obteniendo resultado
+			curso = query.getSingleResult();
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			if (session != null && session.isOpen()) session.close();
 		}
-		return persona;
+		return curso;
 	}
 	
 }

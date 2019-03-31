@@ -3,7 +3,6 @@ package com.osdepym.hibernate.entity;
 import java.util.Date;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -19,7 +18,7 @@ import org.hibernate.annotations.Type;
 @Table(name="TESTPERSONA")
 public class Persona {
 	
-	@OneToMany(mappedBy="persona", fetch = FetchType.EAGER, cascade=CascadeType.ALL)
+	@OneToMany(mappedBy="persona", fetch = FetchType.EAGER)
 	private Set<Hijos> hijos;
 
 	@Id

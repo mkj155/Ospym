@@ -2,11 +2,14 @@ package com.osdepym.hibernate.dao;
 
 import java.util.List;
 
-import org.hibernate.Criteria;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.criterion.Restrictions;
+import org.hibernate.query.Query;
 
 import com.osdepym.hibernate.entity.Persona;
 
@@ -23,7 +26,7 @@ public class TestPersonaDAOImpl implements TestPersonaDAO {
 		List<Persona> personas = null;
 		try {
 			Session session = this.sessionFactory.openSession();
-			personas = session.createQuery("FROM com.osdepym.hibernate.entity.Persona").list();
+			personas = session.createQuery("FROM com.osdepym.hibernate.entity.Persona", Persona.class).list();
 			session.close();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -94,12 +97,14 @@ public class TestPersonaDAOImpl implements TestPersonaDAO {
 		Persona persona = null;
 		try {
 			session = this.sessionFactory.openSession();
-			Criteria cr = session.createCriteria(Persona.class);
-			cr.add(Restrictions.eq("nroCliente", id));
-			List<Persona> results = cr.list();
-			if (results != null && results.size() > 0) {
-				persona = results.get(0);
-			} 
+			// creando query
+			CriteriaBuilder builder = session.getCriteriaBuilder();
+			CriteriaQuery<Persona> criteria = builder.createQuery(Persona.class);
+			Root<Persona> root = criteria.from(Persona.class);
+			criteria.select(root).where(builder.equal(root.get("nroCliente"), id));
+			Query<Persona> query = session.createQuery(criteria);
+			// obteniendo resultado
+			persona = query.getSingleResult();
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -114,12 +119,14 @@ public class TestPersonaDAOImpl implements TestPersonaDAO {
 		Persona persona = null;
 		try {
 			session = this.sessionFactory.openSession();
-			Criteria cr = session.createCriteria(Persona.class);
-			cr.add(Restrictions.eq("nombre", nombre));
-			List<Persona> results = cr.list();
-			if (results != null && results.size() > 0) {
-				persona = results.get(0);
-			} 
+			// creando query
+			CriteriaBuilder builder = session.getCriteriaBuilder();
+			CriteriaQuery<Persona> criteria = builder.createQuery(Persona.class);
+			Root<Persona> root = criteria.from(Persona.class);
+			criteria.select(root).where(builder.equal(root.get("nombre"), nombre));
+			Query<Persona> query = session.createQuery(criteria);
+			// obteniendo resultado
+			persona = query.getSingleResult();
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {

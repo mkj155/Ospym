@@ -1,6 +1,5 @@
 package com.osdepym.hibernate.entity;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -15,7 +14,7 @@ import javax.persistence.Table;
 @Table(name="HIJOS")
 public class Hijos {
 
-	@ManyToOne(fetch=FetchType.LAZY, cascade=CascadeType.ALL)
+	@ManyToOne(fetch=FetchType.LAZY, optional=true)//cascade=CascadeType.ALL)
 	@JoinColumn(name="IDPERSONA")
     private Persona persona;
 

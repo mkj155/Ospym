@@ -1,5 +1,6 @@
 package tests;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
@@ -16,8 +17,15 @@ public class TestPersonaMethod {
 		persona.setNombre("Mauricio");
 		persona.setApellido("Macri");
 		persona.setDireccion("Perón 758");
-		persona.setCiudad("Gatolandia");
-		persona.setFechaNacimiento(new Date("06/06/1966"));
+		persona.setCiudad("Macrilandia");
+		
+		Calendar cal = Calendar.getInstance();
+		cal.set(Calendar.YEAR, 1966);
+		cal.set(Calendar.MONTH, Calendar.AUGUST);
+		cal.set(Calendar.DAY_OF_MONTH, 6);
+		Date dateBirthday = cal.getTime();
+		
+		persona.setFechaNacimiento(dateBirthday);
 		persona.setNroCliente(randomNumber());
 		persona.setVegetariano(true);
 		instanceHijo(persona);
