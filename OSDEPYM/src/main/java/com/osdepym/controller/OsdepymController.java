@@ -25,16 +25,14 @@ import com.osdepym.service.TestService;
 
 @Controller
 @Scope("session")
-public class HelloWorldController {
+public class OsdepymController {
 	
 	private TestService service = ConfigurationEnviroment.getInstance().getContext().getBean(TestService.class);
-	private static final Logger logger = Logger.getLogger(HelloWorldController.class);
+	private static final Logger logger = Logger.getLogger(OsdepymController.class);
 	
-	@RequestMapping("/hello")
-	public ModelAndView welcomeMessage(@RequestParam(value = "name", required = false) String name) {		
-		ModelAndView view = new ModelAndView("hello");
-		view.addObject("name", name);
-		return view;
+	@RequestMapping("/")
+	public String welcomeMessage() {		
+		return "redirect:/persona/";
 	}
 	
 	@RequestMapping("/persona")

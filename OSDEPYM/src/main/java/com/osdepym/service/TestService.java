@@ -1,12 +1,11 @@
 package com.osdepym.service;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.annotation.Transactional;
@@ -48,13 +47,14 @@ public class TestService{
 	}
 	
 	@Transactional
-	public List<String> getAllHijos() {
+	public Set<Hijos> getAllHijos() {
 		List<Hijos> hijosL = hijosDAO.getAll();
 		Set<Hijos> hijosS = new HashSet<Hijos>();
 		for (Hijos hijo : hijosL) {
 			hijosS.add(hijo);
 		}
-		return getNombresCompletosHijos(hijosS);
+		
+		return hijosS; //getNombresCompletosHijos(hijosS);
 
 	}
 	
@@ -174,64 +174,21 @@ public class TestService{
 	
 	private PersonaDTO mergeEntityWithDTO(Persona persona) {
 		PersonaDTO personaDTO = new PersonaDTO();
-		
-		personaDTO.setId(persona.getId());
-		personaDTO.setNombre(persona.getNombre());
-		personaDTO.setApellido(persona.getApellido());
-		personaDTO.setCiudad(persona.getCiudad());
-		personaDTO.setFechaNacimiento(new SimpleDateFormat("yyyy-MM-dd").format(persona.getFechaNacimiento()));
-		personaDTO.setNroCliente(persona.getNroCliente());
-		personaDTO.setDireccion(persona.getDireccion());
-		personaDTO.setVegetariano(persona.isVegetariano());
-		personaDTO.setSexo(persona.getSexo());
-		personaDTO.setCurso(persona.getCurso());
-		personaDTO.setHijos(getNombresCompletosHijos(persona.getHijos()));
-		
+		BeanUtils.copyProperties(persona, personaDTO);		
 		return personaDTO;
 	}
 	
-	public List<Hijos> getHijos(List<String> hijosNames){
-		List<Hijos> hijos = new ArrayList<Hijos>();
-		for(String nombreApellido : hijosNames) {
-			String[] nombreAndApellido = nombreApellido.split(" ");
-			hijos.add(hijosDAO.getHijoByNombreAndApellido(nombreAndApellido[0], nombreAndApellido[1]));
+	public Set<Hijos> getHijos(Set<Hijos> hijosNames){
+		Set<Hijos> hijos = new HashSet<Hijos>();
+		for(Hijos hijo : hijosNames) {
+			hijos.add(hijosDAO.getHijoByNombreAndApellido(hijo.getNombre(), hijo.getApellido()));
 		}
 		return hijos;
 	}
 	
-	private void setPersonToChildrens(List<Hijos> hijos,Persona persona) {
-		for(Hijos hijo : hijos) {
-			hijo.setPersona(persona);
-		}
-	}
-	
 	private Persona mergeDTOWithEntity(PersonaDTO personaDTO) {
 		Persona persona = new Persona();
-		
-		persona.setId(personaDTO.getId());
-		persona.setNombre(personaDTO.getNombre());
-		persona.setApellido(personaDTO.getApellido());
-		persona.setCiudad(personaDTO.getCiudad());
-		try {
-			persona.setFechaNacimiento(new SimpleDateFormat("yyyy-MM-dd").parse(personaDTO.getFechaNacimiento()));
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-		persona.setNroCliente(personaDTO.getNroCliente());
-		persona.setDireccion(personaDTO.getDireccion());
-		persona.setVegetariano(personaDTO.getVegetariano());
-		persona.setSexo(personaDTO.getSexo());
-		persona.setCurso(personaDTO.getCurso());
-		List<Hijos> hijos = getHijos(personaDTO.getHijos());
-		setPersonToChildrens(hijos,persona);
-		
-		Set<Hijos> hijosS = new HashSet<Hijos>();
-		for (Hijos hijo : hijos) {
-			hijosS.add(hijo);
-		}
-
-		persona.setHijos(hijosS);
-		
+		BeanUtils.copyProperties(personaDTO, persona);		
 		return persona;
 	}
 	

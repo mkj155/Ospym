@@ -1,13 +1,20 @@
 package com.osdepym.dto;
 
 import java.io.Serializable;
-import java.util.List;
+import java.util.Date;
+import java.util.Set;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.osdepym.hibernate.entity.Hijos;
 
 
 public class PersonaDTO implements Serializable{
 	
 	private static final long serialVersionUID = -7939595527637867540L;
 
+	private Set<Hijos> hijos;
+	
 	private Integer id;
 	
 	private String nombre;
@@ -18,17 +25,24 @@ public class PersonaDTO implements Serializable{
 	
 	private String ciudad;
 	
-	private String fechaNacimiento;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private Date fechaNacimiento;
 	
 	private int nroCliente;
 	
-	private List<String> hijos;
+	private boolean vegetariano;
 	
 	private String curso;
 	
-	private Boolean vegetariano;
-	
 	private String sexo;
+	
+	public Set<Hijos> getHijos() {
+		return hijos;
+	}
+
+	public void setHijos(Set<Hijos> hijos) {
+		this.hijos = hijos;
+	}
 	
 	public boolean isNew() {
 		return (this.id == null);
@@ -70,11 +84,11 @@ public class PersonaDTO implements Serializable{
 		this.ciudad = ciudad;
 	}
 
-	public String getFechaNacimiento() {
+	public Date getFechaNacimiento() {
 		return fechaNacimiento;
 	}
 
-	public void setFechaNacimiento(String fechaNacimiento) {
+	public void setFechaNacimiento(Date fechaNacimiento) {
 		this.fechaNacimiento = fechaNacimiento;
 	}
 
@@ -86,14 +100,6 @@ public class PersonaDTO implements Serializable{
 		this.nroCliente = nroCliente;
 	}
 
-	public void setHijos(List<String> hijos) {
-		this.hijos = hijos;
-	}
-	
-	public List<String> getHijos() {
-		return hijos;
-	}
-
 	public String getCurso() {
 		return curso;
 	}
@@ -102,11 +108,11 @@ public class PersonaDTO implements Serializable{
 		this.curso = curso;
 	}
 
-	public Boolean getVegetariano() {
+	public boolean isVegetariano() {
 		return vegetariano;
 	}
 
-	public void setVegetariano(Boolean vegetariano) {
+	public void setVegetariano(boolean vegetariano) {
 		this.vegetariano = vegetariano;
 	}
 
