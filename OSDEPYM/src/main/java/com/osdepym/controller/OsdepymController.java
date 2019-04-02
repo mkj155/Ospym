@@ -122,7 +122,7 @@ public class OsdepymController {
 	}
 	
 	@RequestMapping(value = "/personaSave", method = RequestMethod.POST)
-	public String saveOrUpdateUser(@ModelAttribute("personaForm") @Validated PersonaDTO personaDTO, Model model, BindingResult result, final RedirectAttributes redirectAttributes) {
+	public String saveOrUpdateUser(@ModelAttribute("personaForm") @Validated PersonaDTO personaDTO, BindingResult result, final RedirectAttributes redirectAttributes) {
 		String response;
 		try {
 			if (result.hasErrors()) {
@@ -145,7 +145,6 @@ public class OsdepymController {
 			}
 		} catch (CustomException e) {
 			response = "error";
-			model.addAttribute("error", e);
 		}
 	return response;
 	}

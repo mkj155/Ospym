@@ -4,7 +4,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Error</title>
-<%@ page isELIgnored="false"%>
 </head>
 <body>
 	<h2>${error.customMessage}</h2>

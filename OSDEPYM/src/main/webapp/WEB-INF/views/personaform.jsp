@@ -77,7 +77,7 @@
 
 		<spring:bind path="fechaNacimiento">
 			<div class="form-group ${status.error ? 'has-error' : ''}">
-				<label class="col-sm-2 control-label">Fecha de Nacimiento</label>
+				<label class="col-sm-2 control-label">Fecha de Nacimiento (yyyy-MM-dd)</label>
 				<div class="col-sm-10">
 					<form:input path="fechaNacimiento" rows="5" class="date" id="fechaNacimiento" placeholder="Fecha de Nacimiento" />
 					<form:errors path="fechaNacimiento" class="control-label" />
