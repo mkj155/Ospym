@@ -73,7 +73,7 @@ public class TestPersonaDAOImpl implements TestPersonaDAO {
 			CriteriaBuilder builder = session.getCriteriaBuilder();
 			CriteriaQuery<Persona> criteria = builder.createQuery(Persona.class);
 			Root<Persona> root = criteria.from(Persona.class);
-			criteria.select(root).where(builder.equal(root.get("id"), id));
+			criteria.select(root).where(builder.equal(root.get("nroCliente"), id));
 			Query<Persona> query = session.createQuery(criteria);
 			// Si se elije como id una persona que no existe se lanza una exception
 			persona = query.getSingleResult();

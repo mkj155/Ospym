@@ -96,7 +96,7 @@ public class TestPersonaMethod {
 		}
 		
 		if(personas != null && personas.size() > 0) {
-			service.deletePersona(personas.get(0).getId());
+			service.deletePersona(personas.get(0).getNroCliente());
 		}
 	}
 	
