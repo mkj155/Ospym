@@ -4,6 +4,9 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.osdepym.hibernate.entity.Hijos;
@@ -16,13 +19,19 @@ public class PersonaDTO implements Serializable{
 	private Set<Hijos> hijos;
 	
 	private Integer id;
-	
+
+	@NotNull
+    @Size(min=5, max=20)
 	private String nombre;
 
+	@NotNull
+    @Size(min=5, max=20)
 	private String apellido;
 	
+	@Size(min=5, max=20)
 	private String direccion;
 	
+	@Size(min=5, max=20)
 	private String ciudad;
 	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")

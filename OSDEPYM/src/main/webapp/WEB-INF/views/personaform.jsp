@@ -3,7 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ page isELIgnored="false" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -80,7 +79,7 @@
 			<div class="form-group ${status.error ? 'has-error' : ''}">
 				<label class="col-sm-2 control-label">Fecha de Nacimiento</label>
 				<div class="col-sm-10">
-					<form:input path="fechaNacimiento" rows="5" class="form-control" id="fechaNacimiento" placeholder="Fecha de Nacimiento" />
+					<form:input path="fechaNacimiento" rows="5" class="date" id="fechaNacimiento" placeholder="Fecha de Nacimiento" />
 					<form:errors path="fechaNacimiento" class="control-label" />
 				</div>
 			</div>

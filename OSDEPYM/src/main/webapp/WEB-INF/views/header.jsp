@@ -1,5 +1,4 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<%@ page isELIgnored="false" %>
 <head>
 <title>Spring MVC Example</title>
 

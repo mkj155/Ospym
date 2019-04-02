@@ -39,7 +39,7 @@ public class Persona {
 	
 	private Date fechaNacimiento;
 	
-	private Integer nroCliente;
+	private int nroCliente;
 	
 	@Type(type = "numeric_boolean")
 	private boolean vegetariano;
@@ -96,11 +96,11 @@ public class Persona {
 		this.fechaNacimiento = fechaNacimiento;
 	}
 
-	public Integer getNroCliente() {
+	public int getNroCliente() {
 		return nroCliente;
 	}
 
-	public void setNroCliente(Integer nroCliente) {
+	public void setNroCliente(int nroCliente) {
 		this.nroCliente = nroCliente;
 	}
 

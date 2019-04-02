@@ -23,18 +23,19 @@ import com.osdepym.dto.PersonaDTO;
 import com.osdepym.exception.CustomException;
 import com.osdepym.service.TestService;
 
+
 @Controller
 @Scope("session")
 public class OsdepymController {
-
+	
 	private TestService service = ConfigurationEnviroment.getInstance().getContext().getBean(TestService.class);
 	private static final Logger logger = Logger.getLogger(OsdepymController.class);
-
+	
 	@RequestMapping("/")
-	public String welcomeMessage() {
+	public String welcomeMessage() {		
 		return "redirect:/persona/";
 	}
-
+	
 	@RequestMapping("/persona")
 	public ModelAndView welcomePersona(@RequestParam(value = "name", required = false) String name,
 			HttpServletRequest request) {
@@ -50,7 +51,7 @@ public class OsdepymController {
 		}
 		return view;
 	}
-
+	
 	@RequestMapping(value = "/persona/{id}", method = RequestMethod.GET)
 	public String showUser(@PathVariable("id") int id, Model model, HttpServletRequest request) {
 		String response;
@@ -72,7 +73,7 @@ public class OsdepymController {
 		}
 		return response;
 	}
-
+	
 	@RequestMapping(value = "/persona/{id}/update", method = RequestMethod.GET)
 	public String showAddPersonForm(@PathVariable("id") Integer id, Model model) {
 		String response;
@@ -90,7 +91,7 @@ public class OsdepymController {
 		}
 		return response;
 	}
-
+	
 	@RequestMapping(value = "/persona/{id}/delete", method = RequestMethod.GET)
 	public String deletePersona(@PathVariable("id") Integer id, Model model) {
 		String response;
@@ -103,7 +104,7 @@ public class OsdepymController {
 		}
 		return response;
 	}
-
+	
 	@RequestMapping(value = "/persona/add", method = RequestMethod.GET)
 	public String showAddPersonForm(Model model) {
 		String response;
@@ -119,36 +120,33 @@ public class OsdepymController {
 		}
 		return response;
 	}
-
+	
 	@RequestMapping(value = "/personaSave", method = RequestMethod.POST)
-	public String saveOrUpdateUser(@ModelAttribute("userForm") @Validated PersonaDTO user, BindingResult result,
-			Model model, final RedirectAttributes redirectAttributes) {
+	public String saveOrUpdateUser(@ModelAttribute("personaForm") @Validated PersonaDTO personaDTO, Model model, BindingResult result, final RedirectAttributes redirectAttributes) {
 		String response;
 		try {
 			if (result.hasErrors()) {
 				return "personaform";
 			} else {
 				redirectAttributes.addFlashAttribute("css", "success");
-				if (user.isNew()) {
-					redirectAttributes.addFlashAttribute("msg", "User added successfully!");
-				} else {
-					redirectAttributes.addFlashAttribute("msg", "User updated successfully!");
+				if(personaDTO.isNew()){
+					redirectAttributes.addFlashAttribute("msg", "Persona agregada correctamente!");
+				}else{
+					redirectAttributes.addFlashAttribute("msg", "Persona actualizada correctamente!");
 				}
-
-				if (user.isNew()) {
-					service.savePersona(user);
-				} else {
-					service.updatePersona(user);
+				
+				if(personaDTO.isNew()) {
+					service.savePersona(personaDTO);
+				}else {
+					service.updatePersona(personaDTO);
 				}
-
-				// POST/REDIRECT/GET
-				response = "redirect:/persona/" + user.getNroCliente();
+				
+				response = "redirect:/persona/" + personaDTO.getNroCliente();
 			}
 		} catch (CustomException e) {
 			response = "error";
 			model.addAttribute("error", e);
 		}
-		return response;
+	return response;
 	}
-
 }
