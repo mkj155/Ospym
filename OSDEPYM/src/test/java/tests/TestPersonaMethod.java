@@ -6,6 +6,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
 
+import com.osdepym.exception.CustomException;
 import com.osdepym.hibernate.dao.TestPersonaDAO;
 import com.osdepym.hibernate.entity.Hijos;
 import com.osdepym.hibernate.entity.Persona;
@@ -49,40 +50,38 @@ public class TestPersonaMethod {
 		return r.nextInt(high-low) + low;
 	}
 	
-	public void insertPersona(TestPersonaDAO personDAO, Persona persona) {
-		boolean result;
-		result = personDAO.save(persona);
-		System.out.println("Resultado INSERT solo persona: " + (result ? "OK" : "KO"));
+	public void insertPersona(TestPersonaDAO personDAO, Persona persona) throws CustomException {
+		
+		personDAO.save(persona);
+		System.out.println("Resultado INSERT solo persona: " + ("OK"));
 	}
 	
-	public void updatePersona(TestPersonaDAO personDAO, Persona persona) {
-		boolean result = false;
+	public void updatePersona(TestPersonaDAO personDAO, Persona persona) throws CustomException {
 		List<Persona> personas = personDAO.getAll();
 		if (personas != null && personas.size() > 0) {
 			persona = personas.get(0);
 			persona.setApellido("Kirchner");
-			result = personDAO.update(persona);
+			personDAO.update(persona);
 		} else { 
 			System.out.println("Error buscando la persona a actualizar");
 		}
-		System.out.println("Resultado UPDATE: " + (result ? "OK" : "KO"));
+		System.out.println("Resultado UPDATE: " + ("OK"));
 	}
 	
-	public void selectPersona(TestPersonaDAO personDAO) {
+	public void selectPersona(TestPersonaDAO personDAO) throws CustomException {
 		List<Persona> personas = personDAO.getAll();
 		System.out.println("Resultado SELECT: " + (personas != null ? "OK" : "KO"));
 	}
 	
-	public void deletePersona(TestPersonaDAO personDAO) {
-		boolean result;
+	public void deletePersona(TestPersonaDAO personDAO) throws CustomException {
 		List<Persona> personas = personDAO.getAll();
 		for (Persona per : personas) {
-			result = personDAO.delete(per);
-			System.out.println("Resultado DELETE: " + (result ? "OK" : "KO"));
+			personDAO.delete(per);
+			System.out.println("Resultado DELETE: " + ("OK"));
 		}
 	}
 	
-	public void getPersona(TestPersonaDAO personDAO, String nombre) {
+	public void getPersona(TestPersonaDAO personDAO, String nombre) throws CustomException {
 		Persona persona = personDAO.getByName(nombre);
 		System.out.println("Resultado SELECT: " + (persona != null ? "OK" : "KO"));
 	}

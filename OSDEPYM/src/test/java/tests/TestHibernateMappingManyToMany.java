@@ -1,6 +1,7 @@
 package tests;
 
 import com.osdepym.configuration.ConfigurationEnviroment;
+import com.osdepym.exception.CustomException;
 import com.osdepym.hibernate.dao.TestCursoDAO;
 import com.osdepym.hibernate.dao.TestProfesoresDAO;
 import com.osdepym.hibernate.entity.Profesores;
@@ -20,7 +21,7 @@ public class TestHibernateMappingManyToMany extends TestCase {
 		testMethod = new testManyToManyMethod();
 	}
 	
-	public void testMain() {
+	public void testMain() throws CustomException {
 		profesor = testMethod.testInitializeProfesor();
 		testCursoDAO.get(5);
 		testMethod.testListProfesores(profesoresDAO);

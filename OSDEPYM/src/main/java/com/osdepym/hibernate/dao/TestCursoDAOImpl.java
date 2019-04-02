@@ -5,118 +5,104 @@ import java.util.List;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import javax.transaction.Transactional;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
 
+import com.osdepym.exception.CustomException;
+import com.osdepym.exception.ErrorMessages;
 import com.osdepym.hibernate.entity.Cursos;
 
 @Repository("testCursoDAO")
-public class TestCursoDAOImpl implements TestCursoDAO{
+public class TestCursoDAOImpl implements TestCursoDAO {
 
-	
 	private SessionFactory sessionFactory;
-	
+
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
 
+	/**
+	 * @return list of all Cursos
+	 * @throws CustomException
+	 */
 	@Override
-	@Transactional
-	public List<Cursos> getAll() {
-		List<Cursos> cursos = null;
+	public List<Cursos> getAll() throws CustomException {
+		try {
+			List<Cursos> cursos = null;
+			Session session = this.sessionFactory.getCurrentSession();
+			cursos = session.createQuery("FROM com.osdepym.hibernate.entity.Cursos", Cursos.class).list();
+			return cursos;
+		} catch (Exception e) {
+			throw new CustomException(e.getMessage(), ErrorMessages.DATABASE_GET_ERROR);
+		}
+	}
+
+	/**
+	 * @param curso
+	 * @throws CustomException
+	 */
+	@Override
+	public void save(Cursos curso) throws CustomException {
 		try {
 			Session session = this.sessionFactory.getCurrentSession();
-			session.beginTransaction();
-			cursos = session.createQuery("FROM com.osdepym.hibernate.entity.Cursos", Cursos.class).list();
-			session.close();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return cursos;
-	}
-
-	@Override
-	public boolean save(Cursos curso) {
-		boolean result;
-		Session session = null;
-		try {
-			session = this.sessionFactory.openSession();
-			Transaction tx = session.beginTransaction();
 			session.persist(curso);
-			tx.commit();
-			result = true;
 		} catch (Exception e) {
-			result = false;
-			e.printStackTrace();
-		} finally {
-			if (session != null && session.isOpen()) session.close();
+			throw new CustomException(e.getMessage(), ErrorMessages.DATABASE_SAVE_ERROR);
 		}
-		return result;
 	}
 
+	/**
+	 * @param curso
+	 * @throws CustomException
+	 */
 	@Override
-	public boolean delete(Cursos curso) {
-		boolean result;
-		Session session = null;
+	public void delete(Cursos curso) throws CustomException {
 		try {
-			session = this.sessionFactory.openSession();
-			Transaction tx = session.beginTransaction();
+			Session session = this.sessionFactory.getCurrentSession();
 			session.delete(curso);
-			tx.commit();
-			result = true;
 		} catch (Exception e) {
-			result = false;
-			e.printStackTrace();
-		} finally {
-			if (session != null && session.isOpen()) session.close();
+			throw new CustomException(e.getMessage(), ErrorMessages.DATABASE_DELETE_ERROR);
 		}
-		return result;
 	}
 
+	/**
+	 * @param curso
+	 * @throws CustomException
+	 */
 	@Override
-	public boolean update(Cursos curso) {
-		boolean result;
-		Session session = null;
+	public void update(Cursos curso) throws CustomException {
 		try {
-			session = this.sessionFactory.openSession();
-			Transaction tx = session.beginTransaction();
+			Session session = this.sessionFactory.getCurrentSession();
 			session.update(curso);
-			tx.commit();
-			result = true;
 		} catch (Exception e) {
- 			result = false;
-			e.printStackTrace();
-		} finally {
-			if (session != null && session.isOpen()) session.close();
+			throw new CustomException(e.getMessage(), ErrorMessages.DATABASE_SAVE_ERROR);
 		}
-		return result;
 	}
 
+	/**
+	 * @param id
+	 * @return curso
+	 * @throws CustomException
+	 */
 	@Override
-	public Cursos get(Integer id) {
-		Session session = null;
-		Cursos curso = null;
+	public Cursos get(Integer id) throws CustomException {
 		try {
-			session = this.sessionFactory.openSession();
-			// creando query
+			Cursos curso = null;
+			Session session = this.sessionFactory.getCurrentSession();
 			CriteriaBuilder builder = session.getCriteriaBuilder();
 			CriteriaQuery<Cursos> criteria = builder.createQuery(Cursos.class);
 			Root<Cursos> root = criteria.from(Cursos.class);
 			criteria.select(root).where(builder.equal(root.get("idCurso"), id));
 			Query<Cursos> query = session.createQuery(criteria);
-			// obteniendo resultado
 			curso = query.getSingleResult();
+			return curso;
 		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			if (session != null && session.isOpen()) session.close();
+			throw new CustomException(e.getMessage(), ErrorMessages.DATABASE_GET_ERROR);
 		}
-		return curso;
+
 	}
-	
+
 }

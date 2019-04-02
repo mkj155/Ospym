@@ -3,6 +3,7 @@ package tests;
 import java.util.HashSet;
 import java.util.List;
 
+import com.osdepym.exception.CustomException;
 import com.osdepym.hibernate.dao.TestProfesoresDAO;
 import com.osdepym.hibernate.entity.Cursos;
 import com.osdepym.hibernate.entity.Profesores;
@@ -30,15 +31,14 @@ public class testManyToManyMethod {
 		return profesor;
 	}
 	
-	public void testListProfesores(TestProfesoresDAO profesoresDAO){
+	public void testListProfesores(TestProfesoresDAO profesoresDAO) throws CustomException{
 		List<Profesores> profesores = profesoresDAO.getAll();
 		System.out.println("Resultado SELECT: " + (profesores != null ? "OK" : "KO"));
 	}
 	
-	public void testAddProfesor(TestProfesoresDAO profesoresDAO, Profesores profesor) {
-		boolean result;
-		result = profesoresDAO.save(profesor);
-		System.out.println("Resultado INSERT: " + (result ? "OK" : "KO"));
+	public void testAddProfesor(TestProfesoresDAO profesoresDAO, Profesores profesor) throws CustomException {
+		profesoresDAO.save(profesor);
+		System.out.println("Resultado INSERT: " + ("OK"));
 	}
 
 }

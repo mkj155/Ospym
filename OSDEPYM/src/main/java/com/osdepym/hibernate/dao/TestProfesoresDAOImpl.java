@@ -8,9 +8,10 @@ import javax.persistence.criteria.Root;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
+import com.osdepym.exception.CustomException;
+import com.osdepym.exception.ErrorMessages;
 import com.osdepym.hibernate.entity.Profesores;
 
 public class TestProfesoresDAOImpl implements TestProfesoresDAO {
@@ -21,96 +22,83 @@ public class TestProfesoresDAOImpl implements TestProfesoresDAO {
         this.sessionFactory = sessionFactory;
     }
     
-    @Override
-	public List<Profesores> getAll() {
-		List<Profesores> profesores = null;
+	/**
+     * @return list of all Profesores
+     * @throws CustomException
+     */
+	@Override
+	public List<Profesores> getAll() throws CustomException{
 		try {
-			Session session = this.sessionFactory.openSession();
+			List<Profesores> profesores = null;
+			Session session = this.sessionFactory.getCurrentSession();
 			profesores = session.createQuery("FROM com.osdepym.hibernate.entity.Profesores", Profesores.class).list();
-			session.close();
-		} catch (Exception e) {
-			e.printStackTrace();
+			return profesores;
+		}catch(Exception e){
+			throw new CustomException(e.getMessage(), ErrorMessages.DATABASE_GET_ERROR);
 		}
-		return profesores;
 	}
 
+	/**
+	 * @param profesor
+	 * @throws CustomException
+	 */
 	@Override
-	public boolean save(Profesores profesor) {
-		boolean result;
-		Session session = null;
+	public void save(Profesores profesor) throws CustomException{
 		try {
-			session = this.sessionFactory.openSession();
-			Transaction tx = session.beginTransaction();
+			Session session = this.sessionFactory.getCurrentSession();
 			session.persist(profesor);
-			tx.commit();
-			result = true;
-		} catch (Exception e) {
-			result = false;
-			e.printStackTrace();
-		} finally {
-			if (session != null && session.isOpen()) session.close();
+		} catch(Exception e){
+			throw new CustomException(e.getMessage(), ErrorMessages.DATABASE_SAVE_ERROR);
 		}
-		return result;
 	}
-
+	/**
+	 * @param profesor
+	 * @throws CustomException
+	 */
 	@Override
-	public boolean delete(Profesores profesor) {
-		boolean result;
-		Session session = null;
+	public void delete(Profesores profesor) throws CustomException{
 		try {
-			session = this.sessionFactory.openSession();
-			Transaction tx = session.beginTransaction();
+			Session session = this.sessionFactory.getCurrentSession();
 			session.delete(profesor);
-			tx.commit();
-			result = true;
-		} catch (Exception e) {
-			result = false;
-			e.printStackTrace();
-		} finally {
-			if (session != null && session.isOpen()) session.close();
+		} catch(Exception e){
+			throw new CustomException(e.getMessage(), ErrorMessages.DATABASE_DELETE_ERROR);
 		}
-		return result;
 	}
-
+	/**
+	 * @param profesor
+	 * @throws CustomException
+	 */
 	@Override
-	public boolean update(Profesores profesor) {
-		boolean result;
-		Session session = null;
+	public void update(Profesores profesor) throws CustomException{
 		try {
-			session = this.sessionFactory.openSession();
-			Transaction tx = session.beginTransaction();
+			Session session = this.sessionFactory.getCurrentSession();
 			session.update(profesor);
-			tx.commit();
-			result = true;
 		} catch (Exception e) {
- 			result = false;
-			e.printStackTrace();
-		} finally {
-			if (session != null && session.isOpen()) session.close();
+			throw new CustomException(e.getMessage(), ErrorMessages.DATABASE_SAVE_ERROR);
 		}
-		return result;
 	}
-
+	/**
+	 * @param id
+	 * @return profesor
+	 * @throws CustomException
+	 */
 	@Override
-	public Profesores get(Integer id) {
-		Session session = null;
-		Profesores profesor = null;
+	public Profesores get(Integer id) throws CustomException{
 		try {
-			session = this.sessionFactory.openSession();
-			// creando query
+			Profesores profesor = null;
+			Session session = this.sessionFactory.getCurrentSession();
 			CriteriaBuilder builder = session.getCriteriaBuilder();
 			CriteriaQuery<Profesores> criteria = builder.createQuery(Profesores.class);
 			Root<Profesores> root = criteria.from(Profesores.class);
 			criteria.select(root).where(builder.equal(root.get("idProfesor"), id));
 			Query<Profesores> query = session.createQuery(criteria);
-			// obteniendo resultado
 			profesor = query.getSingleResult();
+			return profesor;
 		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			if (session != null && session.isOpen()) session.close();
-		}
-		return profesor;
+			throw new CustomException(e.getMessage(), ErrorMessages.DATABASE_GET_ERROR);
+		} 
+		
 	}
+
 
 }
