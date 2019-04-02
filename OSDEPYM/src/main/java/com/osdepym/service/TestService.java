@@ -24,6 +24,7 @@ import com.osdepym.hibernate.dao.TestPersonaDAOImpl;
 import com.osdepym.hibernate.entity.Cursos;
 import com.osdepym.hibernate.entity.Hijos;
 import com.osdepym.hibernate.entity.Persona;
+import org.springframework.beans.BeanUtils;
 
 @EnableTransactionManagement
 @Service
@@ -98,7 +99,7 @@ public class TestService {
 	}
 
 	@Transactional
-	public List<String> getAllHijos() throws CustomException {
+	public Set<Hijos> getAllHijos() throws CustomException {
 		Session session = null;
 		Transaction tx = null;
 		Set<Hijos> hijosS = new HashSet<Hijos>();
@@ -123,10 +124,36 @@ public class TestService {
 				session.close();
 			throw new CustomException(e.getMessage(), ErrorMessages.UNKNOWN_ERROR);
 		}
-		return getNombresCompletosHijos(hijosS);
+		
+		return hijosS; //getNombresCompletosHijos(hijosS);
 
 	}
 
+	@Transactional
+	public Hijos getHijo(Integer id) throws CustomException{
+		Session session = null;
+		Transaction tx = null;
+		Hijos hijo;
+		try {
+			session = this.sessionFactory.getCurrentSession();
+			tx = session.beginTransaction();
+			hijo = hijosDAO.get(id);
+			tx.commit();
+			session.close();
+			return hijo;
+		} catch (CustomException e) {
+			tx.rollback();
+			session.close();
+			throw e;
+		} catch (Exception e) {
+			if (tx != null)
+				tx.rollback();
+			if (session != null)
+				session.close();
+			throw new CustomException(e.getMessage(), ErrorMessages.UNKNOWN_ERROR);
+		}
+	}
+	
 	@Transactional
 	public void savePersona(Persona person) throws CustomException {
 		Session session = null;
@@ -205,7 +232,10 @@ public class TestService {
 		try {
 			session = this.sessionFactory.getCurrentSession();
 			tx = session.beginTransaction();
-			personaDAO.update(mergeDTOWithEntity(personDTO));
+			Persona pers = mergeDTOWithEntity(personDTO);
+			hijosDAO.deleteHijosByPerson(pers.getId());
+			personaDAO.delete(pers);
+			personaDAO.save(pers);
 			tx.commit();
 			session.close();
 		} catch (CustomException e) {
@@ -333,29 +363,15 @@ public class TestService {
 
 	private PersonaDTO mergeEntityWithDTO(Persona persona) {
 		PersonaDTO personaDTO = new PersonaDTO();
-		personaDTO.setId(persona.getId());
-		personaDTO.setNombre(persona.getNombre());
-		personaDTO.setApellido(persona.getApellido());
-		personaDTO.setCiudad(persona.getCiudad());
-		personaDTO.setFechaNacimiento(new SimpleDateFormat("yyyy-MM-dd").format(persona.getFechaNacimiento()));
-		personaDTO.setNroCliente(persona.getNroCliente());
-		personaDTO.setDireccion(persona.getDireccion());
-		personaDTO.setVegetariano(persona.isVegetariano());
-		personaDTO.setSexo(persona.getSexo());
-		personaDTO.setCurso(persona.getCurso());
-		personaDTO.setHijos(getNombresCompletosHijos(persona.getHijos()));
+		BeanUtils.copyProperties(persona, personaDTO);		
 		return personaDTO;
 	}
 
-	private List<Hijos> getHijos(List<String> hijosNames) throws CustomException {
-
-		List<Hijos> hijos = new ArrayList<Hijos>();
-
-		for (String nombreApellido : hijosNames) {
-			String[] nombreAndApellido = nombreApellido.split(" ");
-			hijos.add(hijosDAO.getHijoByNombreAndApellido(nombreAndApellido[0], nombreAndApellido[1]));
+	private Set<Hijos> getHijos(Set<Hijos> hijosNames) throws CustomException {
+		Set<Hijos> hijos = new HashSet<Hijos>();
+		for(Hijos hijo : hijosNames) {
+			hijos.add(hijosDAO.getHijoByNombreAndApellido(hijo.getNombre(), hijo.getApellido()));
 		}
-
 		return hijos;
 	}
 
@@ -367,31 +383,11 @@ public class TestService {
 
 	private Persona mergeDTOWithEntity(PersonaDTO personaDTO) throws CustomException {
 		Persona persona = new Persona();
-
-		persona.setId(personaDTO.getId());
-		persona.setNombre(personaDTO.getNombre());
-		persona.setApellido(personaDTO.getApellido());
-		persona.setCiudad(personaDTO.getCiudad());
-		try {
-			persona.setFechaNacimiento(new SimpleDateFormat("yyyy-MM-dd").parse(personaDTO.getFechaNacimiento()));
-		} catch (ParseException e) {
-			e.printStackTrace();
+		BeanUtils.copyProperties(personaDTO, persona);
+		for (Hijos hijo : persona.getHijos()) {
+			hijo.setIdHijo(null);
+			hijo.setPersona(persona);
 		}
-		persona.setNroCliente(personaDTO.getNroCliente());
-		persona.setDireccion(personaDTO.getDireccion());
-		persona.setVegetariano(personaDTO.getVegetariano());
-		persona.setSexo(personaDTO.getSexo());
-		persona.setCurso(personaDTO.getCurso());
-		List<Hijos> hijos = getHijos(personaDTO.getHijos());
-		setPersonToChildrens(hijos, persona);
-
-		Set<Hijos> hijosS = new HashSet<Hijos>();
-		for (Hijos hijo : hijos) {
-			hijosS.add(hijo);
-		}
-
-		persona.setHijos(hijosS);
-
 		return persona;
 	}
 

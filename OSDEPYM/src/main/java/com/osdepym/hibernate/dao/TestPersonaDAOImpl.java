@@ -39,7 +39,7 @@ public class TestPersonaDAOImpl implements TestPersonaDAO {
 	public void save(Persona persona) throws CustomException{
 		try {
 			Session session = this.sessionFactory.getCurrentSession();
-			session.persist(persona);
+			session.save(persona);
 		} catch(Exception e){
 			throw new CustomException(e.getMessage(), ErrorMessages.DATABASE_SAVE_ERROR);
 		}
