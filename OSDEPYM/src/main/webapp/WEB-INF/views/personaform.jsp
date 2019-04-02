@@ -80,7 +80,7 @@
 			<div class="form-group ${status.error ? 'has-error' : ''}">
 				<label class="col-sm-2 control-label">Fecha de Nacimiento</label>
 				<div class="col-sm-10">
-					<form:input path="fechaNacimiento" rows="5" class="date" id="fechaNacimiento" placeholder="Fecha de Nacimiento" />
+					<form:input path="fechaNacimiento" rows="5" class="form-control" id="fechaNacimiento" placeholder="Fecha de Nacimiento" />
 					<form:errors path="fechaNacimiento" class="control-label" />
 				</div>
 			</div>
@@ -129,8 +129,8 @@
 			<div class="form-group ${status.error ? 'has-error' : ''}">
 				<label class="col-sm-2 control-label">Hijos</label>
 				<div class="col-sm-5">
-					<form:select path="hijos" multiple="true">
-					 	<form:options items="${childrensList}" itemValue="idHijo" />
+					<form:select path="hijos" multiple="true" class="form-control">
+					 	<form:options items="${childrensList}" itemValue="idHijo" itemLabel="nombre"/>
 					 </form:select>
 				</div>
 				<div class="col-sm-5"></div>

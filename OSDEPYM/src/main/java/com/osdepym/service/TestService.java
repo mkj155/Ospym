@@ -59,6 +59,11 @@ public class TestService{
 	}
 	
 	@Transactional
+	public Hijos getHijo(Integer id) {
+		return hijosDAO.get(id);
+	}
+	
+	@Transactional
 	public void savePersona(Persona person) {
 		personaDAO.save(person);
 	}
@@ -75,8 +80,12 @@ public class TestService{
 	
 	@Transactional
 	public void updatePersona(PersonaDTO personDTO) {
-		personaDAO.update(mergeDTOWithEntity(personDTO));
+		Persona pers = mergeDTOWithEntity(personDTO);
+		hijosDAO.deleteHijosByPerson(pers.getId());
+		personaDAO.delete(pers);
+		personaDAO.save(pers);
 	}
+	
 	
 	@Transactional
 	public List<TestDTO> getAllCursos() {
@@ -188,7 +197,11 @@ public class TestService{
 	
 	private Persona mergeDTOWithEntity(PersonaDTO personaDTO) {
 		Persona persona = new Persona();
-		BeanUtils.copyProperties(personaDTO, persona);		
+		BeanUtils.copyProperties(personaDTO, persona);
+		for (Hijos hijo : persona.getHijos()) {
+			hijo.setIdHijo(null);
+			hijo.setPersona(persona);
+		}
 		return persona;
 	}
 	

@@ -41,7 +41,7 @@ public class TestPersonaDAOImpl implements TestPersonaDAO {
 		try {
 			session = this.sessionFactory.openSession();
 			Transaction tx = session.beginTransaction();
-			session.persist(persona);
+			session.save(persona);
 			tx.commit();
 			result = true;
 		} catch (Exception e) {

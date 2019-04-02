@@ -12,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 import org.hibernate.annotations.Type;
 
 @Entity
@@ -19,6 +21,7 @@ import org.hibernate.annotations.Type;
 public class Persona {
 	
 	@OneToMany(mappedBy="persona", fetch = FetchType.EAGER)
+	@Cascade({CascadeType.ALL})
 	private Set<Hijos> hijos;
 
 	@Id

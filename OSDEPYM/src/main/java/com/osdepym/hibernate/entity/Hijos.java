@@ -21,17 +21,17 @@ public class Hijos {
 	@Id
 	@Column(name="IDHIJO")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int idHijo;
+	private Integer idHijo;
 	
 	private String nombre;
 
 	private String apellido;
 
-	public int getIdHijo() {
+	public Integer getIdHijo() {
 		return idHijo;
 	}
 
-	public void setIdHijo(int idHijo) {
+	public void setIdHijo(Integer idHijo) {
 		this.idHijo = idHijo;
 	}
 
