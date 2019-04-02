@@ -2,13 +2,13 @@ package com.osdepym.hibernate.dao;
 
 import java.util.List;
 
+import javax.persistence.NoResultException;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
 import com.osdepym.exception.CustomException;
@@ -67,15 +67,19 @@ public class TestPersonaDAOImpl implements TestPersonaDAO {
 
 	@Override
 	public Persona get(Integer id) throws CustomException{
+		Persona persona = null;
 		try {
-			Persona persona = null;
 			Session session = this.sessionFactory.getCurrentSession();
 			CriteriaBuilder builder = session.getCriteriaBuilder();
 			CriteriaQuery<Persona> criteria = builder.createQuery(Persona.class);
 			Root<Persona> root = criteria.from(Persona.class);
-			criteria.select(root).where(builder.equal(root.get("nroCliente"), id));
+			criteria.select(root).where(builder.equal(root.get("id"), id));
 			Query<Persona> query = session.createQuery(criteria);
+			// Si se elije como id una persona que no existe se lanza una exception
 			persona = query.getSingleResult();
+			return persona; 
+		} catch (NoResultException e) {
+			System.out.println("No hay una Persona con ese ID");
 			return persona;
 		} catch (Exception e) {
 			throw new CustomException(e.getMessage(), ErrorMessages.DATABASE_GET_ERROR);

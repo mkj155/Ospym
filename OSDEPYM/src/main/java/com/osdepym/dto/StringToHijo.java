@@ -1,15 +1,9 @@
 package com.osdepym.dto;
 
-import java.io.Serializable;
-import java.util.Date;
-import java.util.Set;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Component;
 
-import com.osdepym.configuration.ConfigurationEnviroment;
 import com.osdepym.hibernate.entity.Hijos;
 import com.osdepym.service.TestService;
 

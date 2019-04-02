@@ -1,17 +1,25 @@
 package tests;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
 
+import org.springframework.beans.BeanUtils;
+
+import com.osdepym.configuration.ConfigurationEnviroment;
+import com.osdepym.dto.PersonaDTO;
 import com.osdepym.exception.CustomException;
 import com.osdepym.hibernate.dao.TestPersonaDAO;
 import com.osdepym.hibernate.entity.Hijos;
 import com.osdepym.hibernate.entity.Persona;
+import com.osdepym.service.TestService;
 
 public class TestPersonaMethod {
+	
+	protected TestService service = ConfigurationEnviroment.getInstance().getContext().getBean(TestService.class);
 	
 	public Persona instancePersona() {
 		Persona persona = new Persona();
@@ -51,39 +59,49 @@ public class TestPersonaMethod {
 	}
 	
 	public void insertPersona(TestPersonaDAO personDAO, Persona persona) throws CustomException {
-		
-		personDAO.save(persona);
-		System.out.println("Resultado INSERT solo persona: " + ("OK"));
+		service.savePersona(persona);
 	}
 	
 	public void updatePersona(TestPersonaDAO personDAO, Persona persona) throws CustomException {
-		List<Persona> personas = personDAO.getAll();
+		List<PersonaDTO> personasDTO = service.getAllPersonas();
+		List<Persona> personas = new ArrayList<Persona>();
+		
+		for (PersonaDTO personaDTO : personasDTO) {
+			Persona p = new Persona();
+			BeanUtils.copyProperties(personaDTO,p);
+			personas.add(p);
+		}
+		
 		if (personas != null && personas.size() > 0) {
 			persona = personas.get(0);
 			persona.setApellido("Kirchner");
-			personDAO.update(persona);
+			service.updatePersona(persona);
 		} else { 
 			System.out.println("Error buscando la persona a actualizar");
 		}
-		System.out.println("Resultado UPDATE: " + ("OK"));
 	}
 	
 	public void selectPersona(TestPersonaDAO personDAO) throws CustomException {
-		List<Persona> personas = personDAO.getAll();
-		System.out.println("Resultado SELECT: " + (personas != null ? "OK" : "KO"));
+		service.getAllPersonas();
 	}
 	
 	public void deletePersona(TestPersonaDAO personDAO) throws CustomException {
-		List<Persona> personas = personDAO.getAll();
-		for (Persona per : personas) {
-			personDAO.delete(per);
-			System.out.println("Resultado DELETE: " + ("OK"));
+		List<PersonaDTO> personasDTO = service.getAllPersonas();
+		List<Persona> personas = new ArrayList<Persona>();
+		
+		for (PersonaDTO personaDTO : personasDTO) {
+			Persona p = new Persona();
+			BeanUtils.copyProperties(personaDTO,p);
+			personas.add(p);
+		}
+		
+		if(personas != null && personas.size() > 0) {
+			service.deletePersona(personas.get(0).getId());
 		}
 	}
 	
-	public void getPersona(TestPersonaDAO personDAO, String nombre) throws CustomException {
-		Persona persona = personDAO.getByName(nombre);
-		System.out.println("Resultado SELECT: " + (persona != null ? "OK" : "KO"));
+	public void getPersona(TestPersonaDAO personDAO, int id) throws CustomException {
+		service.getPersonaById(id);
 	}
 	
 }

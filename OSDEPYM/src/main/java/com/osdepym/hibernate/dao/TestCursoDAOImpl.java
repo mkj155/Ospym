@@ -8,6 +8,7 @@ import javax.persistence.criteria.Root;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
 
@@ -92,12 +93,14 @@ public class TestCursoDAOImpl implements TestCursoDAO {
 		try {
 			Cursos curso = null;
 			Session session = this.sessionFactory.getCurrentSession();
+			Transaction tx = session.beginTransaction();
 			CriteriaBuilder builder = session.getCriteriaBuilder();
 			CriteriaQuery<Cursos> criteria = builder.createQuery(Cursos.class);
 			Root<Cursos> root = criteria.from(Cursos.class);
 			criteria.select(root).where(builder.equal(root.get("idCurso"), id));
 			Query<Cursos> query = session.createQuery(criteria);
 			curso = query.getSingleResult();
+			tx.commit();
 			return curso;
 		} catch (Exception e) {
 			throw new CustomException(e.getMessage(), ErrorMessages.DATABASE_GET_ERROR);

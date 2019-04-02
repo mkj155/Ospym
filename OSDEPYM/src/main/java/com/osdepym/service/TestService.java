@@ -1,7 +1,5 @@
 package com.osdepym.service;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -10,6 +8,7 @@ import java.util.Set;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,7 +23,6 @@ import com.osdepym.hibernate.dao.TestPersonaDAOImpl;
 import com.osdepym.hibernate.entity.Cursos;
 import com.osdepym.hibernate.entity.Hijos;
 import com.osdepym.hibernate.entity.Persona;
-import org.springframework.beans.BeanUtils;
 
 @EnableTransactionManagement
 @Service
@@ -301,11 +299,9 @@ public class TestService {
 	public PersonaDTO getPersonaById(Integer id) throws CustomException {
 		Session session = null;
 		Transaction tx = null;
-		List<TestDTO> cursosDTO = new ArrayList<TestDTO>();
 		try {
 			session = this.sessionFactory.getCurrentSession();
 			tx = session.beginTransaction();
-
 			Persona persona = personaDAO.get(id);
 			tx.commit();
 			session.close();
@@ -365,20 +361,6 @@ public class TestService {
 		PersonaDTO personaDTO = new PersonaDTO();
 		BeanUtils.copyProperties(persona, personaDTO);		
 		return personaDTO;
-	}
-
-	private Set<Hijos> getHijos(Set<Hijos> hijosNames) throws CustomException {
-		Set<Hijos> hijos = new HashSet<Hijos>();
-		for(Hijos hijo : hijosNames) {
-			hijos.add(hijosDAO.getHijoByNombreAndApellido(hijo.getNombre(), hijo.getApellido()));
-		}
-		return hijos;
-	}
-
-	private void setPersonToChildrens(List<Hijos> hijos, Persona persona) {
-		for (Hijos hijo : hijos) {
-			hijo.setPersona(persona);
-		}
 	}
 
 	private Persona mergeDTOWithEntity(PersonaDTO personaDTO) throws CustomException {

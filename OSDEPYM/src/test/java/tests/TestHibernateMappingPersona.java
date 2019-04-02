@@ -22,8 +22,8 @@ public class TestHibernateMappingPersona extends TestCase {
 		methods.insertPersona(personDAO, persona);
 		methods.updatePersona(personDAO, persona);
 		methods.selectPersona(personDAO);
-		methods.getPersona(personDAO, "Mauricio");
-		//methods.deletePersona(personDAO);
+		methods.getPersona(personDAO, 2);
+		methods.deletePersona(personDAO);
 	}
 		
     protected void tearDown() {

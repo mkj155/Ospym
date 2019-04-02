@@ -8,6 +8,7 @@ import javax.persistence.criteria.Root;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
 import com.osdepym.exception.CustomException;
@@ -31,7 +32,9 @@ public class TestProfesoresDAOImpl implements TestProfesoresDAO {
 		try {
 			List<Profesores> profesores = null;
 			Session session = this.sessionFactory.getCurrentSession();
+			Transaction tx = session.beginTransaction();
 			profesores = session.createQuery("FROM com.osdepym.hibernate.entity.Profesores", Profesores.class).list();
+			tx.commit();
 			return profesores;
 		}catch(Exception e){
 			throw new CustomException(e.getMessage(), ErrorMessages.DATABASE_GET_ERROR);
@@ -46,7 +49,9 @@ public class TestProfesoresDAOImpl implements TestProfesoresDAO {
 	public void save(Profesores profesor) throws CustomException{
 		try {
 			Session session = this.sessionFactory.getCurrentSession();
+			Transaction tx = session.beginTransaction();
 			session.persist(profesor);
+			tx.commit();
 		} catch(Exception e){
 			throw new CustomException(e.getMessage(), ErrorMessages.DATABASE_SAVE_ERROR);
 		}
@@ -59,7 +64,9 @@ public class TestProfesoresDAOImpl implements TestProfesoresDAO {
 	public void delete(Profesores profesor) throws CustomException{
 		try {
 			Session session = this.sessionFactory.getCurrentSession();
+			Transaction tx = session.beginTransaction();
 			session.delete(profesor);
+			tx.commit();
 		} catch(Exception e){
 			throw new CustomException(e.getMessage(), ErrorMessages.DATABASE_DELETE_ERROR);
 		}
@@ -72,7 +79,9 @@ public class TestProfesoresDAOImpl implements TestProfesoresDAO {
 	public void update(Profesores profesor) throws CustomException{
 		try {
 			Session session = this.sessionFactory.getCurrentSession();
+			Transaction tx = session.beginTransaction();
 			session.update(profesor);
+			tx.commit();
 		} catch (Exception e) {
 			throw new CustomException(e.getMessage(), ErrorMessages.DATABASE_SAVE_ERROR);
 		}

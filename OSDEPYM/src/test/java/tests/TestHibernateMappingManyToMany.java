@@ -23,7 +23,6 @@ public class TestHibernateMappingManyToMany extends TestCase {
 	
 	public void testMain() throws CustomException {
 		profesor = testMethod.testInitializeProfesor();
-		testCursoDAO.get(5);
 		testMethod.testListProfesores(profesoresDAO);
 		testMethod.testAddProfesor(profesoresDAO, profesor);
 	}
