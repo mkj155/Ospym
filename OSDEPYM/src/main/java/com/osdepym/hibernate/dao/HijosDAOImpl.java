@@ -59,7 +59,7 @@ public class HijosDAOImpl implements HijosDAO{
 	
 	public void deleteHijosByPerson(Integer id) throws CustomException{
 		try {
-			Session session = this.sessionFactory.openSession();
+			Session session = this.sessionFactory.getCurrentSession();
 			/* Obtengo todos los hijos, a partir del id de la persona */
 			List<Hijos> hijos = (List<Hijos>) session.createCriteria(Hijos.class)
 	                    .add(Restrictions.eq("persona.id", id)).list();
