@@ -1,6 +1,5 @@
-package hibernate.model;
+package com.osdepym.hibernate.entity;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -15,24 +14,24 @@ import javax.persistence.Table;
 @Table(name="HIJOS")
 public class Hijos {
 
-	@ManyToOne(fetch=FetchType.LAZY, cascade=CascadeType.ALL)
-	@JoinColumn(name="IDPERSONA",insertable=true,updatable=true)
+	@ManyToOne(fetch=FetchType.LAZY, optional=true)//cascade=CascadeType.ALL)
+	@JoinColumn(name="IDPERSONA")
     private Persona persona;
 
 	@Id
 	@Column(name="IDHIJO")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int idHijo;
+	private Integer idHijo;
 	
 	private String nombre;
 
 	private String apellido;
 
-	public int getIdHijo() {
+	public Integer getIdHijo() {
 		return idHijo;
 	}
 
-	public void setIdHijo(int idHijo) {
+	public void setIdHijo(Integer idHijo) {
 		this.idHijo = idHijo;
 	}
 
@@ -59,5 +58,10 @@ public class Hijos {
 	public void setApellido(String apellido) {
 		this.apellido = apellido;
 	}
+	
+//	@Override
+//	public String toString() {
+//		return nombre + " " + apellido;
+//	}
 	
 }

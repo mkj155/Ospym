@@ -18,9 +18,9 @@ import javax.persistence.Table;
 @Table(name = "PROFESORES")
 public class Profesores {
 
-	@ManyToMany(cascade = CascadeType.ALL)
+	@ManyToMany(cascade = { CascadeType.ALL })
     @JoinTable(
-        name = "PROFESORESCURSOS",
+        name = "PROFESORESCURSOS", 
         joinColumns = @JoinColumn(name = "IDPROFESOR"), 
         inverseJoinColumns = @JoinColumn(name = "IDCURSO")
     ) 

@@ -2,149 +2,107 @@ package com.osdepym.hibernate.dao;
 
 import java.util.List;
 
-import org.hibernate.Criteria;
+import javax.persistence.NoResultException;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
-import org.hibernate.criterion.Restrictions;
+import org.hibernate.query.Query;
 
+import com.osdepym.exception.CustomException;
+import com.osdepym.exception.ErrorMessages;
 import com.osdepym.hibernate.entity.Persona;
 
 public class TestPersonaDAOImpl implements TestPersonaDAO {
-	
+
 	private SessionFactory sessionFactory;
 
-    public void setSessionFactory(SessionFactory sessionFactory) {
-        this.sessionFactory = sessionFactory;
-    }
-
-	@Override
-	public List<Persona> getAll() {
-		List<Persona> personas = null;
-		try {
-			Session session = this.sessionFactory.openSession();
-			personas = session.createQuery("FROM com.osdepym.hibernate.entity.Persona").list();
-			session.close();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return personas;
+	public void setSessionFactory(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
 	}
 
 	@Override
-	public boolean save(Persona persona) {
-		boolean result;
-		Session session = null;
+	public List<Persona> getAll() throws CustomException{
 		try {
-			session = this.sessionFactory.openSession();
-			Transaction tx = session.beginTransaction();
-			session.persist(persona);
-			tx.commit();
-			result = true;
-		} catch (Exception e) {
-			result = false;
-			e.printStackTrace();
-		} finally {
-			if (session != null && session.isOpen()) session.close();
+			List<Persona> personas = null;
+			Session session = this.sessionFactory.getCurrentSession();
+			personas = session.createQuery("FROM com.osdepym.hibernate.entity.Persona", Persona.class).list();
+			return personas;
+		}catch(Exception e){
+			throw new CustomException(e.getMessage(), ErrorMessages.DATABASE_GET_ERROR);
 		}
-		return result;
 	}
 
 	@Override
-	public boolean delete(Persona persona) {
-		boolean result;
-		Session session = null;
+	public void save(Persona persona) throws CustomException{
 		try {
-			session = this.sessionFactory.openSession();
-			Transaction tx = session.beginTransaction();
+			Session session = this.sessionFactory.getCurrentSession();
+			session.save(persona);
+		} catch(Exception e){
+			throw new CustomException(e.getMessage(), ErrorMessages.DATABASE_SAVE_ERROR);
+		}
+	}
+
+	@Override
+	public void delete(Persona persona) throws CustomException{
+		try {
+			Session session = this.sessionFactory.getCurrentSession();
 			session.delete(persona);
-			tx.commit();
-			result = true;
-		} catch (Exception e) {
-			result = false;
-			e.printStackTrace();
-		} finally {
-			if (session != null && session.isOpen()) session.close();
+		} catch(Exception e){
+			throw new CustomException(e.getMessage(), ErrorMessages.DATABASE_DELETE_ERROR);
 		}
-		return result;
 	}
 
 	@Override
-	public boolean update(Persona persona) {
-		boolean result;
-		Session session = null;
+	public void update(Persona persona) throws CustomException{
 		try {
-			session = this.sessionFactory.openSession();
-			Transaction tx = session.beginTransaction();
+			Session session = this.sessionFactory.getCurrentSession();
 			session.update(persona);
-			tx.commit();
-			result = true;
 		} catch (Exception e) {
- 			result = false;
-			e.printStackTrace();
-		} finally {
-			if (session != null && session.isOpen()) session.close();
+			throw new CustomException(e.getMessage(), ErrorMessages.DATABASE_SAVE_ERROR);
 		}
-		return result;
 	}
 
 	@Override
-	public Persona get(Integer id) {
-		Session session = null;
+	public Persona get(Integer id) throws CustomException{
 		Persona persona = null;
 		try {
-			session = this.sessionFactory.openSession();
-			Criteria cr = session.createCriteria(Persona.class);
-			cr.add(Restrictions.eq("nroCliente", id));
-			List<Persona> results = cr.list();
-			if (results != null && results.size() > 0) {
-				persona = results.get(0);
-			} 
+			Session session = this.sessionFactory.getCurrentSession();
+			CriteriaBuilder builder = session.getCriteriaBuilder();
+			CriteriaQuery<Persona> criteria = builder.createQuery(Persona.class);
+			Root<Persona> root = criteria.from(Persona.class);
+			criteria.select(root).where(builder.equal(root.get("nroCliente"), id));
+			Query<Persona> query = session.createQuery(criteria);
+			// Si se elije como id una persona que no existe se lanza una exception
+			persona = query.getSingleResult();
+			return persona; 
+		} catch (NoResultException e) {
+			System.out.println("No hay una Persona con ese ID");
+			return persona;
 		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			if (session != null && session.isOpen()) session.close();
-		}
-		return persona;
+			throw new CustomException(e.getMessage(), ErrorMessages.DATABASE_GET_ERROR);
+		} 
+		
 	}
-	
+
 	@Override
-	public Persona getByName(String nombre) {
-		Session session = null;
-		Persona persona = null;
+	public Persona getByName(String nombre) throws CustomException{
 		try {
-			session = this.sessionFactory.openSession();
-			Criteria cr = session.createCriteria(Persona.class);
-			cr.add(Restrictions.eq("nombre", nombre));
-			List<Persona> results = cr.list();
-			if (results != null && results.size() > 0) {
-				persona = results.get(0);
-			} 
+			Persona persona = null;
+			Session session = this.sessionFactory.getCurrentSession();
+			CriteriaBuilder builder = session.getCriteriaBuilder();
+			CriteriaQuery<Persona> criteria = builder.createQuery(Persona.class);
+			Root<Persona> root = criteria.from(Persona.class);
+			criteria.select(root).where(builder.equal(root.get("nombre"), nombre));
+			Query<Persona> query = session.createQuery(criteria);
+			persona = query.getSingleResult();
+			return persona;
 		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			if (session != null && session.isOpen()) session.close();
-		}
-		return persona;
+			throw new CustomException(e.getMessage(), ErrorMessages.DATABASE_GET_ERROR);
+		} 
+		
 	}
-	
-	@Override
-	public Persona getPersonaByNroCliente(int nroCliente) {
-		Session session = null;
-		Persona persona = null;
-		try {
-			session = this.sessionFactory.openSession();
-			Criteria cr = session.createCriteria(Persona.class);
-			cr.add(Restrictions.eq("nroCliente", nroCliente));
-			List<Persona> results = cr.list();
-			if (results != null && results.size() > 0) {
-				persona = results.get(0);
-			} 
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			if (session != null && session.isOpen()) session.close();
-		}
-		return persona;
-	}
+
 }
