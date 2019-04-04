@@ -2,16 +2,40 @@ package com.osdepym.hibernate.dao;
 
 import java.util.List;
 
+import com.osdepym.exception.CustomException;
+
 public interface Dao<T>{
 	
-	T get(Integer id);
+	/**
+	 * @param id
+	 * @return specified entity
+	 * @throws CustomException
+	 */
+	T get(Integer id) throws CustomException;
     
-    List<T> getAll();
+    /**
+     * @return list of specified entities
+     * @throws CustomException
+     */
+    List<T> getAll() throws CustomException;
      
-    boolean save(T t);
+    /**
+     * @param t
+     * @return 
+     * @throws CustomException
+     */
+    void save(T t) throws CustomException;
      
-    boolean update(T t);
+    /**
+     * @param t
+     * @throws CustomException
+     */
+    void update(T t) throws CustomException;
      
-    boolean delete(T t);
+    /**
+     * @param t
+     * @throws CustomException
+     */
+    void delete(T t) throws CustomException;
 
 }

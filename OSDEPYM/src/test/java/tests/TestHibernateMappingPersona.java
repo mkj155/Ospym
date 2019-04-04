@@ -1,5 +1,6 @@
 package tests;
 import com.osdepym.configuration.ConfigurationEnviroment;
+import com.osdepym.exception.CustomException;
 import com.osdepym.hibernate.dao.TestPersonaDAO;
 import com.osdepym.hibernate.entity.Persona;
 
@@ -16,13 +17,13 @@ public class TestHibernateMappingPersona extends TestCase {
 		methods = new TestPersonaMethod();
 	}
 	
-	public void testMain() {
+	public void testMain() throws CustomException {
 		persona = methods.instancePersona();
 		methods.insertPersona(personDAO, persona);
 		methods.updatePersona(personDAO, persona);
 		methods.selectPersona(personDAO);
-		methods.getPersona(personDAO, "Mauricio");
-		//methods.deletePersona(personDAO);
+		methods.getPersona(personDAO, 2);
+		methods.deletePersona(personDAO);
 	}
 		
     protected void tearDown() {

@@ -3,7 +3,6 @@ package com.osdepym.hibernate.entity;
 import java.util.Date;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -13,13 +12,16 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 import org.hibernate.annotations.Type;
 
 @Entity
 @Table(name="TESTPERSONA")
 public class Persona {
 	
-	@OneToMany(mappedBy="persona", fetch = FetchType.EAGER, cascade=CascadeType.ALL)
+	@OneToMany(mappedBy="persona", fetch = FetchType.EAGER)
+	@Cascade({CascadeType.ALL})
 	private Set<Hijos> hijos;
 
 	@Id
@@ -37,7 +39,7 @@ public class Persona {
 	
 	private Date fechaNacimiento;
 	
-	private Integer nroCliente;
+	private int nroCliente;
 	
 	@Type(type = "numeric_boolean")
 	private boolean vegetariano;
@@ -94,11 +96,11 @@ public class Persona {
 		this.fechaNacimiento = fechaNacimiento;
 	}
 
-	public Integer getNroCliente() {
+	public int getNroCliente() {
 		return nroCliente;
 	}
 
-	public void setNroCliente(Integer nroCliente) {
+	public void setNroCliente(int nroCliente) {
 		this.nroCliente = nroCliente;
 	}
 

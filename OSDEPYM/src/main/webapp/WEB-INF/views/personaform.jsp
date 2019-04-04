@@ -3,7 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ page isELIgnored="false" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -26,7 +25,6 @@
 	<form:form class="form-horizontal" method="post" modelAttribute="personaForm" action="${userActionUrl}">
 
 		<form:hidden path="id" />
-
 		<spring:bind path="nombre">
 			<div class="form-group ${status.error ? 'has-error' : ''}">
 				<label class="col-sm-2 control-label">Nombre</label>
@@ -79,9 +77,9 @@
 
 		<spring:bind path="fechaNacimiento">
 			<div class="form-group ${status.error ? 'has-error' : ''}">
-				<label class="col-sm-2 control-label">Fecha de Nacimiento (YYYY-MM-DD)</label>
+				<label class="col-sm-2 control-label">Fecha de Nacimiento (yyyy-MM-dd)</label>
 				<div class="col-sm-10">
-					<form:textarea path="fechaNacimiento" rows="5" class="form-control" id="fechaNacimiento" placeholder="Fecha de Nacimiento" />
+					<form:input path="fechaNacimiento" rows="5" class="date" id="fechaNacimiento" placeholder="Fecha de Nacimiento" />
 					<form:errors path="fechaNacimiento" class="control-label" />
 				</div>
 			</div>
@@ -100,55 +98,17 @@
 			</div>
 		</spring:bind>
 
-<%-- 		<spring:bind path="framework"> --%>
-<%-- 			<div class="form-group ${status.error ? 'has-error' : ''}"> --%>
-<!-- 				<label class="col-sm-2 control-label">Web Frameworks</label> -->
-<!-- 				<div class="col-sm-10"> -->
-<%-- 					<form:checkboxes path="framework" items="${frameworkList}" element="label class='checkbox-inline'" /> --%>
-<!-- 					<br /> -->
-<%-- 					<form:errors path="framework" class="control-label" /> --%>
-<!-- 				</div> -->
-<!-- 			</div> -->
-<%-- 		</spring:bind> --%>
-
 		<spring:bind path="sexo">
 			<div class="form-group ${status.error ? 'has-error' : ''}">
-				<label class="col-sm-2 control-label">Sex</label>
+				<label class="col-sm-2 control-label">Sexo</label>
 				<div class="col-sm-10">
-					<label class="radio-inline"> <form:radiobutton path="sexo" value="M" /> Male
-					</label> <label class="radio-inline"> <form:radiobutton path="sexo" value="F" /> Female
+					<label class="radio-inline"> <form:radiobutton path="sexo" value="M" /> Hombre
+					</label> <label class="radio-inline"> <form:radiobutton path="sexo" value="F" /> Mujer
 					</label> <br />
 					<form:errors path="sexo" class="control-label" />
 				</div>
 			</div>
 		</spring:bind>
-
-<%-- 		<spring:bind path="number"> --%>
-<%-- 			<div class="form-group ${status.error ? 'has-error' : ''}"> --%>
-<!-- 				<label class="col-sm-2 control-label">Number</label> -->
-<!-- 				<div class="col-sm-10"> -->
-<%-- 					<form:radiobuttons path="number" items="${numberList}" element="label class='radio-inline'" /> --%>
-<!-- 					<br /> -->
-<%-- 					<form:errors path="number" class="control-label" /> --%>
-<!-- 				</div> -->
-<!-- 			</div> -->
-<%-- 		</spring:bind> --%>
-
-		<!-- Custom Script, Spring map to model via 'name' attribute
-		<div class="form-group">
-			<label class="col-sm-2 control-label">Number</label>
-			<div class="col-sm-10">
-
-				<c:forEach items="${numberList}" var="obj">
-					<div class="radio">
-						<label> 
-							<input type="radio" name="number" value="${obj}">${obj}
-						</label>
-					</div>
-				</c:forEach>
-			</div>
-		</div>
- 		-->
 
 		<spring:bind path="curso">
 			<div class="form-group ${status.error ? 'has-error' : ''}">
@@ -168,8 +128,9 @@
 			<div class="form-group ${status.error ? 'has-error' : ''}">
 				<label class="col-sm-2 control-label">Hijos</label>
 				<div class="col-sm-5">
-					<form:select path="hijos" items="${childrensList}" multiple="true" size="5" class="form-control" />
-					<form:errors path="hijos" class="control-label" />
+					<form:select path="hijos" multiple="true" class="form-control">
+					 	<form:options items="${childrensList}" itemValue="idHijo" itemLabel="nombre"/>
+					 </form:select>
 				</div>
 				<div class="col-sm-5"></div>
 			</div>

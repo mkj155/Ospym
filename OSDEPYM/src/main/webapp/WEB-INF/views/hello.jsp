@@ -4,7 +4,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Spring 4 MVC</title>
-<%@ page isELIgnored="false"%>
 </head>
 <body>
 	<h2>Hello, ${name}. Welcome to Spring MVC!</h2>

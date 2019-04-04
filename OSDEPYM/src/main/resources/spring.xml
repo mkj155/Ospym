@@ -11,7 +11,6 @@
 	    <property name="locations">
 	        <list>
 	            <value>classpath:configuration.properties</value>
-<!-- 	            <value>file:/C:\repositorios\WorkSpaceOsdepym\configuration.properties</value> -->
 	        </list>
 	    </property>
 	</bean>
@@ -52,6 +51,7 @@
 		<property name="sessionFactory" ref="localSessionFactory" />
 	</bean>
 	<bean id="testService" class="com.osdepym.service.TestService">
+		<property name="sessionFactory" ref="localSessionFactory" />
 		<property name="cursosDAO" ref="testCursoDAO" />
 		<property name="personaDAO" ref="testPersonaDAO" />
 		<property name="hijosDAO" ref="hijosDAO" />
