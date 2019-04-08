@@ -14,6 +14,7 @@ import com.osdepym.dto.MotivoCategoriaDTO;
 import com.osdepym.exception.CustomException;
 import com.osdepym.exception.ErrorMessages;
 import com.osdepym.hibernate.dao.MotivoCategoriaDAO;
+import com.osdepym.hibernate.entity.Contacto;
 import com.osdepym.hibernate.entity.MotivoCategoria;
 
 public class ContactoService {
@@ -74,6 +75,7 @@ public class ContactoService {
 		return motivoCategoriaDTO;
 	}
 	
+	@Transactional
 	public String getSecuence() throws CustomException {
 		String secuence = "";
 		Session session = null;
@@ -103,6 +105,29 @@ public class ContactoService {
 		String sequence = "";
 		sequence = String.format("%06d", result);
 		return sequence;
+	}
+	
+	@Transactional
+	public void saveContacto(Contacto contacto) throws CustomException{
+		Session session = null;
+		Transaction tx = null;
+		try {
+			session = this.sessionFactory.getCurrentSession();
+			tx = session.beginTransaction();
+			motivoCategoriaDAO.saveContacto(contacto);
+			tx.commit();
+			session.close();
+		} catch (CustomException e) {
+			tx.rollback();
+			session.close();
+			throw e;
+		} catch (Exception e) {
+			if (tx != null)
+				tx.rollback();
+			if (session != null)
+				session.close();
+			throw new CustomException(e.getMessage(), ErrorMessages.UNKNOWN_ERROR);
+		}
 	}
 	
 }
