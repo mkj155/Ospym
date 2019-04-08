@@ -30,7 +30,6 @@
 			<list>
 				<value>com.osdepym.hibernate.entity.Hijos</value>
 				<value>com.osdepym.hibernate.entity.Persona</value>
-				<value>com.osdepym.hibernate.entity.Profesores</value>
 				<value>com.osdepym.hibernate.entity.Cursos</value>
 				<value>com.osdepym.hibernate.entity.Categoria</value>
 				<value>com.osdepym.hibernate.entity.MotivoCategoria</value>
@@ -72,9 +71,6 @@
 	</bean>
 	
 	<bean id="testPersonaDAO" class="com.osdepym.hibernate.dao.TestPersonaDAOImpl">
-		<property name="sessionFactory" ref="localSessionFactory" />
-	</bean>
-	<bean id="testProfesoresDAO" class="com.osdepym.hibernate.dao.TestProfesoresDAOImpl">
 		<property name="sessionFactory" ref="localSessionFactory" />
 	</bean>
 	<bean id="hijosDAO" class="com.osdepym.hibernate.dao.HijosDAOImpl">
