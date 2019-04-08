@@ -1,6 +1,5 @@
 package com.osdepym.hibernate.entity;
 
-import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -12,33 +11,33 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "CATEG_CONTACTO")
-public class Categorias {
+@Table(name="MOTIVOS_CONTACTO")
+public class Motivo {
 	
-	private int idCateg;
-	private String etiqueta;
-	private Set<MotivoCategoria> motivoCategorias = new HashSet<MotivoCategoria>();
+	public Motivo() {}
 	
-	public Categorias () {}
-	
-	public Categorias(String etiquetas) {
-		this.etiqueta = etiquetas;
+	public Motivo(String etiqueta) {
+		this.etiqueta = etiqueta;
 	}
-
-	public Categorias(String etiquetas, Set<MotivoCategoria> motivoCategorias) {
-		this.etiqueta = etiquetas;
+	
+	public Motivo(String etiqueta, Set<MotivoCategoria> motivoCategorias) {
+		this.etiqueta = etiqueta;
 		this.motivoCategorias = motivoCategorias;
 	}
-
+	
+	private int idMotivo;
+	private String etiqueta;
+	private Set<MotivoCategoria> motivoCategorias;
+    
 	@Id
-	@Column(name="IDCATEG")
+	@Column(name="IDMOTIVO")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	public int getIdCateg() {
-		return idCateg;
+	public int getIdMotivo() {
+		return idMotivo;
 	}
 
-	public void setIdCateg(int idCateg) {
-		this.idCateg = idCateg;
+	public void setIdMotivo(int idMotivo) {
+		this.idMotivo = idMotivo;
 	}
 
 	public String getEtiqueta() {
@@ -49,7 +48,7 @@ public class Categorias {
 		this.etiqueta = etiqueta;
 	}
 
-	@OneToMany(mappedBy = "categoria")
+	@OneToMany(mappedBy = "motivo")
 	public Set<MotivoCategoria> getMotivoCategorias() {
 		return motivoCategorias;
 	}
@@ -61,5 +60,5 @@ public class Categorias {
 	public void addMotivoCategoria(MotivoCategoria motivoCategoria) {
 		this.motivoCategorias.add(motivoCategoria);
 	}
-
+	
 }

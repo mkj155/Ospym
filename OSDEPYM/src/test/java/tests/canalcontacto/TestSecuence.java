@@ -2,16 +2,16 @@ package tests.canalcontacto;
 
 import com.osdepym.configuration.ConfigurationEnviroment;
 import com.osdepym.exception.CustomException;
-import com.osdepym.service.ServiceCanalContacto;
+import com.osdepym.service.ContactoService;
 
 import junit.framework.TestCase;
 
 public class TestSecuence extends TestCase {
 	
-	ServiceCanalContacto service;
+	ContactoService service;
 
 	protected void setUp() {
-		service = ConfigurationEnviroment.getInstance().getContext().getBean(ServiceCanalContacto.class);
+		service = ConfigurationEnviroment.getInstance().getContext().getBean(ContactoService.class);
 	}
 	
 	public void testMain() throws CustomException {

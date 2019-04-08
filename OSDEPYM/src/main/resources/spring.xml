@@ -32,9 +32,9 @@
 				<value>com.osdepym.hibernate.entity.Persona</value>
 				<value>com.osdepym.hibernate.entity.Profesores</value>
 				<value>com.osdepym.hibernate.entity.Cursos</value>
-				<value>com.osdepym.hibernate.entity.Categorias</value>
+				<value>com.osdepym.hibernate.entity.Categoria</value>
 				<value>com.osdepym.hibernate.entity.MotivoCategoria</value>
-				<value>com.osdepym.hibernate.entity.Motivos</value>
+				<value>com.osdepym.hibernate.entity.Motivo</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">
@@ -54,7 +54,7 @@
     <bean id="motivoCategoriaDAO" class="com.osdepym.hibernate.dao.MotivoCategoriaDAOImpl ">
 		<property name="sessionFactory" ref="localSessionFactory" />
 	</bean>
-   	<bean id="serviceCanalContacto" class="com.osdepym.service.ServiceCanalContacto">
+   	<bean id="contactoService" class="com.osdepym.service.ContactoService">
 		<property name="sessionFactory" ref="localSessionFactory" />
 		<property name="motivoCategoriaDAO" ref="motivoCategoriaDAO" />
 	</bean>

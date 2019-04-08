@@ -16,7 +16,7 @@ import com.osdepym.exception.ErrorMessages;
 import com.osdepym.hibernate.dao.MotivoCategoriaDAO;
 import com.osdepym.hibernate.entity.MotivoCategoria;
 
-public class ServiceCanalContacto {
+public class ContactoService {
 	
 	private SessionFactory sessionFactory;
 

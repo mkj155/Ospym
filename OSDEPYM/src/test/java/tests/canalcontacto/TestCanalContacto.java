@@ -5,17 +5,17 @@ import java.util.List;
 import com.osdepym.configuration.ConfigurationEnviroment;
 import com.osdepym.dto.MotivoCategoriaDTO;
 import com.osdepym.exception.CustomException;
-import com.osdepym.service.ServiceCanalContacto;
+import com.osdepym.service.ContactoService;
 
 import junit.framework.TestCase;
 
 public class TestCanalContacto extends TestCase {
 	
 	TestCanalContactoMethod methods;
-	ServiceCanalContacto service;
+	ContactoService service;
 
 	protected void setUp() {
-		service = ConfigurationEnviroment.getInstance().getContext().getBean(ServiceCanalContacto.class);
+		service = ConfigurationEnviroment.getInstance().getContext().getBean(ContactoService.class);
 		methods = new TestCanalContactoMethod();
 	}
 	
