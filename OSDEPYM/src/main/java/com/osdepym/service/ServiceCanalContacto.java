@@ -74,4 +74,35 @@ public class ServiceCanalContacto {
 		return motivoCategoriaDTO;
 	}
 	
+	public String getSecuence() throws CustomException {
+		String secuence = "";
+		Session session = null;
+		Transaction tx = null;
+		try {
+			session = this.sessionFactory.getCurrentSession();
+			tx = session.beginTransaction();
+			Integer result = motivoCategoriaDAO.getSecuence();
+			secuence = fillWithZero(result);
+			tx.commit();
+			session.close();
+		} catch (CustomException e) {
+			tx.rollback();
+			session.close();
+			throw e;
+		} catch (Exception e) {
+			if (tx != null)
+				tx.rollback();
+			if (session != null)
+				session.close();
+			throw new CustomException(e.getMessage(), ErrorMessages.UNKNOWN_ERROR);
+		}
+		return secuence;
+	}
+
+	private String fillWithZero(Integer result) {
+		String sequence = "";
+		sequence = String.format("%06d", result);
+		return sequence;
+	}
+	
 }
