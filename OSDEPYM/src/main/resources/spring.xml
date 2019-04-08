@@ -30,8 +30,10 @@
 			<list>
 				<value>com.osdepym.hibernate.entity.Hijos</value>
 				<value>com.osdepym.hibernate.entity.Persona</value>
-				<value>com.osdepym.hibernate.entity.Profesores</value>
 				<value>com.osdepym.hibernate.entity.Cursos</value>
+				<value>com.osdepym.hibernate.entity.Categoria</value>
+				<value>com.osdepym.hibernate.entity.MotivoCategoria</value>
+				<value>com.osdepym.hibernate.entity.Motivo</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">
@@ -47,6 +49,17 @@
         <property name="sessionFactory" ref="localSessionFactory" />
     </bean>
     
+    <!-- CANAL CONTACTO -->
+    <bean id="motivoCategoriaDAO" class="com.osdepym.hibernate.dao.MotivoCategoriaDAOImpl ">
+		<property name="sessionFactory" ref="localSessionFactory" />
+	</bean>
+   	<bean id="contactoService" class="com.osdepym.service.ContactoService">
+		<property name="sessionFactory" ref="localSessionFactory" />
+		<property name="motivoCategoriaDAO" ref="motivoCategoriaDAO" />
+	</bean>
+    <!-- CANAL CONTACTO -->
+    
+	<!-- TEST -->
     <bean id="testCursoDAO" class="com.osdepym.hibernate.dao.TestCursoDAOImpl">
 		<property name="sessionFactory" ref="localSessionFactory" />
 	</bean>
@@ -60,11 +73,9 @@
 	<bean id="testPersonaDAO" class="com.osdepym.hibernate.dao.TestPersonaDAOImpl">
 		<property name="sessionFactory" ref="localSessionFactory" />
 	</bean>
-	<bean id="testProfesoresDAO" class="com.osdepym.hibernate.dao.TestProfesoresDAOImpl">
-		<property name="sessionFactory" ref="localSessionFactory" />
-	</bean>
 	<bean id="hijosDAO" class="com.osdepym.hibernate.dao.HijosDAOImpl">
 		<property name="sessionFactory" ref="localSessionFactory" />
 	</bean>
+	<!-- TEST -->
 	
 </beans>
