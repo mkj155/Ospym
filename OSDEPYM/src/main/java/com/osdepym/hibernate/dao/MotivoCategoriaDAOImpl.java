@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.osdepym.exception.CustomException;
 import com.osdepym.exception.ErrorMessages;
+import com.osdepym.hibernate.entity.Contacto;
 import com.osdepym.hibernate.entity.MotivoCategoria;
 
 public class MotivoCategoriaDAOImpl implements MotivoCategoriaDAO {
@@ -62,6 +63,16 @@ public class MotivoCategoriaDAOImpl implements MotivoCategoriaDAO {
 			return secuence;
 		} catch(Exception e){
 			throw new CustomException(e.getMessage(), ErrorMessages.DATABASE_GET_ERROR);
+		}
+	}
+
+	@Override
+	public void saveContacto(Contacto contacto) throws CustomException {
+		try {
+			Session session = this.sessionFactory.getCurrentSession();
+			session.save(contacto);
+		} catch(Exception e){
+			throw new CustomException(e.getMessage(), ErrorMessages.DATABASE_SAVE_ERROR);
 		}
 	}
 
