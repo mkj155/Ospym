@@ -16,9 +16,9 @@
    		<log4j.version>1.2.17</log4j.version>
 		<commonsdbcp.version>1.2.2</commonsdbcp.version>
 		<mssql.version>7.0.0.jre8</mssql.version>
-		<junit.version>3.8.1</junit.version>
+		<junit.version>4.11</junit.version>
 		<javaxservlet.version>3.1.0</javaxservlet.version>
-		<javaxvalidation.version>2.0.1.Final</javaxvalidation.version>		
+		<javaxvalidation.version>2.0.1.Final</javaxvalidation.version>	
 	</properties>
 	
 	<dependencies>
@@ -55,12 +55,7 @@
 			<artifactId>hibernate-core</artifactId>
 			<version>${hibernate.version}</version>
 		</dependency>
-		<dependency>
-	        <groupId>org.hibernate</groupId>
-	        <artifactId>hibernate-validator</artifactId>
-	        <version>${hibernate.version}</version>
-	    </dependency>
-	    
+		
 		<dependency>
 		    <groupId>com.microsoft.sqlserver</groupId>
 		    <artifactId>mssql-jdbc</artifactId>
@@ -98,7 +93,13 @@
 		    <artifactId>commons-dbcp</artifactId>
 		    <version>${commonsdbcp.version}</version>
 		</dependency>
-			
+		<!-- https://mvnrepository.com/artifact/org.springframework/spring-test -->
+		<dependency>
+    		<groupId>org.springframework</groupId>
+    		<artifactId>spring-test</artifactId>
+    		<version>4.0.5.RELEASE</version>
+    		<scope>test</scope>
+		</dependency>
     </dependencies>
     
 	<build>
