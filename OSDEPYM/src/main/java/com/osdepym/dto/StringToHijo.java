@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 
 import com.osdepym.hibernate.entity.Hijos;
 import com.osdepym.service.TestService;
+import com.osdepym.service.TestServiceImpl;
 
 @Component
 public class StringToHijo implements Converter<String, Hijos> {
@@ -13,8 +14,8 @@ public class StringToHijo implements Converter<String, Hijos> {
 	@Autowired
 	private TestService service;
 	
-	public StringToHijo(TestService service) {
-		this.service = service;
+	public StringToHijo() {
+		super();
 	}
 	
 	@Override

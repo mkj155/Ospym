@@ -1,5 +1,6 @@
 package com.osdepym.configuration;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -13,12 +14,17 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
 import com.osdepym.dto.StringToHijo;
-import com.osdepym.service.TestService;
+import com.osdepym.service.ContactoService;
+import com.osdepym.service.ContactoServiceImpl;
+import com.osdepym.service.TestServiceImpl;
+
+import com.osdepym.configuration.ConfigurationEnviroment;
 
 @EnableWebMvc
 @ComponentScan("com.osdepym.controller")
 @Configuration
 public class ConfiguracionSpring  extends WebMvcConfigurerAdapter {
+	
     
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
@@ -35,6 +41,15 @@ public class ConfiguracionSpring  extends WebMvcConfigurerAdapter {
 	    return resolver;
     }
     
+    
+    // this bean will be injected into the OrderServiceTest class
+    @Bean
+    public ContactoService ContactoService() {
+    	ContactoService contactoService = new ContactoServiceImpl();
+        // set properties, etc.
+        return contactoService;
+    }
+    
     @Bean
     public MessageSource messageSource() {
     	ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
@@ -44,8 +59,10 @@ public class ConfiguracionSpring  extends WebMvcConfigurerAdapter {
     
     @Override
     public void addFormatters (FormatterRegistry registry) {
-        registry.addConverter(new StringToHijo(ConfigurationEnviroment.getInstance().getContext().getBean(TestService.class)));
+        registry.addConverter(new StringToHijo());
     }
+    
+    
     
 }
 

@@ -12,6 +12,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 import com.osdepym.hibernate.entity.Hijos;
 
 
+
+
 public class PersonaDTO implements Serializable{
 	
 	private static final long serialVersionUID = -7939595527637867540L;

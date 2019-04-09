@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,13 +23,16 @@ import com.osdepym.configuration.ConfigurationEnviroment;
 import com.osdepym.dto.PersonaDTO;
 import com.osdepym.exception.CustomException;
 import com.osdepym.service.TestService;
+import com.osdepym.service.TestServiceImpl;
 
 
 @Controller
 @Scope("session")
 public class OsdepymController {
 	
-	private TestService service = ConfigurationEnviroment.getInstance().getContext().getBean(TestService.class);
+	@Autowired
+	private TestService service;
+	
 	private static final Logger logger = Logger.getLogger(OsdepymController.class);
 	
 	@RequestMapping("/")
