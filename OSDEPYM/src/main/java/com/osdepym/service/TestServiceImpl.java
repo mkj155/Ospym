@@ -9,6 +9,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,8 +18,11 @@ import com.osdepym.dto.PersonaDTO;
 import com.osdepym.dto.TestDTO;
 import com.osdepym.exception.CustomException;
 import com.osdepym.exception.ErrorMessages;
+import com.osdepym.hibernate.dao.HijosDAO;
 import com.osdepym.hibernate.dao.HijosDAOImpl;
+import com.osdepym.hibernate.dao.TestCursoDAO;
 import com.osdepym.hibernate.dao.TestCursoDAOImpl;
+import com.osdepym.hibernate.dao.TestPersonaDAO;
 import com.osdepym.hibernate.dao.TestPersonaDAOImpl;
 import com.osdepym.hibernate.entity.Cursos;
 import com.osdepym.hibernate.entity.Hijos;
@@ -27,7 +31,17 @@ import com.osdepym.hibernate.entity.Persona;
 @EnableTransactionManagement
 @Service
 public class TestServiceImpl implements TestService{
+	
+	@Autowired
+	private TestCursoDAO cursosDAO;
+	
+	@Autowired
+	private TestPersonaDAO personaDAO;
+	
+	@Autowired
+	private HijosDAO hijosDAO;
 
+	@Autowired
 	private SessionFactory sessionFactory;
 
 	public SessionFactory getSessionFactory() {
@@ -38,9 +52,7 @@ public class TestServiceImpl implements TestService{
 		this.sessionFactory = sessionFactory;
 	}
 
-	private TestCursoDAOImpl cursosDAO;
-	private TestPersonaDAOImpl personaDAO;
-	private HijosDAOImpl hijosDAO;
+
 
 	/**
 	 * @return all personas
@@ -323,20 +335,10 @@ public class TestServiceImpl implements TestService{
 		return null;
 	}
 
-	public TestPersonaDAOImpl getPersonaDAO() {
-		return personaDAO;
-	}
+
 
 	public void setPersonaDAO(TestPersonaDAOImpl personaDAO) {
 		this.personaDAO = personaDAO;
-	}
-
-	public TestCursoDAOImpl getCursosDAO() {
-		return cursosDAO;
-	}
-
-	public HijosDAOImpl getHijosDAO() {
-		return hijosDAO;
 	}
 
 	public void setHijosDAO(HijosDAOImpl hijosDAO) {

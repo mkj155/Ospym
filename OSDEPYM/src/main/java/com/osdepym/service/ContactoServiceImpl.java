@@ -9,6 +9,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.osdepym.dto.MotivoCategoriaDTO;
@@ -18,10 +19,14 @@ import com.osdepym.hibernate.dao.MotivoCategoriaDAO;
 import com.osdepym.hibernate.entity.Contacto;
 import com.osdepym.hibernate.entity.MotivoCategoria;
 
-@Service
+@Service("ContactService")
 public class ContactoServiceImpl implements ContactoService {
 	
+	@Autowired
 	private SessionFactory sessionFactory;
+
+	@Autowired
+	private MotivoCategoriaDAO motivoCategoriaDAO ;
 
 	public SessionFactory getSessionFactory() {
 		return sessionFactory;
@@ -31,7 +36,6 @@ public class ContactoServiceImpl implements ContactoService {
 		this.sessionFactory = sessionFactory;
 	}
 
-	private MotivoCategoriaDAO motivoCategoriaDAO ;
 
 	public MotivoCategoriaDAO getMotivoCategoriaDAO() {
 		return motivoCategoriaDAO;

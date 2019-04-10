@@ -51,9 +51,9 @@
     </bean>
     
     <!-- CANAL CONTACTO -->
-    <bean id="motivoCategoriaDAO" class="com.osdepym.hibernate.dao.MotivoCategoriaDAOImpl ">
-		<property name="sessionFactory" ref="localSessionFactory" />
-	</bean>
+<!--     <bean id="motivoCategoriaDAO" class="com.osdepym.hibernate.dao.MotivoCategoriaDAOImpl "> -->
+<!-- 		<property name="sessionFactory" ref="localSessionFactory" /> -->
+<!-- 	</bean> -->
 <!--    	<bean id="contactoService" class="com.osdepym.service.ContactoService"> -->
 <!-- 		<property name="sessionFactory" ref="localSessionFactory" /> -->
 <!-- 		<property name="motivoCategoriaDAO" ref="motivoCategoriaDAO" /> -->
@@ -61,9 +61,9 @@
     <!-- CANAL CONTACTO -->
     
 	<!-- TEST -->
-    <bean id="testCursoDAO" class="com.osdepym.hibernate.dao.TestCursoDAOImpl">
-		<property name="sessionFactory" ref="localSessionFactory" />
-	</bean>
+<!--     <bean id="testCursoDAO" class="com.osdepym.hibernate.dao.TestCursoDAOImpl"> -->
+<!-- 		<property name="sessionFactory" ref="localSessionFactory" /> -->
+<!-- 	</bean> -->
 <!-- 	<bean id="testService" class="com.osdepym.service.TestService"> -->
 <!-- 		<property name="sessionFactory" ref="localSessionFactory" /> -->
 <!-- 		<property name="cursosDAO" ref="testCursoDAO" /> -->
@@ -71,12 +71,12 @@
 <!-- 		<property name="hijosDAO" ref="hijosDAO" /> -->
 <!-- 	</bean> -->
 	
-	<bean id="testPersonaDAO" class="com.osdepym.hibernate.dao.TestPersonaDAOImpl">
-		<property name="sessionFactory" ref="localSessionFactory" />
-	</bean>
-	<bean id="hijosDAO" class="com.osdepym.hibernate.dao.HijosDAOImpl">
-		<property name="sessionFactory" ref="localSessionFactory" />
-	</bean>
+<!-- 	<bean id="testPersonaDAO" class="com.osdepym.hibernate.dao.TestPersonaDAOImpl"> -->
+<!-- 		<property name="sessionFactory" ref="localSessionFactory" /> -->
+<!-- 	</bean> -->
+<!-- 	<bean id="hijosDAO" class="com.osdepym.hibernate.dao.HijosDAOImpl"> -->
+<!-- 		<property name="sessionFactory" ref="localSessionFactory" /> -->
+<!-- 	</bean> -->
 	<!-- TEST -->
 	
 </beans>

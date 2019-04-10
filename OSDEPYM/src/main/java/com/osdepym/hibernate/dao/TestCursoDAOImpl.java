@@ -10,6 +10,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.osdepym.exception.CustomException;
@@ -19,6 +20,7 @@ import com.osdepym.hibernate.entity.Cursos;
 @Repository("testCursoDAO")
 public class TestCursoDAOImpl implements TestCursoDAO {
 
+	@Autowired
 	private SessionFactory sessionFactory;
 
 	public void setSessionFactory(SessionFactory sessionFactory) {

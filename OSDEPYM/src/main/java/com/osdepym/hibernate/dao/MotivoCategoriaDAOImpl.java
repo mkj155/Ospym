@@ -8,12 +8,14 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.type.StandardBasicTypes;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import com.osdepym.exception.CustomException;
 import com.osdepym.exception.ErrorMessages;
 import com.osdepym.hibernate.entity.Contacto;
 import com.osdepym.hibernate.entity.MotivoCategoria;
 
+@Repository
 public class MotivoCategoriaDAOImpl implements MotivoCategoriaDAO {
 
 	@Autowired
