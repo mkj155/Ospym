@@ -1,5 +1,6 @@
 package com.osdepym.hibernate.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Query;
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.osdepym.exception.CustomException;
 import com.osdepym.exception.ErrorMessages;
+import com.osdepym.hibernate.entity.Categoria;
 import com.osdepym.hibernate.entity.Contacto;
 import com.osdepym.hibernate.entity.MotivoCategoria;
 
@@ -75,5 +77,36 @@ public class MotivoCategoriaDAOImpl implements MotivoCategoriaDAO {
 			throw new CustomException(e.getMessage(), ErrorMessages.DATABASE_SAVE_ERROR);
 		}
 	}
+
+	@Override
+	public List<Categoria> getCategoriasByMotivoId(int idMotivo) throws CustomException {
+		try {
+			List<Categoria> categorias = new ArrayList<Categoria>();
+			Session session = this.sessionFactory.getCurrentSession();
+			String sqlString = "SELECT C.* FROM CATEG_CONTACTO C INNER JOIN MOTIVO_CATEGORIA MC ON MC.IDCATEG = C.IDCATEG WHERE MC.IDMOTIVO = " + idMotivo;
+			Query query = session.createNativeQuery(sqlString, Categoria.class);
+			categorias = query.getResultList();
+			return categorias;
+		} catch (Exception e) {
+			throw new CustomException(e.getMessage(), ErrorMessages.DATABASE_GET_ERROR);
+		}
+	}
+	
+	
+//	try {
+//		Cursos curso = null;
+//		Session session = this.sessionFactory.getCurrentSession();
+//		Transaction tx = session.beginTransaction();
+//		CriteriaBuilder builder = session.getCriteriaBuilder();
+//		CriteriaQuery<Cursos> criteria = builder.createQuery(Cursos.class);
+//		Root<Cursos> root = criteria.from(Cursos.class);
+//		criteria.select(root).where(builder.equal(root.get("idCurso"), id));
+//		Query<Cursos> query = session.createQuery(criteria);
+//		curso = query.getSingleResult();
+//		tx.commit();
+//		return curso;
+//	} catch (Exception e) {
+//		throw new CustomException(e.getMessage(), ErrorMessages.DATABASE_GET_ERROR);
+//	}
 
 }

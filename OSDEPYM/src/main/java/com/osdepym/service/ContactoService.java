@@ -10,10 +10,12 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.springframework.beans.BeanUtils;
 
+import com.osdepym.dto.CategoriaDTO;
 import com.osdepym.dto.MotivoCategoriaDTO;
 import com.osdepym.exception.CustomException;
 import com.osdepym.exception.ErrorMessages;
 import com.osdepym.hibernate.dao.MotivoCategoriaDAO;
+import com.osdepym.hibernate.entity.Categoria;
 import com.osdepym.hibernate.entity.Contacto;
 import com.osdepym.hibernate.entity.MotivoCategoria;
 
@@ -128,6 +130,42 @@ public class ContactoService {
 				session.close();
 			throw new CustomException(e.getMessage(), ErrorMessages.UNKNOWN_ERROR);
 		}
+	}
+	
+	@Transactional
+	public List<CategoriaDTO> getCategoriasByMotivoId(int idMotivo) throws CustomException{
+		List<CategoriaDTO> categoriasDTO = new ArrayList<CategoriaDTO>();
+		Session session = null;
+		Transaction tx = null;
+		try {
+			session = this.sessionFactory.getCurrentSession();
+			tx = session.beginTransaction();
+			List<Categoria> categorias = motivoCategoriaDAO.getCategoriasByMotivoId(idMotivo);
+			if (categorias != null) {
+				for (Categoria categoria : categorias) {
+					categoriasDTO.add(entityToDTO(categoria));
+				}
+			}
+			tx.commit();
+			session.close();
+		} catch (CustomException e) {
+			tx.rollback();
+			session.close();
+			throw e;
+		} catch (Exception e) {
+			if (tx != null)
+				tx.rollback();
+			if (session != null)
+				session.close();
+			throw new CustomException(e.getMessage(), ErrorMessages.UNKNOWN_ERROR);
+		}
+		return categoriasDTO;
+	}
+
+	private CategoriaDTO entityToDTO(Categoria categoria) {
+		CategoriaDTO categoriaDTO = new CategoriaDTO();
+		BeanUtils.copyProperties(categoria, categoriaDTO);
+		return categoriaDTO;	
 	}
 	
 }

@@ -22,9 +22,8 @@ public class TestCanalContacto extends TestCase {
 	public void testMain() {
 		try {
 			List<MotivoCategoriaDTO> motivoCategoriaDTOs = service.getAllMotivos();
-			if(motivoCategoriaDTOs != null && motivoCategoriaDTOs.size() > 0) {
-				
-			}
+			service.getCategoriasByMotivoId(1);
+			service.getCategoriasByMotivoId(4);
 		} catch (CustomException e) {
 			e.printStackTrace();
 		}
