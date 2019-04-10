@@ -18,7 +18,8 @@
 		<mssql.version>7.0.0.jre8</mssql.version>
 		<junit.version>3.8.1</junit.version>
 		<javaxservlet.version>3.1.0</javaxservlet.version>
-		<javaxvalidation.version>2.0.1.Final</javaxvalidation.version>		
+		<javaxvalidation.version>2.0.1.Final</javaxvalidation.version>
+		<javaxmail.version>1.6.0</javaxmail.version>
 	</properties>
 	
 	<dependencies>
@@ -88,6 +89,11 @@
             <artifactId>validation-api</artifactId>
             <version>${javaxvalidation.version}</version>
         </dependency>
+		<dependency>
+		    <groupId>com.sun.mail</groupId>
+		    <artifactId>javax.mail</artifactId>
+		    <version>${javaxmail.version}</version>
+		</dependency>        
 		<dependency>
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
