@@ -82,6 +82,8 @@ public class ContactoService {
 		return motivosDTO;
 	}
 	
+	
+	
 	private MotivoDTO entityToDTO(Motivo motivo) {
 		MotivoDTO motivoDTO = new MotivoDTO();
 		BeanUtils.copyProperties(motivo, motivoDTO);
