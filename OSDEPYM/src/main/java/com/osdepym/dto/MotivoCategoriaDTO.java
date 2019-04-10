@@ -1,12 +1,12 @@
 package com.osdepym.dto;
 
 import com.osdepym.hibernate.entity.Categorias;
-import com.osdepym.hibernate.entity.Motivos;
+import com.osdepym.hibernate.entity.Motivo;
 
 public class MotivoCategoriaDTO {
 	
 	private int idMotCat;
-    private Motivos motivo;
+    private Motivo motivo;
     private Categorias categoria;
     private String correo;
 	public int getIdMotCat() {
@@ -15,10 +15,10 @@ public class MotivoCategoriaDTO {
 	public void setIdMotCat(int idMotCat) {
 		this.idMotCat = idMotCat;
 	}
-	public Motivos getMotivo() {
+	public Motivo getMotivo() {
 		return motivo;
 	}
-	public void setMotivo(Motivos motivo) {
+	public void setMotivo(Motivo motivo) {
 		this.motivo = motivo;
 	}
 	public Categorias getCategoria() {

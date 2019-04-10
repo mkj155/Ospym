@@ -34,7 +34,7 @@
 				<value>com.osdepym.hibernate.entity.Cursos</value>
 				<value>com.osdepym.hibernate.entity.Categorias</value>
 				<value>com.osdepym.hibernate.entity.MotivoCategoria</value>
-				<value>com.osdepym.hibernate.entity.Motivos</value>
+				<value>com.osdepym.hibernate.entity.Motivo</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">
@@ -50,20 +50,14 @@
         <property name="sessionFactory" ref="localSessionFactory" />
     </bean>
     
-    <!-- CANAL CONTACTO -->
-    <bean id="motivoCategoriaDAO" class="com.osdepym.hibernate.dao.MotivoCategoriaDAOImpl ">
-		<property name="sessionFactory" ref="localSessionFactory" />
-	</bean>
-   	<bean id="serviceCanalContacto" class="com.osdepym.service.ServiceCanalContacto">
+    <!-- SERVICE -->
+    
+   	<bean id="contactoService" class="com.osdepym.service.ContactoService">
 		<property name="sessionFactory" ref="localSessionFactory" />
 		<property name="motivoCategoriaDAO" ref="motivoCategoriaDAO" />
+		<property name="motivoDAO" ref="motivoDAO" />
 	</bean>
-    <!-- CANAL CONTACTO -->
-    
-	<!-- TEST -->
-    <bean id="testCursoDAO" class="com.osdepym.hibernate.dao.TestCursoDAOImpl">
-		<property name="sessionFactory" ref="localSessionFactory" />
-	</bean>
+	
 	<bean id="testService" class="com.osdepym.service.TestService">
 		<property name="sessionFactory" ref="localSessionFactory" />
 		<property name="cursosDAO" ref="testCursoDAO" />
@@ -71,6 +65,11 @@
 		<property name="hijosDAO" ref="hijosDAO" />
 	</bean>
 	
+    <!-- DAO -->
+
+    <bean id="testCursoDAO" class="com.osdepym.hibernate.dao.TestCursoDAOImpl">
+		<property name="sessionFactory" ref="localSessionFactory" />
+	</bean>
 	<bean id="testPersonaDAO" class="com.osdepym.hibernate.dao.TestPersonaDAOImpl">
 		<property name="sessionFactory" ref="localSessionFactory" />
 	</bean>
@@ -78,6 +77,12 @@
 		<property name="sessionFactory" ref="localSessionFactory" />
 	</bean>
 	<bean id="hijosDAO" class="com.osdepym.hibernate.dao.HijosDAOImpl">
+		<property name="sessionFactory" ref="localSessionFactory" />
+	</bean>
+	<bean id="motivoCategoriaDAO" class="com.osdepym.hibernate.dao.MotivoCategoriaDAOImpl ">
+		<property name="sessionFactory" ref="localSessionFactory" />
+	</bean>
+	<bean id="motivoDAO" class="com.osdepym.hibernate.dao.MotivoDAOImpl ">
 		<property name="sessionFactory" ref="localSessionFactory" />
 	</bean>
 	<!-- TEST -->

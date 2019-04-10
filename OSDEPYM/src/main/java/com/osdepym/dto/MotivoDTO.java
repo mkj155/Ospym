@@ -4,7 +4,7 @@ import java.util.Set;
 
 import com.osdepym.hibernate.entity.MotivoCategoria;
 
-public class MotivosDTO {
+public class MotivoDTO {
 
 	private int idMotivo;
 	

@@ -11,12 +11,15 @@ import org.hibernate.Transaction;
 import org.springframework.beans.BeanUtils;
 
 import com.osdepym.dto.MotivoCategoriaDTO;
+import com.osdepym.dto.MotivoDTO;
 import com.osdepym.exception.CustomException;
 import com.osdepym.exception.ErrorMessages;
 import com.osdepym.hibernate.dao.MotivoCategoriaDAO;
+import com.osdepym.hibernate.dao.MotivoDAO;
+import com.osdepym.hibernate.entity.Motivo;
 import com.osdepym.hibernate.entity.MotivoCategoria;
 
-public class ServiceCanalContacto {
+public class ContactoService {
 	
 	private SessionFactory sessionFactory;
 
@@ -38,18 +41,28 @@ public class ServiceCanalContacto {
 		this.motivoCategoriaDAO = motivoCategoriaDAO;
 	}
 	
+	private MotivoDAO motivoDAO ;
+
+	public MotivoDAO getMotivoDAO() {
+		return motivoDAO;
+	}
+
+	public void setMotivoDAO(MotivoDAO motivoDAO) {
+		this.motivoDAO = motivoDAO;
+	}
+	
 	@Transactional
-	public List<MotivoCategoriaDTO> getAllMotivos() throws CustomException {
-		List<MotivoCategoriaDTO> motivoCategoriaDTO = new ArrayList<MotivoCategoriaDTO>();
+	public List<MotivoDTO> getAllMotivos() throws CustomException {
+		List<MotivoDTO> motivosDTO = new ArrayList<MotivoDTO>();
 		Session session = null;
 		Transaction tx = null;
 		try {
 			session = this.sessionFactory.getCurrentSession();
 			tx = session.beginTransaction();
-			List<MotivoCategoria> motivoCategorias = motivoCategoriaDAO.getAll();
-			if (motivoCategorias != null) {
-				for (MotivoCategoria motivoCategoria : motivoCategorias) {
-					motivoCategoriaDTO.add(entityToDTO(motivoCategoria));
+			List<Motivo> motivos = motivoDAO.getAll();
+			if (motivos != null) {
+				for (Motivo motivo : motivos) {
+					motivosDTO.add(entityToDTO(motivo));
 				}
 			}
 			tx.commit();
@@ -63,15 +76,16 @@ public class ServiceCanalContacto {
 				tx.rollback();
 			if (session != null)
 				session.close();
+			e.printStackTrace();
 			throw new CustomException(e.getMessage(), ErrorMessages.UNKNOWN_ERROR);
 		}
-		return motivoCategoriaDTO;
+		return motivosDTO;
 	}
 	
-	private MotivoCategoriaDTO entityToDTO(MotivoCategoria motivoCategoria) {
-		MotivoCategoriaDTO motivoCategoriaDTO = new MotivoCategoriaDTO();
-		BeanUtils.copyProperties(motivoCategoria, motivoCategoriaDTO);
-		return motivoCategoriaDTO;
+	private MotivoDTO entityToDTO(Motivo motivo) {
+		MotivoDTO motivoDTO = new MotivoDTO();
+		BeanUtils.copyProperties(motivo, motivoDTO);
+		return motivoDTO;
 	}
 	
 }

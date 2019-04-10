@@ -12,15 +12,15 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="MOTIVOS_CONTACTO")
-public class Motivos {
+public class Motivo {
 	
-	public Motivos() {}
+	public Motivo() {}
 	
-	public Motivos(String etiqueta) {
+	public Motivo(String etiqueta) {
 		this.etiqueta = etiqueta;
 	}
 	
-	public Motivos(String etiqueta, Set<MotivoCategoria> motivoCategorias) {
+	public Motivo(String etiqueta, Set<MotivoCategoria> motivoCategorias) {
 		this.etiqueta = etiqueta;
 		this.motivoCategorias = motivoCategorias;
 	}
@@ -48,17 +48,17 @@ public class Motivos {
 		this.etiqueta = etiqueta;
 	}
 
-	@OneToMany(mappedBy = "motivo")
-	public Set<MotivoCategoria> getMotivoCategorias() {
-		return motivoCategorias;
-	}
+//	@OneToMany(mappedBy = "motivo")
+//	public Set<MotivoCategoria> getMotivoCategorias() {
+//		return motivoCategorias;
+//	}
 
-	public void setMotivoCategorias(Set<MotivoCategoria> motivoCategorias) {
-		this.motivoCategorias = motivoCategorias;
-	}
+//	public void setMotivoCategorias(Set<MotivoCategoria> motivoCategorias) {
+//		this.motivoCategorias = motivoCategorias;
+//	}
 	
-	public void addMotivoCategoria(MotivoCategoria motivoCategoria) {
-		this.motivoCategorias.add(motivoCategoria);
-	}
-	
+//	public void addMotivoCategoria(MotivoCategoria motivoCategoria) {
+//		this.motivoCategorias.add(motivoCategoria);
+//	}
+//	
 }

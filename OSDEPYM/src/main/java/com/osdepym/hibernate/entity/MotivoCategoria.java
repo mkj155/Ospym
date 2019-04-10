@@ -22,7 +22,7 @@ public class MotivoCategoria implements Serializable {
 	private static final long serialVersionUID = -166959304805302504L;
 	
 	private int idMotCat;
-	private Motivos motivo;
+	private Motivo motivo;
 	private Categorias categoria;
 	private String correo;
     
@@ -53,11 +53,11 @@ public class MotivoCategoria implements Serializable {
 	
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "IDMOTIVO")  
-	public Motivos getMotivo() {
+	public Motivo getMotivo() {
 		return motivo;
 	}
 
-	public void setMotivo(Motivos motivo) {
+	public void setMotivo(Motivo motivo) {
 		this.motivo = motivo;
 	}
 
