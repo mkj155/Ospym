@@ -33,19 +33,15 @@ import com.osdepym.service.TestServiceImpl;
 import com.osdepym.configuration.ConfigurationEnviroment;
 
 @EnableWebMvc
-@ComponentScan(basePackages = {"com.osdepym.*"})
+@ComponentScan({"com.osdepym.hibernate.dao","com.osdepym.controller","com.osdepym.hibernate.entity","com.osdepym.service"})
 @Configuration
 @EnableTransactionManagement
 @ImportResource("classpath:spring.xml")
 public class ConfiguracionSpring  extends WebMvcConfigurerAdapter {
 	
-	@Autowired
-	@Qualifier("ContactService")
-	ContactoService service;
-	
-	@Autowired
-	Environment env;
-	
+//	@Autowired
+//	@Qualifier("ContactService")
+//	ContactoService service;
     
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
@@ -74,20 +70,6 @@ public class ConfiguracionSpring  extends WebMvcConfigurerAdapter {
     public void addFormatters (FormatterRegistry registry) {
         registry.addConverter(new StringToHijo());
     }
-    
-//    @Bean
-//    public DriverManagerDataSource dataSource() {
-//        DriverManagerDataSource dataSource = new DriverManagerDataSource();
-//        
-//        dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-//        dataSource.setUrl("jdbc:mysql://localhost:3306/spring_security_db");
-//        dataSource.setUsername("root");
-//        dataSource.setPassword("");
-//
-//        return dataSource;
-//    }
-    
-    
     
 }
 

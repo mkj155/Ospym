@@ -22,6 +22,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import com.osdepym.configuration.ConfiguracionSpring;
 import com.osdepym.configuration.ConfigurationEnviroment;
 import com.osdepym.dto.MotivoCategoriaDTO;
+import com.osdepym.dto.MotivoDTO;
 import com.osdepym.exception.CustomException;
 import com.osdepym.service.ContactoService;
 import com.osdepym.service.ContactoServiceImpl;
@@ -37,13 +38,13 @@ public class TestCanalContacto {
 	@Qualifier("ContactService")
 	ContactoService service;
 	
-	TestCanalContactoMethod methods = new TestCanalContactoMethod();
+//	TestCanalContactoMethod methods = new TestCanalContactoMethod();
 
 		
 	@Test
 	public void testMain() {
 		try {
-			List<MotivoCategoriaDTO> motivoCategoriaDTOs = service.getAllMotivos();
+			List<MotivoDTO> motivoCategoriaDTOs = service.getAllMotivos();
 			if(motivoCategoriaDTOs != null && motivoCategoriaDTOs.size() > 0) {
 				
 			}

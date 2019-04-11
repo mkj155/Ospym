@@ -10,13 +10,17 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.osdepym.dto.MotivoCategoriaDTO;
+import com.osdepym.dto.MotivoDTO;
 import com.osdepym.exception.CustomException;
 import com.osdepym.exception.ErrorMessages;
 import com.osdepym.hibernate.dao.MotivoCategoriaDAO;
+import com.osdepym.hibernate.dao.MotivoDAO;
 import com.osdepym.hibernate.entity.Contacto;
+import com.osdepym.hibernate.entity.Motivo;
 import com.osdepym.hibernate.entity.MotivoCategoria;
 
 @Service("ContactService")
@@ -27,6 +31,9 @@ public class ContactoServiceImpl implements ContactoService {
 
 	@Autowired
 	private MotivoCategoriaDAO motivoCategoriaDAO ;
+
+	@Autowired
+	private MotivoDAO motivoDAO;
 
 	public SessionFactory getSessionFactory() {
 		return sessionFactory;
@@ -46,17 +53,17 @@ public class ContactoServiceImpl implements ContactoService {
 	}
 	
 	@Transactional
-	public List<MotivoCategoriaDTO> getAllMotivos() throws CustomException {
-		List<MotivoCategoriaDTO> motivoCategoriaDTO = new ArrayList<MotivoCategoriaDTO>();
+	public List<MotivoDTO> getAllMotivos() throws CustomException {
+		List<MotivoDTO> motivosDTO = new ArrayList<MotivoDTO>();
 		Session session = null;
 		Transaction tx = null;
 		try {
 			session = this.sessionFactory.getCurrentSession();
 			tx = session.beginTransaction();
-			List<MotivoCategoria> motivoCategorias = motivoCategoriaDAO.getAll();
-			if (motivoCategorias != null) {
-				for (MotivoCategoria motivoCategoria : motivoCategorias) {
-					motivoCategoriaDTO.add(entityToDTO(motivoCategoria));
+			List<Motivo> motivos = motivoDAO.getAll();
+			if (motivos != null) {
+				for (Motivo motivo : motivos) {
+					motivosDTO.add(entityToDTO(motivo));
 				}
 			}
 			tx.commit();
@@ -72,13 +79,13 @@ public class ContactoServiceImpl implements ContactoService {
 				session.close();
 			throw new CustomException(e.getMessage(), ErrorMessages.UNKNOWN_ERROR);
 		}
-		return motivoCategoriaDTO;
+		return motivosDTO;
 	}
 	
-	private MotivoCategoriaDTO entityToDTO(MotivoCategoria motivoCategoria) {
-		MotivoCategoriaDTO motivoCategoriaDTO = new MotivoCategoriaDTO();
-		BeanUtils.copyProperties(motivoCategoria, motivoCategoriaDTO);
-		return motivoCategoriaDTO;
+	private MotivoDTO entityToDTO(Motivo motivo) {
+		MotivoDTO motivoDTO = new MotivoDTO();
+		BeanUtils.copyProperties(motivo, motivoDTO);
+		return motivoDTO;
 	}
 	
 	@Transactional

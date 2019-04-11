@@ -42,7 +42,7 @@ public class TestContacto {
 		contacto.setIdtramite("AAAAMMDDsecuen");
 		contacto.setNombreCompleto("Damian Andres Chavez");
 		
-		service.saveContacto(contacto);
+//		service.saveContacto(contacto);
 	}
 	
 	@Test

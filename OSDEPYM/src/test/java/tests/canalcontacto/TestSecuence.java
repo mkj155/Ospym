@@ -28,7 +28,7 @@ public class TestSecuence{
 
 	@Test
 	public void testMain() throws CustomException {
-		String secuence = service.getSecuence();
+//		String secuence = service.getSecuence();
 	}
 	
 	@Test
