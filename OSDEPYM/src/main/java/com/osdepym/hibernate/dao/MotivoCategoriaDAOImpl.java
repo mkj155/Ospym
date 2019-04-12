@@ -91,22 +91,50 @@ public class MotivoCategoriaDAOImpl implements MotivoCategoriaDAO {
 			throw new CustomException(e.getMessage(), ErrorMessages.DATABASE_GET_ERROR);
 		}
 	}
-	
-	
-//	try {
-//		Cursos curso = null;
-//		Session session = this.sessionFactory.getCurrentSession();
-//		Transaction tx = session.beginTransaction();
-//		CriteriaBuilder builder = session.getCriteriaBuilder();
-//		CriteriaQuery<Cursos> criteria = builder.createQuery(Cursos.class);
-//		Root<Cursos> root = criteria.from(Cursos.class);
-//		criteria.select(root).where(builder.equal(root.get("idCurso"), id));
-//		Query<Cursos> query = session.createQuery(criteria);
-//		curso = query.getSingleResult();
-//		tx.commit();
-//		return curso;
-//	} catch (Exception e) {
-//		throw new CustomException(e.getMessage(), ErrorMessages.DATABASE_GET_ERROR);
-//	}
+
+	@Override
+	public String getMailByIds(String idMotivo, String idCategoria) throws CustomException {
+		String mail = "";
+		try {
+			Session session = this.sessionFactory.getCurrentSession();
+			String sqlString = "SELECT CORREO FROM MOTIVO_CATEGORIA WHERE IDMOTIVO = %s AND IDCATEG = %s";
+			sqlString = String.format(sqlString, idMotivo, idCategoria);
+			Query query = session.createNativeQuery(sqlString);
+			mail = query.getSingleResult().toString();
+		} catch (Exception e) {
+			throw new CustomException(e.getMessage(), ErrorMessages.DATABASE_GET_ERROR);
+		}
+		return mail;
+	}
+
+	@Override
+	public String getMotivoById(String idMotivo) throws CustomException {
+		String motivo = null;
+		try {
+			Session session = this.sessionFactory.getCurrentSession();
+			String sqlString = "SELECT ETIQUETA FROM MOTIVOS_CONTACTO WHERE IDMOTIVO = %s";
+			sqlString = String.format(sqlString, idMotivo);
+			Query query = session.createNativeQuery(sqlString);
+			motivo = query.getSingleResult().toString();
+		} catch (Exception e) {
+			throw new CustomException(e.getMessage(), ErrorMessages.DATABASE_GET_ERROR);
+		}
+		return motivo;
+	}
+
+	@Override
+	public String getCategoriaById(String idCategoria) throws CustomException {
+		String categoria = null;
+		try {
+			Session session = this.sessionFactory.getCurrentSession();
+			String sqlString = "SELECT ETIQUETA FROM CATEG_CONTACTO WHERE IDCATEG = %s";
+			sqlString = String.format(sqlString, idCategoria);
+			Query query = session.createNativeQuery(sqlString);
+			categoria = query.getSingleResult().toString();
+		} catch (Exception e) {
+			throw new CustomException(e.getMessage(), ErrorMessages.DATABASE_GET_ERROR);
+		}
+		return categoria;
+	}
 
 }

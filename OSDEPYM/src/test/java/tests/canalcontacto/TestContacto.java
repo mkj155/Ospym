@@ -1,10 +1,8 @@
 package tests.canalcontacto;
 
-import java.util.Date;
-
 import com.osdepym.configuration.ConfigurationEnviroment;
 import com.osdepym.exception.CustomException;
-import com.osdepym.hibernate.entity.Contacto;
+import com.osdepym.form.ContactoForm;
 import com.osdepym.service.ContactoService;
 
 import junit.framework.TestCase;
@@ -18,18 +16,15 @@ public class TestContacto extends TestCase {
 	}
 	
 	public void testMain() throws CustomException {
-		Contacto contacto = new Contacto();
+		ContactoForm contactoForm = new ContactoForm();
 		
-		contacto.setComentario("Comentario");
-		contacto.setCorreo("correo@correo.com");
-		contacto.setFechaCreacion(new Date());
-		contacto.setIdAfiliado("15168153153");
-		contacto.setIdCateg(1);
-		contacto.setIdMotivo(2);
-		contacto.setIdtramite("AAAAMMDDsecuen");
-		contacto.setNombreCompleto("Damian Andres Chavez");
+		contactoForm.setIdMotivo("1");
+		contactoForm.setIdCategoria("1");
+		contactoForm.setIdAfiliado("154863155");
+		contactoForm.setNombreAfiliado("Damian Andres Chavez");
+		contactoForm.setComentario("Comentario");
 		
-		service.saveContacto(contacto);
+		service.procesarContacto(contactoForm);
 	}
 	
     protected void tearDown() {

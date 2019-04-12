@@ -15,7 +15,7 @@ public class TestSecuence extends TestCase {
 	}
 	
 	public void testMain() throws CustomException {
-		String secuence = service.getSecuence();
+		// String secuence = service.getSecuence();
 	}
 	
     protected void tearDown() {
