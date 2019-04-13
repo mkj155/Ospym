@@ -1,25 +1,24 @@
 package com.osdepym.configuration;
 
-import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.support.ResourceBundleMessageSource;
-import org.springframework.format.FormatterRegistry;
+import org.springframework.context.annotation.ImportResource;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
-import com.osdepym.dto.StringToHijo;
-import com.osdepym.service.TestService;
-
 @EnableWebMvc
-@ComponentScan("com.osdepym.controller")
+@ComponentScan({"com.osdepym.hibernate.dao","com.osdepym.controller","com.osdepym.hibernate.entity","com.osdepym.service"})
 @Configuration
+@EnableTransactionManagement
+@ImportResource("classpath:spring.xml")
 public class ConfiguracionSpring  extends WebMvcConfigurerAdapter {
-    
+	
+
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
@@ -34,18 +33,5 @@ public class ConfiguracionSpring  extends WebMvcConfigurerAdapter {
 	    resolver.setSuffix(".jsp");
 	    return resolver;
     }
-    
-    @Bean
-    public MessageSource messageSource() {
-    	ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
-    	messageSource.setBasename("messages");
-    	return messageSource;
-    }
-    
-    @Override
-    public void addFormatters (FormatterRegistry registry) {
-        registry.addConverter(new StringToHijo(ConfigurationEnviroment.getInstance().getContext().getBean(TestService.class)));
-    }
-    
+        
 }
-

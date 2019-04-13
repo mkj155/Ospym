@@ -3,6 +3,7 @@
 <title>Spring MVC Example</title>
 
 <link href="/OSDEPYM/resources/core/css/bootstrap.min.css" rel="stylesheet" />
+
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 
@@ -15,7 +16,7 @@
 <nav class="navbar navbar-inverse ">
 	<div class="container">
 		<div class="navbar-header">
-			<a class="navbar-brand" href="${urlHome}">Spring MVC - Bootstrap Example</a>
+<%-- 			<a class="navbar-brand" href="${urlHome}">Spring MVC - Bootstrap Example</a> --%>
 		</div>
 		<!--  <div id="navbar">
 			<ul class="nav navbar-nav navbar-right">

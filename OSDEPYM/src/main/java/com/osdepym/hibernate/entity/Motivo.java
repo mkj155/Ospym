@@ -48,17 +48,17 @@ public class Motivo {
 		this.etiqueta = etiqueta;
 	}
 
-//	@OneToMany(mappedBy = "motivo")
-//	public Set<MotivoCategoria> getMotivoCategorias() {
-//		return motivoCategorias;
-//	}
+	@OneToMany(mappedBy = "motivo")
+	public Set<MotivoCategoria> getMotivoCategorias() {
+		return motivoCategorias;
+	}
 
-//	public void setMotivoCategorias(Set<MotivoCategoria> motivoCategorias) {
-//		this.motivoCategorias = motivoCategorias;
-//	}
+	public void setMotivoCategorias(Set<MotivoCategoria> motivoCategorias) {
+		this.motivoCategorias = motivoCategorias;
+	}
 	
-//	public void addMotivoCategoria(MotivoCategoria motivoCategoria) {
-//		this.motivoCategorias.add(motivoCategoria);
-//	}
-//	
+	public void addMotivoCategoria(MotivoCategoria motivoCategoria) {
+		this.motivoCategorias.add(motivoCategoria);
+	}
+	
 }

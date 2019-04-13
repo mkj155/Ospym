@@ -11,10 +11,11 @@
 <script src="/OSDEPYM/resources/core/js/contacto.js"></script>
 
 <head>
+<link href="/OSDEPYM/resources/core/css/_buttons.css" rel="stylesheet" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 </head>
 <body>
-	<h2>canal de contacto</h2>
+	<h1>canal de contacto</h1>
 	<spring:url value="/contact/send" var="enviarUrl" />
 	<form:form class="form-horizontal" method="post" modelAttribute="contactoForm" action="${enviarUrl}">
 
@@ -56,13 +57,13 @@
 		<div class="form-group ${status.error ? 'has-error' : ''}">
 			<label class="col-sm-2 control-label">Comentario</label>
 			<div class="col-sm-5">
-				<form:textarea path="comentario" rows="5" cols="90" />
+				<form:textarea path="comentario" rows="5" cols="90" maxlength="300" />
 			</div>
 			<div class="col-sm-5"></div>
 		</div>
 		<div class="form-group">
 			<div class="col-sm-offset-2 col-sm-10">
-				<button type="submit" class="btn-lg btn-primary pull-right">Enviar</button>
+				<button type="submit" class="btn btn-outline-primary btn-block btn-sm">ENVIAR</button>
 			</div>
 		</div>
 	</form:form>

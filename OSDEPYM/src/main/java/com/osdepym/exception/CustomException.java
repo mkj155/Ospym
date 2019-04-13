@@ -2,6 +2,7 @@ package com.osdepym.exception;
 
 public class CustomException extends Exception {
 
+	private static final long serialVersionUID = 1361286122292980072L;
 	private String customMessage;
 	
 	// Parameterless Constructor
@@ -22,4 +23,5 @@ public class CustomException extends Exception {
 	public void setCustomMessage(String customMessage) {
 		this.customMessage = customMessage;
 	}
+
 }

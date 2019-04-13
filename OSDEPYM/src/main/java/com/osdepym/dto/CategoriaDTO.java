@@ -13,12 +13,12 @@ public class CategoriaDTO {
 
 	private Set<MotivoCategoria> motivoCategoria = new HashSet<MotivoCategoria>();
 
-	public int getIdCateg() {
+	public int getIdCategoria() {
 		return idCateg;
 	}
 
-	public void setIdCateg(int idCateg) {
-		this.idCateg = idCateg;
+	public void setIdCateg(int idCategoria) {
+		this.idCateg = idCategoria;
 	}
 
 	public String getEtiqueta() {

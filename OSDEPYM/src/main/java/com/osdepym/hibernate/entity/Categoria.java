@@ -13,19 +13,19 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "CATEG_CONTACTO")
-public class Categorias {
+public class Categoria {
 	
 	private int idCateg;
 	private String etiqueta;
 	private Set<MotivoCategoria> motivoCategorias = new HashSet<MotivoCategoria>();
 	
-	public Categorias () {}
+	public Categoria () {}
 	
-	public Categorias(String etiquetas) {
+	public Categoria(String etiquetas) {
 		this.etiqueta = etiquetas;
 	}
 
-	public Categorias(String etiquetas, Set<MotivoCategoria> motivoCategorias) {
+	public Categoria(String etiquetas, Set<MotivoCategoria> motivoCategorias) {
 		this.etiqueta = etiquetas;
 		this.motivoCategorias = motivoCategorias;
 	}
