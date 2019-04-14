@@ -3,7 +3,6 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
 <html>
 
@@ -11,7 +10,6 @@
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-<!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script> -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
 <script src="/OSDEPYM/resources/core/js/bootstrap.min.js"></script>
 <script src="/OSDEPYM/resources/core/js/bootstrap-swipe-carousel.min.js"></script>
@@ -19,19 +17,13 @@
 <script src="/OSDEPYM/resources/core/js/contacto.js"></script>
 
 <head>
-<link href="/OSDEPYM/resources/core/css/_contacto.css" rel="stylesheet" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="/OSDEPYM/resources/core/css/fonts.css">
     <link rel="stylesheet" href="/OSDEPYM/resources/core/css/bootstrap.css">
     <link rel="stylesheet" href="/OSDEPYM/resources/core/css/main.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
-
-    <title>OSDEPYM</title>
+    <link href="/OSDEPYM/resources/core/css/_contacto.css" rel="stylesheet" />
 </head>
 <body>
 	<header id="header">
@@ -66,9 +58,9 @@
                             Tramites online
                         </a>
                         <div class="dropdown-menu">
-							<spring:url value="/contacto/${param.idAfiliado}/${param.nombreAfiliado}" var="canalDeContactoUrl" />
-                            <a class="dropdown-item" href="${canalDeContactoUrl}">Canal de contacto</a>
-                            <a class="dropdown-item" href="">Mi plan web</a>
+<%--                         <spring:url value="/contacto/123/fruta" var="userUrl" /> --%>
+                            <a class="dropdown-item" href="/OSDEPYM/contacto/123/fruta">Canal de contacto</a>
+                            <a class="dropdown-item" href="recursos-humanos.html">Mi plan web</a>
                         </div>
                         </li>
                     </ul>
@@ -127,71 +119,20 @@
               </nav>
         </div>
     </header>
-
-	<section id="main" class="bg-gray">
-		<div class="container page page-cartilla">
-			<h1>canal de contacto</h1>
-			<spring:url value="/contact/send" var="enviarUrl" />
-			<form:form class="form-cartilla custom-form" method="post"
-				modelAttribute="contactoForm" action="${enviarUrl}">
-				<div class="row">
-					<!-- AFILIADO -->
-					<div class="col-md-3">
-						<div class="form-group">
-							<label class="col-sm-2 control-label">Afiliado</label>
-							<form:hidden path="idAfiliado" />
-							<form:input path="nombreAfiliado" readonly="true" class="form-control" placeholder="Email" />
-							<form:errors path="idAfiliado" class="control-label" />
-							<div class="col-sm-5"></div>
-						</div>
-					</div>
-					<!-- MOTIVOS -->
-					<div class="col-md-3">
-						<div class="form-group ${status.error ? 'has-error' : ''}">
-							<label class="col-sm-2 control-label">Motivo</label>
-								<form:select path="idMotivo" class="form-control" id='motivo'
-									onchange="getCategorias()">
-									<form:option value="" label=" Seleccionar " />
-									<form:options items="${motivos}" itemValue="idMotivo"
-										itemLabel="etiqueta" />
-								</form:select>
-								<form:errors path="idMotivo" class="control-label" />
-							<div class="col-sm-5"></div>
-						</div>
-					</div>
-						<!-- CATEGORIAS -->
-					<div class="col-md-3">
-						<div class="form-group ${status.error ? 'has-error' : ''}">
-							<label class="col-sm-2 control-label">Categoria</label>
-							<form:select path="idCategoria" disabled="true" class="form-control disabled" id='categoria'>
-								<form:option value="" label=" Seleccionar " />
-							</form:select>
-							<form:errors path="idCategoria" class="control-label" />
-							<div class="col-sm-5"></div>
-						</div>
-					</div>
-					<!-- COMENTARIO -->
-					<div class="col-md-4">
-						<div class="form-group ${status.error ? 'has-error' : ''}">
-							<label class="col-sm-2 control-label">Comentario</label>
-								<form:textarea path="comentario" rows="5" cols="90" class="form-control coment-contacto"
-									maxlength="1000" />
-								<form:errors path="comentario" class="control-label" />
-							<div class="col-sm-5"></div>
-						</div>
-					 </div>
-					</div>
-					<div class="form-group">
-						<div class="text-center">
-							<button type="submit"
-								class="btn btn-outline-primary btn-block btn-sm button-contact">ENVIAR</button>
-						</div>
-					</div>
-			</form:form>
-		</div>
-	</section>
-	
-	<section id="beneficios">
+ <section id="main" class="bg-gray">
+   <div class="container page page-cartilla">
+	<h1>Tramite ingresado con exito!</h1><br />
+	<p class="big">
+	<span class="text-green"><strong>Su numero de tramite es ${numeroTramite}</strong></span><br/>
+	A partir de ahora su solucitud ser&aacute; procesada y a la brevedad nos comunicaremos con usted para informarle el resultado de la misma. 
+	Por favor recuerde mantener sus datos de contacto actualizados.
+	Muchas gracias!
+	</p>
+    <button type="button" class="btn-lg btn-primary pull-right" onclick="location.href='/osdepym'">Volver al menu</button>
+	</div>
+ </section>
+ 
+ <section id="beneficios">
         <h2 class="title-section">
             <span class="bg-primary text">BENEFICIOS</span>
             <span class="line-div"></span>
@@ -314,10 +255,5 @@
         </div>
         
     </footer>
-	
-
-    
-</body>
-
 
 </html>

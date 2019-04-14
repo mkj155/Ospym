@@ -33,7 +33,7 @@ import com.osdepym.service.TestServiceImpl;
 import com.osdepym.configuration.ConfigurationEnviroment;
 
 @EnableWebMvc
-@ComponentScan({"com.osdepym.hibernate.dao","com.osdepym.controller","com.osdepym.hibernate.entity","com.osdepym.service"})
+@ComponentScan({"com.osdepym.hibernate.dao","com.osdepym.controller","com.osdepym.hibernate.entity","com.osdepym.service","com.osdepym.validator"})
 @Configuration
 @EnableTransactionManagement
 @ImportResource("classpath:spring.xml")
@@ -59,12 +59,12 @@ public class ConfiguracionSpring  extends WebMvcConfigurerAdapter {
     }
         
     
-//    @Bean
-//    public MessageSource messageSource() {
-//    	ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
-//    	messageSource.setBasename("messages");
-//    	return messageSource;
-//    }
+    @Bean
+    public MessageSource messageSource() {
+    	ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
+    	messageSource.setBasename("messages");
+    	return messageSource;
+    }
     
     @Override
     public void addFormatters (FormatterRegistry registry) {
