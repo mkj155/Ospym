@@ -9,6 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -22,6 +24,7 @@ import com.osdepym.dto.CategoriaDTO;
 import com.osdepym.dto.MotivoDTO;
 import com.osdepym.form.ContactoForm;
 import com.osdepym.service.ContactoService;
+import com.osdepym.validator.ContactoFormValidator;
 
 @Controller
 public class ContactoController {
@@ -30,7 +33,13 @@ public class ContactoController {
 	@Qualifier("ContactService")
 	private ContactoService service;
 	
-	private static final Logger logger = Logger.getLogger(ContactoController.class);
+	@Autowired
+	ContactoFormValidator contactFormValidator;
+	
+	@InitBinder
+	protected void initBinder(WebDataBinder binder) {
+		binder.setValidator(contactFormValidator);
+	}
 	
 	
 	@RequestMapping(value = "/contacto/{idAfiliado}/{nombreAfiliado}", method = RequestMethod.GET)
@@ -54,8 +63,14 @@ public class ContactoController {
 	@RequestMapping(value = "/contact/send", method = RequestMethod.POST)
 	public ModelAndView submitContactoForm(@ModelAttribute("contactoForm") @Validated ContactoForm contactoForm, BindingResult result, final RedirectAttributes redirectAttributes) {
 		ModelAndView view = null;
-		view = new ModelAndView("contactoConExito");
-		view.addObject("numeroTramite", "testnumero");
+		try {
+			String numeroTramite = service.procesarContacto(contactoForm);
+			view = new ModelAndView("contactoConExito");
+			view.addObject("numeroTramite", numeroTramite);
+		}catch (Exception e) {
+				view = new ModelAndView("error");
+				view.addObject("error", e);
+		}
 		return view;
 	
 	}
@@ -73,4 +88,6 @@ public class ContactoController {
 		return categorias;
 
 	}
+	
+	
 }

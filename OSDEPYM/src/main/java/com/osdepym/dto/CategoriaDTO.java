@@ -7,18 +7,18 @@ import com.osdepym.hibernate.entity.MotivoCategoria;
 
 public class CategoriaDTO {
 	
-	private int idCateg;
+	private int idCategoria;
 	
 	private String etiqueta;
 
 	private Set<MotivoCategoria> motivoCategoria = new HashSet<MotivoCategoria>();
 
 	public int getIdCategoria() {
-		return idCateg;
+		return idCategoria;
 	}
 
-	public void setIdCateg(int idCategoria) {
-		this.idCateg = idCategoria;
+	public void setIdCategoria(int idCategoria) {
+		this.idCategoria = idCategoria;
 	}
 
 	public String getEtiqueta() {

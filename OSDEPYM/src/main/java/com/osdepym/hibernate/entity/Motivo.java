@@ -11,7 +11,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="MOTIVOS_CONTACTO")
+@Table(name="MOTIVOS")
 public class Motivo {
 	
 	public Motivo() {}
@@ -30,7 +30,7 @@ public class Motivo {
 	private Set<MotivoCategoria> motivoCategorias;
     
 	@Id
-	@Column(name="IDMOTIVO")
+	@Column(name="ID_MOTIVO")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	public int getIdMotivo() {
 		return idMotivo;

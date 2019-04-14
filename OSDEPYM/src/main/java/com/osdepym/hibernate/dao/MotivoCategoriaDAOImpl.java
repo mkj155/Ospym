@@ -85,7 +85,7 @@ public class MotivoCategoriaDAOImpl implements MotivoCategoriaDAO {
 		try {
 			List<Categoria> categorias = new ArrayList<Categoria>();
 			Session session = this.sessionFactory.getCurrentSession();
-			String sqlString = "SELECT C.* FROM CATEG_CONTACTO C INNER JOIN MOTIVO_CATEGORIA MC ON MC.IDCATEG = C.IDCATEG WHERE MC.IDMOTIVO = " + idMotivo;
+			String sqlString = "SELECT C.* FROM CATEGORIAS C INNER JOIN MOTIVOS_CATEGORIAS MC ON MC.ID_CATEGORIA = C.ID_CATEGORIA WHERE MC.ID_MOTIVO = " + idMotivo;
 			Query query = session.createNativeQuery(sqlString, Categoria.class);
 			categorias = query.getResultList();
 			return categorias;
@@ -99,11 +99,12 @@ public class MotivoCategoriaDAOImpl implements MotivoCategoriaDAO {
 		String mail = "";
 		try {
 			Session session = this.sessionFactory.getCurrentSession();
-			String sqlString = "SELECT CORREO FROM MOTIVO_CATEGORIA WHERE IDMOTIVO = %s AND IDCATEG = %s";
+			String sqlString = "SELECT CORREO FROM MOTIVOS_CATEGORIAS WHERE ID_MOTIVO = %s AND ID_CATEGORIA = %s";
 			sqlString = String.format(sqlString, idMotivo, idCategoria);
 			Query query = session.createNativeQuery(sqlString);
 			mail = query.getSingleResult().toString();
 		} catch (Exception e) {
+			e.printStackTrace();
 			throw new CustomException(e.getMessage(), ErrorMessages.DATABASE_GET_ERROR);
 		}
 		return mail;
@@ -114,7 +115,7 @@ public class MotivoCategoriaDAOImpl implements MotivoCategoriaDAO {
 		String motivo = null;
 		try {
 			Session session = this.sessionFactory.getCurrentSession();
-			String sqlString = "SELECT ETIQUETA FROM MOTIVOS_CONTACTO WHERE IDMOTIVO = %s";
+			String sqlString = "SELECT ETIQUETA FROM MOTIVOS WHERE ID_MOTIVO = %s";
 			sqlString = String.format(sqlString, idMotivo);
 			Query query = session.createNativeQuery(sqlString);
 			motivo = query.getSingleResult().toString();
@@ -129,7 +130,7 @@ public class MotivoCategoriaDAOImpl implements MotivoCategoriaDAO {
 		String categoria = null;
 		try {
 			Session session = this.sessionFactory.getCurrentSession();
-			String sqlString = "SELECT ETIQUETA FROM CATEG_CONTACTO WHERE IDCATEG = %s";
+			String sqlString = "SELECT ETIQUETA FROM CATEGORIAS WHERE ID_CATEGORIA = %s";
 			sqlString = String.format(sqlString, idCategoria);
 			Query query = session.createNativeQuery(sqlString);
 			categoria = query.getSingleResult().toString();

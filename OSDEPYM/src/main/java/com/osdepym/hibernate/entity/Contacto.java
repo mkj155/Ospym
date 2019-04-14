@@ -16,12 +16,12 @@ import javax.persistence.TemporalType;
 public class Contacto {
 
 	@Id
-	@Column(name="IDCONTACTO")
+	@Column(name="ID_CONTACTO")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int idContacto;
 	
 	@Column(name="ID_TRAMITE")
-	private String idtramite;
+	private String idTramite;
 	
 	@Column(name="ID_AFILIADO")
 	private String idAfiliado;
@@ -29,8 +29,8 @@ public class Contacto {
 	@Column(name="ID_MOTIVO")
 	private int idMotivo;
 	
-	@Column(name="ID_CATEG")
-	private int idCateg;
+	@Column(name="ID_CATEGORIA")
+	private int idCategoria;
 	
 	@Column(name="NOMBRE_COMPLETO")
 	private String nombreCompleto;
@@ -51,11 +51,11 @@ public class Contacto {
 	}
 	
 	public String getIdtramite() {
-		return idtramite;
+		return idTramite;
 	}
 	
-	public void setIdtramite(String idtramite) {
-		this.idtramite = idtramite;
+	public void setIdtramite(String idTramite) {
+		this.idTramite = idTramite;
 	}
 	
 	public String getIdAfiliado() {
@@ -74,12 +74,12 @@ public class Contacto {
 		this.idMotivo = idMotivo;
 	}
 	
-	public int getIdCateg() {
-		return idCateg;
+	public int getIdCategoria() {
+		return idCategoria;
 	}
 	
-	public void setIdCateg(int idCateg) {
-		this.idCateg = idCateg;
+	public void setIdCategoria(int idCategoria) {
+		this.idCategoria = idCategoria;
 	}
 	
 	public String getNombreCompleto() {

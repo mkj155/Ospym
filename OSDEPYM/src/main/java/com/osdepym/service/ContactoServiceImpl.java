@@ -145,14 +145,11 @@ public class ContactoServiceImpl implements ContactoService{
 			tx.commit();
 			session.close();
 		} catch (CustomException e) {
-			tx.rollback();
-			session.close();
+			SessionUtil.rollbackTransaction(session, tx);
 			throw e;
 		} catch (Exception e) {
-			if (tx != null)
-				tx.rollback();
-			if (session != null)
-				session.close();
+			SessionUtil.rollbackTransaction(session, tx);
+			e.printStackTrace();
 			throw new CustomException(e.getMessage(), ErrorMessages.UNKNOWN_ERROR);
 		}
 		return categoriasDTO;
@@ -188,14 +185,11 @@ public class ContactoServiceImpl implements ContactoService{
 			tx.commit();
 			session.close();
 		} catch (CustomException e) {
-			tx.rollback();
-			session.close();
+			SessionUtil.rollbackTransaction(session, tx);
 			throw e;
 		} catch (Exception e) {
-			if (tx != null)
-				tx.rollback();
-			if (session != null)
-				session.close();
+			SessionUtil.rollbackTransaction(session, tx);
+			e.printStackTrace();
 			throw new CustomException(e.getMessage(), ErrorMessages.UNKNOWN_ERROR);
 		}
 		return nroTramite;
@@ -233,7 +227,7 @@ public class ContactoServiceImpl implements ContactoService{
 		contacto.setIdtramite(nroTramite);
 		contacto.setIdAfiliado(contactoForm.getIdAfiliado());
 		contacto.setIdMotivo(Integer.valueOf(idMotivo));
-		contacto.setIdCateg(Integer.valueOf(idCategoria));
+		contacto.setIdCategoria(Integer.valueOf(idCategoria));
 		contacto.setNombreCompleto(contactoForm.getNombreAfiliado().toUpperCase());
 		contacto.setComentario(contactoForm.getComentario());
 		contacto.setFechaCreacion(new Date());

@@ -13,7 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="MOTIVO_CATEGORIA")
+@Table(name="MOTIVOS_CATEGORIAS")
 public class MotivoCategoria implements Serializable {
 	
     /**
@@ -41,7 +41,7 @@ public class MotivoCategoria implements Serializable {
 	}
 
 	@Id
-	@Column(name="IDMOTCAT")
+	@Column(name="ID_MOT_CAT")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	public int getIdMotCat() {
 		return idMotCat;
@@ -52,7 +52,7 @@ public class MotivoCategoria implements Serializable {
 	}
 	
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "IDMOTIVO")  
+    @JoinColumn(name = "ID_MOTIVO")  
 	public Motivo getMotivo() {
 		return motivo;
 	}
@@ -62,7 +62,7 @@ public class MotivoCategoria implements Serializable {
 	}
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "IDCATEG")  
+    @JoinColumn(name = "ID_CATEGORIA")  
 	public Categoria getCategoria() {
 		return categoria;
 	}

@@ -12,10 +12,10 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "CATEG_CONTACTO")
+@Table(name = "CATEGORIAS")
 public class Categoria {
 	
-	private int idCateg;
+	private int idCategoria;
 	private String etiqueta;
 	private Set<MotivoCategoria> motivoCategorias = new HashSet<MotivoCategoria>();
 	
@@ -31,14 +31,14 @@ public class Categoria {
 	}
 
 	@Id
-	@Column(name="IDCATEG")
+	@Column(name="ID_CATEGORIA")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	public int getIdCateg() {
-		return idCateg;
+	public int getIdCategoria() {
+		return idCategoria;
 	}
 
-	public void setIdCateg(int idCateg) {
-		this.idCateg = idCateg;
+	public void setIdCategoria(int idCategoria) {
+		this.idCategoria = idCategoria;
 	}
 
 	public String getEtiqueta() {
@@ -58,8 +58,8 @@ public class Categoria {
 		this.motivoCategorias = motivoCategorias;
 	}
 	
-	public void addMotivoCategoria(MotivoCategoria motivoCategoria) {
-		this.motivoCategorias.add(motivoCategoria);
+	public void addMotivoCategoria(MotivoCategoria motivoCategorias) {
+		this.motivoCategorias.add(motivoCategorias);
 	}
 
 }
