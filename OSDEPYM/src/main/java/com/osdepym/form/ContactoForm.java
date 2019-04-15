@@ -39,6 +39,4 @@ public class ContactoForm {
 		this.comentario = comentario;
 	}
 	
-	
-	
 }

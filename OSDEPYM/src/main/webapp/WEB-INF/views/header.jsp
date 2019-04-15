@@ -1,10 +1,6 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <head>
-<title>Spring MVC Example</title>
-
-
-
-
+<title>Web Osdepym</title>
 <script src="/OSDEPYM/resources/core/js/bootstrap.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
@@ -61,9 +57,11 @@
                             Tramites online
                         </a>
                         <div class="dropdown-menu">
-							<spring:url value="/contacto/${param.idAfiliado}/${param.nombreAfiliado}" var="canalDeContactoUrl" />
-                            <a class="dropdown-item" href="${canalDeContactoUrl}">Canal de contacto</a>
+<%-- 							<spring:url value="/contacto/${param.idAfiliado}/${param.nombreAfiliado}" var="canalDeContactoUrl" /> --%>
+<%--                             <a class="dropdown-item" href="${canalDeContactoUrl}">Canal de contacto</a> --%>
+                            <a class="dropdown-item" href="/OSDEPYM/contacto/1234567890/Nombre Afiliado Test">Canal de contacto</a>
                             <a class="dropdown-item" href="">Mi plan web</a>
+                            <a class="dropdown-item" href="">Autorizaciones Web</a>	
                         </div>
                         </li>
                     </ul>

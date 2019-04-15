@@ -60,8 +60,8 @@ public class ContactoController {
 				redirectAttributes.addFlashAttribute("css", "success");
 			}
 		}catch (Exception e) {
-				view = new ModelAndView("error");
-				view.addObject("error", e);
+			view = new ModelAndView("error");
+			view.addObject("error", e);
 		}
 		return view;
 	
@@ -74,7 +74,6 @@ public class ContactoController {
 		try {
 			categorias = service.getCategoriasByMotivoId(Integer.parseInt(idMotivo));
 		} catch (Exception e) {
-			
 		}
 		return categorias;
 	}
