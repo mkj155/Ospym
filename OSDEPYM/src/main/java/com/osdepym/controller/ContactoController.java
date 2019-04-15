@@ -2,7 +2,6 @@ package com.osdepym.controller;
 
 import java.util.List;
 
-import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -44,29 +43,22 @@ public class ContactoController {
 	
 	@RequestMapping(value = "/contacto/{idAfiliado}/{nombreAfiliado}", method = RequestMethod.GET)
 	public ModelAndView loadContactoForm(@PathVariable(value = "idAfiliado") String idAfiliado, @PathVariable(value = "nombreAfiliado") String nombreAfiliado, Model model) {
-		ModelAndView view = null;
-		try {
-			List<MotivoDTO> motivos = service.getAllMotivos();
-			view = new ModelAndView("contacto");
-			view.addObject("motivos", motivos);
-			ContactoForm form = new ContactoForm();
-			form.setNombreAfiliado(nombreAfiliado);
-			form.setIdAfiliado(idAfiliado);
-			model.addAttribute("contactoForm", form);
-		} catch (Exception e) {
-			view = new ModelAndView("error");
-			view.addObject("error", e);
-		}
+		ModelAndView view = getContactoFormView(model, new ContactoForm(), nombreAfiliado, idAfiliado);
 		return view;
 	}
 	
-	@RequestMapping(value = "/contact/send", method = RequestMethod.POST)
-	public ModelAndView submitContactoForm(@ModelAttribute("contactoForm") @Validated ContactoForm contactoForm, BindingResult result, final RedirectAttributes redirectAttributes) {
+	@RequestMapping(value = "/contacto/send", method = RequestMethod.POST)
+	public ModelAndView submitContactoForm(@ModelAttribute("contactoForm") @Validated ContactoForm contactoForm, BindingResult result, Model model, final RedirectAttributes redirectAttributes) {
 		ModelAndView view = null;
 		try {
-			String numeroTramite = service.procesarContacto(contactoForm);
-			view = new ModelAndView("contactoConExito");
-			view.addObject("numeroTramite", numeroTramite);
+			if (result.hasErrors()) {
+				view = getContactoFormView(model, contactoForm, contactoForm.getNombreAfiliado(), contactoForm.getIdAfiliado());
+			} else {
+				String numeroTramite = service.procesarContacto(contactoForm);
+				view = new ModelAndView("contactoConExito");
+				view.addObject("numeroTramite", numeroTramite);
+				redirectAttributes.addFlashAttribute("css", "success");
+			}
 		}catch (Exception e) {
 				view = new ModelAndView("error");
 				view.addObject("error", e);
@@ -76,7 +68,7 @@ public class ContactoController {
 	}
 	
 	
-	@RequestMapping(value = "/contacto/*/getCategorias")
+	@RequestMapping(value = "contacto/*/getCategorias")
 	public @ResponseBody List<CategoriaDTO> getCategoriasByMotivoId(@RequestBody String idMotivo) {
 		List<CategoriaDTO> categorias = null;
 		try {
@@ -84,9 +76,35 @@ public class ContactoController {
 		} catch (Exception e) {
 			
 		}
-		
 		return categorias;
-
+	}
+	
+	@RequestMapping(value = "contacto/getCategorias")
+	public @ResponseBody List<CategoriaDTO> getCategoriasByMotivoIdAfterError(@RequestBody String idMotivo) {
+		List<CategoriaDTO> categorias = null;
+		try {
+			categorias = service.getCategoriasByMotivoId(Integer.parseInt(idMotivo));
+		} catch (Exception e) {
+			
+		}
+		return categorias;
+	}
+	
+	
+	private ModelAndView getContactoFormView(Model model, ContactoForm form, String nombreAfiliado, String idAfiliado) {
+		ModelAndView view = null;
+		try {
+			List<MotivoDTO> motivos = service.getAllMotivos();
+			view = new ModelAndView("contacto");
+			view.addObject("motivos", motivos);
+			form.setNombreAfiliado(nombreAfiliado);
+			form.setIdAfiliado(idAfiliado);
+			model.addAttribute("contactoForm", form);
+		} catch (Exception e) {
+			view = new ModelAndView("error");
+			view.addObject("error", e);
+		}
+		return view;
 	}
 	
 	

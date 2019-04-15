@@ -15,7 +15,7 @@
 	<section id="main" class="bg-gray">
 		<div class="container page page-cartilla">
 			<h1>canal de contacto</h1>
-			<spring:url value="/contact/send" var="enviarUrl" />
+			<spring:url value="/contacto/send" var="enviarUrl" />
 			<form:form class="form-cartilla custom-form" method="post"
 				modelAttribute="contactoForm" action="${enviarUrl}">
 				<div class="row">
@@ -34,7 +34,7 @@
 						<div class="form-group ${status.error ? 'has-error' : ''}">
 							<label class="col-sm-2 control-label">Motivo</label>
 								<form:select path="idMotivo" class="form-control" id='motivo'
-									onchange="getCategorias()">
+									onchange="getCategorias()" required="true">
 									<form:option value="" label=" Seleccionar " />
 									<form:options items="${motivos}" itemValue="idMotivo"
 										itemLabel="etiqueta" />
@@ -47,7 +47,7 @@
 					<div class="col-md-3">
 						<div class="form-group ${status.error ? 'has-error' : ''}">
 							<label class="col-sm-2 control-label">Categoria</label>
-							<form:select path="idCategoria" disabled="true" class="form-control disabled" id='categoria'>
+							<form:select path="idCategoria" disabled="true" class="form-control disabled" id='categoria' required="true">
 								<form:option value="" label=" Seleccionar " />
 							</form:select>
 							<form:errors path="idCategoria" class="control-label" />
