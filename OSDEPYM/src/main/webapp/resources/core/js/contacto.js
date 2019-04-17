@@ -16,6 +16,7 @@ function getCategorias(){
 						$("#categoria").html($("#categoria").html() + "<option value='" + data[i].idCategoria + "'>" + data[i].etiqueta + "</option>");
 					}
 				}else{
+					$("#categoria").html("<option value=''> Sin categorias </option>");
 					$("#categoria").prop('disabled', true);
 				}
 				
