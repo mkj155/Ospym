@@ -9,14 +9,12 @@
 <body>
  <section id="main" class="bg-gray">
    <div class="container page page-cartilla">
-	<h1>Tramite ingresado con exito!</h1><br />
+	<h1><spring:message code="contactoform.title.success" /></h1><br />
 	<p class="big">
-	<span class="text-green"><strong>Su numero de tramite es ${numeroTramite}</strong></span><br/>
-	A partir de ahora su solucitud ser&aacute; procesada y a la brevedad nos comunicaremos con usted para informarle el resultado de la misma. 
-	Por favor recuerde mantener sus datos de contacto actualizados.
-	Muchas gracias!
+	<span class="text-green"><strong><spring:message code="contactoform.procedurenumber" /> ${numeroTramite}</strong></span><br/>
+	<spring:message code="contactoform.body.success" />
 	</p>
-    <button type="button" class="btn-lg btn-primary pull-right" onclick="location.href='/OSDEPYM/'">Volver al menu</button>
+    <button type="button" class="btn btn-lg btn-primary pull-right" onclick="location.href='/OSDEPYM/'"><spring:message code="button.backtomenu" /></button>
 	</div>
  </section>
  

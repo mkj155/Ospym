@@ -104,7 +104,7 @@ public class ContactoServiceImpl implements ContactoService{
 		String secuence = "";
 		try {
 			Integer result = motivoCategoriaDAO.getSecuence();
-			secuence = String.format("%06d", result);
+			secuence = Integer.toString(result);
 			String year = Year.now().toString();
 			String month = String.format("%02d", Calendar.getInstance().get(Calendar.MONTH));
 			String day = String.format("%02d", Calendar.getInstance().get(Calendar.DAY_OF_MONTH));
@@ -255,8 +255,8 @@ public class ContactoServiceImpl implements ContactoService{
 		sb.append(Constants.TIPO_TRAMITE).append(": ").append(Constants.CONTACTO).append("\n");
 		sb.append(Constants.MOTIVO).append(": ").append(motivo).append("\n");
 		sb.append(Constants.CATEGORIA).append(": ").append(categoria).append("\n");
-		sb.append(Constants.NRO_AFILIADO).append(": ").append(contactoForm.getIdAfiliado()).append("\n");
-		sb.append(Constants.TITULAR).append(": ").append(contactoForm.getNombreAfiliado().toUpperCase()).append("\n");
+//		sb.append(Constants.NRO_AFILIADO).append(": ").append(contactoForm.getIdAfiliado()).append("\n");
+		sb.append(Constants.TITULAR).append(": ").append(contactoForm.getIdAfiliado()).append(" - ").append(contactoForm.getNombreAfiliado().toUpperCase()).append("\n");
 		sb.append(Constants.TEXTO).append(": ").append(contactoForm.getComentario()).append("\n");
 
 		return sb.toString();

@@ -11,7 +11,6 @@ import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
 import com.osdepym.dto.CategoriaDTO;
-import com.osdepym.exception.CustomException;
 import com.osdepym.form.ContactoForm;
 import com.osdepym.service.ContactoService;
 
@@ -48,12 +47,12 @@ public class ContactoFormValidator implements Validator {
 
 		ContactoForm user = (ContactoForm) target;
 
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "idMotivo", "NotEmpty.contactoForm.idMotivo");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "idMotivo", "notempty.contactoForm.idmotivo");
 		if(verifyCategoryByIdMotivo(user.getIdMotivo(),errors))
-			ValidationUtils.rejectIfEmptyOrWhitespace(errors, "idCategoria", "Size.contactoForm.idCategoria");
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "nombreAfiliado", "NotEmpty.contactoForm.nombreAfiliado");
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "idAfiliado", "Size.contactoForm.idAfiliado");
-//		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "comentario","Size.contactoForm.comentario");
+			ValidationUtils.rejectIfEmptyOrWhitespace(errors, "idCategoria", "size.contactoform.idcategoria");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "nombreAfiliado", "notempty.contactoform.nombreafiliado");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "idAfiliado", "size.contactoform.idafiliado");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "comentario","size.contactoform.comentario");
 	}
 
 }

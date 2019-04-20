@@ -86,8 +86,7 @@ public class MotivoCategoriaDAOImpl implements MotivoCategoriaDAO {
 			List<Categoria> categorias = new ArrayList<Categoria>();
 			Session session = this.sessionFactory.getCurrentSession();
 			String sqlString = "SELECT C.* FROM CATEGORIAS C INNER JOIN MOTIVOS_CATEGORIAS MC ON MC.ID_CATEGORIA = C.ID_CATEGORIA WHERE MC.ID_MOTIVO = " + idMotivo;
-			Query query = session.createNativeQuery(sqlString, Categoria.class);
-			categorias = query.getResultList();
+			categorias = session.createNativeQuery(sqlString, Categoria.class).getResultList();
 			return categorias;
 		} catch (Exception e) {
 			throw new CustomException(e.getMessage(), ErrorMessages.DATABASE_GET_ERROR);
@@ -139,5 +138,4 @@ public class MotivoCategoriaDAOImpl implements MotivoCategoriaDAO {
 		}
 		return categoria;
 	}
-
 }
