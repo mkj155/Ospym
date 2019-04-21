@@ -61,7 +61,7 @@ public class ConfiguracionSpring  extends WebMvcConfigurerAdapter {
        registry.addInterceptor(themeChangeInterceptor);
 
        LocaleChangeInterceptor localeChangeInterceptor = new LocaleChangeInterceptor();
-       localeChangeInterceptor.setParamName("language");
+       localeChangeInterceptor.setParamName("lang");
        registry.addInterceptor(localeChangeInterceptor);
     }
 }
