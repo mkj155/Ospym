@@ -21,6 +21,7 @@ function getCategorias(){
 					$("#categoria").css('display', 'none');
 					$("#divIdCategoria").css('display', 'none');
 					$("#categoria").attr('required', false);
+					$("#divIdCategoria").css('display', 'none');
 				}
 				
 			},

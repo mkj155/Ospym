@@ -41,8 +41,8 @@
 					</div>
 						<!-- CATEGORIAS -->
 					<div class="col-md-3">
-						<div class="form-group ${status.error ? 'has-error' : ''}">
-							<label class="col-sm-2 control-label"><spring:message code="contactoform.select.label.categoria" /></label>
+						<div class="form-group ${status.error ? 'has-error' : ''}" id="divIdCategoria" style="display: none">
+							<label class="col-sm-2 control-label" ><spring:message code="contactoform.select.label.categoria" /></label>
 							<form:select path="idCategoria" class="form-control" id="categoria" style="display: none">
 								<form:option value="" label=" ${emptyValue} " />
 							</form:select>
