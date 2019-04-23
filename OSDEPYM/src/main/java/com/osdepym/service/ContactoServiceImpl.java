@@ -1,8 +1,7 @@
 package com.osdepym.service;
 
-import java.time.Year;
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -105,9 +104,9 @@ public class ContactoServiceImpl implements ContactoService{
 		try {
 			Integer result = motivoCategoriaDAO.getSecuence();
 			secuence = Integer.toString(result);
-			String year = Year.now().toString();
-			String month = String.format("%02d", Calendar.getInstance().get(Calendar.MONTH));
-			String day = String.format("%02d", Calendar.getInstance().get(Calendar.DAY_OF_MONTH));
+			String year = String.format("%04d", LocalDate.now().getYear());
+			String month = String.format("%02d", LocalDate.now().getMonthValue());
+			String day = String.format("%02d", LocalDate.now().getDayOfMonth());
 			secuence = year + month + day + secuence;
 		} catch (CustomException e) {
 			throw e;

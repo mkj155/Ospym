@@ -11,6 +11,7 @@ function getCategorias(){
 			success : function(data) {
 				if(data != null && data.length > 0){
 					$("#categoria").css('display', 'block');
+					$("#divIdCategoria").css('display', 'block');
 					$("#categoria").attr('required', true);
 					$("#categoria option[value!='']").remove();
 					for(var i = 0 ; i < data.length ; i++){
@@ -18,6 +19,7 @@ function getCategorias(){
 					}
 				}else{
 					$("#categoria").css('display', 'none');
+					$("#divIdCategoria").css('display', 'none');
 					$("#categoria").attr('required', false);
 				}
 				
@@ -27,6 +29,7 @@ function getCategorias(){
 			},
 		});
 	} else {
+		$("#divIdCategoria").css('display', 'none');
 		$("#categoria").css('display', 'none');
 		$("#categoria").attr('required', false);
 	}

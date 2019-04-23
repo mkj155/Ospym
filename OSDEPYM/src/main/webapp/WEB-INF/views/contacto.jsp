@@ -27,7 +27,7 @@
 					</div>
 					<!-- MOTIVOS -->
 					<div class="col-md-3">
-						<div class="form-group ${status.error ? 'has-error' : ''}">
+						<div class="form-group ${status.error ? 'has-error' : ''}" id="divIdCategoria" style="display: none">
 							<label class="col-sm-2 control-label"><spring:message code="contactoform.select.label.motivo" /></label>
 								<form:select path="idMotivo" class="form-control" id='motivo'
 									onchange="getCategorias()" required="true">
