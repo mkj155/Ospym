@@ -13,7 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="MOTIVOS_CATEGORIAS")
+@Table(name="MOTIVOS_CATEGORIAS", schema = "tramites_online")
 public class MotivoCategoria implements Serializable {
 	
     /**
