@@ -61,7 +61,7 @@ public class MotivoCategoriaDAOImpl implements MotivoCategoriaDAO {
 		Integer secuence;
 		try {
 			Session session = this.sessionFactory.getCurrentSession();
-			Query query = session.createNativeQuery("EXECUTE GET_NEXT_SEQUENCE_VALUE");
+			Query query = session.createNativeQuery("EXECUTE tramites_online.GET_NEXT_SEQUENCE_VALUE");
 			secuence = (Integer) query.getSingleResult();
 			return secuence;
 		} catch(Exception e){
@@ -84,7 +84,7 @@ public class MotivoCategoriaDAOImpl implements MotivoCategoriaDAO {
 		try {
 			List<Categoria> categorias = new ArrayList<Categoria>();
 			Session session = this.sessionFactory.getCurrentSession();
-			String sqlString = "SELECT C.* FROM CATEGORIAS C INNER JOIN MOTIVOS_CATEGORIAS MC ON MC.ID_CATEGORIA = C.ID_CATEGORIA WHERE MC.ID_MOTIVO = " + idMotivo;
+			String sqlString = "SELECT C.* FROM tramites_online.CATEGORIAS C INNER JOIN tramites_online.MOTIVOS_CATEGORIAS MC ON MC.ID_CATEGORIA = C.ID_CATEGORIA WHERE MC.ID_MOTIVO = " + idMotivo;
 			categorias = session.createNativeQuery(sqlString, Categoria.class).getResultList();
 			return categorias;
 		} catch (Exception e) {
@@ -97,7 +97,7 @@ public class MotivoCategoriaDAOImpl implements MotivoCategoriaDAO {
 		String mail = "";
 		try {
 			Session session = this.sessionFactory.getCurrentSession();
-			String sqlString = "SELECT CORREO FROM MOTIVOS_CATEGORIAS WHERE ID_MOTIVO = %s AND ID_CATEGORIA = %s";
+			String sqlString = "SELECT CORREO FROM tramites_online.MOTIVOS_CATEGORIAS WHERE ID_MOTIVO = %s AND ID_CATEGORIA = %s";
 			sqlString = String.format(sqlString, idMotivo, idCategoria);
 			Query query = session.createNativeQuery(sqlString);
 			mail = query.getSingleResult().toString();
@@ -113,7 +113,7 @@ public class MotivoCategoriaDAOImpl implements MotivoCategoriaDAO {
 		String motivo = null;
 		try {
 			Session session = this.sessionFactory.getCurrentSession();
-			String sqlString = "SELECT ETIQUETA FROM MOTIVOS WHERE ID_MOTIVO = %s";
+			String sqlString = "SELECT ETIQUETA FROM tramites_online.MOTIVOS WHERE ID_MOTIVO = %s";
 			sqlString = String.format(sqlString, idMotivo);
 			Query query = session.createNativeQuery(sqlString);
 			motivo = query.getSingleResult().toString();
@@ -128,7 +128,7 @@ public class MotivoCategoriaDAOImpl implements MotivoCategoriaDAO {
 		String categoria = null;
 		try {
 			Session session = this.sessionFactory.getCurrentSession();
-			String sqlString = "SELECT ETIQUETA FROM CATEGORIAS WHERE ID_CATEGORIA = %s";
+			String sqlString = "SELECT ETIQUETA FROM tramites_online.CATEGORIAS WHERE ID_CATEGORIA = %s";
 			sqlString = String.format(sqlString, idCategoria);
 			Query query = session.createNativeQuery(sqlString);
 			categoria = query.getSingleResult().toString();
