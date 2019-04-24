@@ -61,8 +61,7 @@ public class MotivoCategoriaDAOImpl implements MotivoCategoriaDAO {
 		Integer secuence;
 		try {
 			Session session = this.sessionFactory.getCurrentSession();
-			String queryString = "SELECT NEXT VALUE FOR contacto_seq AS sequenceValue";
-			Query query = session.createNativeQuery(queryString).addScalar("sequenceValue", StandardBasicTypes.INTEGER);
+			Query query = session.createNativeQuery("EXECUTE GET_NEXT_SEQUENCE_VALUE");
 			secuence = (Integer) query.getSingleResult();
 			return secuence;
 		} catch(Exception e){
