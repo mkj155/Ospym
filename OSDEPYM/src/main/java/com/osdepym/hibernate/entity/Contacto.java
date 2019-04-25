@@ -1,15 +1,11 @@
 package com.osdepym.hibernate.entity;
 
-import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 @Entity
 @Table(name="CONTACTOS", schema = "tramites_online")
@@ -37,9 +33,6 @@ public class Contacto {
 	
 	private String comentario;
 	
-	@Column(name="FECHA_CREACION")
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date fechaCreacion;
 	private String Correo;
 	
 	public int getIdContacto() {
@@ -96,14 +89,6 @@ public class Contacto {
 	
 	public void setComentario(String comentario) {
 		this.comentario = comentario;
-	}
-	
-	public Date getFechaCreacion() {
-		return fechaCreacion;
-	}
-	
-	public void setFechaCreacion(Date fechaCreacion) {
-		this.fechaCreacion = fechaCreacion;
 	}
 	
 	public String getCorreo() {

@@ -2,7 +2,6 @@ package com.osdepym.service;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -229,7 +228,6 @@ public class ContactoServiceImpl implements ContactoService{
 		contacto.setIdCategoria(Integer.valueOf(idCategoria));
 		contacto.setNombreCompleto(contactoForm.getNombreAfiliado().toUpperCase());
 		contacto.setComentario(contactoForm.getComentario());
-		contacto.setFechaCreacion(new Date());
 		contacto.setCorreo(correo);
 		
 		return contacto;
@@ -254,7 +252,6 @@ public class ContactoServiceImpl implements ContactoService{
 		sb.append(Constants.TIPO_TRAMITE).append(": ").append(Constants.CONTACTO).append("\n");
 		sb.append(Constants.MOTIVO).append(": ").append(motivo).append("\n");
 		sb.append(Constants.CATEGORIA).append(": ").append(categoria).append("\n");
-//		sb.append(Constants.NRO_AFILIADO).append(": ").append(contactoForm.getIdAfiliado()).append("\n");
 		sb.append(Constants.TITULAR).append(": ").append(contactoForm.getIdAfiliado()).append(" - ").append(contactoForm.getNombreAfiliado().toUpperCase()).append("\n");
 		sb.append(Constants.TEXTO).append(": ").append(contactoForm.getComentario()).append("\n");
 
