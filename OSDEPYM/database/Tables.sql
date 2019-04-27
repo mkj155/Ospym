@@ -1,3 +1,6 @@
+
+--------------CANAL DE CONTACTO---------------
+
 CREATE TABLE tramites_online.MOTIVOS (
     ID_MOTIVO			int				NOT NULL	IDENTITY	PRIMARY KEY,
 	ETIQUETA			varchar(100)	NOT NULL,
@@ -27,9 +30,27 @@ CREATE TABLE tramites_online.CONTACTOS (
 	CORREO				varchar(255)	NOT NULL,
 );
 
+--------------PLAN WEB---------------
+
+CREATE TABLE tramites_online.PLAN_SECCIONES (
+    ID_PLAN_SECCION		int				NOT NULL	IDENTITY	PRIMARY KEY,
+    TITULO				varchar(100)		NOT NULL,
+	SUBTITULO			varchar(300)
+);
+
+
+CREATE TABLE tramites_online.PLAN_ITEMS (
+    ID_PLAN_ITEM		int				NOT NULL	IDENTITY	PRIMARY KEY,
+    VALOR				varchar(100),
+	ID_PLAN_SECCION		int FOREIGN KEY REFERENCES tramites_online.PLAN_SECCIONES(ID_PLAN_SECCION),
+	ID_ITEM_PADRE		int FOREIGN KEY REFERENCES tramites_online.PLAN_ITEMS(ID_PLAN_ITEM),
+	ID_PLAN				VARCHAR(100)
+);
+
 CREATE TABLE tramites_online.CONTACTO_SEQ(
     ID INT  
 );
+
 
 
 
