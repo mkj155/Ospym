@@ -10,6 +10,7 @@
 <script src="/OSDEPYM/resources/core/js/contacto.js"></script>
 
 <link href="/OSDEPYM/resources/core/css/_contacto.css" rel="stylesheet" />
+<link href="/OSDEPYM/resources/core/css/_plan.css" rel="stylesheet" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -31,7 +32,7 @@
                 <div class="container">
                     <ul class="list-inline list-unstyled mb-0 d-inline-block">
                         <li class="list-inline-item dropdown">
-                            <a href="" class="text-white">Afiliados</a>
+                            <a href="#" class="text-white">Afiliados</a>
                             <div class="dropdown-menu">
                                 <a class="dropdown-item" href="autoridades.html">Tramites On-line</a>
                                 <a class="dropdown-item" href="facturacion.html">Facturación</a>
@@ -39,31 +40,42 @@
                             </div>
                         </li>
                         <li class="list-inline-item dropdown">
-                            <a href="" class="text-white">Prestadores</a>
+                            <a href="#" class="text-white">Prestadores</a>
                             <div class="dropdown-menu">
                                 <a class="dropdown-item" href="autoridades.html">Validación On-line</a>
                                 <a class="dropdown-item" href="facturacion.html">Discapacidad</a>
                             </div>
                         </li>
                         <li class="list-inline-item dropdown">
-                            <a href="" class="text-white">Derivación</a>
+                            <a href="#" class="text-white">Derivación</a>
                             <div class="dropdown-menu">
                                 <a class="dropdown-item" href="autoridades.html">Empresas</a>
                                 <a class="dropdown-item" href="facturacion.html">Centros médicos</a>
                             </div>
                         </li>
                         <li class="list-inline-item dropdown">
-                        <a class="text-white" href="">
-                            Tramites online
-                        </a>
-                        <div class="dropdown-menu">
-<%-- 							<spring:url value="/contacto/${param.idAfiliado}/${param.nombreAfiliado}" var="canalDeContactoUrl" /> --%>
-<%--                             <a class="dropdown-item" href="${canalDeContactoUrl}">Canal de contacto</a> --%>
-                            <a class="dropdown-item" href="/OSDEPYM/contacto/1234567890/Nombre Afiliado Test">Canal de contacto</a>
-                            <a class="dropdown-item" href="">Mi plan web</a>
-                            <a class="dropdown-item" href="">Autorizaciones Web</a>	
-                        </div>
-                        </li>
+	                        <a href="#" class="text-white">Tramites online</a>
+	                        <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="dropdownMenu">
+							  <li><a class="dropdown-item" href="/OSDEPYM/contacto/1234567890/Nombre Afiliado Test">Canal de contacto</a></li>
+			                  <li class="dropdown-submenu dropdown-menu-right">
+							    <a class="dropdown-item" tabindex="-1" href="#">Mi plan web</a>
+							    <ul class="dropdown-menu dropdown-menu dropdown-menu-right">
+							      	<li><a class="dropdown-item" tabindex="-1" href="/OSDEPYM/plan/1234567890">Condiciones del plan</a></li>
+									<li><a class="dropdown-item" tabindex="-1" href="/OSDEPYM/reglamento/1234567890">Reglamento</a></li>	    
+							    </ul>
+							  </li>
+							</ul>
+				      	</li>
+	                        <!-- <div class="dropdown-menu">
+	<%-- 							<spring:url value="/contacto/${param.idAfiliado}/${param.nombreAfiliado}" var="canalDeContactoUrl" /> --%>
+	<%--                             <a class="dropdown-item" href="${canalDeContactoUrl}">Canal de contacto</a> --%>
+	                            <a class="dropdown-item" href="/OSDEPYM/contacto/1234567890/Nombre Afiliado Test">Canal de contacto</a>
+			                    <a class="dropdown-item" href="#">Mi plan web</a>
+			                    <div class="dropdown-menu">							 
+									
+								</div>            
+	<%--                        <a class="dropdown-item" href="#">Autorizaciones Web</a> --%>	
+	                        </div>-->
                     </ul>
                 </div>
             </nav>
@@ -119,4 +131,4 @@
                 </div>
               </nav>
         </div>
-    </header>
+</header>
