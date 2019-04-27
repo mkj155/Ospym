@@ -1,0 +1,31 @@
+.title-item {
+	line-height: 1.5;
+	width: 75%;
+	display: list-item;
+}
+		
+.title-subitem {
+	line-height: 1.5;
+	width: 75%;
+	display: list-item;
+	margin-left: 5%;
+}
+
+.value-item {
+	width: 25%;
+}
+		
+.value-subitem {
+	width: 25%;
+}
+
+.table-plan {
+	width: 100%;
+	margin-bottom: 5%;
+	margin-top: 2%;
+	margin-left: 1.8%
+}
+
+.table-plan td {
+	vertical-align: top;
+}
