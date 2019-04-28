@@ -32,6 +32,8 @@
 				<value>com.osdepym.hibernate.entity.MotivoCategoria</value>
 				<value>com.osdepym.hibernate.entity.Motivo</value>
 				<value>com.osdepym.hibernate.entity.Contacto</value>
+				<value>com.osdepym.hibernate.entity.PlanItem</value>
+				<value>com.osdepym.hibernate.entity.PlanSeccion</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">

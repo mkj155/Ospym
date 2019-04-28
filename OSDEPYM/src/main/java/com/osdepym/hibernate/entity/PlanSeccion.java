@@ -19,6 +19,8 @@ public class PlanSeccion {
         this.titulo = titulo;
         this.subtitulo = subtitulo;
     }
+	public PlanSeccion() {
+    }
 	
 	@Id
 	@Column(name="ID_PLAN_SECCION")

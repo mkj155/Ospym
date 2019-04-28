@@ -1,5 +1,7 @@
 package com.osdepym.hibernate.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,8 +14,9 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="PLAN_ITEMS", schema = "tramites_online")
-public class PlanItem {
+public class PlanItem{
 	
+
 	private int idPlanItem;
 	private PlanSeccion seccion;
 	private PlanItem itemPadre;
@@ -40,7 +43,7 @@ public class PlanItem {
 		this.seccion = seccion;
 	}
 	@ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "ID_PLAN_ITEM")
+    @JoinColumn(name = "ID_ITEM_PADRE")
 	public PlanItem getItemPadre() {
 		return itemPadre;
 	}
@@ -53,6 +56,7 @@ public class PlanItem {
 	public void setValor(String valor) {
 		this.valor = valor;
 	}
+	@Column(name="ID_PLAN")
 	public String getIdPlan() {
 		return idPlan;
 	}

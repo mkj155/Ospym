@@ -11,7 +11,6 @@ import org.springframework.stereotype.Repository;
 
 import com.osdepym.exception.CustomException;
 import com.osdepym.exception.ErrorMessages;
-import com.osdepym.hibernate.entity.Motivo;
 import com.osdepym.hibernate.entity.PlanItem;
 
 @Repository
@@ -69,7 +68,7 @@ public class PlanItemDAOImpl implements PlanItemDAO{
 		List<PlanItem> items = null;
 		try {
 			Session session = this.sessionFactory.getCurrentSession();
-			String sqlString = "SELECT * FROM tramites_online.PLAN_ITEMS WHERE ID_PLAN = %s";
+			String sqlString = "FROM com.osdepym.hibernate.entity.PlanItem WHERE ID_PLAN = %s";
 			sqlString = String.format(sqlString, idPlan);
 			Query query = session.createQuery(sqlString, PlanItem.class);
 			items = query.getResultList();

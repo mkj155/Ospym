@@ -74,17 +74,20 @@ public class PlanWebServiceImpl implements PlanWebService {
 	private List<PlanSeccionDTO> entityToDto(List<PlanItem> items) {
 		HashMap<Integer, PlanSeccionDTO> seccionMap = new HashMap<Integer, PlanSeccionDTO>();
 		HashMap<Integer, PlanItemDTO> itemMap = new HashMap<Integer, PlanItemDTO>();
+		HashMap<Integer, Integer> itemToSection = new HashMap<Integer, Integer>();
 		List<PlanItem> childItems = new ArrayList<PlanItem>();
 		//Creamos todas las secciones, y obtenemos los items de primer nivel
 		for (PlanItem item : items) {
 			if (item.getItemPadre() == null) {
-				if (seccionMap.get((Integer) item.getSeccion().getIdPlanSeccion()) != null) {
+				if (seccionMap.get((Integer) item.getSeccion().getIdPlanSeccion()) == null) {
 					seccionMap.put((Integer) item.getSeccion().getIdPlanSeccion(),
-							new PlanSeccionDTO(item.getSeccion().getTitulo(), item.getSeccion().getSubtitulo(),
+							new PlanSeccionDTO(String.valueOf(item.getSeccion().getIdPlanSeccion()), item.getSeccion().getTitulo(), item.getSeccion().getSubtitulo(),
 									new ArrayList<PlanItemDTO>()));
+				}
 					itemMap.put(item.getIdPlanItem(),
 							new PlanItemDTO(String.valueOf(item.getIdPlanItem()), item.getTitulo(), item.getValor(), new ArrayList<PlanItemDTO>()));
-				}
+					itemToSection.put(item.getIdPlanItem(), item.getSeccion().getIdPlanSeccion());
+				
 			} else {
 				childItems.add(item);
 			}
@@ -101,11 +104,11 @@ public class PlanWebServiceImpl implements PlanWebService {
 		}
 		//Seteamos los items a las secciones
 		for(Entry<Integer, PlanItemDTO> entry : itemMap.entrySet()) {
-			PlanSeccionDTO seccion = seccionMap.get(Integer.parseInt(entry.getValue().getId()));
+			PlanSeccionDTO seccion = seccionMap.get(itemToSection.get(Integer.parseInt(entry.getValue().getId())));
 			List<PlanItemDTO> itemList = seccion.getItemsList();
 			itemList.add(entry.getValue());
 			seccion.setItemsList(itemList);
-			seccionMap.put(Integer.parseInt(entry.getValue().getId()), seccion);
+			seccionMap.put(itemToSection.get(Integer.parseInt(entry.getValue().getId())), seccion);
 		}
 		
 		return new ArrayList<PlanSeccionDTO>(seccionMap.values());

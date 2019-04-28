@@ -29,6 +29,7 @@ public class PlanItemDTO {
 	}
 	
 	public PlanItemDTO(String id, String title, String value, List<PlanItemDTO> subitemsList){
+		this.id = id;
 		this.title = title;
 		this.value = value;
 		this.subitemsList = subitemsList;
