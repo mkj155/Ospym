@@ -1,7 +1,5 @@
 package com.osdepym.hibernate.entity;
 
-import java.io.Serializable;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;

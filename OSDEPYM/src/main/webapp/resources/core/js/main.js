@@ -12,5 +12,8 @@ function toggleDropdown (e) {
   $('body')
     .on('mouseenter mouseleave','.dropdown',toggleDropdown)
     .on('click', '.dropdown-menu a', toggleDropdown);
-
-
+  
+  $( document ).ready(function() {
+	  $('td.value-subitem > a').attr('target', '_blank');
+	  $('td.value-item > a').attr('target', '_blank');
+  });  

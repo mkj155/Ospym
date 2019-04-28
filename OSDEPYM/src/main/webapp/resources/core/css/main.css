@@ -316,7 +316,7 @@ a:hover .arrow-down,
     width: 18px;
     display: block;
     height: 18px;
-    padding: 1px 4px;
+    padding: 4px 4px;
     text-align: center;
     font-size: 12px;
     margin: auto;
@@ -522,7 +522,6 @@ a:hover .arrow-down,
 }
 
 #footer {
-    padding: 35px 0;
     font-size: 15px;
 }
 

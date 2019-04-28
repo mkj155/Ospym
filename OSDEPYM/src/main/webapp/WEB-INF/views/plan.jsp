@@ -4,35 +4,44 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<style>
-	
-</style>
 <html>
- 	<jsp:include page="./header.jsp" />
-	<body>
-		<section id="main" class="bg-gray">
-			<div class="container page page-cartilla">
-				<c:forEach var="section" items="${planSectionList}">
-					<h3>${section.title}</h3>
-					<h2>${section.subtitle}</h2>
-					<table class="table-plan plan-detail">
-						<c:forEach var="item" items="${section.itemsList}">
-							<tr>
-								<td class="title-item">${item.title}</td>
-								<td class="value-item">${item.value}</td>
-							</tr>
-						<c:forEach var="subitem" items="${item.subitemsList}">
-							<tr>
-								<td class="title-subitem">${subitem.title}</td>
-								<td class="value-subitem">${subitem.value}</td>
-							</tr>
-						</c:forEach>	
-						</c:forEach>
-					</table>
-				</c:forEach>
-				<button type="button" class="btn btn-lg btn-primary pull-right" onclick="location.href='/OSDEPYM/'"><spring:message code="button.backtomenu" /></button>
-			</div>
-		</section>
-	</body>
-	<jsp:include page="./footer.jsp" />
+<jsp:include page="./header.jsp" />
+<body>
+    <c:if test="${!empty planSectionList}">
+    	<section id="main" class="bg-gray">
+            <div class="container page page-cartilla">
+	            <c:forEach var="section" items="${planSectionList}">
+	                <h3>${section.title}</h3>
+	                <h2>${section.subtitle}</h2>
+	                <table class="table-plan plan-detail">
+	                    <c:forEach var="item" items="${section.itemsList}">
+	                        <tr>
+	                            <td class="title-item">${item.title}</td>
+	                            <td class="value-item">${item.value}</td>
+	                        </tr>
+	                        <c:forEach var="subitem" items="${item.subitemsList}">
+	                            <tr>
+	                                <td class="title-subitem">${subitem.title}</td>
+	                                <td class="value-subitem">${subitem.value}</td>
+	                            </tr>
+	                        </c:forEach>
+	                    </c:forEach>
+	                </table>	                
+	            </c:forEach>
+	            <button type="button" class="btn btn-lg btn-primary pull-right" onclick="location.href='/OSDEPYM/'">
+	                <spring:message code="button.backtomenu" />
+	            </button>
+            </div>
+        </section>
+   	</c:if>
+	<c:if test="${empty planSectionList}">
+		<section id="error" class="bg-gray">
+	        <div class="container text-center" style="padding: 70px">        	
+        		<img src="/OSDEPYM/resources/core/img/error-green.png" style="height: 100px;">
+           		<h2 style="height:100px;padding-top:40px"><spring:message code="plan.emptylist" /></h2>           		
+           	</div>
+	    </section>  
+	</c:if>  
+</body>
+<jsp:include page="./footer.jsp" />
 </html>

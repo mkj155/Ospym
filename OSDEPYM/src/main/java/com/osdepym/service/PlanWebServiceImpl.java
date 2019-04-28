@@ -8,7 +8,6 @@ import java.util.Map.Entry;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.mapping.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,10 +15,8 @@ import com.osdepym.dto.PlanItemDTO;
 import com.osdepym.dto.PlanSeccionDTO;
 import com.osdepym.exception.CustomException;
 import com.osdepym.exception.ErrorMessages;
-import com.osdepym.hibernate.dao.MotivoCategoriaDAO;
 import com.osdepym.hibernate.dao.PlanItemDAO;
 import com.osdepym.hibernate.entity.PlanItem;
-import com.osdepym.hibernate.entity.PlanSeccion;
 import com.osdepym.util.SessionUtil;
 
 @Service("PlanWebService")

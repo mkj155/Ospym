@@ -6,16 +6,16 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
 <html>
- 	<jsp:include page="./header.jsp" />
-	<body>
-		<section id="main" class="bg-gray">
-			<div class="container page page-cartilla">
-				<div class="mb-4">
-					<jsp:include page="reglamento${type}.jsp" />
-				</div>
-				<button type="button" class="btn btn-lg btn-primary pull-right" onclick="location.href='/OSDEPYM/'"><spring:message code="button.backtomenu" /></button>
-			</div>			
-		</section>
-	</body>
-	<jsp:include page="./footer.jsp" />
+<jsp:include page="./header.jsp" />
+<body>
+	<section id="main" class="bg-gray">
+		<div class="container page page-cartilla">
+			<div class="mb-4">
+				<jsp:include page="reglamento${type}.jsp" />
+			</div>
+			<button type="button" class="btn btn-lg btn-primary pull-right" onclick="location.href='/OSDEPYM/'"><spring:message code="button.backtomenu" /></button>
+		</div>			
+	</section>
+</body>
+<jsp:include page="./footer.jsp" />
 </html>
