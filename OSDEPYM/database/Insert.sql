@@ -19,3 +19,25 @@ INSERT INTO tramites_online.MOTIVOS_CATEGORIAS VALUES (5,NULL,'MAIL_5-NULL@MAIL.
 
 
 INSERT INTO tramites_online.CONTACTO_SEQ VALUES(0);
+
+INSERT INTO tramites_online.PLAN_SECCIONES VALUES ('Beneficios Adicionales','');
+INSERT INTO tramites_online.PLAN_SECCIONES VALUES ('Coseguros','El afiliado debe abonar los siguientes valores a su cargo (Coseguros) para el acceso a las <a href="">Prestaciones Cubiertas</a>');
+
+INSERT INTO tramites_online.PLAN_ITEMS VALUES ('Cobertura de Medicamentos Ambulatorios','50 %', 1, null, 1);
+INSERT INTO tramites_online.PLAN_ITEMS VALUES ('Subsidio por Adopción','$ 900', 1, null, 1);
+INSERT INTO tramites_online.PLAN_ITEMS VALUES ('Subsidio por Fallecimiento del Titular','$ 3300', 1, null, 1);
+INSERT INTO tramites_online.PLAN_ITEMS VALUES ('Protesis Odontológica','Aranceles Preferenciales con Profesionales integrantes de la <a href="">Red Nacional de Odontólogos</a>', 1, null, 1);
+INSERT INTO tramites_online.PLAN_ITEMS VALUES ('Ortodoncia','Aranceles Preferenciales con Profesionales integrantes de la <a href="">Red Nacional de Ortodoncistas</a>', 1, null, 1);
+INSERT INTO tramites_online.PLAN_ITEMS VALUES ('Óptica','Aranceles Preferenciales en <a href="">Red Nacional de Ópticas</a>', 1, null, 1);
+INSERT INTO tramites_online.PLAN_ITEMS VALUES ('Turismo Social y Recreación','Servicio de Reservas y Precios Preferenciales', 1, null, 1);                               
+INSERT INTO tramites_online.PLAN_ITEMS VALUES ('Consulta en consultorio Equipo Base de Atención Primaria','S/C', 2, null, 1);
+INSERT INTO tramites_online.PLAN_ITEMS VALUES ('Consulta Ambulatoria Especializada','S/C', 2, null, 1);
+INSERT INTO tramites_online.PLAN_ITEMS VALUES ('Atención Domiciliaria','', 2, null, 1);
+INSERT INTO tramites_online.PLAN_ITEMS VALUES ('Consulta Diurna (Código Verde)','$ 310', 2, 10, 1);
+INSERT INTO tramites_online.PLAN_ITEMS VALUES ('Consulta Nocturna (Código Verde)','S/C', 2, 10, 1);
+INSERT INTO tramites_online.PLAN_ITEMS VALUES ('Código Rojo/Emergencia','Exento', 2, 10, 1);
+INSERT INTO tramites_online.PLAN_ITEMS VALUES ('Mayores de 65 años(Código Verde - diurna/nocturna)','$ 124', 2, 10, 1);
+INSERT INTO tramites_online.PLAN_ITEMS VALUES ('Placas de Laboratorio','', 2, null, 1);
+INSERT INTO tramites_online.PLAN_ITEMS VALUES ('En ambulatorio','S/C', 2, 15, 1);
+INSERT INTO tramites_online.PLAN_ITEMS VALUES ('Estudios y Prácticas de diagnóstico de baja complejidad (*)','', 2, null, 1);
+INSERT INTO tramites_online.PLAN_ITEMS VALUES ('En ambulatorio','S/C', 2, 17, 1);
