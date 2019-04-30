@@ -76,7 +76,7 @@
     </section>
     <div class="bg-gradient">
         <div class="container">
-            <div class="row" style="padding: 40px 0 40px 0">
+            <div class="row row-footer">
                 <div class="col"><img class="logo-footer" src="/OSDEPYM/resources/core/img/logo-white.svg" alt="OSDEPYM"></div>
                 <div class="col col-address">
                     <p>Reconquista 458 / 2do piso

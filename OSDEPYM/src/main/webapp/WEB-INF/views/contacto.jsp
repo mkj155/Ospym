@@ -54,23 +54,22 @@
                         </div>
                     </div>
                     <!-- COMENTARIO -->
-                    <div class="col-md-4">
+                    <div class="col-md-9">
                         <div class="form-group ${status.error ? 'has-error' : ''}">
                             <label class="col-sm-2 control-label">
                                 <spring:message code="contactoform.label.comentario" />
                             </label>
                             <form:textarea path="comentario" rows="5" cols="90" class="form-control coment-contacto" maxlength="1024" required="true" />
                             <form:errors path="comentario" class="control-label" />
-                            <div class="col-sm-5"></div>
                         </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <div class="text-center">
-                        <button type="submit" class="btn btn-outline-primary btn-block btn-sm button-contact">
-                            <spring:message code="button.send" />
-                        </button>
-                    </div>
+	                <div class="col-md-12">
+	                    <span class="float-md-right">
+	                        <button type="submit" class="btn btn-outline-primary btn-block">
+	                            <spring:message code="button.send" />
+	                        </button>
+	                    </span>
+	                </div>
                 </div>
             </form:form>
         </div>

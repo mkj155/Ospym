@@ -11,26 +11,28 @@
     	<section id="main" class="bg-gray">
             <div class="container page page-cartilla">
 	            <c:forEach var="section" items="${planSectionList}">
-	                <h3>${section.title}</h3>
-	                <h2>${section.subtitle}</h2>
-	                <table class="table-plan plan-detail">
-	                    <c:forEach var="item" items="${section.itemsList}">
-	                        <tr>
-	                            <td class="title-item">${item.title}</td>
-	                            <td class="value-item">${item.value}</td>
-	                        </tr>
-	                        <c:forEach var="subitem" items="${item.subitemsList}">
-	                            <tr>
-	                                <td class="title-subitem">${subitem.title}</td>
-	                                <td class="value-subitem">${subitem.value}</td>
-	                            </tr>
-	                        </c:forEach>
-	                    </c:forEach>
-	                </table>	                
+                <h3>${section.title}</h3>
+                <h2>${section.subtitle}</h2>
+                <table class="table-plan plan-detail">
+                    <c:forEach var="item" items="${section.itemsList}">
+                        <tr>
+                            <td class="title-item">${item.title}</td>
+                            <td class="value-item">${item.value}</td>
+                        </tr>
+                        <c:forEach var="subitem" items="${item.subitemsList}">
+                            <tr>
+                                <td class="title-subitem">${subitem.title}</td>
+                                <td class="value-subitem">${subitem.value}</td>
+                            </tr>
+                        </c:forEach>
+                    </c:forEach>
+                </table>	                
 	            </c:forEach>
-	            <button type="button" class="btn btn-lg btn-primary pull-right" onclick="location.href='/OSDEPYM/'">
-	                <spring:message code="button.backtomenu" />
-	            </button>
+	            <div class="col-md-3">                 
+					<button type="button" class="btn btn-primary btn-lg btn-block" onclick="location.href='/OSDEPYM/'">
+             			<spring:message code="button.backtomenu" />
+            		</button>
+                </div>
             </div>
         </section>
    	</c:if>

@@ -13,7 +13,11 @@
 			<div class="mb-4">
 				<jsp:include page="reglamento${type}.jsp" />
 			</div>
-			<button type="button" class="btn btn-lg btn-primary pull-right" onclick="location.href='/OSDEPYM/'"><spring:message code="button.backtomenu" /></button>
+			<div class="col-md-3">                 
+				<button type="button" class="btn btn-primary btn-lg btn-block" onclick="location.href='/OSDEPYM/'">
+            			<spring:message code="button.backtomenu" />
+           		</button>
+            </div>
 		</div>			
 	</section>
 </body>

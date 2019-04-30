@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="/OSDEPYM/resources/core/css/main.css">
 	<link rel="stylesheet" href="/OSDEPYM/resources/core/css/_contacto.css" />
     <link rel="stylesheet" href="/OSDEPYM/resources/core/css/_plan.css" />
+    <link rel="stylesheet" href="/OSDEPYM/resources/core/css/_reglamento.css" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
     
     <title>OSDEPYM</title>
