@@ -14,7 +14,7 @@
 			</div>
 			<div class="col-md-3">                 
 				<button type="button" class="btn btn-primary btn-lg btn-block" onclick="location.href='/OSDEPYM/'">
-            			<spring:message code="button.backtomenu" />
+            		<spring:message code="button.backtomenu" />
            		</button>
             </div>
 		</div>			

@@ -14,15 +14,15 @@
 		<li><div><b>Beneficiarios:</b></div>			
 			<div class="content-reglamento">
 				Titulares y Grupo Familiar:
-				Pueden afiliarse como tales las personas mayores de 18 a&nacute;os, que desempe&nacute;en en forma habitual, sin relaci&oacute;n de dependencia,
+				Pueden afiliarse como tales las personas mayores de 18 a&ntilde;os, que desempe&ntilde;en en forma habitual, sin relaci&oacute;n de dependencia,
 				actividades profesionales, t&eacute;cnicas, empresarias o aut&oacute;nomas en general.<br />
 				Grupo Familiar: Son los integrantes del grupo familiar
 				del Afiliado Titular, cuya incorporaci&oacute;n, en forma simult&aacute;nea o posterior, sea requerida expresamente por el Afiliado Titular:
 				<ol type="a">
-					<li>El c&oacute;nyuge del afiliado titular, los hijos solteros hasta los veinti&uacute;n (21) a&nacute;os, no emancipados por habilitaci&oacute;n de edad o ejercicio de
-						actividad profesional, comercial o laboral, los hijos solteros mayores de veinti&uacute;n (21) a&nacute;os y hasta los veinticinco (25) a&nacute;os
+					<li>El c&oacute;nyuge del afiliado titular, los hijos solteros hasta los veinti&uacute;n (21) a&ntilde;os, no emancipados por habilitaci&oacute;n de edad o ejercicio de
+						actividad profesional, comercial o laboral, los hijos solteros mayores de veinti&uacute;n (21) a&ntilde;os y hasta los veinticinco (25) a&ntilde;os
 						inclusive, que est&eacute;n a exclusivo cargo del afiliado titular que cursen estudios regulares oficialmente reconocidos por la autoridad
-						pertinente, los hijos incapacitados y a cargo del afiliado titular, mayores de veinti&uacute;n (21) a&nacute;os, los hijos del c&oacute;nyuge, los menores
+						pertinente, los hijos incapacitados y a cargo del afiliado titular, mayores de veinti&uacute;n (21) a&ntilde;os, los hijos del c&oacute;nyuge, los menores
 						cuya guarda y tutela haya sido acordada por autoridad judicial o administrativa, que re&uacute;nan los requisitos establecidos en este
 						inciso.
 					</li>
@@ -62,7 +62,7 @@
 		</li>
 		<li><div><b>Cambio de cuota por edad:</b></div>			
 			<div class="content-reglamento">
-				Los beneficiarios que al momento de cumplir los 65 a&nacute;os de edad tuvieran menos de diez a&nacute;os (10 a&nacute;os) ininterrumpidos de
+				Los beneficiarios que al momento de cumplir los 65 a&ntilde;os de edad tuvieran menos de diez a&ntilde;os (10 a&ntilde;os) ininterrumpidos de
 				permanencia como afiliados de los Planes de Salud Pyme deber&aacute;n abonar a partir del mes siguiente al de su aniversario, una
 				nueva cuota mensual con un incremente del 80% (ochenta por ciento). Este incremento se calcular&aacute; sobre el valor vigente a esa
 				fecha para un Afiliado Titular individual del Plan que corresponda y se sumara a la cuota del Grupo Familiar afiliado,
