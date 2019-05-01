@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+@font-face {
+            font-family: "font_vladimir";           
+            src: local("Vladimir"), url("/app-assets/fonts/Vladimir.ttf") format("truetype");
+            font-weight: normal;			            
+	    font-style: normal;			            
+}        
+@font-face {
+            font-family: "font_caupsuula";           
+            src: local("Capsuula"), url("/app-assets/fonts/Capsuula.ttf") format("truetype");
+            font-weight: normal;			
+            font-style: bold;
+}   
+#imgPlace{
+    position:relative;
+    height: 98%; 
+    /* height:297mm; */
+    /*width:210mm; */
+}
+#imgPlace h1{
+    position:absolute;
+    top: 340px;
+    left: 50%;    
+    z-index: 1;
+    font-family: "font_vladimir";
+    font-size: 48pt;        
+    margin-right: -50%;
+    transform: translate(-50%, -50%)
+}
+#imgPlace h2{
+    position:absolute;
+    top: 440px;
+    left: 50%;    
+    z-index: 1;
+    font-family: "font_caupsuula"; 
+    font-size: 24pt;
+    margin-right: -50%;
+    transform: translate(-50%, -50%)
+}
+
+#imgPlace img{
+    position:relative;
+    width: 100%;
+}
+
+@media print {
+    .new-page {
+      page-break-before: always;
+    }
+ }
+
+</style>
+
+</head>
+<body>
+  {% for user in users %}
+    <div id="imgPlace">
+      <img src="{{ app.request.getSchemeAndHttpHost() ~ '/' ~ app_uploads_path ~ '/' ~ app_media_path ~ '/' ~ mediaCertificate.media }}"/>
+      <h1 class="h1"><span>{{user.username ~ user.usersurname ~ ','}}</h1>
+      <h2 class="h2"><span>{{'DNI: ' ~ user.dni ~ ','}}</h2> 
+   </div>
+   <div style="clear:both;"></div>
+    <!-- <p class="new-page"></p> no parece necesario con domPDF -->
+  {% endfor %}
+</body>
+</html>
