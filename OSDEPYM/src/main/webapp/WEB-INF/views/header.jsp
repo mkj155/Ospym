@@ -57,7 +57,7 @@
                             <li class="dropdown-submenu dropdown-menu-right">
                                 <a class="dropdown-item" tabindex="-1" href="#">Mi plan web</a>
                                 <ul class="dropdown-menu dropdown-menu dropdown-menu-right">
-                                    <li><a class="dropdown-item" tabindex="-1" href="/OSDEPYM/plan/123456789">Condiciones del plan</a></li>
+                                    <li><a class="dropdown-item" tabindex="-1" href="/OSDEPYM/plan/1">Condiciones del plan</a></li>
                                     <li><a class="dropdown-item" tabindex="-1" href="/OSDEPYM/reglamento/monotributista">Reglamento</a></li>
                                 </ul>
                             </li>
@@ -74,7 +74,7 @@
 				    <ul class="dropdown-menu dropdown-menu dropdown-menu-right">
 				    	<spring:url value="/plan/${param.idPlan}" var="idPlanUrl" />
 				      	<li><a class="dropdown-item" tabindex="-1" href="${idPlanUrl}">Condiciones del plan</a></li>
-						<spring:url value="/contacto/${param.typeAffiliate}" var="typeAffiliateUrl" />
+						<spring:url value="/reglamento/${param.typeAffiliate}" var="typeAffiliateUrl" />
 						<li><a class="dropdown-item" tabindex="-1" href="${typeAffiliateUrl}">Reglamento</a></li>	    
 				    </ul>
 			  </li>
