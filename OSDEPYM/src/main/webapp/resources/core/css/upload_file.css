@@ -1,0 +1,17 @@
+.filenameupload {
+	line-height: 2em;
+}
+
+#upload_prev span {
+    padding: 0 5px;
+}
+
+#total_size {
+    padding-top: 10px;
+    font-weight: bold;
+    float: right;
+}
+
+input[type=file] {
+    display: none;
+}

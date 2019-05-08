@@ -9,16 +9,16 @@
 <body>
     <section id="main" class="bg-gray">
         <div class="container page page-cartilla">
-            <h1><spring:message code="contactoform.title.canaldecontacto" /></h1>
+            <h1><spring:message code="title.canaldecontacto" /></h1>
             <spring:url value="/contacto/send" var="enviarUrl" />
             <form:form class="form-cartilla custom-form" method="post" modelAttribute="contactoForm" action="${enviarUrl}">
-                <spring:message code='select.emptyvalue' var="emptyValue" />
+                <spring:message code="select.label.empty" var="emptyValue" />
                 <div class="row">
                     <!-- AFILIADO -->
                     <div class="col-md-3">
                         <div class="form-group">
                             <label class="col-sm-2 control-label">
-                                <spring:message code="contactoform.label.afiliado" />
+                                <spring:message code="label.afiliado" />
                             </label>
                             <form:hidden path="idAfiliado" />
                             <form:input path="nombreAfiliado" readonly="true" class="form-control" placeholder="Email" />
@@ -30,7 +30,7 @@
                     <div class="col-md-3">
                         <div class="form-group ${status.error ? 'has-error' : ''}">
                             <label class="col-sm-2 control-label">
-                                <spring:message code="contactoform.select.label.motivo" />
+                                <spring:message code="select.label.motivo" />
                             </label>
                             <form:select path="idMotivo" class="form-control" id='motivo' onchange="getCategorias()" required="true">
                                 <form:option value="" label=" ${emptyValue} " />
@@ -42,11 +42,11 @@
                     </div>
                     <!-- CATEGORIAS -->
                     <div class="col-md-3">
-                        <div class="form-group ${status.error ? 'has-error' : ''}" id="divIdCategoria" style="display: none">
+                        <div class="form-group ${status.error ? 'has-error' : ''}" id="divIdCategoria">
                             <label class="col-sm-2 control-label">
-                                <spring:message code="contactoform.select.label.categoria" />
+                                <spring:message code="select.label.categoria" />
                             </label>
-                            <form:select path="idCategoria" class="form-control" id="categoria" style="display: none">
+                            <form:select path="idCategoria" class="form-control" id="categoria">
                                 <form:option value="" label=" ${emptyValue} " />
                             </form:select>
                             <form:errors path="idCategoria" class="control-label" />
@@ -57,7 +57,7 @@
                     <div class="col-md-9">
                         <div class="form-group ${status.error ? 'has-error' : ''}">
                             <label class="col-sm-2 control-label">
-                                <spring:message code="contactoform.label.comentario" />
+                                <spring:message code="label.comentario" />
                             </label>
                             <form:textarea path="comentario" rows="5" cols="90" class="form-control coment-contacto" maxlength="1024" required="true" />
                             <form:errors path="comentario" class="control-label" />

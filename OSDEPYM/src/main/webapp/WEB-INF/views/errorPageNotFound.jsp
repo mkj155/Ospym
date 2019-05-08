@@ -10,9 +10,9 @@
 
 <body>
     <section id="error" class="bg-gray">
-        <div class="container text-center" style="padding:70px">
-            <img src="/OSDEPYM/resources/core/img/error-green.png" style="height: 100px">
-            <h2 style="height:100px;padding-top:40px"><spring:message code="message.error.url.notexist" /></h2>
+        <div class="container text-center">
+            <img src="/OSDEPYM/resources/core/img/error-green.png">
+            <h2><spring:message code="error.url.notexist" /></h2>
         </div>
     </section>
 </body>
