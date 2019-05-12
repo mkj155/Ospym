@@ -34,4 +34,8 @@
 <fullyQualifiedTypeName name="java.util.List"/>
 <fullyQualifiedTypeName name="com.osdepym.hibernate.entity.Persona"/>
 <fullyQualifiedTypeName name="org.hibernate.Transaction"/>
+<fullyQualifiedTypeName name="com.osdepym.hibernate.entity.EspecialidadPrestacion"/>
+<fullyQualifiedTypeName name="com.osdepym.hibernate.entity.Especialidad"/>
+<fullyQualifiedTypeName name="com.osdepym.hibernate.entity.AutorizacionDoc"/>
+<fullyQualifiedTypeName name="com.osdepym.hibernate.entity.Prestacion"/>
 </qualifiedTypeNameHistroy>
