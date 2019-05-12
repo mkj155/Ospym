@@ -7,11 +7,12 @@
 <html>
 
 <jsp:include page="./header.jsp" />
+
 <body>
     <section id="error" class="bg-gray">
         <div class="container text-center">
             <img src="/OSDEPYM/resources/core/img/error-green.png">
-            <h2>${error.customMessage}</h2>
+            <h2><spring:message code="error.unknow.error" /></h2>
         </div>
     </section>
 </body>

@@ -1,3 +1,6 @@
+$(document).ready(function() {
+	$("#divIdCategoria").css("display","none");
+});
 
 function getCategorias(){
 	if($('#motivo').val() != null && $('#motivo').val() != ''){

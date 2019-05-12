@@ -9,12 +9,12 @@
 <body>
     <section id="main" class="bg-gray">
         <div class="container page page-cartilla">
-            <h1><spring:message code="contactoform.title.success" /></h1>
+            <h1><spring:message code="title.success.tramite" /></h1>
             <br />
             <p class="big">
-                <span class="text-green"><strong><spring:message code="contactoform.procedurenumber" /> ${numeroTramite}</strong></span>
+                <span class="text-green"><strong><spring:message code="message.procedurenumber.tramite" /> ${numeroTramite}</strong></span>
                 <br/>
-                <spring:message code="contactoform.body.success" />
+                <spring:message code="message.success.tramite" />
             </p>
             <button type="button" class="btn btn-lg btn-primary pull-right" onclick="location.href='/OSDEPYM/'">
                 <spring:message code="button.backtomenu" />

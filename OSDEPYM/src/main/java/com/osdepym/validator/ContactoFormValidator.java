@@ -47,12 +47,12 @@ public class ContactoFormValidator implements Validator {
 
 		ContactoForm user = (ContactoForm) target;
 
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "idMotivo", "notempty.contactoForm.idmotivo");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "idMotivo", "message.empty.motivo");
 		if(verifyCategoryByIdMotivo(user.getIdMotivo(),errors))
-			ValidationUtils.rejectIfEmptyOrWhitespace(errors, "idCategoria", "size.contactoform.idcategoria");
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "nombreAfiliado", "notempty.contactoform.nombreafiliado");
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "idAfiliado", "size.contactoform.idafiliado");
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "comentario","size.contactoform.comentario");
+			ValidationUtils.rejectIfEmptyOrWhitespace(errors, "idCategoria", "message.empty.categoria");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "nombreAfiliado", "message.empty.afiliado");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "idAfiliado", "message.empty.afiliado");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "comentario","message.empty.comentario");
 	}
 
 }
