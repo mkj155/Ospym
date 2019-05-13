@@ -177,7 +177,7 @@ public class ContactoServiceImpl implements ContactoService{
 			MailingUtil mailing = new MailingUtil();
 			mailing.sendMailTLS(correo, subject, message);
 			
-			Contacto contacto = crearContacto(contactoForm, contactoForm.getIdMotivo(), contactoForm.getIdCategoria(), correo, nroTramite);
+			Contacto contacto = crearContacto(contactoForm, contactoForm.getIdMotivo(), contactoForm.getIdCategoria(), correo, nroTramite, "Contacto");
 			saveContacto(contacto);
 			
 			tx.commit();
@@ -219,7 +219,7 @@ public class ContactoServiceImpl implements ContactoService{
 		return categoria;
 	}
 
-	private Contacto crearContacto(ContactoForm contactoForm, String idMotivo, String idCategoria, String correo, String nroTramite) {
+	private Contacto crearContacto(ContactoForm contactoForm, String idMotivo, String idCategoria, String correo, String nroTramite, String tipo) {
 		Contacto contacto = new Contacto();
 		
 		contacto.setIdtramite(nroTramite);
@@ -229,6 +229,7 @@ public class ContactoServiceImpl implements ContactoService{
 		contacto.setNombreCompleto(contactoForm.getNombreAfiliado().toUpperCase());
 		contacto.setComentario(contactoForm.getComentario());
 		contacto.setCorreo(correo);
+		contacto.setTipo(tipo);
 		
 		return contacto;
 	}

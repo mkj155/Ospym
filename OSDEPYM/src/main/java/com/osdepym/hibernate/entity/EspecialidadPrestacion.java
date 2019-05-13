@@ -13,14 +13,10 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="MOTIVOS_CATEGORIAS", schema = "tramites_online")
-public class EspecialidadPrestacion implements Serializable {
+@Table(name="ESPEC_PREST", schema = "tramites_online")
+public class EspecialidadPrestacion{
 	
 	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 7321987040308717668L;
 	private int idEspecPrest;
 	private Especialidad especialidad;
 	private Prestacion prestacion;

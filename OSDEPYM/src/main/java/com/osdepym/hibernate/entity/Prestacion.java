@@ -11,9 +11,13 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="Prestaciones", schema = "tramites_online")
+@Table(name="PRESTACIONES", schema = "tramites_online")
 public class Prestacion {
 	
+	private int idPrestacion;
+	private String etiqueta;
+	private Set<EspecialidadPrestacion> especialidadPrestaciones;
+    
 	public Prestacion() {}
 	
 	public Prestacion(String etiqueta) {
@@ -25,10 +29,7 @@ public class Prestacion {
 		this.especialidadPrestaciones = especialidadPrestaciones;
 	}
 	
-	private int idPrestacion;
-	private String etiqueta;
-	private Set<EspecialidadPrestacion> especialidadPrestaciones;
-    
+	
 	@Id
 	@Column(name="ID_PRESTACION")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -48,16 +49,16 @@ public class Prestacion {
 		this.etiqueta = etiqueta;
 	}
 
-	@OneToMany(mappedBy = "Prestacion")
+	@OneToMany(mappedBy = "prestacion")
 	public Set<EspecialidadPrestacion> getEspecialidadPrestaciones() {
 		return especialidadPrestaciones;
 	}
 
-	public void setEspecialidadPrestacion(Set<EspecialidadPrestacion> especialidadPrestaciones) {
+	public void setEspecialidadPrestaciones(Set<EspecialidadPrestacion> especialidadPrestaciones) {
 		this.especialidadPrestaciones = especialidadPrestaciones;
 	}
 	
-	public void addEspecialidadPrestacion(EspecialidadPrestacion especialidadPrestaciones) {
+	public void addEspecialidadPrestaciones(EspecialidadPrestacion especialidadPrestaciones) {
 		this.especialidadPrestaciones.add(especialidadPrestaciones);
 	}
 	

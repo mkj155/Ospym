@@ -34,6 +34,9 @@
 				<value>com.osdepym.hibernate.entity.Contacto</value>
 				<value>com.osdepym.hibernate.entity.PlanItem</value>
 				<value>com.osdepym.hibernate.entity.PlanSeccion</value>
+				<value>com.osdepym.hibernate.entity.Especialidad</value>
+				<value>com.osdepym.hibernate.entity.EspecialidadPrestacion</value>
+				<value>com.osdepym.hibernate.entity.Prestacion</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">

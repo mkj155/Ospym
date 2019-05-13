@@ -18,6 +18,9 @@ public class EspecialidadDAOImpl implements EspecialidadDAO{
 	@Autowired
 	private SessionFactory sessionFactory;
 	
+	public void setSessionFactory(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
+	}
 	
 	@Override
 	public Especialidad get(Integer id) throws CustomException {

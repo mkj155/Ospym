@@ -41,15 +41,15 @@
                         </div>
                     </div>
                     <div class="row">
-                        <!-- CATEGORIAS -->
+                        <!-- PRESTACIONES -->
                         <div class="col-md-12">
                             <div class="form-group ${status.error ? 'has-error' : ''}">
                                 <label class="control-label">
                                     <spring:message code="label.especialidad" />
                                 </label>
-                                <form:select path="idEspecialidad" class="form-control" id="idEspecialidad" required="true">
+                                <form:select path="idEspecialidad" class="form-control" id="idEspecialidad" onchange="getPrestaciones()" required="true">
 	                                <form:option value="" label=" ${emptyValue} " />
-	                                <form:option value="1" label="1" />
+	                                <form:options items="${especialidades}" itemValue="idEspecialidad" itemLabel="etiqueta" />
 	                            </form:select>
 	                            <form:errors path="idEspecialidad" class="control-label" />
                             </div>
@@ -58,13 +58,12 @@
                     <div class="row">
                     <!-- COMENTARIO -->
                     <div class="col-md-12">
-                        <div class="form-group ${status.error ? 'has-error' : ''}">
+                        <div class="form-group ${status.error ? 'has-error' : ''}" id="divIdPrestacion" style="display:none" >
                             <label class="control-label">
                                 <spring:message code="label.prestacion" />
                             </label>
                             <form:select path="idPrestacion" class="form-control" id="idPrestacion" required="true">
                                 <form:option value="" label=" ${emptyValue} " />
-                                <form:option value="1" label="1" />
                             </form:select>
                             <form:errors path="idPrestacion" class="control-label" />
                         </div>

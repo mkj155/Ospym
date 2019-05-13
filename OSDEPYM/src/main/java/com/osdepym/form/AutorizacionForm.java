@@ -7,6 +7,7 @@ public class AutorizacionForm {
 	private String idPrestacion;
 	private String prestador;
 	private String comentario;
+	private String nombreAfiliado;
 	
 	public String getIdAfiliado() {
 		return idAfiliado;
@@ -37,5 +38,11 @@ public class AutorizacionForm {
 	}
 	public void setComentario(String comentario) {
 		this.comentario = comentario;
+	}
+	public String getNombreAfiliado() {
+		return nombreAfiliado;
+	}
+	public void setNombreAfiliado(String nombreAfiliado) {
+		this.nombreAfiliado = nombreAfiliado;
 	}
 }

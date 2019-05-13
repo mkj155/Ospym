@@ -41,3 +41,20 @@ INSERT INTO tramites_online.PLAN_ITEMS VALUES ('Placas de Laboratorio','', 2, nu
 INSERT INTO tramites_online.PLAN_ITEMS VALUES ('En ambulatorio','S/C', 2, 15, 1);
 INSERT INTO tramites_online.PLAN_ITEMS VALUES ('Estudios y Prácticas de diagnóstico de baja complejidad (*)','', 2, null, 1);
 INSERT INTO tramites_online.PLAN_ITEMS VALUES ('En ambulatorio','S/C', 2, 17, 1);
+
+
+INSERT INTO tramites_online.AUTORIZACION_SEQ VALUES(0);
+
+INSERT INTO tramites_online.ESPECIALIDADES VALUES ('Clínica médica');
+INSERT INTO tramites_online.ESPECIALIDADES VALUES ('Odontología');
+
+
+INSERT INTO tramites_online.PRESTACIONES VALUES ('Medicamentos');
+INSERT INTO tramites_online.PRESTACIONES VALUES ('Protesis');
+INSERT INTO tramites_online.PRESTACIONES VALUES ('Cirugía');
+
+INSERT INTO tramites_online.ESPEC_PREST VALUES (1,1,'MAIL_1-1@MAIL.COM');
+INSERT INTO tramites_online.ESPEC_PREST VALUES (1,3,'MAIL_1-1@MAIL.COM');
+INSERT INTO tramites_online.ESPEC_PREST VALUES (2,2,'MAIL_1-1@MAIL.COM');
+INSERT INTO tramites_online.ESPEC_PREST VALUES (2,1,'MAIL_1-1@MAIL.COM');
+
