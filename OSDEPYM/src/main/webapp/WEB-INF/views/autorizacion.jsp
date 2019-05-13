@@ -34,7 +34,7 @@
                                 </label>
                                 <form:select path="idAfiliado" class="form-control" id="idAfiliado" required="true">
 	                                <form:option value="" label=" ${emptyValue} " />
-	                                <form:option value="1" label="1" />
+	                                <form:options items="${familiaresACargo}" itemValue="id" itemLabel="nombreCompleto" />
 	                            </form:select>
 	                            <form:errors path="idAfiliado" class="control-label" />
                             </div>
@@ -49,7 +49,7 @@
                                 </label>
                                 <form:select path="idEspecialidad" class="form-control" id="idEspecialidad" required="true">
 	                                <form:option value="" label=" ${emptyValue} " />
-	                                <form:option value="1" label="1" />
+	                                <form:options items="${especialidades}" itemValue="id" itemLabel="etiqueta" />
 	                            </form:select>
 	                            <form:errors path="idEspecialidad" class="control-label" />
                             </div>
@@ -64,7 +64,7 @@
                             </label>
                             <form:select path="idPrestacion" class="form-control" id="idPrestacion" required="true">
                                 <form:option value="" label=" ${emptyValue} " />
-                                <form:option value="1" label="1" />
+                                <form:options items="${prestaciones}" itemValue="id" itemLabel="etiqueta" />
                             </form:select>
                             <form:errors path="idPrestacion" class="control-label" />
                         </div>
@@ -80,7 +80,7 @@
 							 </span>
                         </div>
                     </div>
-                    <div id="FieldsRequired" class="alert alert-danger my-4">Debe completar los campos para poder continuar</div>  
+                    <div id="FieldsRequired" class="alert alert-danger my-4"><spring:message code="message.fields.required" /></div>  
 	            </div>
 	            <div class="tab">
 	                <h2><strong><spring:message code="title.autorizacion" /></strong></h2>
@@ -90,10 +90,11 @@
                             <label class="control-label">
                        			<spring:message code="message.upload.file.required" />
                             </label>
-                            <ul class="pl-3">
-                           		<li><spring:message code="message.upload.doc.prescripcion" /></li>
-                           		<li><spring:message code="message.upload.doc.historiaclinica" /></li>
+                            <ul class="pl-3" id="documents"></ul>
+                            <ul class="pl-3" id="documentsNotExists">
+                            	<li><spring:message code="message.document.not.exist" /></li>
                             </ul>
+                            <div id="loadingDocuments" role="status" class="spinner-border spinner-border"><span class='sr-only'>Loading...</span></div>
                         </div>
                     </div>
                     <div class="row">
