@@ -41,15 +41,15 @@
                         </div>
                     </div>
                     <div class="row">
-                        <!-- CATEGORIAS -->
+                        <!-- PRESTACIONES -->
                         <div class="col-md-12">
                             <div class="form-group ${status.error ? 'has-error' : ''}">
                                 <label class="control-label">
                                     <spring:message code="label.especialidad" />
                                 </label>
-                                <form:select path="idEspecialidad" class="form-control" id="idEspecialidad" required="true">
+                                <form:select path="idEspecialidad" class="form-control" id="idEspecialidad" onchange="getPrestaciones()" required="true">
 	                                <form:option value="" label=" ${emptyValue} " />
-	                                <form:options items="${especialidades}" itemValue="id" itemLabel="etiqueta" />
+	                                <form:options items="${especialidades}" itemValue="idEspecialidad" itemLabel="etiqueta" />
 	                            </form:select>
 	                            <form:errors path="idEspecialidad" class="control-label" />
                             </div>
@@ -58,7 +58,7 @@
                     <div class="row">
                     <!-- COMENTARIO -->
                     <div class="col-md-12">
-                        <div class="form-group ${status.error ? 'has-error' : ''}">
+                        <div class="form-group ${status.error ? 'has-error' : ''}" id="divIdPrestacion" style="display:none" >
                             <label class="control-label">
                                 <spring:message code="label.prestacion" />
                             </label>
@@ -67,6 +67,9 @@
                                 <form:options items="${prestaciones}" itemValue="id" itemLabel="etiqueta" />
                             </form:select>
                             <form:errors path="idPrestacion" class="control-label" />
+                        </div>
+                        <div id="loadingPrestacion">
+                        	<div role="status" class="spinner-border spinner-border"><span class='sr-only'>Loading...</span></div>
                         </div>
                     </div>
                     </div>
@@ -94,7 +97,9 @@
                             <ul class="pl-3" id="documentsNotExists">
                             	<li><spring:message code="message.document.not.exist" /></li>
                             </ul>
-                            <div id="loadingDocuments" role="status" class="spinner-border spinner-border"><span class='sr-only'>Loading...</span></div>
+                            <div id="loadingDocuments">
+                            	<div role="status" class="spinner-border spinner-border"><span class='sr-only'>Loading...</span></div>
+                            </div>
                         </div>
                     </div>
                     <div class="row">
@@ -112,17 +117,15 @@
                     <!-- COMENTARIO -->
 	                    <div class="col-md-12">
 	                        <div class="form-group ${status.error ? 'has-error' : ''}">
-							   	<!--<form id="fileupload" action="#" method="POST" enctype="multipart/form-data">-->
-									<input type="file" id="uploadFile" class="btn-file" name="FileUpload" multiple="multiple"  size="50"/>
-					      			<button class="btn btn-primary btn-lg" id="buttonUploadFile">
-					      			  	<spring:message code="label.uploadfile" />
-							  		</button>
-									<div id="message-upload-file">
-										<spring:message code="message.uploadfile" />
-									</div>    
-									<div id="upload_prev"></div>     
-									<div id="total_size"></div>
-						       	<!--</form>-->
+								<form:input path="uploadFiles" type="file" id="uploadFile" class="btn-file" name="FileUpload" multiple="multiple"  size="50"/>
+				      			<button class="btn btn-primary btn-lg" id="buttonUploadFile">
+				      			  	<spring:message code="label.uploadfile" />
+						  		</button>
+								<div id="message-upload-file">
+									<spring:message code="message.uploadfile" />
+								</div>    
+								<div id="upload_prev"></div>     
+								<div id="total_size"></div>
 	                        </div>
 	                    </div>
                     </div>

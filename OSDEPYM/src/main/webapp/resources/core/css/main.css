@@ -1544,3 +1544,11 @@ a:hover .arrow-down,
 .carousel-control-shadow {
 	margin: auto 80px; 
 }
+
+#loadingDocuments, #loadingPrestacion {
+	text-align: center;
+}
+
+.btn-lg, .btn-group-lg > .btn {
+  border-radius: 0;
+}

@@ -1,5 +1,8 @@
 package com.osdepym.form;
 
+import java.io.File;
+import java.util.List;
+
 public class AutorizacionForm {
 
 	private String idAfiliado;
@@ -7,6 +10,8 @@ public class AutorizacionForm {
 	private String idPrestacion;
 	private String prestador;
 	private String comentario;
+	private String nombreAfiliado;
+	private List<File> uploadFiles;
 	
 	public String getIdAfiliado() {
 		return idAfiliado;
@@ -37,5 +42,17 @@ public class AutorizacionForm {
 	}
 	public void setComentario(String comentario) {
 		this.comentario = comentario;
+	}
+	public String getNombreAfiliado() {
+		return nombreAfiliado;
+	}
+	public void setNombreAfiliado(String nombreAfiliado) {
+		this.nombreAfiliado = nombreAfiliado;
+	}
+	public List<File> getUploadFiles() {
+		return uploadFiles;
+	}
+	public void setUploadFiles(List<File> uploadFiles) {
+		this.uploadFiles = uploadFiles;
 	}
 }

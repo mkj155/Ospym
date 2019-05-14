@@ -1,4 +1,5 @@
 $(document).ready(function(readyEvent) {
+	$("#loadingPrestacion").hide();
 	$('[data-toggle="tooltip"]').tooltip();   
 	
 	$("#errorFile").hide();
@@ -42,6 +43,8 @@ $(document).ready(function(readyEvent) {
 	        return false;
 	    }
 		
+	    document.forms[0].uploadFiles = uploadFiles;
+	    
 	    $("#autorizacionForm").submit();
 	});
 	
@@ -82,19 +85,48 @@ function getDocumentos(){
 					$("#documentsNotExists").show();
 					$("#loadingDocuments").hide();
 				}
+			}
+		});
+	}
+}
+
+function getPrestaciones(){
+	$("#divIdPrestacion").hide();
+	$("#loadingPrestacion").show();
+	if($('#idEspecialidad').val() != null && $('#idEspecialidad').val() != ''){
+		$.ajax({
+			type : "POST",
+			contentType : "application/json",
+			url : "getPrestaciones",
+			data : $('#idEspecialidad').val(),
+			dataType : 'json',
+			timeout : 100000,
+			success : function(data) {
+				if(data != null && data.length > 0){
+					$("#idPrestacion").css('display', 'block');
+					$("#divIdPrestacion").css('display', 'block');
+					$("#idPrestacion").attr('required', true);
+					$("#idPrestacion option[value!='']").remove();
+					for(var i = 0 ; i < data.length ; i++){
+						$("#idPrestacion").html($("#idPrestacion").html() + "<option value='" + data[i].idPrestacion + "'>" + data[i].etiqueta + "</option>");
+					}
+				}else{
+					$("#idPrestacion").css('display', 'none');
+					$("#divIdPrestacion").css('display', 'none');
+					$("#idPrestacion").attr('required', false);
+				}
 				
+				$("#loadingPrestacion").hide();
 			},
 			error : function(e) {
 				console.log("ERROR: ", e);
-				$("#documents").append("<li>"+e+"</li>");
-				$("#documents").show();
-				$("#loadingDocuments").hide();
-				$("#documentsNotExists").hide();
-			},
+				$("#loadingPrestacion").hide();
+			}
 		});
 	} else {
-		$("#documents").show();
-		$("#loadingDocuments").hide();
-		$("#documentsNotExists").show();
+		$("#divIdPrestacion").css('display', 'none');
+		$("#prestacion").css('display', 'none');
+		$("#prestacion").attr('required', false);
+		$("#loadingPrestacion").hide();
 	}
 }

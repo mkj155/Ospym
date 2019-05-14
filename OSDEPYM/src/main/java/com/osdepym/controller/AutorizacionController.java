@@ -3,6 +3,8 @@ package com.osdepym.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -17,13 +19,17 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.osdepym.dto.AutorizacionDocDTO;
-import com.osdepym.dto.EspecialidadesDTO;
 import com.osdepym.dto.FamiliaresACargoDTO;
-import com.osdepym.dto.PrestacionesDTO;
+import com.osdepym.dto.PrestacionDTO;
 import com.osdepym.form.AutorizacionForm;
+import com.osdepym.service.AutorizacionService;
 
 @Controller
 public class AutorizacionController {
+	
+	@Autowired
+	@Qualifier("AutorizacionService")
+	private AutorizacionService service;
 	
 	@RequestMapping(value = "/autorizacion/{idAfiliado}", method = RequestMethod.GET)
 	public ModelAndView loadAuthorizationForm(@PathVariable(value = "idAfiliado") String idAfiliado, Model model) {
@@ -38,7 +44,8 @@ public class AutorizacionController {
 			if (result.hasErrors()) {
 				view = getAuthorizationFormView(model, autorizacionForm, autorizacionForm.getIdAfiliado());
 			} else {
-				String numeroTramite = "11111";//service.procesarContacto(contactoForm);
+				autorizacionForm.setNombreAfiliado("test nmombre afiliado");
+				String numeroTramite = service.procesarContacto(autorizacionForm);
 				view = new ModelAndView("autorizacionConExito");
 				view.addObject("numeroTramite", numeroTramite);
 				redirectAttributes.addFlashAttribute("css", "success");
@@ -50,7 +57,7 @@ public class AutorizacionController {
 		return view;	
 	}
 	
-	@RequestMapping(value = "autorizacion/getFamiliaresACargo")
+	@RequestMapping(value = "/autorizacion/getFamiliaresACargo")
 	public @ResponseBody List<FamiliaresACargoDTO> getFamiliaresACargo() {
 		List<FamiliaresACargoDTO> familiaresACargo = null;
 		try {
@@ -61,43 +68,31 @@ public class AutorizacionController {
 		return familiaresACargo;
 	}
 	
-	@RequestMapping(value = "autorizacion/getEspecialidades")
-	public @ResponseBody List<EspecialidadesDTO> getEspecialidades() {
-		List<EspecialidadesDTO> especialidades = null;
+	@RequestMapping(value = "/autorizacion/getPrestaciones")
+	public @ResponseBody List<PrestacionDTO> getPrestacionesByEspecialidadId(@RequestBody String idEspecialidad) {
+		List<PrestacionDTO> prestaciones = null;
 		try {
-			especialidades = /*service.*/getEspecialidadesTest();
+			prestaciones = service.getPrestacionesByEspecialidadId(Integer.parseInt(idEspecialidad));
 		} catch (Exception e) {
-			
-		}
-		return especialidades;
-	}
-	
-	@RequestMapping(value = "autorizacion/getPrestaciones")
-	public @ResponseBody List<PrestacionesDTO> getPrestaciones() {
-		List<PrestacionesDTO> prestaciones = null;
-		try {
-			prestaciones = /*service.*/getPrestacionesTest();
-		} catch (Exception e) {
-			
 		}
 		return prestaciones;
 	}
 	
-	@RequestMapping(value = "autorizacion/*/getDocumentos")
+	@RequestMapping(value = "/autorizacion/*/getDocumentos")
 	public @ResponseBody List<String> getDocumentos(@RequestBody AutorizacionDocDTO obj) {
 		List<String> documentos = null;
 		try {
-			documentos = /*service.*/getDocumentosTest(obj.getIdEspecialidad(), obj.getIdPrestacion());
+			documentos = service.getDocumentosByEspecialidadYPrestacion(obj.getIdEspecialidad(), obj.getIdPrestacion());
 		} catch (Exception e) {
 		}
 		return documentos;
 	}
 	
-	@RequestMapping(value = "autorizacion/getDocumentos")
+	@RequestMapping(value = "/autorizacion/getDocumentos")
 	public @ResponseBody List<String> getDocumentosAfterError(@RequestBody AutorizacionDocDTO obj) {
 		List<String> documentos = null;
 		try {
-			documentos = /*service.*/getDocumentosTest(obj.getIdEspecialidad(), obj.getIdPrestacion());
+			documentos = service.getDocumentosByEspecialidadYPrestacion(obj.getIdEspecialidad(), obj.getIdPrestacion());
 		} catch (Exception e) {
 		}
 		return documentos;
@@ -108,8 +103,7 @@ public class AutorizacionController {
 		try {
 			view = new ModelAndView("autorizacion");
 			view.addObject("familiaresACargo", getFamiliaresACargo());
-			view.addObject("especialidades", getEspecialidades());
-			view.addObject("prestaciones", getPrestaciones());
+			view.addObject("especialidades", service.getAllEspecialidades());
 			form.setIdAfiliado(idAfiliado);
 			model.addAttribute("autorizacionForm", form);
 		} catch (Exception e) {
@@ -126,81 +120,6 @@ public class AutorizacionController {
 		x.add(new FamiliaresACargoDTO(3, 1, "Familiar 3", "A cargo 3"));
 		x.add(new FamiliaresACargoDTO(4, 1, "Familiar 4", "A cargo 4"));
 		x.add(new FamiliaresACargoDTO(5, 1, "Familiar 5", "A cargo 5"));
-		return x;
-	}
-	
-	private List<EspecialidadesDTO> getEspecialidadesTest() {
-		List<EspecialidadesDTO> x = new ArrayList<EspecialidadesDTO>();
-		x.add(new EspecialidadesDTO(1, "Especialidad 1"));
-		x.add(new EspecialidadesDTO(2, "Especialidad 2"));
-		x.add(new EspecialidadesDTO(3, "Especialidad 3"));
-		x.add(new EspecialidadesDTO(4, "Especialidad 4"));
-		x.add(new EspecialidadesDTO(5, "Especialidad 5"));
-		return x; 
-	}
-	
-	private List<PrestacionesDTO> getPrestacionesTest() {
-		List<PrestacionesDTO> x = new ArrayList<PrestacionesDTO>();
-		x.add(new PrestacionesDTO(1, "Prestación 1"));
-		x.add(new PrestacionesDTO(2, "Prestación 2"));
-		x.add(new PrestacionesDTO(3, "Prestación 3"));
-		x.add(new PrestacionesDTO(4, "Prestación 4"));
-		x.add(new PrestacionesDTO(5, "Prestación 5"));
-		return x;
-	}
-	
-	private List<String> getDocumentosTest(int idEspecialidad, int idPrestacion) {	
-		List<String> x = new ArrayList<String>();
-		
-		for(int i = 0; i < 5; i++) {
-			for(int j = 0; j < 5; j++) {
-				if(i == idEspecialidad && j == idPrestacion)
-					x.add("Test " + i + ":" + j);
-			}
-		}
-		
-		for(int i = 0; i < 5; i++) {
-			for(int j = 0; j < 5; j++) {
-				if(i == idEspecialidad && j == idPrestacion)
-					x.add("Test " + i + ":" + j);
-			}
-		}
-		
-		for(int i = 0; i < 5; i++) {
-			for(int j = 0; j < 5; j++) {
-				if(i == idEspecialidad && j == idPrestacion)
-					x.add("Test " + i + ":" + j);
-			}
-		}
-		
-		for(int i = 0; i < 5; i++) {
-			for(int j = 0; j < 5; j++) {
-				if(i == idEspecialidad && j == idPrestacion)
-					x.add("Test " + i + ":" + j);
-			}
-		}
-		
-		for(int i = 0; i < 5; i++) {
-			for(int j = 0; j < 5; j++) {
-				if(i == idEspecialidad && j == idPrestacion)
-					x.add("Test " + i + ":" + j);
-			}
-		}
-		
-		for(int i = 0; i < 5; i++) {
-			for(int j = 0; j < 5; j++) {
-				if(i == idEspecialidad && j == idPrestacion)
-					x.add("Test " + i + ":" + j);
-			}
-		}
-		
-		for(int i = 0; i < 5; i++) {
-			for(int j = 0; j < 5; j++) {
-				if(i == idEspecialidad && j == idPrestacion)
-					x.add("Test " + i + ":" + j);
-			}
-		}
-		
 		return x;
 	}
 }
