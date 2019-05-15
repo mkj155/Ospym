@@ -4,20 +4,8 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <html>
-  <jsp:include page="./WEB-INF/views/header.jsp" />
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="/OSDEPYM/resources/core/css/fonts.css">
-    <link rel="stylesheet" href="/OSDEPYM/resources/core/css/bootstrap.css">
-    <link rel="stylesheet" href="/OSDEPYM/resources/core/css/main.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
-
-    <title>OSDEPYM</title>
-  </head>
+	<jsp:include page="./WEB-INF/views/header.jsp" />
+  
     <body>
     <section id="hero-carousel">
         <div id="carouselHome" class="carousel slide" data-interval="1000" data-ride="carousel">
@@ -88,7 +76,47 @@
         </h2>
         <div class="news">
             <div class="container">
-                <div class="row row-eq-height" id="rowNews"><div class="col-md-4">  <div class="card">    <img class="card-img-top" src="resources/core/img/novedad25.jpg" alt="Card image cap">    <div class="card-body">        <span class="date">07/05/2019</span>        <h5 class="card-title">El Asma</h5>        <p class="card-text"></p><p><span style="font-size: 18.6667px;">El asma es un <strong>trastorno respiratorio de carácter crónico</strong>. Principalmente, actúa Inflamando y estrechando las vías respiratorias.&nbsp;</span></p><p></p>        <a href="javascript:NavigateTo('novedadHome.htm?idNovedad=25');" class="btn btn-outline-primary">+ info</a>    </div>  </div></div><div class="col-md-4">  <div class="card">    <img class="card-img-top" src="resources/core/img/novedad24.jpg" alt="Card image cap">    <div class="card-body">        <span class="date">06/05/2019</span>        <h5 class="card-title">Cada vez más cerca tuyo</h5>        <p class="card-text"></p><p><span lang="ES" style="font-size: 14pt;">Seguimos creciendo. Nueva Sucursal en el <strong>Centro Despachantes de Aduana</strong>.</span></p><p></p>        <a href="javascript:NavigateTo('novedadHome.htm?idNovedad=24');" class="btn btn-outline-primary">+ info</a>    </div>  </div></div><div class="col-md-4">  <div class="card">    <img class="card-img-top" src="resources/core/img/novedad23.jpg" alt="Card image cap">    <div class="card-body">        <span class="date">29/04/2019</span>        <h5 class="card-title">Llegamos a Formosa</h5>        <p class="card-text"></p><p><span style="font-size: 14pt;">La Cámara de Pequeñas y Medianas Empresas de Formosa (<strong>CAPYMEF</strong>) nos abre sus puertas.</span></p><p></p>        <a href="javascript:NavigateTo('novedadHome.htm?idNovedad=23');" class="btn btn-outline-primary">+ info</a>    </div>  </div></div></div>
+                <div class="row row-eq-height" id="rowNews">
+                	<div class="col-md-4">  
+						<div class="card">    
+							<img class="card-img-top" src="resources/core/img/novedad25.jpg" alt="Card image cap">    
+							<div class="card-body">        
+								<span class="date">07/05/2019</span>        
+								<h5 class="card-title">El Asma</h5>        
+								<p class="card-text"></p>
+								<p><span style="font-size: 14pt;">El asma es un <strong>trastorno respiratorio de carácter crónico</strong>. Principalmente, actúa Inflamando y estrechando las vías respiratorias.&nbsp;</span></p>
+								<p></p>        
+								<a href="javascript:NavigateTo('novedadHome.htm?idNovedad=25');" class="btn btn-outline-primary">+ info</a>    
+							</div>  
+						</div>
+					</div>
+					<div class="col-md-4">  
+						<div class="card">    
+							<img class="card-img-top" src="resources/core/img/novedad24.jpg" alt="Card image cap">    
+							<div class="card-body">        
+								<span class="date">06/05/2019</span>       
+								<h5 class="card-title">Cada vez más cerca tuyo</h5>        
+								<p class="card-text"></p>
+								<p><span style="font-size: 14pt;">Seguimos creciendo. Nueva Sucursal en el <strong>Centro Despachantes de Aduana</strong>.</span></p>
+								<p></p>        
+								<a href="javascript:NavigateTo('novedadHome.htm?idNovedad=24');" class="btn btn-outline-primary">+ info</a>   
+							</div> 
+						</div>
+					</div>
+					<div class="col-md-4">  
+						<div class="card">    
+							<img class="card-img-top" src="resources/core/img/novedad23.jpg" alt="Card image cap">   
+							<div class="card-body">        
+								<span class="date">29/04/2019</span>        
+								<h5 class="card-title">Llegamos a Formosa</h5>        
+								<p class="card-text"></p>
+								<p><span style="font-size: 14pt;">La Cámara de Pequeñas y Medianas Empresas de Formosa (<strong>CAPYMEF</strong>) nos abre sus puertas.</span></p>
+								<p></p>        
+								<a href="javascript:NavigateTo('novedadHome.htm?idNovedad=23');" class="btn btn-outline-primary">+ info</a>   
+							</div>
+						</div>
+					</div>	
+                </div>	
                 <br><br>
                 <div class="text-center">
                     <a role="button" style="border-radius:0px;" href="./app.htm?page=novedadesHome" class="btn btn-lg btn-outline-primary btn-novedades">+ NOVEDADES</a>
@@ -99,20 +127,5 @@
     </section>
 
 	<jsp:include page="./WEB-INF/views/footer.jsp" />
-
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-    <script src="/OSDEPYM/resources/core/js/bootstrap.min.js"></script>
-    <script src="/OSDEPYM/resources/core/js/bootstrap-swipe-carousel.min.js"></script>
-    <script src="/OSDEPYM/resources/core/js/main.js"></script>
-
-    <script>
-        const carouselHome = $('#carouselHome');
-        carouselHome.carousel().swipeCarousel({
-        sensitivity: 'high' // low, medium or high
-    });
-    </script>
   </body>
 </html>

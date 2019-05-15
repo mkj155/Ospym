@@ -1,11 +1,13 @@
 $(document).ready(function() {
-	hideAllTabs();
-	showTab(currentTab); // Display the current tab
-	$("#FieldsRequired").hide();
-	
-	$('select').click(function() {
+	if($("#idFormAutorizacion").length) {
+		hideAllTabs();
+		showTab(currentTab); // Display the current tab
 		$("#FieldsRequired").hide();
-	})
+		
+		$('select').click(function() {
+			$("#FieldsRequired").hide();
+		})
+	}
 });
 
 var currentTab = 0; // Current tab is set to be the first tab (0)

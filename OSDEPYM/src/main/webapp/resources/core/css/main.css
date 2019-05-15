@@ -471,6 +471,7 @@ a:hover .arrow-down,
 
 .card {
     height: 100%;
+    min-height: 530px;
 }
 
 .card .card-img-top {
