@@ -13,14 +13,17 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.osdepym.dto.BeneficiarioDTO;
 import com.osdepym.dto.EspecialidadDTO;
 import com.osdepym.dto.PrestacionDTO;
 import com.osdepym.exception.CustomException;
 import com.osdepym.exception.ErrorMessages;
 import com.osdepym.form.AutorizacionForm;
 import com.osdepym.hibernate.dao.AutorizacionDocDAO;
+import com.osdepym.hibernate.dao.BeneficiarioDAO;
 import com.osdepym.hibernate.dao.EspecialidadDAO;
 import com.osdepym.hibernate.dao.EspecialidadPrestacionDAO;
+import com.osdepym.hibernate.entity.Beneficiario;
 import com.osdepym.hibernate.entity.Contacto;
 import com.osdepym.hibernate.entity.Especialidad;
 import com.osdepym.hibernate.entity.Prestacion;
@@ -51,6 +54,17 @@ public class AutorizacionServiceImpl implements AutorizacionService{
 
 	public void setEspecialidadPrestacionDAO(EspecialidadPrestacionDAO especialidadPrestacionDAO) {
 		this.especialidadPrestacionDAO = especialidadPrestacionDAO;
+	}
+	
+	@Autowired
+	private BeneficiarioDAO beneficiarioDAO ;
+
+	public BeneficiarioDAO getBeneficiarioDAO() {
+		return beneficiarioDAO;
+	}
+
+	public void setBeneficiarioDAO(BeneficiarioDAO beneficiarioDAO) {
+		this.beneficiarioDAO = beneficiarioDAO;
 	}
 	
 	@Autowired
@@ -152,6 +166,32 @@ public class AutorizacionServiceImpl implements AutorizacionService{
 		return documentos;
 	}
 	
+	public List<BeneficiarioDTO> getBeneficiarios(AutorizacionForm form) throws CustomException {
+		List<BeneficiarioDTO> beneficiariosList = new ArrayList<BeneficiarioDTO>();
+		Session session = null;
+		Transaction tx = null;
+		try {
+			session = this.sessionFactory.getCurrentSession();
+			tx = session.beginTransaction();
+			List<Beneficiario> beneficiarios = beneficiarioDAO.getBeneficiariosByIdAfiliado(Integer.valueOf(form.getIdAfiliado()));
+			if (beneficiarios != null) {
+				for (Beneficiario element : beneficiarios) {
+					beneficiariosList.add(entityToDTO(element));
+				}
+			}
+			tx.commit();
+			session.close();
+		} catch (CustomException e) {
+			SessionUtil.rollbackTransaction(session, tx);
+			throw e;
+		} catch (Exception e) {
+			SessionUtil.rollbackTransaction(session, tx);
+			e.printStackTrace();
+			throw new CustomException(e.getMessage(), ErrorMessages.UNKNOWN_ERROR);
+		}
+		return beneficiariosList;
+	}
+	
 	public String procesarContacto(AutorizacionForm autorizacionForm) throws CustomException {
 		String nroTramite = null;
 		Session session = null;
@@ -197,6 +237,10 @@ public class AutorizacionServiceImpl implements AutorizacionService{
 		EspecialidadDTO especialidadDTO = new EspecialidadDTO();
 		BeanUtils.copyProperties(especialidad, especialidadDTO);
 		return especialidadDTO;
+	}
+	private BeneficiarioDTO entityToDTO(Beneficiario beneficiario) {
+		//BeanUtils.copyProperties(beneficiario, beneficiarioDTO);
+		return new BeneficiarioDTO(beneficiario.getIdAfiliado(), beneficiario.getIdTitular(), beneficiario.getApellido(), beneficiario.getNombre());
 	}
 	@Transactional
 	public String getMailByIds(String idEspecialidad, String idPrestacion) throws CustomException{

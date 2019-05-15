@@ -1,6 +1,5 @@
 package com.osdepym.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.osdepym.dto.AutorizacionDocDTO;
-import com.osdepym.dto.FamiliaresACargoDTO;
+import com.osdepym.dto.BeneficiarioDTO;
 import com.osdepym.dto.PrestacionDTO;
 import com.osdepym.form.AutorizacionForm;
 import com.osdepym.service.AutorizacionService;
@@ -31,9 +30,9 @@ public class AutorizacionController {
 	@Qualifier("AutorizacionService")
 	private AutorizacionService service;
 	
-	@RequestMapping(value = "/autorizacion/{idAfiliado}/{nombreAfiliado}", method = RequestMethod.GET)
-	public ModelAndView loadAuthorizationForm(@PathVariable(value = "idAfiliado") String idAfiliado, @PathVariable(value = "nombreAfiliado") String nombreAfiliado, Model model) {
-		ModelAndView view = getAuthorizationFormView(model, new AutorizacionForm(), idAfiliado, nombreAfiliado);
+	@RequestMapping(value = "/autorizacion/{idAfiliado}", method = RequestMethod.GET)
+	public ModelAndView loadAuthorizationForm(@PathVariable(value = "idAfiliado") String idAfiliado, Model model) {
+		ModelAndView view = getAuthorizationFormView(model, new AutorizacionForm(), idAfiliado);
 		return view;
 	}
 	
@@ -42,7 +41,7 @@ public class AutorizacionController {
 		ModelAndView view = null;
 		try {
 			if (result.hasErrors()) {
-				view = getAuthorizationFormView(model, autorizacionForm, autorizacionForm.getIdAfiliado(), autorizacionForm.getNombreAfiliado());
+				view = getAuthorizationFormView(model, autorizacionForm, autorizacionForm.getIdAfiliado());
 			} else {
 				String numeroTramite = service.procesarContacto(autorizacionForm);
 				view = new ModelAndView("autorizacionConExito");
@@ -56,18 +55,18 @@ public class AutorizacionController {
 		return view;	
 	}
 	
-	@RequestMapping(value = "/autorizacion/*/getFamiliaresACargo")
-	public @ResponseBody List<FamiliaresACargoDTO> getFamiliaresACargo(AutorizacionForm form) {
-		List<FamiliaresACargoDTO> familiaresACargo = null;
+	@RequestMapping(value = "/autorizacion/getBeneficiarios")
+	public @ResponseBody List<BeneficiarioDTO> getBeneficiarios(AutorizacionForm form) {
+		List<BeneficiarioDTO> beneficiarios = null;
 		try {
-			familiaresACargo = /*service.*/getFamiliaresACargoTest(form);
+			beneficiarios = service.getBeneficiarios(form);
 		} catch (Exception e) {
 			
 		}
-		return familiaresACargo;
+		return beneficiarios;
 	}
 	
-	@RequestMapping(value = "/autorizacion/*/getPrestaciones")
+	@RequestMapping(value = "/autorizacion/getPrestaciones")
 	public @ResponseBody List<PrestacionDTO> getPrestacionesByEspecialidadId(@RequestBody String idEspecialidad) {
 		List<PrestacionDTO> prestaciones = null;
 		try {
@@ -97,13 +96,20 @@ public class AutorizacionController {
 		return documentos;
 	}
 	
-	private ModelAndView getAuthorizationFormView(Model model, AutorizacionForm form, String idAfiliado, String nombreAfiliado) {
+	private ModelAndView getAuthorizationFormView(Model model, AutorizacionForm form, String idAfiliado) {
 		ModelAndView view = null;
 		try {
 			form.setIdAfiliado(idAfiliado);
-			form.setNombreAfiliado(nombreAfiliado);
+			form.setNombreAfiliado("");
+			List<BeneficiarioDTO> beneficiarios = getBeneficiarios(form);
+			for(BeneficiarioDTO b : beneficiarios) {
+				if(b.getId() == Integer.valueOf(idAfiliado)) {
+					form.setNombreAfiliado(b.getNombreCompleto());
+				}
+			}
+			
 			view = new ModelAndView("autorizacion");
-			view.addObject("familiaresACargo", getFamiliaresACargo(form));
+			view.addObject("beneficiarios", beneficiarios);
 			view.addObject("especialidades", service.getAllEspecialidades());
 			
 			model.addAttribute("autorizacionForm", form);
@@ -114,15 +120,15 @@ public class AutorizacionController {
 		return view;
 	}
 	
-	private List<FamiliaresACargoDTO> getFamiliaresACargoTest(AutorizacionForm form) {
-		List<FamiliaresACargoDTO> x = new ArrayList<FamiliaresACargoDTO>();
+	/*private List<BeneficiarioDTO> getBeneficiariosTest(AutorizacionForm form) {
+		List<BeneficiarioDTO> x = new ArrayList<BeneficiarioDTO>();
 		int idAfiliado = Integer.valueOf(form.getIdAfiliado());
-		x.add(new FamiliaresACargoDTO(idAfiliado, idAfiliado, form.getNombreAfiliado(), ""));
-		x.add(new FamiliaresACargoDTO(2, idAfiliado, "Familiar 1", "A cargo 1"));
-		x.add(new FamiliaresACargoDTO(3, idAfiliado, "Familiar 2", "A cargo 2"));
-		x.add(new FamiliaresACargoDTO(4, idAfiliado, "Familiar 3", "A cargo 3"));
-		x.add(new FamiliaresACargoDTO(5, idAfiliado, "Familiar 4", "A cargo 4"));
-		x.add(new FamiliaresACargoDTO(6, idAfiliado, "Familiar 5", "A cargo 5"));
+		x.add(new BeneficiarioDTO(idAfiliado, idAfiliado, form.getNombreAfiliado(), ""));
+		x.add(new BeneficiarioDTO(2, idAfiliado, "Familiar 1", "A cargo 1"));
+		x.add(new BeneficiarioDTO(3, idAfiliado, "Familiar 2", "A cargo 2"));
+		x.add(new BeneficiarioDTO(4, idAfiliado, "Familiar 3", "A cargo 3"));
+		x.add(new BeneficiarioDTO(5, idAfiliado, "Familiar 4", "A cargo 4"));
+		x.add(new BeneficiarioDTO(6, idAfiliado, "Familiar 5", "A cargo 5"));
 		return x;
-	}
+	}*/
 }

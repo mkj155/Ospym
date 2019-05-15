@@ -58,3 +58,14 @@ INSERT INTO tramites_online.ESPEC_PREST VALUES (1,3,'MAIL_1-1@MAIL.COM');
 INSERT INTO tramites_online.ESPEC_PREST VALUES (2,2,'MAIL_1-1@MAIL.COM');
 INSERT INTO tramites_online.ESPEC_PREST VALUES (2,1,'MAIL_1-1@MAIL.COM');
 
+-------- INICIO: AUTORIZACIONES WEB: PARA PRUEBAS ------------
+
+insert into dbo.Afiliados values(1,1,'Titular apellido','titular nombre');
+insert into dbo.Afiliados values(2,1,'Hijo 1 apellido','Hijo 1 nombre');
+insert into dbo.Afiliados values(3,1,'Hijo 2 apellido','Hijo 2 nombre');
+
+insert into dbo.AfiliadosCobertura values(1,1,'20190101', '20191231');
+insert into dbo.AfiliadosCobertura values(2,1, '20190101', '20191231');
+insert into dbo.AfiliadosCobertura values(3,1, '20190101', '20191231');
+
+-------- FIN: AUTORIZACIONES WEB: PARA PRUEBAS ------------

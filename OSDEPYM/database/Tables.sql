@@ -89,7 +89,24 @@ CREATE TABLE tramites_online.AUTORIZACIONES_DOC (
     DOCUMENTACION		varchar(300)	NULL		
 );
 
+-------- INICIO: AUTORIZACIONES WEB: PARA PRUEBAS ------------
 
+CREATE TYPE [dbo].[Nombre] FROM [varchar](30) NULL;
+CREATE TABLE [dbo].[Afiliados](
+	[Id_Afiliado] [int] NOT NULL,
+	[Id_Titular] [int] NOT NULL,	
+	[Apellido] [varchar](100) NULL,
+	[Nombre] [dbo].[Nombre] NULL
+);
+
+CREATE TABLE [dbo].[AfiliadosCobertura](
+	[Id_Afiliado] [int] NOT NULL,
+	[Id_Titular] [int] NOT NULL,
+	[FechaInicio] [datetime] NOT NULL,
+	[FechaFin] [datetime] NULL
+);
+
+-------- FIN: AUTORIZACIONES WEB: PARA PRUEBAS ------------
 
 ---------EJECUTAR SEPARADO-----------
 

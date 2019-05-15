@@ -36,7 +36,7 @@
                                 </label>
                                 <form:select path="idBeneficiario" class="form-control" id="idBeneficiario" required="true">
 	                                <form:option value="" label=" ${emptyValue} " />
-	                                <form:options items="${familiaresACargo}" itemValue="id" itemLabel="nombreCompleto" />
+	                                <form:options items="${beneficiarios}" itemValue="id" itemLabel="nombreCompleto" />
 	                            </form:select>
 	                            <form:input path="nombreBeneficiario" type="hidden" id="nombreBeneficiario" class="form-control" />
 	                            

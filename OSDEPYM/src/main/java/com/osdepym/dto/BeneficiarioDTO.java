@@ -1,13 +1,13 @@
 package com.osdepym.dto;
 
-public class FamiliaresACargoDTO {
+public class BeneficiarioDTO {
 	private int id;
 	private int titular;
 	private String apellido;
 	private String nombre;
 	private String nombreCompleto;
 	
-	public FamiliaresACargoDTO(int id, int titular, String apellido, String nombre) {
+	public BeneficiarioDTO(int id, int titular, String apellido, String nombre) {
 		this.id = id;
 		this.titular = titular;
 		this.apellido = apellido;
@@ -15,7 +15,7 @@ public class FamiliaresACargoDTO {
 		this.nombreCompleto = new StringBuilder().append(apellido).append(" ").append(nombre).toString();
 	}
 	
-	public FamiliaresACargoDTO() {}
+	public BeneficiarioDTO() {}
 
 	public int getId() {
 		return id;
