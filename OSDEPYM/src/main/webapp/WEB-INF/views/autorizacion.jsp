@@ -25,7 +25,8 @@
 	                <spring:message code='select.label.empty' var="emptyValue" />
                     <spring:message code='message.tooltip.prestador' var="tooltipPrestador"/>
                     <spring:message code='placeholder.prestador' var="placeholderPrestador"/>
-                    <div class="row">
+                    <c:if test="${not empty beneficiarios}">
+   					<div class="row">
                         <!-- AFILIADO -->
                         <div class="col-md-12">
                             <div class="form-group ${status.error ? 'has-error' : ''}">
@@ -87,7 +88,11 @@
 							 </span>
                         </div>
                     </div>
-                    <div id="FieldsRequired" class="alert alert-danger my-4"><spring:message code="message.fields.required" /></div>  
+                    <div id="FieldsRequired" class="alert alert-danger my-4"><spring:message code="message.fields.required" /></div>
+                    </c:if>
+                    <c:if test="${empty beneficiarios}">
+					    <div class="alert alert-danger my-4"><spring:message code="message.beneficiarios.list.isempty" /></div>
+					</c:if>  
 	            </div>
 	            <div class="tab">
 	                <h2><strong><spring:message code="title.autorizacion" /></strong></h2>
