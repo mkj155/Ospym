@@ -31,9 +31,9 @@ public class AutorizacionController {
 	@Qualifier("AutorizacionService")
 	private AutorizacionService service;
 	
-	@RequestMapping(value = "/autorizacion/{idAfiliado}", method = RequestMethod.GET)
-	public ModelAndView loadAuthorizationForm(@PathVariable(value = "idAfiliado") String idAfiliado, Model model) {
-		ModelAndView view = getAuthorizationFormView(model, new AutorizacionForm(), idAfiliado);
+	@RequestMapping(value = "/autorizacion/{idAfiliado}/{nombreAfiliado}", method = RequestMethod.GET)
+	public ModelAndView loadAuthorizationForm(@PathVariable(value = "idAfiliado") String idAfiliado, @PathVariable(value = "nombreAfiliado") String nombreAfiliado, Model model) {
+		ModelAndView view = getAuthorizationFormView(model, new AutorizacionForm(), idAfiliado, nombreAfiliado);
 		return view;
 	}
 	
@@ -42,9 +42,8 @@ public class AutorizacionController {
 		ModelAndView view = null;
 		try {
 			if (result.hasErrors()) {
-				view = getAuthorizationFormView(model, autorizacionForm, autorizacionForm.getIdAfiliado());
+				view = getAuthorizationFormView(model, autorizacionForm, autorizacionForm.getIdAfiliado(), autorizacionForm.getNombreAfiliado());
 			} else {
-				autorizacionForm.setNombreAfiliado("test nmombre afiliado");
 				String numeroTramite = service.procesarContacto(autorizacionForm);
 				view = new ModelAndView("autorizacionConExito");
 				view.addObject("numeroTramite", numeroTramite);
@@ -57,18 +56,18 @@ public class AutorizacionController {
 		return view;	
 	}
 	
-	@RequestMapping(value = "/autorizacion/getFamiliaresACargo")
-	public @ResponseBody List<FamiliaresACargoDTO> getFamiliaresACargo() {
+	@RequestMapping(value = "/autorizacion/*/getFamiliaresACargo")
+	public @ResponseBody List<FamiliaresACargoDTO> getFamiliaresACargo(AutorizacionForm form) {
 		List<FamiliaresACargoDTO> familiaresACargo = null;
 		try {
-			familiaresACargo = /*service.*/getFamiliaresACargoTest();
+			familiaresACargo = /*service.*/getFamiliaresACargoTest(form);
 		} catch (Exception e) {
 			
 		}
 		return familiaresACargo;
 	}
 	
-	@RequestMapping(value = "/autorizacion/getPrestaciones")
+	@RequestMapping(value = "/autorizacion/*/getPrestaciones")
 	public @ResponseBody List<PrestacionDTO> getPrestacionesByEspecialidadId(@RequestBody String idEspecialidad) {
 		List<PrestacionDTO> prestaciones = null;
 		try {
@@ -98,13 +97,15 @@ public class AutorizacionController {
 		return documentos;
 	}
 	
-	private ModelAndView getAuthorizationFormView(Model model, AutorizacionForm form, String idAfiliado) {
+	private ModelAndView getAuthorizationFormView(Model model, AutorizacionForm form, String idAfiliado, String nombreAfiliado) {
 		ModelAndView view = null;
 		try {
-			view = new ModelAndView("autorizacion");
-			view.addObject("familiaresACargo", getFamiliaresACargo());
-			view.addObject("especialidades", service.getAllEspecialidades());
 			form.setIdAfiliado(idAfiliado);
+			form.setNombreAfiliado(nombreAfiliado);
+			view = new ModelAndView("autorizacion");
+			view.addObject("familiaresACargo", getFamiliaresACargo(form));
+			view.addObject("especialidades", service.getAllEspecialidades());
+			
 			model.addAttribute("autorizacionForm", form);
 		} catch (Exception e) {
 			view = new ModelAndView("error");
@@ -113,13 +114,15 @@ public class AutorizacionController {
 		return view;
 	}
 	
-	private List<FamiliaresACargoDTO> getFamiliaresACargoTest() {
+	private List<FamiliaresACargoDTO> getFamiliaresACargoTest(AutorizacionForm form) {
 		List<FamiliaresACargoDTO> x = new ArrayList<FamiliaresACargoDTO>();
-		x.add(new FamiliaresACargoDTO(1, 1, "Familiar 1", "A cargo 1"));
-		x.add(new FamiliaresACargoDTO(2, 1, "Familiar 2", "A cargo 2"));
-		x.add(new FamiliaresACargoDTO(3, 1, "Familiar 3", "A cargo 3"));
-		x.add(new FamiliaresACargoDTO(4, 1, "Familiar 4", "A cargo 4"));
-		x.add(new FamiliaresACargoDTO(5, 1, "Familiar 5", "A cargo 5"));
+		int idAfiliado = Integer.valueOf(form.getIdAfiliado());
+		x.add(new FamiliaresACargoDTO(idAfiliado, idAfiliado, form.getNombreAfiliado(), ""));
+		x.add(new FamiliaresACargoDTO(2, idAfiliado, "Familiar 1", "A cargo 1"));
+		x.add(new FamiliaresACargoDTO(3, idAfiliado, "Familiar 2", "A cargo 2"));
+		x.add(new FamiliaresACargoDTO(4, idAfiliado, "Familiar 3", "A cargo 3"));
+		x.add(new FamiliaresACargoDTO(5, idAfiliado, "Familiar 4", "A cargo 4"));
+		x.add(new FamiliaresACargoDTO(6, idAfiliado, "Familiar 5", "A cargo 5"));
 		return x;
 	}
 }

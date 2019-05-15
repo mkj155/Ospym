@@ -29,14 +29,18 @@
                         <!-- AFILIADO -->
                         <div class="col-md-12">
                             <div class="form-group ${status.error ? 'has-error' : ''}">
+                            	<form:input path="idAfiliado" type="hidden" id="idAfiliado" class="form-control" />
+                            	<form:input path="nombreAfiliado" type="hidden" id="nombreAfiliado" class="form-control" />
                                 <label class="control-label">
                                     <spring:message code="label.afiliado" />
                                 </label>
-                                <form:select path="idAfiliado" class="form-control" id="idAfiliado" required="true">
+                                <form:select path="idBeneficiario" class="form-control" id="idBeneficiario" required="true">
 	                                <form:option value="" label=" ${emptyValue} " />
 	                                <form:options items="${familiaresACargo}" itemValue="id" itemLabel="nombreCompleto" />
 	                            </form:select>
-	                            <form:errors path="idAfiliado" class="control-label" />
+	                            <form:input path="nombreBeneficiario" type="hidden" id="nombreBeneficiario" class="form-control" />
+	                            
+	                            <form:errors path="idBeneficiario" class="control-label" />
                             </div>
                         </div>
                     </div>

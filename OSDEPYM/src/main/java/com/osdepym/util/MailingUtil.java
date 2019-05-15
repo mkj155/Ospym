@@ -1,19 +1,15 @@
 package com.osdepym.util;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.List;
 import java.util.Properties;
 
 import javax.mail.Message;
-import javax.mail.Multipart;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
-import javax.mail.internet.MimeMultipart;
 
 import org.apache.log4j.Logger;
 
@@ -51,31 +47,7 @@ public class MailingUtil {
 			message.setFrom(new InternetAddress(mailTo));
 			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(mailTo));
 			message.setSubject(subject);
-			//message.setText(text);
-			
-			// creates message part
-	        MimeBodyPart messageBodyPart = new MimeBodyPart();
-	        messageBodyPart.setContent(text, "html/text");
-
-	        // creates multi-part
-	        Multipart multipart = new MimeMultipart();
-	        multipart.addBodyPart(messageBodyPart);
-	        
-			if (uploadFiles != null && uploadFiles.size() > 0) {
-	            for (File aFile : uploadFiles) {
-	                MimeBodyPart attachPart = new MimeBodyPart();
-
-	                try {
-	                    attachPart.attachFile(aFile);
-	                } catch (IOException ex) {
-	                    ex.printStackTrace();
-	                }
-
-	                multipart.addBodyPart(attachPart);
-	            }
-	        }
-			
-			message.setContent(multipart);
+			message.setText(text);
 			
 			Transport.send(message);
 			logger.info("mail enviado con exito");

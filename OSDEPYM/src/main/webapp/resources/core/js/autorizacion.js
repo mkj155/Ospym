@@ -17,6 +17,10 @@ $(document).ready(function(readyEvent) {
 		$("#autorizacionForm").find("input[type=text]:visible").filter(function() { if($(this).val()=="") return $(this); })[0].focus();
 	});
 	
+	$("#idBeneficiario").change(function () {
+	    $("#nombreBeneficiario").val($(this).find('option:selected').text());
+	})
+	
 	$("#acceptPrestador").on('click', function() {
 		var wrongFileUpload = false;
 		var totalSize = 0;

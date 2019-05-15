@@ -9,6 +9,7 @@ public class Constants {
 	public static final String TITULAR = "Titular";
 	public static final String TEXTO = "Texto";
 	public static final String CONTACTO = "CONTACTO";
+	public static final String AUTORIZACION = "AUTORIZACIÓN";
 	public static final String ESPECIALIDAD = "Especialidad";
 	public static final String PRESTACION = "Prestación";
 	public static final String PRESTADOR = "Prestador";

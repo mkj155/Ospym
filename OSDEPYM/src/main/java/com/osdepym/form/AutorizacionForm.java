@@ -6,6 +6,21 @@ import java.util.List;
 public class AutorizacionForm {
 
 	private String idAfiliado;
+	private String idBeneficiario;
+	
+	public String getIdBeneficiario() {
+		return idBeneficiario;
+	}
+	public void setIdBeneficiario(String idBeneficiario) {
+		this.idBeneficiario = idBeneficiario;
+	}
+	public String getNombreBeneficiario() {
+		return nombreBeneficiario;
+	}
+	public void setNombreBeneficiario(String nombreBeneficiario) {
+		this.nombreBeneficiario = nombreBeneficiario;
+	}
+	private String nombreBeneficiario;
 	private String idEspecialidad;
 	private String idPrestacion;
 	private String prestador;

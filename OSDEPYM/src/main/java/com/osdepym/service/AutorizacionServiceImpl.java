@@ -170,7 +170,7 @@ public class AutorizacionServiceImpl implements AutorizacionService{
 			MailingUtil mailing = new MailingUtil(); 
 			mailing.sendMailTLS(correo, subject, message, autorizacionForm.getUploadFiles());
 			
-			Contacto contacto = crearContacto(autorizacionForm, autorizacionForm.getIdEspecialidad(), autorizacionForm.getIdPrestacion(), correo, nroTramite, "Autorizacion");
+			Contacto contacto = crearContacto(autorizacionForm, autorizacionForm.getIdEspecialidad(), autorizacionForm.getIdPrestacion(), correo, nroTramite, "Autorización");
 			saveContacto(contacto);
 			
 			tx.commit();
@@ -258,11 +258,13 @@ public class AutorizacionServiceImpl implements AutorizacionService{
 	private String getMessage(AutorizacionForm autorizacionForm, String especialidad, String prestacion) {
 		StringBuilder sb = new StringBuilder();
 
-		sb.append(Constants.TIPO_TRAMITE).append(": ").append(Constants.CONTACTO).append("\n");
+		sb.append(Constants.TIPO_TRAMITE).append(": ").append(Constants.AUTORIZACION).append("\n");
 		sb.append(Constants.ESPECIALIDAD).append(": ").append(especialidad).append("\n");
 		sb.append(Constants.PRESTACION).append(": ").append(prestacion).append("\n");
+		sb.append(Constants.PRESTADOR).append(": ").append(autorizacionForm.getPrestador()).append("\n");
+		sb.append(Constants.COMENTARIOS_ADICIONALES).append(": ").append(autorizacionForm.getComentario()).append("\n");
 		sb.append(Constants.TITULAR).append(": ").append(autorizacionForm.getIdAfiliado()).append(" - ").append(autorizacionForm.getNombreAfiliado().toUpperCase()).append("\n");
-		sb.append(Constants.TEXTO).append(": ").append(autorizacionForm.getComentario()).append("\n");
+		sb.append(Constants.BENEFICIARIO).append(": ").append(autorizacionForm.getIdBeneficiario()).append(" - ").append(autorizacionForm.getNombreBeneficiario().toUpperCase()).append("\n");
 
 		return sb.toString();
 	}
@@ -270,7 +272,7 @@ public class AutorizacionServiceImpl implements AutorizacionService{
 	private String getSubject(AutorizacionForm autorizacionForm, String nroTramite) {
 		StringBuilder sb = new StringBuilder();
 		
-		sb.append(Constants.CONTACTO).append(" - ");
+		sb.append(Constants.AUTORIZACION).append(" - ");
 		sb.append(nroTramite).append(" - ");
 		sb.append(autorizacionForm.getIdAfiliado()).append(" - ");
 		sb.append(autorizacionForm.getNombreAfiliado().toUpperCase());
@@ -283,6 +285,8 @@ public class AutorizacionServiceImpl implements AutorizacionService{
 		
 		contacto.setIdtramite(nroTramite);
 		contacto.setIdAfiliado(autorizacionForm.getIdAfiliado());
+		contacto.setIdBenef(autorizacionForm.getIdBeneficiario());
+		contacto.setNombreBenef(autorizacionForm.getNombreBeneficiario());
 		//contacto.setIdMotivo(Integer.valueOf(idEspecialidad));
 		//contacto.setIdCategoria(Integer.valueOf(idPrestacion));
 		contacto.setIdEspecialidad(Integer.valueOf(idEspecialidad));
