@@ -4,14 +4,22 @@ import java.io.File;
 import java.util.List;
 import java.util.Properties;
 
+import javax.activation.DataHandler;
+import javax.activation.DataSource;
+import javax.activation.FileDataSource;
+import javax.mail.BodyPart;
 import javax.mail.Message;
+import javax.mail.Multipart;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMultipart;
 
 import org.apache.log4j.Logger;
+import org.springframework.web.multipart.MultipartFile;
 
 public class MailingUtil {
 	
@@ -22,7 +30,7 @@ public class MailingUtil {
 		sendMailTLS(mailTo, subject, text, null);
 	}
 
-	public void sendMailTLS(String mailTo, String subject, String text, List<File> uploadFiles) {
+	public void sendMailTLS(String mailTo, String subject, String text, MultipartFile[] uploadFiles) {
 		
 		try {
 			Properties props = new Properties();
@@ -47,7 +55,34 @@ public class MailingUtil {
 			message.setFrom(new InternetAddress(mailTo));
 			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(mailTo));
 			message.setSubject(subject);
-			message.setText(text);
+			
+			
+			// Create the message part
+	         BodyPart messageBodyPart = new MimeBodyPart();
+
+	         // Now set the actual message
+	         messageBodyPart.setText(text);
+
+	         // Create a multipar message
+	         Multipart multipart = new MimeMultipart();
+
+	         // Set text message part
+	         multipart.addBodyPart(messageBodyPart);
+
+	         // Part two is attachment
+	         if(uploadFiles != null) {
+	        	 for(int i = 0 ; i < uploadFiles.length ; i++) {
+	    	         messageBodyPart = new MimeBodyPart();
+	    	         String filename = uploadFiles[i].getOriginalFilename();
+	    	         DataSource source = new FileDataSource(filename);
+	    	         messageBodyPart.setDataHandler(new DataHandler(source));
+	    	         messageBodyPart.setFileName(filename);
+	    	         multipart.addBodyPart(messageBodyPart);
+	        	 }
+	         }
+
+	         // Send the complete message parts
+	         message.setContent(multipart);
 			
 			Transport.send(message);
 			logger.info("mail enviado con exito");

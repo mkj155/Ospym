@@ -12,6 +12,7 @@ import org.hibernate.Transaction;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.osdepym.dto.EspecialidadDTO;
 import com.osdepym.dto.PrestacionDTO;
@@ -152,7 +153,7 @@ public class AutorizacionServiceImpl implements AutorizacionService{
 		return documentos;
 	}
 	
-	public String procesarContacto(AutorizacionForm autorizacionForm) throws CustomException {
+	public String procesarContacto(AutorizacionForm autorizacionForm, MultipartFile[] files) throws CustomException {
 		String nroTramite = null;
 		Session session = null;
 		Transaction tx = null;
@@ -168,7 +169,7 @@ public class AutorizacionServiceImpl implements AutorizacionService{
 			String subject = getSubject(autorizacionForm, nroTramite);
 			
 			MailingUtil mailing = new MailingUtil(); 
-			mailing.sendMailTLS(correo, subject, message, autorizacionForm.getUploadFiles());
+			mailing.sendMailTLS(correo, subject, message, files);
 			
 			Contacto contacto = crearContacto(autorizacionForm, autorizacionForm.getIdEspecialidad(), autorizacionForm.getIdPrestacion(), correo, nroTramite, "Autorización");
 			saveContacto(contacto);
