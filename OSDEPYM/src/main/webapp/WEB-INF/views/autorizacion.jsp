@@ -19,7 +19,7 @@
         <div class="container page page-cartilla">
             <div class="container col-md-6">
             <spring:url value="/autorizacion/send" var="enviarUrl" />
-            <form:form class="form-cartilla custom-form" method="post" modelAttribute="autorizacionForm" action="${enviarUrl}">
+            <form:form class="form-cartilla custom-form" method="post" modelAttribute="autorizacionForm" action="${enviarUrl}"  enctype="multipart/form-data">
             	<div class="tab">
 	                <h2><strong><spring:message code="title.autorizacion" /></strong></h2>	
 	                <spring:message code='select.label.empty' var="emptyValue" />
@@ -126,7 +126,7 @@
                     <!-- COMENTARIO -->
 	                    <div class="col-md-12">
 	                        <div class="form-group ${status.error ? 'has-error' : ''}">
-								<form:input path="uploadFiles" type="file" id="uploadFile" class="btn-file" name="FileUpload" multiple="multiple"  size="50"/>
+								<form:input path="uploadFiles" type="file" id="uploadFile" class="btn-file" name="uploadFiles" multiple="multiple" size="50"/>
 				      			<button class="btn btn-primary btn-lg" id="buttonUploadFile">
 				      			  	<spring:message code="label.uploadfile" />
 						  		</button>

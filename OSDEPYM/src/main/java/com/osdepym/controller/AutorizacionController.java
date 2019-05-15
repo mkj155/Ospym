@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -37,13 +39,13 @@ public class AutorizacionController {
 	}
 	
 	@RequestMapping(value = "/autorizacion/send", method = RequestMethod.POST)
-	public ModelAndView submitAuthorizationForm(@ModelAttribute("autorizacionForm") @Validated AutorizacionForm autorizacionForm, BindingResult result, Model model, final RedirectAttributes redirectAttributes) {
+	public ModelAndView submitAuthorizationForm(@RequestParam("uploadFiles") MultipartFile[] uploadFiles, @ModelAttribute("autorizacionForm") @Validated AutorizacionForm autorizacionForm, BindingResult result, Model model, final RedirectAttributes redirectAttributes) {
 		ModelAndView view = null;
 		try {
 			if (result.hasErrors()) {
 				view = getAuthorizationFormView(model, autorizacionForm, autorizacionForm.getIdAfiliado());
 			} else {
-				String numeroTramite = service.procesarContacto(autorizacionForm);
+				String numeroTramite = service.procesarContacto(autorizacionForm, uploadFiles);
 				view = new ModelAndView("autorizacionConExito");
 				view.addObject("numeroTramite", numeroTramite);
 				redirectAttributes.addFlashAttribute("css", "success");

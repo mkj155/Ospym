@@ -1,7 +1,6 @@
 package com.osdepym.form;
 
-import java.io.File;
-import java.util.List;
+import org.springframework.web.multipart.MultipartFile;
 
 public class AutorizacionForm {
 
@@ -26,7 +25,7 @@ public class AutorizacionForm {
 	private String prestador;
 	private String comentario;
 	private String nombreAfiliado;
-	private List<File> uploadFiles;
+	private MultipartFile[] uploadFiles;
 	
 	public String getIdAfiliado() {
 		return idAfiliado;
@@ -64,10 +63,10 @@ public class AutorizacionForm {
 	public void setNombreAfiliado(String nombreAfiliado) {
 		this.nombreAfiliado = nombreAfiliado;
 	}
-	public List<File> getUploadFiles() {
+	public MultipartFile[] getUploadFiles() {
 		return uploadFiles;
 	}
-	public void setUploadFiles(List<File> uploadFiles) {
+	public void setUploadFiles(MultipartFile[] uploadFiles) {
 		this.uploadFiles = uploadFiles;
 	}
 }
