@@ -1,0 +1,11 @@
+-------- INICIO: AUTORIZACIONES WEB: PARA PRUEBAS ------------
+
+create view [dbo].[v_familiares_a_cargo] as
+select a.Id_Afiliado, a.Id_Titular, a.Apellido, a.Nombre
+from afiliadoscobertura ac, 
+     afiliados a
+where FechaInicio <= GETDATE()
+and isnull(FechaFin,'20991231') >= GETDATE()
+and ac.Id_Afiliado = a.Id_Afiliado;
+
+-------- FIN: AUTORIZACIONES WEB: PARA PRUEBAS ------------
