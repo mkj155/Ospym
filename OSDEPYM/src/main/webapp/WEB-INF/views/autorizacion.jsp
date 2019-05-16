@@ -10,7 +10,7 @@
         <div class="container page page-cartilla">
             <div class="container col-md-6">
             <spring:url value="/autorizacion/send" var="enviarUrl" />
-            <form:form class="form-cartilla custom-form" method="post" id="idFormAutorizacion" modelAttribute="autorizacionForm" action="${enviarUrl}"  enctype="multipart/form-data">
+            <form:form class="form-cartilla custom-form" method="post" id="autorizacionForm" modelAttribute="autorizacionForm" action="${enviarUrl}"  enctype="multipart/form-data">
             	<div class="tab">
 	                <h2><strong><spring:message code="title.autorizacion" /></strong></h2>	
 	                <spring:message code='select.label.empty' var="emptyValue" />

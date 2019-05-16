@@ -1,5 +1,5 @@
 $(document).ready(function() {
-	if($("#idFormAutorizacion").length) {
+	if($("#autorizacionForm").length) {
 		hideAllTabs();
 		showTab(currentTab); // Display the current tab
 		$("#FieldsRequired").hide();
