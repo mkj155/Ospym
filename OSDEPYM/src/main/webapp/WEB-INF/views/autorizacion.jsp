@@ -116,8 +116,8 @@
                     <div class="row">
                     <!-- COMENTARIO -->
 	                    <div class="col-md-12">
-	                        <div class="form-group ${status.error ? 'has-error' : ''}">
-								<form:input path="uploadFiles" type="file" id="uploadFile" class="btn-file" name="uploadFiles" multiple="multiple" size="50"/>
+	                        <div id="file-container" class="form-group ${status.error ? 'has-error' : ''}">
+								<form:input path="uploadFiles" type="file" id="uploadFile" class="btn-file" name="uploadFiles" size="50"/>
 				      			<button class="btn btn-primary btn-lg" id="buttonUploadFile">
 				      			  	<spring:message code="label.uploadfile" />
 						  		</button>

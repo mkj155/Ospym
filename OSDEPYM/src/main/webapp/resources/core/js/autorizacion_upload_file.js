@@ -44,6 +44,9 @@ $(document).ready(function(readyEvent) {
       $("#upload_prev").append('<span class="filenameupload" id="file_'+index+'">' + files[i].name + ' ('+ formatBytes(files[i].size,0) +')<span class="close">&times;</span><br/></span>');
       uploadFiles['file_'+index] = files[i];
       index++;
+      var inputClone = $( "#uploadFile" ).clone();
+      inputClone.removeAttr('id');
+      inputClone.appendTo( "#file-container" );
     }
     
     if ($(".filenameupload")[0]){
