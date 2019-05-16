@@ -2,7 +2,10 @@ var uploadFiles = new Object();
 var index = 0;
 $(document).ready(function(readyEvent) {
   $(document).on('click', '.close', function(closeEvent) {
-    $(this).parents('span').remove();
+	var elem = $(this).parents('span');
+	var idElem = $(elem).attr('id');
+	$("#input_" + idElem).remove();
+    $(elem).remove();
     var fileInput = $('#uploadFile')[0];
     var files = fileInput.files;
     var id = closeEvent.target.id;
@@ -43,10 +46,11 @@ $(document).ready(function(readyEvent) {
     for (var i = 0; i < files.length; i++) {
       $("#upload_prev").append('<span class="filenameupload" id="file_'+index+'">' + files[i].name + ' ('+ formatBytes(files[i].size,0) +')<span class="close">&times;</span><br/></span>');
       uploadFiles['file_'+index] = files[i];
-      index++;
+      
       var inputClone = $( "#uploadFile" ).clone();
-      inputClone.removeAttr('id');
+      inputClone.attr('id', 'input_file_'+index);
       inputClone.appendTo( "#file-container" );
+      index++;
     }
     
     if ($(".filenameupload")[0]){
