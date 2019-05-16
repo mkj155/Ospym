@@ -71,11 +71,11 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12 align-middle">
-                            <span class="float-left">
-						         <button type="button" id="nextBtn" class="btn btn-primary btn-lg btn-block btn-form" onclick="nextPrev(1)"><spring:message code="button.next" /></button>
+                            <span class="float-right">
+						         <button type="button" id="nextBtn" class="btn btn-primary btn-lg btn-block btn-form ml-2" onclick="nextPrev(1)"><spring:message code="button.next" /></button>
  							</span>
                            	 <span class="float-right">
-							     <button type="button" class="btn btn-outline-primary btn-lg btn-block btn-form"  onclick="location.href='/OSDEPYM/'"><spring:message code="button.cancel" /></button>
+							     <button type="button" class="btn btn-outline-primary btn-lg btn-block btn-form" onclick="location.href='/OSDEPYM/'"><spring:message code="button.cancel" /></button>
 							 </span>
                         </div>
                     </div>
@@ -143,10 +143,10 @@
                     <div class="row">
                         <div class="col-md-12 align-middle text-right">
                             <span class="pr-1">
-						         <button type="button" class="btn btn-primary btn-lg mt-0 btn-form" id="acceptPrestador"><spring:message code="button.accept" /></button>
+						         <button type="button" class="btn btn-primary btn-lg mt-2 btn-form" id="acceptPrestador"><spring:message code="button.accept" /></button>
 							</span>
                            	 <span class="pl-1">
-							     <button type="button" class="btn btn-outline-primary btn-lg mt-0 btn-form" onclick="location.href='/OSDEPYM/'"><spring:message code="button.cancel" /></button>
+							     <button type="button" class="btn btn-outline-primary btn-lg mt-2 btn-form" onclick="location.href='/OSDEPYM/'"><spring:message code="button.cancel" /></button>
 							 </span>
                         </div>
                     </div>
