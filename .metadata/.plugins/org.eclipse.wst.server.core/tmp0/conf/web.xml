@@ -4673,7 +4673,7 @@
         <extension>zmm</extension>
         <mime-type>application/vnd.handheld-entertainment+xml</mime-type>
     </mime-mapping>
-		
+
   <!-- ==================== Default Welcome File List ===================== -->
   <!-- When a request URI refers to a directory, the default servlet looks  -->
   <!-- for a "welcome file" within that directory and, if present, to the   -->
@@ -4693,12 +4693,5 @@
         <welcome-file>index.htm</welcome-file>
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
-	<error-page>
-	  <error-code>500</error-code>
-	  <location>/WEB-INF/views/errorPageNotFound.jsp</location>
-	</error-page>
-	<error-page>
-	  <error-code>404</error-code>
-	  <location>/WEB-INF/views/errorPageNotFound.jsp</location>
-	</error-page>
+
 </web-app>
