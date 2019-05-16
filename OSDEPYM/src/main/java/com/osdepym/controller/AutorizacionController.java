@@ -78,6 +78,17 @@ public class AutorizacionController {
 		return prestaciones;
 	}
 	
+	@RequestMapping(value = "/autorizacion/*/getPrestaciones")
+	public @ResponseBody List<PrestacionDTO> getPrestacionesByEspecialidadIdAfterError(@RequestBody String idEspecialidad) {
+		List<PrestacionDTO> prestaciones = null;
+		try {
+			prestaciones = service.getPrestacionesByEspecialidadId(Integer.parseInt(idEspecialidad));
+		} catch (Exception e) {
+		
+		}
+		return prestaciones;
+	}
+	
 	@RequestMapping(value = "/autorizacion/*/getDocumentos")
 	public @ResponseBody List<String> getDocumentos(@RequestBody AutorizacionDocDTO obj) {
 		List<String> documentos = null;
