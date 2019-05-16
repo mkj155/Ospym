@@ -1,0 +1,2 @@
+INDEX VERSION 1.4+C:\Users\PC\Documents\PiTu^^\Laburo\VAS\OSDEPYM\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
+2161404796.index

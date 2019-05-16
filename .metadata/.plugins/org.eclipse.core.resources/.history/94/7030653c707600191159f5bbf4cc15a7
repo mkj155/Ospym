@@ -1,0 +1,88 @@
+package com.osdepym.util;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.List;
+import java.util.Properties;
+
+import javax.mail.Message;
+import javax.mail.Multipart;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeBodyPart;
+import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMultipart;
+
+import org.apache.log4j.Logger;
+
+public class MailingUtil {
+	
+	private static final Logger logger = Logger.getLogger(MailingUtil.class);
+	private String fileName = "parameter.properties";
+	
+	public void sendMailTLS(String mailTo, String subject, String text) {
+		sendMailTLS(mailTo, subject, text, null);
+	}
+
+	public void sendMailTLS(String mailTo, String subject, String text, List<File> uploadFiles) {
+		
+		try {
+			Properties props = new Properties();
+			logger.info("intentando cargar archivo: " + fileName);
+			Properties parameters = ReadPropertyFile.readFile(fileName);
+			props.setProperty("mail.smtp.auth", parameters.getProperty("mail.smtp.auth"));
+			props.setProperty("mail.smtp.starttls.enable", parameters.getProperty("mail.smtp.starttls.enable"));
+			props.setProperty("mail.smtp.host", parameters.getProperty("mail.smtp.host"));
+			props.setProperty("mail.smtp.port", parameters.getProperty("mail.smtp.port"));
+			
+			String username = parameters.getProperty("username");
+			String password = parameters.getProperty("password");
+
+			logger.info("autenticando sesion");
+			Session session = Session.getInstance(props, new javax.mail.Authenticator() {
+				protected PasswordAuthentication getPasswordAuthentication() {
+					return new PasswordAuthentication(username, password);
+				}
+			});
+			
+			Message message = new MimeMessage(session);
+			message.setFrom(new InternetAddress(mailTo));
+			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(mailTo));
+			message.setSubject(subject);
+			message.setText(text);
+			
+			// creates message part
+	        MimeBodyPart messageBodyPart = new MimeBodyPart();
+	        messageBodyPart.setContent(message, "multipart/mixed");
+
+	        // creates multi-part
+	        Multipart multipart = new MimeMultipart();
+	        multipart.addBodyPart(messageBodyPart);
+	        
+			if (uploadFiles != null && uploadFiles.size() > 0) {
+	            for (File aFile : uploadFiles) {
+	                MimeBodyPart attachPart = new MimeBodyPart();
+
+	                try {
+	                    attachPart.attachFile(aFile);
+	                } catch (IOException ex) {
+	                    ex.printStackTrace();
+	                }
+
+	                multipart.addBodyPart(attachPart);
+	            }
+	        }
+			
+			message.setContent(multipart);
+			
+			Transport.send(message);
+			logger.info("mail enviado con exito");
+		} catch (Exception e) {
+			logger.error("error en el envio del mail ", e);
+			throw new RuntimeException(e);
+		}
+	}
+	
+}

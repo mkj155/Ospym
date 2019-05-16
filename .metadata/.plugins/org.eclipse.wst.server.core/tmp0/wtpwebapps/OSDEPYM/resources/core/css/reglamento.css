@@ -1,0 +1,32 @@
+@media (max-width: 768px) {
+    .ol-reglamento {
+		margin-top: 0;
+	    margin-bottom: 1rem;
+	    margin-left: -7%;
+	}   
+	
+	.content-reglamento {
+		text-align: justify;
+		font-size: 14px;
+		padding-left: 0 !important;
+	}
+}
+
+@media (max-width: 1024px) {
+    .ol-reglamento {
+		margin-top: 0;
+	    margin-bottom: 1rem;
+	    margin-left: -7%;
+	}
+	
+	.content-reglamento {
+		text-align: justify;
+		font-size: 14px;
+		padding-left: 0 !important;	
+	}
+}
+
+.content-reglamento {
+	text-align: justify;
+	padding-left: 25px;	
+}

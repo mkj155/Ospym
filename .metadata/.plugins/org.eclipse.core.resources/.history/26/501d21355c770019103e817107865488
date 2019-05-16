@@ -1,0 +1,60 @@
+# Mensajes
+message.empty.motivo=Debe seleccionar un motivo.
+message.empty.afiliado=Debe seleccionar un afiliado.
+message.empty.categoria=Debe seleccionar una categor&iacute;a.
+message.empty.comentario=Debe ingresar un comentario.
+message.empty.plan=No hay registros para este plan
+message.procedurenumber.tramite=Su n&uacute;mero de tr&aacute;mite es:
+message.success.tramite=A partir de ahora su solicitud ser&aacute; procesada y a la brevedad nos comunicaremos con usted para informarle el resultado de la misma. <br />Por favor recuerde mantener sus datos de contacto actualizados.<br />¡Muchas gracias! 
+message.success.tramite.autorizacion=Su solicitud ser&aacute; procesada y dentro de las 72 hs. le enviaremos un mail con el resultado de la misma. <br /><br />En caso que requiramos documentaci&oacute;n adicional, nos comunicaremos con usted telef&oacutenicamente. <br /><br />Por favor recuerde mantener sus datos de contacto actualizados. <br /><br />¡Muchas gracias!
+message.upload.file.required=Se debe adjuntar la siguiente documentaci&oacute;n requerida para su tr&aacute;mite
+message.upload.doc.prescripcion=Prescripci&oacute;n M&eacute;dica
+message.upload.doc.historiaclinica=Breve historia cl&iacute;nica
+message.uploadfile=(Tama&ntilde;o m&aacute;ximo 3 MB por archivo y hasta 24 MB totales)
+message.tooltip.prestador=Prestador donde se realizará la prestación
+message.popup.prestador.1=Si no ingresa un prestador donde se realizar&aacute; la prestaci&oacute;n, se le asignar&aacute; uno.
+message.popup.prestador.2=En caso que desee especificar un prestador, presione Cancelar.
+message.upload.file.error=Los archivos no pueden tener m&aacute;s de 3 MB cada uno y hasta 24 MB total
+message.document.not.exist=No existen documentos asociados a la especialidad y prestaci&oacute;n seleccionada.
+message.fields.required=Debe completar los campos para poder continuar
+message.beneficiarios.list.isempty=No existen beneficiarios para el afiliado en cuesti&oacute;n
+
+# Titulos
+title.success.tramite=¡Tr&aacute;mite ingresado con &eacute;xito!
+title.canaldecontacto=Canal de contacto
+title.autorizacion=Autorizaci&oacute;n
+title.aviso=Aviso
+
+# Labels
+label.afiliado=Afiliado
+label.comentario=Comentario
+label.comentarios.adicionales=Comentarios adicionales
+label.especialidad=Especialidad
+label.prestacion=Prestaci&oacute;n
+label.prestador=Prestador
+label.uploadfile=Adjuntar archivos
+
+# Selects
+select.label.categoria=Categor&iacute;a
+select.label.empty=Seleccionar
+select.label.motivo=Motivo
+
+# Botones
+button.send=Enviar
+button.backtomenu=Volver al men&uacute;
+button.cancel=Cancelar
+button.next=Siguiente
+button.accept=Aceptar
+
+# Error
+error.url.notexist=P&aacute;gina no encontrada
+error.internal.error=Error interno
+error.unknow.error=Se ha producido un error inesperado, intentelo de nuevo mas tarde.
+error.database.get.error=Error al intentar obtener registro, intentelo de nuevo mas tarde.
+error.database.save.error=Error al intentar guardar registro, intentelo de nuevo mas tarde.
+error.database.delete.error=Error al intentar borrar registro, intentelo de nuevo mas tarde.
+error.load.contact.error=Se ha producido un error al cargar el formulario, intentelo de nuevo mas tarde.	
+error.process.contact.error=Se ha producido un error al procesar el formulario, intentelo de nuevo mas tarde.
+
+# Placeholders
+placeholder.prestador=Lugar donde se realizará la prestación

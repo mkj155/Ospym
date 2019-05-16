@@ -1,0 +1,149 @@
+package com.osdepym.controller;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import com.osdepym.dto.AutorizacionDocDTO;
+import com.osdepym.dto.EspecialidadesDTO;
+import com.osdepym.dto.FamiliaresACargoDTO;
+import com.osdepym.dto.PrestacionesDTO;
+import com.osdepym.form.AutorizacionForm;
+
+@Controller
+public class AutorizacionController {
+	
+	@RequestMapping(value = "/autorizacion/{idAfiliado}", method = RequestMethod.GET)
+	public ModelAndView loadAuthorizationForm(@PathVariable(value = "idAfiliado") String idAfiliado, Model model) {
+		ModelAndView view = getAuthorizationFormView(model, new AutorizacionForm(), idAfiliado);
+		return view;
+	}
+	
+	@RequestMapping(value = "/autorizacion/send", method = RequestMethod.POST)
+	public ModelAndView submitAuthorizationForm(@ModelAttribute("autorizacionForm") @Validated AutorizacionForm autorizacionForm, BindingResult result, Model model, final RedirectAttributes redirectAttributes) {
+		ModelAndView view = null;
+		try {
+			if (result.hasErrors()) {
+				view = getAuthorizationFormView(model, autorizacionForm, autorizacionForm.getIdAfiliado());
+			} else {
+				String numeroTramite = "11111";//service.procesarContacto(contactoForm);
+				view = new ModelAndView("autorizacionConExito");
+				view.addObject("numeroTramite", numeroTramite);
+				redirectAttributes.addFlashAttribute("css", "success");
+			}
+		} catch (Exception e) {
+			view = new ModelAndView("error");
+			view.addObject("error", e);
+		}
+		return view;	
+	}
+	
+	@RequestMapping(value = "autorizacion/getFamiliaresACargo")
+	public @ResponseBody List<FamiliaresACargoDTO> getFamiliaresACargo() {
+		List<FamiliaresACargoDTO> familiaresACargo = null;
+		try {
+			familiaresACargo = /*service.*/getFamiliaresACargoTest();
+		} catch (Exception e) {
+			
+		}
+		return familiaresACargo;
+	}
+	
+	@RequestMapping(value = "autorizacion/getEspecialidades")
+	public @ResponseBody List<EspecialidadesDTO> getEspecialidades() {
+		List<EspecialidadesDTO> especialidades = null;
+		try {
+			especialidades = /*service.*/getEspecialidadesTest();
+		} catch (Exception e) {
+			
+		}
+		return especialidades;
+	}
+	
+	@RequestMapping(value = "autorizacion/getPrestaciones")
+	public @ResponseBody List<PrestacionesDTO> getPrestaciones() {
+		List<PrestacionesDTO> prestaciones = null;
+		try {
+			prestaciones = /*service.*/getPrestacionesTest();
+		} catch (Exception e) {
+			
+		}
+		return prestaciones;
+	}
+	
+	@RequestMapping(value = "autorizacion/*/getDocumentos")
+	public @ResponseBody List<String> getDocumentos(@RequestBody String idEspecialidad, @RequestBody String idPrestacion) {
+		List<String> documentos = null;
+		try {
+			documentos = /*service.*/getDocumentosTest(idEspecialidad, idPrestacion);
+		} catch (Exception e) {
+		}
+		return documentos;
+	}
+	
+	private ModelAndView getAuthorizationFormView(Model model, AutorizacionForm form, String idAfiliado) {
+		ModelAndView view = null;
+		try {
+			view = new ModelAndView("autorizacion");
+			view.addObject("familiaresACargo", getFamiliaresACargo());
+			view.addObject("especialidades", getEspecialidades());
+			view.addObject("prestaciones", getPrestaciones());
+			form.setIdAfiliado(idAfiliado);
+			model.addAttribute("autorizacionForm", form);
+		} catch (Exception e) {
+			view = new ModelAndView("error");
+			view.addObject("error", e);
+		}
+		return view;
+	}
+	
+	private List<FamiliaresACargoDTO> getFamiliaresACargoTest() {
+		List<FamiliaresACargoDTO> x = new ArrayList<FamiliaresACargoDTO>();
+		x.add(new FamiliaresACargoDTO(1, 1, "Familiar 1", "A cargo 1"));
+		x.add(new FamiliaresACargoDTO(2, 1, "Familiar 2", "A cargo 2"));
+		x.add(new FamiliaresACargoDTO(3, 1, "Familiar 3", "A cargo 3"));
+		x.add(new FamiliaresACargoDTO(4, 1, "Familiar 4", "A cargo 4"));
+		x.add(new FamiliaresACargoDTO(5, 1, "Familiar 5", "A cargo 5"));
+		return x;
+	}
+	
+	private List<EspecialidadesDTO> getEspecialidadesTest() {
+		List<EspecialidadesDTO> x = new ArrayList<EspecialidadesDTO>();
+		x.add(new EspecialidadesDTO(1, "Especialidad 1"));
+		x.add(new EspecialidadesDTO(2, "Especialidad 2"));
+		x.add(new EspecialidadesDTO(3, "Especialidad 3"));
+		x.add(new EspecialidadesDTO(4, "Especialidad 4"));
+		x.add(new EspecialidadesDTO(5, "Especialidad 5"));
+		return x; 
+	}
+	
+	private List<PrestacionesDTO> getPrestacionesTest() {
+		List<PrestacionesDTO> x = new ArrayList<PrestacionesDTO>();
+		x.add(new PrestacionesDTO(1, "Prestación 1"));
+		x.add(new PrestacionesDTO(2, "Prestación 2"));
+		x.add(new PrestacionesDTO(3, "Prestación 3"));
+		x.add(new PrestacionesDTO(4, "Prestación 4"));
+		x.add(new PrestacionesDTO(5, "Prestación 5"));
+		return x;
+	}
+	
+	private List<String> getDocumentosTest(String idEspecialidad, String idPrestacion) {
+		List<String> x = new ArrayList<String>();
+		x.add("Test 1");
+		x.add("Test 2");
+		x.add("Test 3");
+		return x;
+	}
+}

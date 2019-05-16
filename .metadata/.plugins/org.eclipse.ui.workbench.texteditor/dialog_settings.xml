@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
+		<item key="selection" value="26214401"/>
+		<item key="wrap" value="true"/>
+		<item key="casesensitive" value="false"/>
+		<item key="wholeword" value="false"/>
+		<item key="incremental" value="false"/>
+		<item key="isRegEx" value="false"/>
+		<list key="findhistory">
+			<item value="26214401"/>
+			<item value="index++;"/>
+			<item value="getPresta"/>
+			<item value=".btn-lg"/>
+			<item value=":hover"/>
+			<item value=".card"/>
+			<item value="getBeneficiariosByIdAfiliado"/>
+			<item value="FamiliaresACargoDTO"/>
+			<item value="font-size: 16"/>
+			<item value="h1"/>
+			<item value="#main"/>
+			<item value=" col-md-offset-5"/>
+			<item value="controler"/>
+			<item value="controller"/>
+			<item value="empty"/>
+		</list>
+		<list key="replacehistory">
+			<item value="BeneficiarioDTO"/>
+			<item value=" col-md-offset-1"/>
+			<item value="col-md-offset-1"/>
+			<item value="ntilde"/>
+			<item value="&amp;Nacute;"/>
+			<item value="&amp;nacute;"/>
+			<item value="&amp;uacute;"/>
+			<item value="&amp;oacute;"/>
+			<item value="&amp;iacute;"/>
+			<item value="&amp;eacute;"/>
+			<item value="&amp;aacute;"/>
+			<item value="&amp;Eacute;"/>
+			<item value="&amp;Aacute;"/>
+			<item value="&amp;Ntilde;"/>
+			<item value="&amp;ntilde;"/>
+		</list>
+	</section>
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
+		<item key="DIALOG_X_ORIGIN" value="549"/>
+		<item key="DIALOG_Y_ORIGIN" value="117"/>
+		<item key="DIALOG_WIDTH" value="284"/>
+		<item key="DIALOG_HEIGHT" value="391"/>
+		<item key="DIALOG_FONT_NAME" value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI"/>
+	</section>
+</section>

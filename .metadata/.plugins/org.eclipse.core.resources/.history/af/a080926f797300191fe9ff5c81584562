@@ -1,0 +1,5 @@
+package com.osdepym.dto;
+
+public class PrestacionesDTO {
+
+}

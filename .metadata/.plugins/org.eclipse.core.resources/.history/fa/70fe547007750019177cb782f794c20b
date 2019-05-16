@@ -1,0 +1,140 @@
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+
+<head>
+    <title>Web Osdepym</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="/OSDEPYM/resources/core/js/main.js"></script>
+    <script src="/OSDEPYM/resources/core/js/contacto.js"></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/OSDEPYM/resources/core/css/fonts.css">
+    <link rel="stylesheet" href="/OSDEPYM/resources/core/css/bootstrap.css">
+    <link rel="stylesheet" href="/OSDEPYM/resources/core/css/main.css">
+    <link rel="stylesheet" href="/OSDEPYM/resources/core/css/_plan.css" />
+    <link rel="stylesheet" href="/OSDEPYM/resources/core/css/_reglamento.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+    
+    <title>OSDEPYM</title>
+</head>
+
+<header id="header">
+    <div class="top bg-gradient">
+        <nav class="navbar-top">
+            <div class="container">
+                <ul class="list-inline list-unstyled mb-0 d-inline-block">
+                
+                   <li class="list-inline-item dropdown">
+                        <a onmouseover="javascript:jQuery('.dropdown-menu');jQuery('#menuFacturacion').show();" href="./" class="text-white">Facturación</a>
+                        <div class="dropdown-menu" id="menuFacturacion" style="z-index: 10000;">
+                            <a style="color: #032114;" class="dropdown-item" target="blank" href="http://www.osdepym.com.ar/OSDEPYM_CtaCte_FE/">Consulta y descarga de Facturas</a>
+                        </div>
+                    </li>
+                
+                
+                    <li class="list-inline-item dropdown">
+                        <a href="#" class="text-white">Afiliados</a>
+                        <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="dropdownMenu">
+                        	<li class="dropdown-submenu dropdown-menu-right">
+                                <a style="color: #032114;" class="dropdown-item" tabindex="-1" href="#">Tr&aacute;mites Online</a>
+                            
+		                        <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="dropdownMenu">
+		                            <li><a style="color: #032114;" class="dropdown-item" href="/OSDEPYM/contacto/1234567890/Nombre Afiliado Test">Canal de contacto</a></li>
+		                            <li class="dropdown-submenu dropdown-menu-right">
+		                                <a style="color: #032114;" class="dropdown-item" tabindex="-1" href="#">Mi plan web</a>
+		                                <ul class="dropdown-menu dropdown-menu dropdown-menu-right">
+		                                    <li><a style="color: #032114;" class="dropdown-item" tabindex="-1" href="/OSDEPYM/plan/1">Condiciones del plan</a></li>
+		                                    <li><a style="color: #032114;" class="dropdown-item" tabindex="-1" href="/OSDEPYM/reglamento/monotributista">Reglamento</a></li>
+		                                </ul>
+		                            </li>
+		                            <li><a class="dropdown-item" href="/OSDEPYM/autorizacion/1">Autorizacion</a></li>
+		                        </ul>
+		                   </li>
+		                </ul>
+                    </li>
+                    <li class="list-inline-item dropdown">
+                        <a onmouseover="javascript:jQuery('.dropdown-menu').hide();jQuery('#menuPrestadores').show();" href="#" target="blank" class="text-white">Prestadores</a>
+                        <div class="dropdown-menu" id="menuPrestadores" style="z-index: 10000; display: none;">
+                            <a style="color: #032114;" class="dropdown-item" target="blank" href="http://www.osdepym.com.ar/cas/login?service=http://www.osdepym.com.ar/prestadores-web/shiro-cas&amp;customViewParam=prestadorWeb">Validación Online</a><a style="color: #032114;" class="dropdown-item" target="blank" href=" http://www.osdepym.com.ar/facturas-web/discapacidad/precargaFacturas.action">Discapacidad</a>
+                        </div>
+                    </li>
+                    <li class="list-inline-item dropdown">
+                        <a onmouseover="javascript:jQuery('.dropdown-menu').hide();jQuery('#menuDerivacion').show();" href="#" target="blank" class="text-white">Informes</a>
+                        <div class="dropdown-menu" id="menuDerivacion" style="z-index: 10000; display: none;">
+                            <a style="color: #032114;" class="dropdown-item" target="blank" href="http://www.osdepym.com.ar/osdepym/main?l_event=/index_emp.htm">Empresas</a><a style="color: #032114;" class="dropdown-item" target="blank" href="http://www.osdepym.com.ar/osdepym/main?l_event=/index_ctr.htm">Centros Médicos</a>
+                            <!--<a class="dropdown-item" target="blank" href="http://www.osdepym.com.ar/osdepym/main?l_event=/index_emp.htm">Empresas</a>
+                            <a class="dropdown-item" target="blank" href="http://www.osdepym.com.ar/osdepym/main?l_event=/index_ctr.htm">Centros médicos</a>-->
+                        </div>
+                    </li>
+                </ul>
+                <ul class="social-nav list-inline list-unstyled ml-auto my-0 mt-lg-0 d-inline-block d-lg-none">
+                    <li class="nav-item nav-item-social facebook">
+                        <a class="nav-link" target="blank" href="https://www.facebook.com/laobrasocialempresaria/"> <span class="square"><i class="fab fa-facebook-f"></i> <span class="sr-only">Facebook</span></span> </a>
+                    </li>
+                    <li class="nav-item nav-item-social twitter">
+                        <a class="nav-link" target="blank" href="https://twitter.com/osdepym?lang=es"> <span class="square"><i class="fab fa-twitter"></i> <span class="sr-only">Twitter</span></span> </a>
+                    </li>
+                    <li class="nav-item nav-item-social instagram">
+                        <a class="nav-link" target="blank" href="https://www.instagram.com/osdepym/"> <span class="square"><i class="fab fa-instagram"></i> <span class="sr-only">Instagram</span></span> </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+    <div class="mainnav">
+      <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light" style="z-index: 0">
+          <div class="container">
+              <a class="navbar-brand" href="./"><img src="resources/core/img/logo.svg" alt="OSDEPYM"></a>
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                      <i class="fas fa-bars"></i>
+              </button>
+
+              <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+              <ul class="navbar-nav ml-auto mt-2 mt-lg-0 text-right">
+
+                  <li class="nav-item dropdown active" id="liNosotros">
+                      <a class="nav-link dropdown" href="javascript:NavigateTo('nosotros.htm');" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onmouseover="jQuery('#menuNosotros').show();">
+                      Nosotros
+                  </a>
+                  <div class="dropdown-menu" id="menuNosotros" aria-labelledby="navbarDropdown" style="">
+                      
+                      <a style="color: #032114;" class="dropdown-item" href="javascript:NavigateTo('internalPage.htm?idPage=1');">Autoridades</a><a style="color: #032114;" class="dropdown-item" href="javascript:NavigateTo('internalPage.htm?idPage=2');">Recursos Humanos</a><a style="color: #032114;" class="dropdown-item" href="javascript:NavigateTo('internalPage.htm?idPage=4');">Teléfonos Útiles</a><a style="color: #032114;" class="dropdown-item" target="blank" href="http://www.osdepym.com.ar/PortalCMS/app.htm?page=contacto">Contacto</a>
+                      
+                      <!--<a class="dropdown-item" href="javascript:NavigateTo('internalPage.htm?idPage=1');">Autoridades</a>
+                      <a class="dropdown-item" href="javascript:NavigateTo('internalPage.htm?idPage=2');">Recursos Humanos</a>
+                      <a class="dropdown-item" href="javascript:NavigateTo('internalPage.htm?idPage=3');">Responsabilidad Social</a>
+                      <a class="dropdown-item" href="javascript:NavigateTo('internalPage.htm?idPage=4');">Teléfonos útiles</a>
+                      <a class="dropdown-item" href="javascript:NavigateTo('contacto.htm');">Contacto</a>-->
+                  </div>
+                  </li>
+                  <li class="nav-item">
+                  <a class="nav-link" href="./app.htm?page=planesHome">Planes</a>
+                  </li>
+                  <li class="nav-item">
+                  <a class="nav-link" href="./app.htm?page=sucursales">Sucursales</a>
+                  </li>
+                  <li class="nav-item">
+                  <a class="nav-link" id="cmdCartilla" href="./app.htm?page=servicios">Cartilla</a>
+                  </li>
+              </ul>
+              <ul class="navbar-nav list-inline list-unstyled social-nav ml-0 mt-2 mt-lg-0 text-right d-none d-md-inline-block">
+                  <li class="nav-item nav-item-social facebook">
+                      <a class="nav-link" target="blank" href="https://www.facebook.com/laobrasocialempresaria/"> <span class="square"><i class="fab fa-facebook-f"></i> <span class="sr-only">Facebook</span></span> </a>
+                  </li>
+                  <li class="nav-item nav-item-social twitter">
+                      <a class="nav-link" target="blank" href="https://twitter.com/osdepym?lang=es"> <span class="square"><i class="fab fa-twitter"></i> <span class="sr-only">Twitter</span></span> </a>
+                  </li>
+                  <li class="nav-item nav-item-social instagram">
+                      <a class="nav-link" target="blank" href="https://www.instagram.com/osdepym/"> <span class="square"><i class="fab fa-instagram"></i> <span class="sr-only">Instagram</span></span> </a>
+                  </li>
+              </ul>
+              </div>
+          </div>
+        </nav>
+  </div>
+</header>
