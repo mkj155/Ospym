@@ -25,9 +25,6 @@ $(document).ready(function(readyEvent) {
     	$('#total_size').html('');
     else
     	$('#total_size').html(formatBytes(totalSize,0));
-    //this is not possible, since the FileList is read-only
-    //files[index].remove();
-    //files = Array.prototype.splice.call(files,closeEvent.target.id.replace('file_',''),1);
     console.log('files: ',files);
   })
 
@@ -41,16 +38,24 @@ $(document).ready(function(readyEvent) {
     var fileInput = $('#uploadFile')[0];
     var filesExist = fileInput.files;
     
-    var files = changeEvent.target.files;
+    var filesU = changeEvent.target.files;
     
-    for (var i = 0; i < files.length; i++) {
-      $("#upload_prev").append('<span class="filenameupload" id="file_'+index+'">' + files[i].name + ' ('+ formatBytes(files[i].size,0) +')<span class="close">&times;</span><br/></span>');
-      uploadFiles['file_'+index] = files[i];
-      
-      var inputClone = $( "#uploadFile" ).clone();
-      inputClone.attr('id', 'input_file_'+index);
-      inputClone.appendTo( "#file-container" );
-      index++;
+    for (var i = 0; i < filesU.length; i++) {
+    	var exist = false;
+    	Object.keys(uploadFiles).forEach(function(key) {
+    		if(uploadFiles[key].name === filesU[i].name && uploadFiles[key].size === filesU[i].size)
+    			exist = true;
+    	});
+    	
+    	if(!exist) {
+	    	$("#upload_prev").append('<span class="filenameupload" id="file_'+index+'">' + filesU[i].name + ' ('+ formatBytes(filesU[i].size,0) +')<span class="close">&times;</span><br/></span>');
+	    	uploadFiles['file_'+index] = filesU[i];
+	      
+	    	var inputClone = $( "#uploadFile" ).clone();
+		    inputClone.attr('id', 'input_file_'+index);
+		    inputClone.appendTo( "#file-container" );
+		    index++;
+    	}
     }
     
     if ($(".filenameupload")[0]){
