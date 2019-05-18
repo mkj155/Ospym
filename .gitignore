@@ -1,6 +1,7 @@
-/.metadata/
-/Servers/
-/RemoteSystemsTempFiles/
-/OSDEPYM/target/
-/OSDEPYM/.metadata/
-/OSDEPYM/.settings/
+.project
+.metadata
+Servers
+RemoteSystemsTempFiles
+OSDEPYM/target
+OSDEPYM/.metadata
+OSDEPYM/.settings

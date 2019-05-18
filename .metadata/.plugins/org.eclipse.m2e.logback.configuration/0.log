@@ -7788,3 +7788,24 @@ Caused by: org.eclipse.core.runtime.CoreException: One or more constraints have 
 2019-05-16 12:43:17,570 [Worker-6: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 5 resources
 2019-05-16 12:43:17,580 [Worker-6: Building workspace] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
 2019-05-16 12:43:17,581 [Worker-6: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\PC\Documents\PiTu^^\Laburo\VAS\Proyectos\OSDEPYM\OSDEPYM\src\test\resources
+2019-05-17 21:24:55,534 [Worker-0: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2019-05-17 21:26:01,591 [Worker-0: Building workspace] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.maven.ide.eclipse.wtp.WarLifecycleMapping lifecycle mapping for MavenProject: OSDEPYM:OSDEPYM:0.0.1-SNAPSHOT @ C:\Users\PC\Documents\PiTu^^\Laburo\VAS\Proyectos\OSDEPYM\OSDEPYM\pom.xml.
+2019-05-17 21:26:30,511 [Worker-0: Building workspace] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2019-05-17 21:26:30,589 [Worker-0: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 5 resources
+2019-05-17 21:26:32,067 [Worker-0: Building workspace] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2019-05-17 21:26:32,316 [Worker-0: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\PC\Documents\PiTu^^\Laburo\VAS\Proyectos\OSDEPYM\OSDEPYM\src\test\resources
+2019-05-17 21:27:41,435 [Worker-12: Updating Maven Project] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update started
+2019-05-17 21:27:44,809 [Worker-12: Updating Maven Project] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.maven.ide.eclipse.wtp.WarLifecycleMapping lifecycle mapping for MavenProject: OSDEPYM:OSDEPYM:0.0.1-SNAPSHOT @ C:\Users\PC\Documents\PiTu^^\Laburo\VAS\Proyectos\OSDEPYM\OSDEPYM\pom.xml.
+2019-05-17 21:27:52,470 [Worker-12: Updating Maven Project] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /OSDEPYM/src/main/java
+2019-05-17 21:27:52,471 [Worker-12: Updating Maven Project] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /OSDEPYM/src/main/resources
+2019-05-17 21:27:52,474 [Worker-12: Updating Maven Project] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /OSDEPYM/src/test/java
+2019-05-17 21:28:06,289 [Worker-12: Updating Maven Project] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Cleaning filtered folder for OSDEPYM
+2019-05-17 21:28:06,382 [Worker-12: Updating Maven Project] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update completed: 24 sec
+2019-05-17 21:28:13,335 [Worker-2: Building workspace] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2019-05-17 21:28:13,353 [Worker-2: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 5 resources
+2019-05-17 21:28:13,390 [Worker-2: Building workspace] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2019-05-17 21:28:13,397 [Worker-2: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\PC\Documents\PiTu^^\Laburo\VAS\Proyectos\OSDEPYM\OSDEPYM\src\test\resources
+2019-05-17 21:28:13,398 [Worker-2: Building workspace] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Changed resources require a complete clean of filtered resources of OSDEPYM
+2019-05-17 21:28:13,399 [Worker-2: Building workspace] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Executing resource filtering for OSDEPYM
+2019-05-17 21:28:13,415 [Worker-2: Building workspace] WARN  o.e.m.c.i.embedder.EclipseLogger - The POM for org.apache.maven.plugins:maven-clean-plugin:jar:2.5 is missing, no dependency information available
+2019-05-17 21:28:13,442 [Worker-2: Building workspace] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
