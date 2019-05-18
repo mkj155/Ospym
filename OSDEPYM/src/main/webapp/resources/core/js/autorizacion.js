@@ -47,8 +47,6 @@ $(document).ready(function(readyEvent) {
 	        return false;
 	    }
 		
-	    document.forms[0].uploadFiles = uploadFiles;
-	    
 	    $("#autorizacionForm").submit();
 	});
 	

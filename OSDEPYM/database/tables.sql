@@ -1,4 +1,3 @@
-
 --------------CANAL DE CONTACTO---------------
 
 CREATE TABLE tramites_online.MOTIVOS (
@@ -88,25 +87,6 @@ CREATE TABLE tramites_online.AUTORIZACIONES_DOC (
     ID_ESPEC_PREST		int				NOT NULL	FOREIGN KEY REFERENCES tramites_online.ESPEC_PREST(ID_ESPEC_PREST),
     DOCUMENTACION		varchar(300)	NULL		
 );
-
--------- INICIO: AUTORIZACIONES WEB: PARA PRUEBAS ------------
-
-CREATE TYPE [dbo].[Nombre] FROM [varchar](30) NULL;
-CREATE TABLE [dbo].[Afiliados](
-	[Id_Afiliado] [int] NOT NULL,
-	[Id_Titular] [int] NOT NULL,	
-	[Apellido] [varchar](100) NULL,
-	[Nombre] [dbo].[Nombre] NULL
-);
-
-CREATE TABLE [dbo].[AfiliadosCobertura](
-	[Id_Afiliado] [int] NOT NULL,
-	[Id_Titular] [int] NOT NULL,
-	[FechaInicio] [datetime] NOT NULL,
-	[FechaFin] [datetime] NULL
-);
-
--------- FIN: AUTORIZACIONES WEB: PARA PRUEBAS ------------
 
 ---------EJECUTAR SEPARADO-----------
 

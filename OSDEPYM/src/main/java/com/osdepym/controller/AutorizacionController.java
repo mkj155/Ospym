@@ -132,16 +132,4 @@ public class AutorizacionController {
 		}
 		return view;
 	}
-	
-	/*private List<BeneficiarioDTO> getBeneficiariosTest(AutorizacionForm form) {
-		List<BeneficiarioDTO> x = new ArrayList<BeneficiarioDTO>();
-		int idAfiliado = Integer.valueOf(form.getIdAfiliado());
-		x.add(new BeneficiarioDTO(idAfiliado, idAfiliado, form.getNombreAfiliado(), ""));
-		x.add(new BeneficiarioDTO(2, idAfiliado, "Familiar 1", "A cargo 1"));
-		x.add(new BeneficiarioDTO(3, idAfiliado, "Familiar 2", "A cargo 2"));
-		x.add(new BeneficiarioDTO(4, idAfiliado, "Familiar 3", "A cargo 3"));
-		x.add(new BeneficiarioDTO(5, idAfiliado, "Familiar 4", "A cargo 4"));
-		x.add(new BeneficiarioDTO(6, idAfiliado, "Familiar 5", "A cargo 5"));
-		return x;
-	}*/
 }
