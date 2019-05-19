@@ -332,10 +332,9 @@ public class AutorizacionServiceImpl implements AutorizacionService{
 		contacto.setIdAfiliado(autorizacionForm.getIdAfiliado());
 		contacto.setIdBenef(autorizacionForm.getIdBeneficiario());
 		contacto.setNombreBenef(autorizacionForm.getNombreBeneficiario());
-		//contacto.setIdMotivo(Integer.valueOf(idEspecialidad));
-		//contacto.setIdCategoria(Integer.valueOf(idPrestacion));
 		contacto.setIdEspecialidad(Integer.valueOf(idEspecialidad));
 		contacto.setIdPrestacion(Integer.valueOf(idPrestacion));
+		contacto.setPrestador(autorizacionForm.getPrestador());
 		contacto.setNombreCompleto(autorizacionForm.getNombreAfiliado().toUpperCase());
 		contacto.setComentario(autorizacionForm.getComentario());
 		contacto.setCorreo(correo);
