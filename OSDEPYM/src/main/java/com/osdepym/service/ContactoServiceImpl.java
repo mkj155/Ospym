@@ -157,7 +157,7 @@ public class ContactoServiceImpl implements ContactoService{
 		CategoriaDTO categoriaDTO = new CategoriaDTO();
 		BeanUtils.copyProperties(categoria, categoriaDTO);
 		return categoriaDTO;	
-	}
+	} 
 	
 	public String procesarContacto(ContactoForm contactoForm) throws CustomException {
 		String nroTramite = null;
