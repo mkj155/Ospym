@@ -15,5 +15,8 @@ public class Constants {
 	public static final String PRESTADOR = "Prestador";
 	public static final String COMENTARIOS_ADICIONALES = "Comentarios adicionales";
 	public static final String BENEFICIARIO = "Beneficiario";
+	public static final String EMAIL = "Email";
+	public static final String TELEFONO_CASA = "Teléfono Casa";
+	public static final String TELEFONO_TRABAJO = "Teléfono Trabajo";
 	
 }

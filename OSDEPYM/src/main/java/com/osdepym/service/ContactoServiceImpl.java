@@ -23,6 +23,8 @@ import com.osdepym.hibernate.dao.MotivoDAO;
 import com.osdepym.hibernate.entity.Categoria;
 import com.osdepym.hibernate.entity.Contacto;
 import com.osdepym.hibernate.entity.Motivo;
+import com.osdepym.rest.AfiliadosService;
+import com.osdepym.rest.response.AfiliadosResponse;
 import com.osdepym.util.Constants;
 import com.osdepym.util.MailingUtil;
 import com.osdepym.util.SessionUtil;
@@ -252,12 +254,17 @@ public class ContactoServiceImpl implements ContactoService{
 	
 	private String getMessage(ContactoForm contactoForm, String motivo, String categoria) {
 		StringBuilder sb = new StringBuilder();
-
+		AfiliadosService restService = new AfiliadosService();
+		AfiliadosResponse restResponse = restService.getAfiliado(contactoForm.getIdAfiliado());
+		
 		sb.append(Constants.TIPO_TRAMITE).append(": ").append(Constants.CONTACTO).append("\n");
 		sb.append(Constants.MOTIVO).append(": ").append(motivo).append("\n");
 		if(categoria != null && !categoria.equals(""))
 			sb.append(Constants.CATEGORIA).append(": ").append(categoria).append("\n");
 		sb.append(Constants.TITULAR).append(": ").append(contactoForm.getIdAfiliado()).append(" - ").append(contactoForm.getNombreAfiliado().toUpperCase()).append("\n");
+		sb.append(Constants.EMAIL).append(": ").append(restResponse.getEmail()).append("\n");
+		sb.append(Constants.TELEFONO_CASA).append(": ").append(restResponse.getTelefonoCasa()).append("\n");
+		sb.append(Constants.TELEFONO_TRABAJO).append(": ").append(restResponse.getTelefonoTrabajo()).append("\n");
 		sb.append(Constants.TEXTO).append(": ").append(contactoForm.getComentario()).append("\n");
 
 		return sb.toString();
