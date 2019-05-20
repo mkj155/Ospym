@@ -32,9 +32,7 @@ CREATE TABLE tramites_online.CONTACTOS (
 	NOMBRE_BENEF     	varchar(100),
 	ID_ESPECIALIDAD     int,
 	ID_PRESTACION       int,
-	ID_PRESTADOR        int
-	
-	
+	PRESTADOR       	varchar(40)	
 );
 
 --------------PLAN WEB---------------

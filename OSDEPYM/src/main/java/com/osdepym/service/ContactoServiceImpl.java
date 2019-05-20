@@ -157,7 +157,7 @@ public class ContactoServiceImpl implements ContactoService{
 		CategoriaDTO categoriaDTO = new CategoriaDTO();
 		BeanUtils.copyProperties(categoria, categoriaDTO);
 		return categoriaDTO;	
-	}
+	} 
 	
 	public String procesarContacto(ContactoForm contactoForm) throws CustomException {
 		String nroTramite = null;
@@ -169,7 +169,9 @@ public class ContactoServiceImpl implements ContactoService{
 			
 			String correo = getMailByIds(contactoForm.getIdMotivo(), contactoForm.getIdCategoria());
 			String motivo = getMotivoById(contactoForm.getIdMotivo());
-			String categoria = getCategoriaById(contactoForm.getIdCategoria());
+			String categoria = null;
+			if(contactoForm.getIdCategoria() != null && !contactoForm.getIdCategoria().equals(""))
+				categoria = getCategoriaById(contactoForm.getIdCategoria());
 			String message = getMessage(contactoForm, motivo, categoria);
 			nroTramite = getSecuence();
 			String subject = getSubject(contactoForm, nroTramite);
@@ -225,7 +227,8 @@ public class ContactoServiceImpl implements ContactoService{
 		contacto.setIdtramite(nroTramite);
 		contacto.setIdAfiliado(contactoForm.getIdAfiliado());
 		contacto.setIdMotivo(Integer.valueOf(idMotivo));
-		contacto.setIdCategoria(Integer.valueOf(idCategoria));
+		if(idCategoria != null && !idCategoria.equals(""))
+			contacto.setIdCategoria(Integer.valueOf(idCategoria));
 		contacto.setNombreCompleto(contactoForm.getNombreAfiliado().toUpperCase());
 		contacto.setComentario(contactoForm.getComentario());
 		contacto.setCorreo(correo);
@@ -252,7 +255,8 @@ public class ContactoServiceImpl implements ContactoService{
 
 		sb.append(Constants.TIPO_TRAMITE).append(": ").append(Constants.CONTACTO).append("\n");
 		sb.append(Constants.MOTIVO).append(": ").append(motivo).append("\n");
-		sb.append(Constants.CATEGORIA).append(": ").append(categoria).append("\n");
+		if(categoria != null && !categoria.equals(""))
+			sb.append(Constants.CATEGORIA).append(": ").append(categoria).append("\n");
 		sb.append(Constants.TITULAR).append(": ").append(contactoForm.getIdAfiliado()).append(" - ").append(contactoForm.getNombreAfiliado().toUpperCase()).append("\n");
 		sb.append(Constants.TEXTO).append(": ").append(contactoForm.getComentario()).append("\n");
 
