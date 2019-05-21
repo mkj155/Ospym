@@ -1550,6 +1550,9 @@ a:hover .arrow-down,
 	text-align: center;
 }
 
+#loadingCategoria {
+	transform: translateY(100%);
+}
 .btn-lg, .btn-group-lg > .btn {
   border-radius: 0;
 }

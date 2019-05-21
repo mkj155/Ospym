@@ -1,8 +1,11 @@
 $(document).ready(function() {
-	$("#divIdCategoria").css("display","none");
+	$("#loadingCategoria").hide();
+	$("#divIdCategoria").hide();
 });
 
 function getCategorias(){
+	$("#divIdCategoria").hide();
+	$("#loadingCategoria").show();
 	if($('#motivo').val() != null && $('#motivo').val() != ''){
 		$.ajax({
 			type : "POST",
@@ -26,14 +29,18 @@ function getCategorias(){
 					$("#categoria").attr('required', false);
 				}
 				
+				$("#loadingCategoria").hide();
 			},
 			error : function(e) {
 				console.log("ERROR: ", e);
+				$("#loadingCategoria").hide();
 			},
 		});
 	} else {
 		$("#divIdCategoria").css('display', 'none');
 		$("#categoria").css('display', 'none');
-		$("#categoria").attr('required', false);
+		$("#categoria").attr('required', false);		
+		$("#loadingCategoria").hide();
+
 	}
 }

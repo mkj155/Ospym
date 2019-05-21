@@ -95,8 +95,14 @@ public class MotivoCategoriaDAOImpl implements MotivoCategoriaDAO {
 	public String getMailByIds(String idMotivo, String idCategoria) throws CustomException {
 		String mail = "";
 		try {
+			String sqlString;
 			Session session = this.sessionFactory.getCurrentSession();
-			String sqlString = "SELECT CORREO FROM tramites_online.MOTIVOS_CATEGORIAS WHERE ID_MOTIVO = %s AND ID_CATEGORIA = %s";
+			
+			if(idCategoria == null || idCategoria.equals(""))
+				sqlString = "SELECT CORREO FROM tramites_online.MOTIVOS_CATEGORIAS WHERE ID_MOTIVO = %s AND ID_CATEGORIA IS NULL";
+			else
+				sqlString = "SELECT CORREO FROM tramites_online.MOTIVOS_CATEGORIAS WHERE ID_MOTIVO = %s AND ID_CATEGORIA = %s";
+			
 			sqlString = String.format(sqlString, idMotivo, idCategoria);
 			Query query = session.createNativeQuery(sqlString);
 			mail = query.getSingleResult().toString();

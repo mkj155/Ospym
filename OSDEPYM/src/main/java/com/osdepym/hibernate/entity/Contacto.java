@@ -23,10 +23,10 @@ public class Contacto {
 	private String idAfiliado;
 	
 	@Column(name="ID_MOTIVO")
-	private int idMotivo;
+	private Integer idMotivo;
 	
 	@Column(name="ID_CATEGORIA")
-	private int idCategoria;
+	private Integer idCategoria;
 	
 	@Column(name="NOMBRE_COMPLETO")
 	private String nombreCompleto;
@@ -41,13 +41,13 @@ public class Contacto {
 	private String nombreBenef;
 	
 	@Column(name="ID_ESPECIALIDAD")
-	private int idEspecialidad;
+	private Integer idEspecialidad;
 	
 	@Column(name="ID_PRESTACION")
-	private int idPrestacion;
+	private Integer idPrestacion;
 	
-	@Column(name="ID_PRESTADOR")
-	private int idPrestador;
+	@Column(name="PRESTADOR")
+	private String prestador;
 	
 	private String comentario;
 	
@@ -157,12 +157,12 @@ public class Contacto {
 		this.idPrestacion = idPrestacion;
 	}
 	
-	public int getIdPrestador() {
-		return idPrestador;
+	public String getPrestador() {
+		return prestador;
 	}
 	
-	public void setIdPrestador(int idPrestador) {
-		this.idPrestador = idPrestador;
+	public void setPrestador(String prestador) {
+		this.prestador = prestador;
 	}
 
 }

@@ -23,13 +23,15 @@ import com.osdepym.hibernate.dao.MotivoDAO;
 import com.osdepym.hibernate.entity.Categoria;
 import com.osdepym.hibernate.entity.Contacto;
 import com.osdepym.hibernate.entity.Motivo;
+import com.osdepym.rest.AfiliadosService;
+import com.osdepym.rest.response.AfiliadosResponse;
 import com.osdepym.util.Constants;
 import com.osdepym.util.MailingUtil;
 import com.osdepym.util.SessionUtil;
 
 @Service("ContactService")
-public class ContactoServiceImpl implements ContactoService{
-	
+public class ContactoServiceImpl implements ContactoService {
+
 	@Autowired
 	private SessionFactory sessionFactory;
 
@@ -42,7 +44,7 @@ public class ContactoServiceImpl implements ContactoService{
 	}
 
 	@Autowired
-	private MotivoCategoriaDAO motivoCategoriaDAO ;
+	private MotivoCategoriaDAO motivoCategoriaDAO;
 
 	public MotivoCategoriaDAO getMotivoCategoriaDAO() {
 		return motivoCategoriaDAO;
@@ -51,9 +53,9 @@ public class ContactoServiceImpl implements ContactoService{
 	public void setMotivoCategoriaDAO(MotivoCategoriaDAO motivoCategoriaDAO) {
 		this.motivoCategoriaDAO = motivoCategoriaDAO;
 	}
-	
+
 	@Autowired
-	private MotivoDAO motivoDAO ;
+	private MotivoDAO motivoDAO;
 
 	public MotivoDAO getMotivoDAO() {
 		return motivoDAO;
@@ -62,7 +64,7 @@ public class ContactoServiceImpl implements ContactoService{
 	public void setMotivoDAO(MotivoDAO motivoDAO) {
 		this.motivoDAO = motivoDAO;
 	}
-	
+
 	@Transactional
 	public List<MotivoDTO> getAllMotivos() throws CustomException {
 		List<MotivoDTO> motivosDTO = new ArrayList<MotivoDTO>();
@@ -89,14 +91,13 @@ public class ContactoServiceImpl implements ContactoService{
 		}
 		return motivosDTO;
 	}
-	
-	
+
 	private MotivoDTO entityToDTO(Motivo motivo) {
 		MotivoDTO motivoDTO = new MotivoDTO();
 		BeanUtils.copyProperties(motivo, motivoDTO);
 		return motivoDTO;
 	}
-	
+
 	@Transactional
 	private String getSecuence() throws CustomException {
 		String secuence = "";
@@ -114,9 +115,9 @@ public class ContactoServiceImpl implements ContactoService{
 		}
 		return secuence;
 	}
-	
+
 	@Transactional
-	private void saveContacto(Contacto contacto) throws CustomException{
+	private void saveContacto(Contacto contacto) throws CustomException {
 		try {
 			motivoCategoriaDAO.saveContacto(contacto);
 		} catch (CustomException e) {
@@ -125,9 +126,9 @@ public class ContactoServiceImpl implements ContactoService{
 			throw new CustomException(e.getMessage(), ErrorMessages.UNKNOWN_ERROR);
 		}
 	}
-	
+
 	@Transactional
-	public List<CategoriaDTO> getCategoriasByMotivoId(int idMotivo) throws CustomException{
+	public List<CategoriaDTO> getCategoriasByMotivoId(int idMotivo) throws CustomException {
 		List<CategoriaDTO> categoriasDTO = new ArrayList<CategoriaDTO>();
 		Session session = null;
 		Transaction tx = null;
@@ -156,9 +157,9 @@ public class ContactoServiceImpl implements ContactoService{
 	private CategoriaDTO entityToDTO(Categoria categoria) {
 		CategoriaDTO categoriaDTO = new CategoriaDTO();
 		BeanUtils.copyProperties(categoria, categoriaDTO);
-		return categoriaDTO;	
+		return categoriaDTO;
 	}
-	
+
 	public String procesarContacto(ContactoForm contactoForm) throws CustomException {
 		String nroTramite = null;
 		Session session = null;
@@ -166,20 +167,23 @@ public class ContactoServiceImpl implements ContactoService{
 		try {
 			session = this.sessionFactory.getCurrentSession();
 			tx = session.beginTransaction();
-			
+
 			String correo = getMailByIds(contactoForm.getIdMotivo(), contactoForm.getIdCategoria());
 			String motivo = getMotivoById(contactoForm.getIdMotivo());
-			String categoria = getCategoriaById(contactoForm.getIdCategoria());
+			String categoria = null;
+			if (contactoForm.getIdCategoria() != null && !contactoForm.getIdCategoria().equals(""))
+				categoria = getCategoriaById(contactoForm.getIdCategoria());
 			String message = getMessage(contactoForm, motivo, categoria);
 			nroTramite = getSecuence();
 			String subject = getSubject(contactoForm, nroTramite);
-			
+
 			MailingUtil mailing = new MailingUtil();
 			mailing.sendMailTLS(correo, subject, message);
-			
-			Contacto contacto = crearContacto(contactoForm, contactoForm.getIdMotivo(), contactoForm.getIdCategoria(), correo, nroTramite, "Contacto");
+
+			Contacto contacto = crearContacto(contactoForm, contactoForm.getIdMotivo(), contactoForm.getIdCategoria(),
+					correo, nroTramite, "Contacto");
 			saveContacto(contacto);
-			
+
 			tx.commit();
 			session.close();
 		} catch (CustomException e) {
@@ -192,8 +196,8 @@ public class ContactoServiceImpl implements ContactoService{
 		}
 		return nroTramite;
 	}
-	
-	@Transactional 
+
+	@Transactional
 	private String getMotivoById(String idMotivo) throws CustomException {
 		String motivo = null;
 		try {
@@ -206,7 +210,7 @@ public class ContactoServiceImpl implements ContactoService{
 		return motivo;
 	}
 
-	@Transactional 
+	@Transactional
 	private String getCategoriaById(String idCategoria) throws CustomException {
 		String categoria = null;
 		try {
@@ -219,26 +223,28 @@ public class ContactoServiceImpl implements ContactoService{
 		return categoria;
 	}
 
-	private Contacto crearContacto(ContactoForm contactoForm, String idMotivo, String idCategoria, String correo, String nroTramite, String tipo) {
+	private Contacto crearContacto(ContactoForm contactoForm, String idMotivo, String idCategoria, String correo,
+			String nroTramite, String tipo) {
 		Contacto contacto = new Contacto();
-		
+
 		contacto.setIdtramite(nroTramite);
 		contacto.setIdAfiliado(contactoForm.getIdAfiliado());
 		contacto.setIdMotivo(Integer.valueOf(idMotivo));
-		contacto.setIdCategoria(Integer.valueOf(idCategoria));
+		if (idCategoria != null && !idCategoria.equals(""))
+			contacto.setIdCategoria(Integer.valueOf(idCategoria));
 		contacto.setNombreCompleto(contactoForm.getNombreAfiliado().toUpperCase());
 		contacto.setComentario(contactoForm.getComentario());
 		contacto.setCorreo(correo);
 		contacto.setTipo(tipo);
-		
+
 		return contacto;
 	}
 
 	@Transactional
-	public String getMailByIds(String idMotivo, String idCategoria) throws CustomException{
+	public String getMailByIds(String idMotivo, String idCategoria) throws CustomException {
 		String correo = null;
 		try {
-			correo = motivoCategoriaDAO.getMailByIds(idMotivo,idCategoria);
+			correo = motivoCategoriaDAO.getMailByIds(idMotivo, idCategoria);
 		} catch (CustomException e) {
 			throw e;
 		} catch (Exception e) {
@@ -246,22 +252,36 @@ public class ContactoServiceImpl implements ContactoService{
 		}
 		return correo;
 	}
-	
+
 	private String getMessage(ContactoForm contactoForm, String motivo, String categoria) {
 		StringBuilder sb = new StringBuilder();
+		AfiliadosService restService = new AfiliadosService();
+		AfiliadosResponse restResponse = restService.getAfiliado(contactoForm.getIdAfiliado());
 
 		sb.append(Constants.TIPO_TRAMITE).append(": ").append(Constants.CONTACTO).append("\n");
 		sb.append(Constants.MOTIVO).append(": ").append(motivo).append("\n");
-		sb.append(Constants.CATEGORIA).append(": ").append(categoria).append("\n");
-		sb.append(Constants.TITULAR).append(": ").append(contactoForm.getIdAfiliado()).append(" - ").append(contactoForm.getNombreAfiliado().toUpperCase()).append("\n");
+		if (categoria != null && !categoria.equals(""))
+			sb.append(Constants.CATEGORIA).append(": ").append(categoria).append("\n");
+		sb.append(Constants.TITULAR).append(": ").append(contactoForm.getIdAfiliado()).append(" - ")
+				.append(contactoForm.getNombreAfiliado().toUpperCase()).append("\n");
+		if (restResponse != null) {
+			if (restResponse.getEmail() != null && restResponse.getEmail() != "")
+				sb.append(Constants.EMAIL).append(": ").append(restResponse.getEmail()).append("\n");
+			if (restResponse.getTelefonoCasa() != null && restResponse.getTelefonoCasa() != "")
+				sb.append(Constants.TELEFONO_CASA).append(": ").append(restResponse.getTelefonoCasa()).append("\n");
+			if (restResponse.getTelefonoTrabajo() != null && restResponse.getTelefonoTrabajo() != "")
+				sb.append(Constants.TELEFONO_TRABAJO).append(": ").append(restResponse.getTelefonoTrabajo())
+						.append("\n");
+		}
+
 		sb.append(Constants.TEXTO).append(": ").append(contactoForm.getComentario()).append("\n");
 
 		return sb.toString();
 	}
-	
+
 	private String getSubject(ContactoForm contactoForm, String nroTramite) {
 		StringBuilder sb = new StringBuilder();
-		
+
 		sb.append(Constants.CONTACTO).append(" - ");
 		sb.append(nroTramite).append(" - ");
 		sb.append(contactoForm.getIdAfiliado()).append(" - ");
@@ -269,6 +289,5 @@ public class ContactoServiceImpl implements ContactoService{
 
 		return sb.toString();
 	}
-
 
 }
