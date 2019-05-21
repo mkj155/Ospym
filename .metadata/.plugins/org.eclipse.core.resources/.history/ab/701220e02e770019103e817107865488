@@ -1,0 +1,6 @@
+username=mauro.cartagironi@cloudgaia.com
+password=Cloudgaia8926
+mail.smtp.auth=true
+mail.smtp.starttls.enable=true
+mail.smtp.host=smtp.gmail.com
+mail.smtp.port=587

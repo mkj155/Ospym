@@ -1,0 +1,19 @@
+package com.osdepym.dto;
+
+public class PrestacionesDTO {
+	int id;
+	String etiqueta;
+	
+	public int getId() {
+		return id;
+	}
+	public void setId(int) {
+		this.id = id;
+	}
+	public String getEtiqueta() {
+		return etiqueta;
+	}
+	public void setEtiqueta(String etiqueta) {
+		this.etiqueta = etiqueta;
+	}	
+}

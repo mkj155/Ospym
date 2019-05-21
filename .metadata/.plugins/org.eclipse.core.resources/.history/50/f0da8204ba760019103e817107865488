@@ -1,0 +1,56 @@
+package com.osdepym.hibernate.entity;
+
+import java.util.Set;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+@Entity
+@Immutable
+public class Beneficiario {
+	
+	private int idAfiliado;
+	private int idTitular;
+	private String apellido;
+	private String nombre;
+	
+	public Beneficiario() {}
+	
+	@Id
+	@Column(name="ID_ESPECIALIDAD")
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	public int getIdEspecialidad() {
+		return idEspecialidad;
+	}
+
+	public void setIdEspecialidad(int idEspecialidad) {
+		this.idEspecialidad = idEspecialidad;
+	}
+
+	public String getEtiqueta() {
+		return etiqueta;
+	}
+
+	public void setEtiqueta(String etiqueta) {
+		this.etiqueta = etiqueta;
+	}
+
+	@OneToMany(mappedBy = "especialidad")
+	public Set<EspecialidadPrestacion> getEspecialidadPrestaciones() {
+		return especialidadPrestaciones;
+	}
+
+	public void setEspecialidadPrestaciones(Set<EspecialidadPrestacion> especialidadPrestaciones) {
+		this.especialidadPrestaciones = especialidadPrestaciones;
+	}
+	
+	public void addEspecialidadPrestaciones(EspecialidadPrestacion especialidadPrestaciones) {
+		this.especialidadPrestaciones.add(especialidadPrestaciones);
+	}
+	
+}

@@ -1,0 +1,35 @@
+package com.osdepym.dto;
+
+public class AutorizacionDocDTO {
+	
+	private int id;	
+	private int idEspecialidadPrestacion;
+	private String documento;
+	
+	public AutorizacionDocTO(int id, int idEspecialidadPrestacion, String documento) {
+		this.id = id;
+		this.idEspecialidadPrestacion = idEspecialidadPrestacion;
+		this.documento = documento;
+	}
+	
+	public AutorizacionDocDTO() {}
+	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public int getIdEspecialidadPrestacion() {
+		return idEspecialidadPrestacion;
+	}
+	public void setIdEspecialidadPrestacion(int idEspecialidadPrestacion) {
+		this.idEspecialidadPrestacion = idEspecialidadPrestacion;
+	}
+	public String getDocumento() {
+		return documento;
+	}
+	public void setDocumento(String documento) {
+		this.documento = documento;
+	}
+}

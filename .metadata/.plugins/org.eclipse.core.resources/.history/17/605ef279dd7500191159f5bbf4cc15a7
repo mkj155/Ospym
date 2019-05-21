@@ -1,0 +1,57 @@
+package com.osdepym.hibernate.dao;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.hibernate.Session;
+
+import com.osdepym.exception.CustomException;
+import com.osdepym.exception.ErrorMessages;
+import com.osdepym.hibernate.entity.AutorizacionDoc;
+import com.osdepym.hibernate.entity.Categoria;
+
+public class AutorizacionDocDAOImpl implements AutorizacionDocDAO{
+
+	@Override
+	public AutorizacionDoc get(Integer id) throws CustomException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<AutorizacionDoc> getAll() throws CustomException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void save(AutorizacionDoc t) throws CustomException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void update(AutorizacionDoc t) throws CustomException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void delete(AutorizacionDoc t) throws CustomException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public List<Categoria> getDocumentosByIdEspecialidadYIdPrestacion(int idEspecialidad, int idPrestacion) throws CustomException {
+		try {
+			List<Categoria> categorias = new ArrayList<Categoria>();
+			Session session = this.sessionFactory.getCurrentSession();
+			String sqlString = "SELECT DC.DOCUMENTACION FROM tramites_online.AUTORIZACIONES_DOC DC INNER JOIN tramites_online.ESPEC_PREST EP ON EP.ID_ESPEC_PREST = DC.ID_ESPEC_PREST WHERE EP.ID_ESPECIALIDAD = " + idEspecialidad + " AND EP.ID_PRESTACION = " + idPrestacion;
+			categorias = session.createNativeQuery(sqlString, Categoria.class).getResultList();
+			return categorias;
+		} catch (Exception e) {
+			throw new CustomException(e.getMessage(), ErrorMessages.DATABASE_GET_ERROR);
+		}
+	}
+}

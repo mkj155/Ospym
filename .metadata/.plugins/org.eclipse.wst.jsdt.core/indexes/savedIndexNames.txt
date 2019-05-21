@@ -1,0 +1,1 @@
+INDEX VERSION 1.4+C:\Users\PC\Documents\PiTu^^\Laburo\VAS\Proyectos\OSDEPYM\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
