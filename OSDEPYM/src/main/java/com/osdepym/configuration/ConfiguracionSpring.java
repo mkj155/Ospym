@@ -20,7 +20,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
 @EnableWebMvc
-@ComponentScan({"com.osdepym.hibernate.dao","com.osdepym.controller","com.osdepym.hibernate.entity","com.osdepym.service","com.osdepym.validator"})
+@ComponentScan({"com.osdepym.hibernate.dao","com.osdepym.controller","com.osdepym.hibernate.entity","com.osdepym.service","com.osdepym.validator", "com.osdepym.rest"})
 @Configuration
 @EnableTransactionManagement
 @ImportResource("classpath:spring.xml")
