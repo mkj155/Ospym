@@ -1,7 +1,8 @@
-package com.osdepym.rest;
+package com.osdepym.rest.client;
 
 import java.util.Properties;
 
+import com.osdepym.rest.BasicAuthRestTemplate;
 import com.osdepym.rest.response.AfiliadosResponse;
 import com.osdepym.util.ReadPropertyFile;
 

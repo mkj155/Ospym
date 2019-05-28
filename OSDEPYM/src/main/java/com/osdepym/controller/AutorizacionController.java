@@ -1,5 +1,6 @@
 package com.osdepym.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -22,6 +24,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.osdepym.dto.AutorizacionDocDTO;
 import com.osdepym.dto.BeneficiarioDTO;
 import com.osdepym.dto.PrestacionDTO;
+import com.osdepym.exception.CustomException;
 import com.osdepym.form.AutorizacionForm;
 import com.osdepym.service.AutorizacionService;
 
@@ -63,7 +66,7 @@ public class AutorizacionController {
 		try {
 			beneficiarios = service.getBeneficiarios(form);
 		} catch (Exception e) {
-			
+			beneficiarios = new ArrayList<BeneficiarioDTO>();
 		}
 		return beneficiarios;
 	}
@@ -132,4 +135,10 @@ public class AutorizacionController {
 		}
 		return view;
 	}
+	
+	@ExceptionHandler({ CustomException.class })
+	public void handleException() {
+		System.out.println();
+	}
+	
 }

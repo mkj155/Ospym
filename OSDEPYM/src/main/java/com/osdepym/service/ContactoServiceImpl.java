@@ -23,7 +23,7 @@ import com.osdepym.hibernate.dao.MotivoDAO;
 import com.osdepym.hibernate.entity.Categoria;
 import com.osdepym.hibernate.entity.Contacto;
 import com.osdepym.hibernate.entity.Motivo;
-import com.osdepym.rest.AfiliadosService;
+import com.osdepym.rest.client.AfiliadosService;
 import com.osdepym.rest.response.AfiliadosResponse;
 import com.osdepym.util.Constants;
 import com.osdepym.util.MailingUtil;
