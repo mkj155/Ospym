@@ -52,6 +52,9 @@
                             <form:errors path="idCategoria" class="control-label" />
                             <div class="col-sm-5"></div>
                         </div>
+                        <div id="loadingCategoria">
+                        	<div role="status" class="spinner-border spinner-border"><span class='sr-only'>Loading...</span></div>
+                        </div>
                     </div>
                     <!-- COMENTARIO -->
                     <div class="col-md-9">

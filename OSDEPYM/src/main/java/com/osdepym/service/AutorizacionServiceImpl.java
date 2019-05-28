@@ -3,6 +3,7 @@ package com.osdepym.service;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
 import javax.transaction.Transactional;
 
@@ -28,8 +29,13 @@ import com.osdepym.hibernate.entity.Beneficiario;
 import com.osdepym.hibernate.entity.Contacto;
 import com.osdepym.hibernate.entity.Especialidad;
 import com.osdepym.hibernate.entity.Prestacion;
+import com.osdepym.rest.BasicAuthRestTemplate;
+import com.osdepym.rest.response.AfiliadosResponse;
+import com.osdepym.rest.response.BeneficiariosResponse;
+import com.osdepym.rest.server.BeneficiarioServiceREST;
 import com.osdepym.util.Constants;
 import com.osdepym.util.MailingUtil;
+import com.osdepym.util.ReadPropertyFile;
 import com.osdepym.util.SessionUtil;
 
 @Service("AutorizacionService")
@@ -168,29 +174,11 @@ public class AutorizacionServiceImpl implements AutorizacionService{
 	}
 	
 	public List<BeneficiarioDTO> getBeneficiarios(AutorizacionForm form) throws CustomException {
-		List<BeneficiarioDTO> beneficiariosList = new ArrayList<BeneficiarioDTO>();
-		Session session = null;
-		Transaction tx = null;
-		try {
-			session = this.sessionFactory.getCurrentSession();
-			tx = session.beginTransaction();
-			List<Beneficiario> beneficiarios = beneficiarioDAO.getBeneficiariosByIdAfiliado(Integer.valueOf(form.getIdAfiliado()));
-			if (beneficiarios != null) {
-				for (Beneficiario element : beneficiarios) {
-					beneficiariosList.add(entityToDTO(element));
-				}
-			}
-			tx.commit();
-			session.close();
-		} catch (CustomException e) {
-			SessionUtil.rollbackTransaction(session, tx);
-			throw e;
-		} catch (Exception e) {
-			SessionUtil.rollbackTransaction(session, tx);
-			e.printStackTrace();
-			throw new CustomException(e.getMessage(), ErrorMessages.UNKNOWN_ERROR);
-		}
-		return beneficiariosList;
+		Properties parameters = ReadPropertyFile.readFile("WSConfiguration.properties");
+		String uri = parameters.getProperty("beneficiario.uri");
+		BeneficiarioServiceREST beneficiarioRest = new BeneficiarioServiceREST();
+		BeneficiariosResponse beneficiarios = beneficiarioRest.getForObject(uri + form.getIdAfiliado(), BeneficiariosResponse.class);
+		return beneficiarios.getBeneficiarios();
 	}
 	
 	public String procesarContacto(AutorizacionForm autorizacionForm, MultipartFile[] files) throws CustomException {
@@ -332,10 +320,9 @@ public class AutorizacionServiceImpl implements AutorizacionService{
 		contacto.setIdAfiliado(autorizacionForm.getIdAfiliado());
 		contacto.setIdBenef(autorizacionForm.getIdBeneficiario());
 		contacto.setNombreBenef(autorizacionForm.getNombreBeneficiario());
-		//contacto.setIdMotivo(Integer.valueOf(idEspecialidad));
-		//contacto.setIdCategoria(Integer.valueOf(idPrestacion));
 		contacto.setIdEspecialidad(Integer.valueOf(idEspecialidad));
 		contacto.setIdPrestacion(Integer.valueOf(idPrestacion));
+		contacto.setPrestador(autorizacionForm.getPrestador());
 		contacto.setNombreCompleto(autorizacionForm.getNombreAfiliado().toUpperCase());
 		contacto.setComentario(autorizacionForm.getComentario());
 		contacto.setCorreo(correo);
