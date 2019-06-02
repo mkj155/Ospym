@@ -25,12 +25,9 @@ import com.osdepym.hibernate.dao.AutorizacionDocDAO;
 import com.osdepym.hibernate.dao.BeneficiarioDAO;
 import com.osdepym.hibernate.dao.EspecialidadDAO;
 import com.osdepym.hibernate.dao.EspecialidadPrestacionDAO;
-import com.osdepym.hibernate.entity.Beneficiario;
 import com.osdepym.hibernate.entity.Contacto;
 import com.osdepym.hibernate.entity.Especialidad;
 import com.osdepym.hibernate.entity.Prestacion;
-import com.osdepym.rest.BasicAuthRestTemplate;
-import com.osdepym.rest.response.AfiliadosResponse;
 import com.osdepym.rest.response.BeneficiariosResponse;
 import com.osdepym.rest.server.BeneficiarioServiceREST;
 import com.osdepym.util.Constants;
@@ -227,10 +224,13 @@ public class AutorizacionServiceImpl implements AutorizacionService{
 		BeanUtils.copyProperties(especialidad, especialidadDTO);
 		return especialidadDTO;
 	}
-	private BeneficiarioDTO entityToDTO(Beneficiario beneficiario) {
-		//BeanUtils.copyProperties(beneficiario, beneficiarioDTO);
-		return new BeneficiarioDTO(beneficiario.getIdAfiliado(), beneficiario.getIdTitular(), beneficiario.getApellido(), beneficiario.getNombre());
-	}
+
+	/*
+	 * private BeneficiarioDTO entityToDTO(Beneficiario beneficiario) {
+	 * //BeanUtils.copyProperties(beneficiario, beneficiarioDTO); return new
+	 * BeneficiarioDTO(beneficiario.getIdAfiliado(), beneficiario.getIdTitular(),
+	 * beneficiario.getApellido(), beneficiario.getNombre()); }
+	 */
 	@Transactional
 	public String getMailByIds(Long idEspecialidad, Long idPrestacion) throws CustomException{
 		String correo = null;
