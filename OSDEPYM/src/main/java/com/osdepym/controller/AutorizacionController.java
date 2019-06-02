@@ -75,7 +75,7 @@ public class AutorizacionController {
 	public @ResponseBody List<PrestacionDTO> getPrestacionesByEspecialidadId(@RequestBody String idEspecialidad) {
 		List<PrestacionDTO> prestaciones = null;
 		try {
-			prestaciones = service.getPrestacionesByEspecialidadId(Integer.parseInt(idEspecialidad));
+			prestaciones = service.getPrestacionesByEspecialidadId(Long.valueOf(idEspecialidad));
 		} catch (Exception e) {
 		}
 		return prestaciones;
@@ -85,7 +85,7 @@ public class AutorizacionController {
 	public @ResponseBody List<PrestacionDTO> getPrestacionesByEspecialidadIdAfterError(@RequestBody String idEspecialidad) {
 		List<PrestacionDTO> prestaciones = null;
 		try {
-			prestaciones = service.getPrestacionesByEspecialidadId(Integer.parseInt(idEspecialidad));
+			prestaciones = service.getPrestacionesByEspecialidadId(Long.valueOf(idEspecialidad));
 		} catch (Exception e) {
 		
 		}
@@ -119,7 +119,7 @@ public class AutorizacionController {
 			form.setNombreAfiliado("");
 			List<BeneficiarioDTO> beneficiarios = getBeneficiarios(form);
 			for(BeneficiarioDTO b : beneficiarios) {
-				if(b.getId() == Integer.valueOf(idAfiliado)) {
+				if(b.getId() == Long.valueOf(idAfiliado)) {
 					form.setNombreAfiliado(b.getNombreCompleto());
 				}
 			}

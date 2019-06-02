@@ -32,7 +32,7 @@ public class ContactoFormValidator implements Validator {
 	public Boolean verifyCategoryByIdMotivo(String idMotivo,Errors errors) {
 		if(!StringUtils.isEmpty(idMotivo)) {
 			try {
-				List<CategoriaDTO> categ = service.getCategoriasByMotivoId(Integer.valueOf(idMotivo));
+				List<CategoriaDTO> categ = service.getCategoriasByMotivoId(Long.valueOf(idMotivo));
 				if(categ != null && categ.size() > 0) {
 					return true;
 				}

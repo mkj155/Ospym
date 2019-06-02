@@ -14,7 +14,7 @@ import javax.persistence.Table;
 @Table(name="ESPECIALIDADES", schema = "tramites_online")
 public class Especialidad {
 	
-	private int idEspecialidad;
+	private Long idEspecialidad;
 	private String etiqueta;
 	private Set<EspecialidadPrestacion> especialidadPrestaciones;
 	
@@ -32,11 +32,11 @@ public class Especialidad {
 	@Id
 	@Column(name="ID_ESPECIALIDAD")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	public int getIdEspecialidad() {
+	public Long getIdEspecialidad() {
 		return idEspecialidad;
 	}
 
-	public void setIdEspecialidad(int idEspecialidad) {
+	public void setIdEspecialidad(Long idEspecialidad) {
 		this.idEspecialidad = idEspecialidad;
 	}
 

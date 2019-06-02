@@ -21,7 +21,7 @@ public class MotivoCategoria implements Serializable {
 	 */
 	private static final long serialVersionUID = -166959304805302504L;
 	
-	private int idMotCat;
+	private Long idMotCat;
 	private Motivo motivo;
 	private Categoria categoria;
 	private String correo;
@@ -43,11 +43,11 @@ public class MotivoCategoria implements Serializable {
 	@Id
 	@Column(name="ID_MOT_CAT")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	public int getIdMotCat() {
+	public Long getIdMotCat() {
 		return idMotCat;
 	}
 
-	public void setIdMotCat(int idMotCat) {
+	public void setIdMotCat(Long idMotCat) {
 		this.idMotCat = idMotCat;
 	}
 	

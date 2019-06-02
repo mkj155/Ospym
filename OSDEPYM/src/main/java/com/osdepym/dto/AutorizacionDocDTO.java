@@ -2,39 +2,39 @@ package com.osdepym.dto;
 
 public class AutorizacionDocDTO {
 	
-	private int id;	
-	private int idEspecialidad;
-	private int idPrestacion;
+	private Long id;	
+	private Long idEspecialidad;
+	private Long idPrestacion;
 	private String documento;
 	
-	public AutorizacionDocDTO(int id, int idEspecialidad, int idPrestacion, String documento) {
+	public AutorizacionDocDTO(Long id, Long idEspecialidad, Long idPrestacion, String documento) {
 		this.id = id;
 		this.idEspecialidad = idEspecialidad;
 		this.idPrestacion = idPrestacion;
 		this.documento = documento;
 	}
 	
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
-	public int getIdEspecialidad() {
+	public Long getIdEspecialidad() {
 		return idEspecialidad;
 	}
 
-	public void setIdEspecialidad(int idEspecialidad) {
+	public void setIdEspecialidad(Long idEspecialidad) {
 		this.idEspecialidad = idEspecialidad;
 	}
 
-	public int getIdPrestacion() {
+	public Long getIdPrestacion() {
 		return idPrestacion;
 	}
 
-	public void setIdPrestacion(int idPrestacion) {
+	public void setIdPrestacion(Long idPrestacion) {
 		this.idPrestacion = idPrestacion;
 	}
 

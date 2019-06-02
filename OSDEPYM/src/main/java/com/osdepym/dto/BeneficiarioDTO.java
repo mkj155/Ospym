@@ -1,13 +1,13 @@
 package com.osdepym.dto;
 
 public class BeneficiarioDTO {
-	private int id;
-	private int titular;
+	private Long id;
+	private Long titular;
 	private String apellido;
 	private String nombre;
 	private String nombreCompleto;
 	
-	public BeneficiarioDTO(int id, int titular, String apellido, String nombre) {
+	public BeneficiarioDTO(Long id, Long titular, String apellido, String nombre) {
 		this.id = id;
 		this.titular = titular;
 		this.apellido = apellido;
@@ -17,19 +17,19 @@ public class BeneficiarioDTO {
 	
 	public BeneficiarioDTO() {}
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
-	public int getTitular() {
+	public Long getTitular() {
 		return titular;
 	}
 
-	public void setTitular(int titular) {
+	public void setTitular(Long titular) {
 		this.titular = titular;
 	}
 

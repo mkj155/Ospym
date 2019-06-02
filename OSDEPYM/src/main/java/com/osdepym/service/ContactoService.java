@@ -9,6 +9,6 @@ import com.osdepym.form.ContactoForm;
 
 public interface ContactoService {
 	public List<MotivoDTO> getAllMotivos() throws CustomException;
-	public List<CategoriaDTO> getCategoriasByMotivoId(int idMotivo) throws CustomException;
+	public List<CategoriaDTO> getCategoriasByMotivoId(Long idMotivo) throws CustomException;
 	public String procesarContacto(ContactoForm contactoForm) throws CustomException;
 }

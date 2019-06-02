@@ -14,7 +14,7 @@ public class Contacto {
 	@Id
 	@Column(name="ID_CONTACTO")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int idContacto;
+	private Long idContacto;
 	
 	@Column(name="ID_TRAMITE")
 	private String idTramite;
@@ -53,11 +53,11 @@ public class Contacto {
 	
 	private String correo;
 	
-	public int getIdContacto() {
+	public Long getIdContacto() {
 		return idContacto;
 	}
 
-	public void setIdContacto(int idContacto) {
+	public void setIdContacto(Long idContacto) {
 		this.idContacto = idContacto;
 	}
 	

@@ -124,7 +124,7 @@ public class AutorizacionServiceImpl implements AutorizacionService{
 	}
 	
 	@Override
-	public List<PrestacionDTO> getPrestacionesByEspecialidadId(int idEspecialidad) throws CustomException {
+	public List<PrestacionDTO> getPrestacionesByEspecialidadId(Long idEspecialidad) throws CustomException {
 		List<PrestacionDTO> prestacionsDTO = new ArrayList<PrestacionDTO>();
 		Session session = null;
 		Transaction tx = null;
@@ -151,7 +151,7 @@ public class AutorizacionServiceImpl implements AutorizacionService{
 	}
 	
 	@Override
-	public List<String> getDocumentosByEspecialidadYPrestacion(int idEspecialidad, int idPrestacion) throws CustomException {
+	public List<String> getDocumentosByEspecialidadYPrestacion(Long idEspecialidad, Long idPrestacion) throws CustomException {
 		List<String> documentos = new ArrayList<String>();
 		Session session = null;
 		Transaction tx = null;
@@ -189,9 +189,9 @@ public class AutorizacionServiceImpl implements AutorizacionService{
 			session = this.sessionFactory.getCurrentSession();
 			tx = session.beginTransaction();
 			
-			String correo = getMailByIds(autorizacionForm.getIdEspecialidad(), autorizacionForm.getIdPrestacion());
-			String especialidad = getEspecialidadById(autorizacionForm.getIdEspecialidad());
-			String prestacion = getPrestacionById(autorizacionForm.getIdPrestacion());
+			String correo = getMailByIds(Long.valueOf(autorizacionForm.getIdEspecialidad()), Long.valueOf(autorizacionForm.getIdPrestacion()));
+			String especialidad = getEspecialidadById(Long.valueOf(autorizacionForm.getIdEspecialidad()));
+			String prestacion = getPrestacionById(Long.valueOf(autorizacionForm.getIdPrestacion()));
 			String message = getMessage(autorizacionForm, especialidad, prestacion);
 			nroTramite = getSecuence();
 			String subject = getSubject(autorizacionForm, nroTramite);
@@ -232,7 +232,7 @@ public class AutorizacionServiceImpl implements AutorizacionService{
 		return new BeneficiarioDTO(beneficiario.getIdAfiliado(), beneficiario.getIdTitular(), beneficiario.getApellido(), beneficiario.getNombre());
 	}
 	@Transactional
-	public String getMailByIds(String idEspecialidad, String idPrestacion) throws CustomException{
+	public String getMailByIds(Long idEspecialidad, Long idPrestacion) throws CustomException{
 		String correo = null;
 		try {
 			correo = especialidadPrestacionDAO.getMailByIds(idEspecialidad,idPrestacion);
@@ -245,7 +245,7 @@ public class AutorizacionServiceImpl implements AutorizacionService{
 	}
 	
 	@Transactional 
-	private String getEspecialidadById(String idEspecialidad) throws CustomException {
+	private String getEspecialidadById(Long idEspecialidad) throws CustomException {
 		String motivo = null;
 		try {
 			motivo = especialidadPrestacionDAO.getEspecialidadById(idEspecialidad);
@@ -258,7 +258,7 @@ public class AutorizacionServiceImpl implements AutorizacionService{
 	}
 
 	@Transactional 
-	private String getPrestacionById(String idPrestacion) throws CustomException {
+	private String getPrestacionById(Long idPrestacion) throws CustomException {
 		String categoria = null;
 		try {
 			categoria = especialidadPrestacionDAO.getPrestacionById(idPrestacion);
@@ -275,7 +275,7 @@ public class AutorizacionServiceImpl implements AutorizacionService{
 		String secuence = "";
 		try {
 			Integer result = especialidadPrestacionDAO.getSecuence();
-			secuence = Integer.toString(result);
+			secuence = Long.toString(result);
 			String year = String.format("%04d", LocalDate.now().getYear());
 			String month = String.format("%02d", LocalDate.now().getMonthValue());
 			String day = String.format("%02d", LocalDate.now().getDayOfMonth());

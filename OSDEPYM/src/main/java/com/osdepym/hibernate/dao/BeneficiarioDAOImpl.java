@@ -23,7 +23,7 @@ public class BeneficiarioDAOImpl implements BeneficiarioDAO {
 	}
 	
 	@Override
-	public Beneficiario get(Integer id) throws CustomException {
+	public Beneficiario get(Long id) throws CustomException {
 		return null;
 	}
 
@@ -58,7 +58,7 @@ public class BeneficiarioDAOImpl implements BeneficiarioDAO {
 	}
 	
 	@Override
-	public List<Beneficiario> getBeneficiariosByIdAfiliado(int idAfiliado) throws CustomException {
+	public List<Beneficiario> getBeneficiariosByIdAfiliado(Long idAfiliado) throws CustomException {
 		try {
 			List<Beneficiario> b = new ArrayList<Beneficiario>();
 			Session session = this.sessionFactory.getCurrentSession();
