@@ -16,4 +16,13 @@ public interface ModeloPersonaDAO {
 				String nombre, 
 				String sexo,
 				Date fechaNacimiento) throws CustomException;
+		
+		public void actualizarPersona(Long cuil, 
+				String tipoDocumento, 
+				Long nroDocumento, 
+				String apellido, 
+				String nombre, 
+				String sexo,
+				Date fechaNacimiento,
+				Date fechaInicioCuil) throws CustomException;
 }
