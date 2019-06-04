@@ -119,7 +119,7 @@ public class AutorizacionController {
 			form.setNombreAfiliado("");
 			List<BeneficiarioDTO> beneficiarios = getBeneficiarios(form);
 			for(BeneficiarioDTO b : beneficiarios) {
-				if(b.getId() == Long.valueOf(idAfiliado)) {
+				if(b.getId().equals(Long.valueOf(idAfiliado))) {
 					form.setNombreAfiliado(b.getNombreCompleto());
 				}
 			}
