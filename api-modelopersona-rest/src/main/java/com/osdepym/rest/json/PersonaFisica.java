@@ -14,7 +14,7 @@ public class PersonaFisica {
 	@JsonProperty
 	 private String Sexo;
 	@JsonProperty
-	 ArrayList < Object > documentoIdentidad = new ArrayList < Object > ();
+	 ArrayList < DocumentoIdentidad > documentoIdentidad = new ArrayList < DocumentoIdentidad > ();
 	@JsonProperty
 	 Cuil cuil;
 
