@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.Query;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,4 +60,31 @@ public class ModeloPersonaDAOImpl implements ModeloPersonaDAO {
 			throw new CustomException(e.getMessage(), ErrorMessages.DATABASE_GET_ERROR);
 		}
 	}
+	
+	@Override
+	public void actualizarPersona(Long cuil, 
+			String tipoDocumento, 
+			Long nroDocumento, 
+			String apellido, 
+			String nombre, 
+			String sexo,
+			Date fechaNacimiento,
+			Date fechaInicioCuil) throws CustomException {
+		try {
+			Session session = this.sessionFactory.getCurrentSession();
+			Query query = session.createNativeQuery("BEGIN dbo.Spo_PersonaFisicaActualizar(TipoDocumento=>?,Nrodocumento=>?,CUIL=>?,FechaInicioCUIL=>?,Apellido=>?,Nombre=>?,FechaNacimiento=>?,Sexo=>?); END;");
+			query.setParameter(1, tipoDocumento);
+			query.setParameter(2, nroDocumento);
+			query.setParameter(3, cuil);
+			query.setParameter(4, fechaInicioCuil);
+			query.setParameter(5, apellido);
+			query.setParameter(6, nombre);
+			query.setParameter(7, fechaNacimiento);
+			query.setParameter(8, sexo);
+			query.executeUpdate();
+		} catch(Exception e){
+			throw new CustomException(e.getMessage(), ErrorMessages.DATABASE_GET_ERROR);
+		}
+	}
+
 }
