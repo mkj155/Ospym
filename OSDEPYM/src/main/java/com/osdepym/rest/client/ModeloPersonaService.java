@@ -27,8 +27,6 @@ public class ModeloPersonaService {
 			Date fechaNacimiento) {
 		BusquedaPersonaResponse response = null;
 		
-		
-		
 		try{
 			List<ModeloPersona> modeloPersona = modeloPersonaDAO.getPersona(
 					tipoMensaje,
