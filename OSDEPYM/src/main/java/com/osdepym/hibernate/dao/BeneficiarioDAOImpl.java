@@ -62,7 +62,7 @@ public class BeneficiarioDAOImpl implements BeneficiarioDAO {
 		try {
 			List<Beneficiario> b = new ArrayList<Beneficiario>();
 			Session session = this.sessionFactory.getCurrentSession();
-			String sqlString = "SELECT Id_Afiliado, Id_Titular, Apellido, Nombre FROM dbo.v_familiares_a_cargo WHERE Id_Titular = " + idAfiliado;
+			String sqlString = "SELECT Id_Afiliado, Id_Titular, Apellido, Nombre FROM dbo.v_familiares_a_cargo WHERE id_titular_busqueda = " + idAfiliado;
 			b = session.createNativeQuery(sqlString, Beneficiario.class).getResultList();
 			return b;
 		} catch (Exception e) {
