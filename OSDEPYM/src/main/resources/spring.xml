@@ -28,10 +28,10 @@
 		<property name="dataSource" ref="dataSource" />
 		<property name="annotatedClasses">
 			<list>
-				<value>com.osdepym.hibernate.entity.Categoria</value>
-				<value>com.osdepym.hibernate.entity.MotivoCategoria</value>
-				<value>com.osdepym.hibernate.entity.Motivo</value>
-				<value>com.osdepym.hibernate.entity.Contacto</value>
+<!-- 				<value>com.osdepym.hibernate.entity.Categoria</value> -->
+<!-- 				<value>com.osdepym.hibernate.entity.MotivoCategoria</value> -->
+<!-- 				<value>com.osdepym.hibernate.entity.Motivo</value> -->
+<!-- 				<value>com.osdepym.hibernate.entity.Contacto</value> -->
 			</list>
 		</property>
 		<property name="hibernateProperties">
