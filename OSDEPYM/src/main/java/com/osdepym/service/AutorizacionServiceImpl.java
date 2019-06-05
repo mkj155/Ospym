@@ -307,8 +307,10 @@ public class AutorizacionServiceImpl implements AutorizacionService{
 		
 		sb.append(Constants.AUTORIZACION).append(" - ");
 		sb.append(nroTramite).append(" - ");
-		sb.append(autorizacionForm.getIdAfiliado()).append(" - ");
-		sb.append(autorizacionForm.getNombreAfiliado().toUpperCase());
+		//sb.append(autorizacionForm.getIdAfiliado()).append(" - ");
+		//sb.append(autorizacionForm.getNombreAfiliado().toUpperCase());
+		sb.append(autorizacionForm.getIdBeneficiario()).append(" - ");
+		sb.append(autorizacionForm.getNombreBeneficiario().toUpperCase());
 
 		return sb.toString();
 	}

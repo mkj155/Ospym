@@ -116,14 +116,17 @@ public class AutorizacionController {
 		ModelAndView view = null;
 		try {
 			form.setIdAfiliado(idAfiliado);
-			form.setNombreAfiliado("");
 			List<BeneficiarioDTO> beneficiarios = getBeneficiarios(form);
 			for(BeneficiarioDTO b : beneficiarios) {
-				if(b.getId().equals(Long.valueOf(idAfiliado))) {
-					form.setNombreAfiliado(b.getNombreCompleto());
+				for(BeneficiarioDTO c : beneficiarios) {
+					if(b.getId().equals(Long.valueOf(c.getTitular()))) {
+						form.setIdAfiliado(b.getId().toString());
+						form.setNombreAfiliado(b.getNombreCompleto());
+						break;
+					}
 				}
 			}
-			
+
 			view = new ModelAndView("autorizacion");
 			view.addObject("beneficiarios", beneficiarios);
 			view.addObject("especialidades", service.getAllEspecialidades());
