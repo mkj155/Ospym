@@ -4,9 +4,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Cuil {
 	@JsonProperty
-	 private String id;
+	 private String id = "";
 	@JsonProperty
-	 private String fechaInicio;
+	 private String fechaInicio = "";
 
 
 	 // Getter Methods 

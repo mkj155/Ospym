@@ -1,23 +1,27 @@
 package com.osdepym.rest.dao;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-import javax.persistence.Query;
+import javax.persistence.StoredProcedureQuery;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.osdepym.exception.CustomException;
-import com.osdepym.exception.ErrorMessages;
-import com.osdepym.rest.entity.ModeloPersona;
+import com.osdepym.rest.entity.AfiliadoCompleto;
+import com.osdepym.rest.json.Cuil;
+import com.osdepym.rest.json.DocumentoIdentidad;
+import com.osdepym.rest.json.PersonaFisicaRequest;
 
 @Repository
 public class ModeloPersonaDAOImpl implements ModeloPersonaDAO {
 
+	Logger logger = LoggerFactory.getLogger(ModeloPersonaDAOImpl.class);
+	
 	@Autowired
 	private SessionFactory sessionFactory;
 	
@@ -25,66 +29,83 @@ public class ModeloPersonaDAOImpl implements ModeloPersonaDAO {
 		this.sessionFactory = sessionFactory;
 	}
 	
-	public List<ModeloPersona> getPersona(
-			String tipoMensaje,
-			Long cuil, 
-			String tipoDocumento, 
-			Long nroDocumento, 
-			String apellido, 
-			String nombre, 
-			String sexo,
-			Date fechaNacimiento) throws CustomException {
-		try {
-			List<ModeloPersona> b = new ArrayList<ModeloPersona>();
-			Session session = this.sessionFactory.getCurrentSession();
-			String sqlString = "SELECT Id_Afiliado FROM dbo.v_familiares_a_cargo"; 
-			
-			if(tipoMensaje != null || cuil != null || tipoDocumento != null || nroDocumento != null || apellido != null || nombre != null || sexo != null || fechaNacimiento != null) { 
-				sqlString += " WHERE ";
-				
-				sqlString += (tipoMensaje != null) ? "tipoMensaje = " + tipoMensaje + " AND " : "";
-				sqlString += (cuil != null) ? "cuil = " + cuil + " AND " : "";
-				sqlString += (tipoDocumento != null) ? "tipoDocumento = " + tipoDocumento + " AND " : "";
-				sqlString += (nroDocumento != null) ? "nroDocumento = " + nroDocumento + " AND " : ""; 
-				sqlString += (apellido != null) ? "apellido = " + apellido + " AND " : ""; 
-				sqlString += (nombre != null) ? "nombre = " + nombre + " AND " : ""; 
-				sqlString += (sexo != null) ? "sexo = " + sexo + " AND " : "";
-				sqlString += (fechaNacimiento != null) ? "fechaNacimiento = " + fechaNacimiento + " AND " : "";
-				
-				sqlString = sqlString.substring(0, sqlString.lastIndexOf(" AND "));
+	@Override
+	public List<AfiliadoCompleto> getPersona(PersonaFisicaRequest personaFisicaRequest){
+		ArrayList<DocumentoIdentidad> documentos = personaFisicaRequest.getDocumentoIdeantidad();
+		Cuil cuil = personaFisicaRequest.getCUIL();
+		String whereClause = "";
+		if(documentos.size() > 0) {
+			whereClause += "(";
+			for(DocumentoIdentidad doc : documentos) {
+				if(!whereClause.equals("(")) {
+					whereClause += " OR ";
+				}
+				whereClause += "(TipoDocumento = '" + doc.getTipo() + "' AND NroDocumento = '" + doc.getNumero() + "')";
 			}
-			
-			b = session.createNativeQuery(sqlString, ModeloPersona.class).getResultList();
-			return b;
-		} catch (Exception e) {
-			throw new CustomException(e.getMessage(), ErrorMessages.DATABASE_GET_ERROR);
+			whereClause += ") ";
 		}
+		
+		
+		if(!personaFisicaRequest.getApellido().equals("")) {
+			if(!whereClause.equals("")) {
+				whereClause += " AND ";
+			}
+			whereClause += "Apellido = '" + personaFisicaRequest.getApellido() + "'";
+		}
+		
+		
+		if(!personaFisicaRequest.getNombre().equals("")) {
+			if(!whereClause.equals("")) {
+				whereClause += " AND ";
+			}
+			whereClause += "Nombre = '" + personaFisicaRequest.getNombre() + "'";
+		}
+		
+		
+		if(!personaFisicaRequest.getFechaNacimiento().equals("")) {
+			if(!whereClause.equals("")) {
+				whereClause += " AND ";
+			}
+			whereClause += "CAST(FechaNacimiento AS DATE) = CAST('" + personaFisicaRequest.getFechaNacimiento() + "' AS DATE)";
+		}
+		
+		
+		if(!cuil.getId().equals("")) {
+			if(!whereClause.equals("")) {
+				whereClause += " AND ";
+			}
+			whereClause += "CUIL = '" + cuil.getId() + "'";
+		}
+		
+		if(!cuil.getFechaInicio().equals("")) {
+			if(!whereClause.equals("")) {
+				whereClause += " AND ";
+			}
+			whereClause += "CAST(FechaVigenciaDesdeCUIL AS DATE) = CAST('" + cuil.getFechaInicio() + "' AS DATE)";
+		}
+		
+		List<AfiliadoCompleto> b = new ArrayList<AfiliadoCompleto>();
+		Session session = this.sessionFactory.getCurrentSession();
+		String sqlString = "SELECT Persona_ID, Apellido, Nombre, FechaNacimiento, Sexo, CUIL, FechaVigenciaDesdeCUIL, TipoDocumento, NroDocumento FROM mp.vo_PersonaFisicaAfiliadoCompleto WHERE " + whereClause;
+		b = session.createNativeQuery(sqlString, AfiliadoCompleto.class).getResultList();
+		return b;
 	}
 	
+	
 	@Override
-	public void actualizarPersona(Long cuil, 
-			String tipoDocumento, 
-			Long nroDocumento, 
-			String apellido, 
-			String nombre, 
-			String sexo,
-			Date fechaNacimiento,
-			Date fechaInicioCuil) throws CustomException {
-		try {
-			Session session = this.sessionFactory.getCurrentSession();
-			Query query = session.createNativeQuery("BEGIN dbo.Spo_PersonaFisicaActualizar(TipoDocumento=>?,Nrodocumento=>?,CUIL=>?,FechaInicioCUIL=>?,Apellido=>?,Nombre=>?,FechaNacimiento=>?,Sexo=>?); END;");
-			query.setParameter(1, tipoDocumento);
-			query.setParameter(2, nroDocumento);
-			query.setParameter(3, cuil);
-			query.setParameter(4, fechaInicioCuil);
-			query.setParameter(5, apellido);
-			query.setParameter(6, nombre);
-			query.setParameter(7, fechaNacimiento);
-			query.setParameter(8, sexo);
-			query.executeUpdate();
-		} catch(Exception e){
-			throw new CustomException(e.getMessage(), ErrorMessages.DATABASE_GET_ERROR);
-		}
+	public void actualizarPersona(PersonaFisicaRequest personaFisicaRequest){
+
+			StoredProcedureQuery query = sessionFactory.createEntityManager().createNamedStoredProcedureQuery("PersonaFisicaActualizar");
+			query.setParameter("TipoDocumento", personaFisicaRequest.getDocumentoIdeantidad().get(0).getTipo());
+			query.setParameter("Nrodocumento", personaFisicaRequest.getDocumentoIdeantidad().get(0).getNumero().toString());
+			query.setParameter("CUIL", personaFisicaRequest.getCUIL().getId());
+			query.setParameter("FechaInicioCUIL", personaFisicaRequest.getCUIL().getFechaInicio());
+			query.setParameter("Apellido", personaFisicaRequest.getApellido());
+			query.setParameter("Nombre", personaFisicaRequest.getNombre());
+			query.setParameter("FechaNacimiento", personaFisicaRequest.getFechaNacimiento());
+			query.setParameter("Sexo", personaFisicaRequest.getSexo());
+			query.execute();
+		
 	}
 
 }

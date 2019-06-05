@@ -5,9 +5,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class DocumentoIdentidad {
 
 	@JsonProperty
-	private String tipo;
+	private String tipo = "";
 	@JsonProperty
-	private Integer numero;
+	private Long numero;
 	
 	
 	public String getTipo() {
@@ -17,10 +17,10 @@ public class DocumentoIdentidad {
 		this.tipo = tipo;
 	}
 	
-	public Integer getNumero() {
+	public Long getNumero() {
 		return numero;
 	}
-	public void setNumero(Integer numero) {
+	public void setNumero(Long numero) {
 		this.numero = numero;
 	}
 	
