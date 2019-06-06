@@ -1,5 +1,7 @@
 package com.osdepym.rest.server;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
+import com.osdepym.exception.CustomException;
 import com.osdepym.rest.dao.ModeloPersonaDAO;
 import com.osdepym.rest.json.ActualizacionPersonaFullResponse;
 import com.osdepym.rest.json.ActualizacionPersonaResponse;
@@ -49,29 +52,37 @@ public class ActualizacionPersonaREST extends RestTemplate {
 
 	@RequestMapping(value = "/api-modelopersona-rest/actualizarPersona", method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.OK)
-	public ActualizacionPersonaFullResponse testJson(@RequestBody BusquedaPersonaRequest jsonBody) {
+	public ActualizacionPersonaFullResponse testJson(@RequestBody BusquedaPersonaRequest jsonBody, HttpServletResponse response) throws CustomException{
 		boolean isSuccess = true;
 		Session session = null;
 		Transaction tx = null;
-		ActualizacionPersonaFullResponse response = new ActualizacionPersonaFullResponse();
+		ActualizacionPersonaFullResponse jsonResponse = new ActualizacionPersonaFullResponse();
 		try {
 			session = this.sessionFactory.getCurrentSession();
 			tx = session.beginTransaction();
 			modeloPersonaDAO.actualizarPersona(jsonBody.getPersonaFisica());
 			tx.commit();
 			session.close();
-		} catch (Exception e) {
+		}
+		catch (CustomException e) {
 			tx.rollback();
 			session.close();
-			logger.error(e.getMessage().toString());
-			isSuccess = false;
-		}finally {
-			response.setPersonaFisica(jsonBody.getPersonaFisica());
-			response.setSender(jsonBody.getSender());
-			response.setTipoMensaje(jsonBody.getTipoMensaje());
-			response.setRespuesta(getResponse(isSuccess));
+			throw e;
 		}
-		return response;
+		catch (Exception e) {
+			tx.rollback();
+			session.close();
+			logger.error(e.getStackTrace().toString());
+			logger.error(e.getMessage().toString());
+			throw new CustomException();
+		}
+		
+			jsonResponse.setPersonaFisica(jsonBody.getPersonaFisica());
+			jsonResponse.setSender(jsonBody.getSender());
+			jsonResponse.setTipoMensaje(jsonBody.getTipoMensaje());
+			jsonResponse.setRespuesta(getResponse(isSuccess));
+		
+		return jsonResponse;
 	}
 
 	private ActualizacionPersonaResponse getResponse(boolean isSuccess) {

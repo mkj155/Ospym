@@ -1,0 +1,935 @@
+2019-06-05 00:05:57,657 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Starting ApiModelopersonaRestApplication on DESKTOP-N379CIV with PID 2684 (started by Agustin in C:\Users\Agustin\Documents\Java Workspaces\OSDEPYM\api-modelopersona-rest)
+2019-06-05 00:05:57,665 DEBUG com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Running with Spring Boot v2.1.4.RELEASE, Spring v5.1.6.RELEASE
+2019-06-05 00:05:57,666 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] No active profile set, falling back to default profiles: default
+2019-06-05 00:06:02,675 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Started ApiModelopersonaRestApplication in 5.269 seconds (JVM running for 6.159)
+2019-06-05 00:08:33,482 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Starting ApiModelopersonaRestApplication on DESKTOP-N379CIV with PID 8764 (started by Agustin in C:\Users\Agustin\Documents\Java Workspaces\OSDEPYM\api-modelopersona-rest)
+2019-06-05 00:08:33,484 DEBUG com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Running with Spring Boot v2.1.4.RELEASE, Spring v5.1.6.RELEASE
+2019-06-05 00:08:33,485 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] No active profile set, falling back to default profiles: default
+2019-06-05 00:08:38,531 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Started ApiModelopersonaRestApplication in 5.3 seconds (JVM running for 6.193)
+2019-06-05 00:10:28,467 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Starting ApiModelopersonaRestApplication on DESKTOP-N379CIV with PID 8688 (started by Agustin in C:\Users\Agustin\Documents\Java Workspaces\OSDEPYM\api-modelopersona-rest)
+2019-06-05 00:10:28,471 DEBUG com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Running with Spring Boot v2.1.4.RELEASE, Spring v5.1.6.RELEASE
+2019-06-05 00:10:28,471 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] No active profile set, falling back to default profiles: default
+2019-06-05 00:10:33,511 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Started ApiModelopersonaRestApplication in 5.312 seconds (JVM running for 6.161)
+2019-06-05 00:12:15,093 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Starting ApiModelopersonaRestApplication on DESKTOP-N379CIV with PID 15008 (started by Agustin in C:\Users\Agustin\Documents\Java Workspaces\OSDEPYM\api-modelopersona-rest)
+2019-06-05 00:12:15,097 DEBUG com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Running with Spring Boot v2.1.4.RELEASE, Spring v5.1.6.RELEASE
+2019-06-05 00:12:15,097 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] No active profile set, falling back to default profiles: default
+2019-06-05 00:12:19,914 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Started ApiModelopersonaRestApplication in 5.063 seconds (JVM running for 5.881)
+2019-06-05 00:43:06,870 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Starting ApiModelopersonaRestApplication on DESKTOP-N379CIV with PID 12144 (started by Agustin in C:\Users\Agustin\Documents\Java Workspaces\OSDEPYM\api-modelopersona-rest)
+2019-06-05 00:43:06,873 DEBUG com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Running with Spring Boot v2.1.4.RELEASE, Spring v5.1.6.RELEASE
+2019-06-05 00:43:06,873 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] No active profile set, falling back to default profiles: default
+2019-06-05 00:43:11,791 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Started ApiModelopersonaRestApplication in 5.173 seconds (JVM running for 6.024)
+2019-06-05 00:43:39,732 ERROR org.hibernate.engine.jdbc.spi.SqlExceptionHelper [http-nio-8080-exec-2] Incorrect syntax near '1978'.
+2019-06-05 00:43:39,742 ERROR com.osdepym.rest.server.BusquedaPersonaREST [http-nio-8080-exec-2] could not extract ResultSet; SQL [n/a]; nested exception is org.hibernate.exception.SQLGrammarException: could not extract ResultSet
+2019-06-05 00:44:43,587 ERROR org.hibernate.engine.jdbc.spi.SqlExceptionHelper [http-nio-8080-exec-3] Incorrect syntax near '1978'.
+2019-06-05 00:44:44,531 ERROR com.osdepym.rest.server.BusquedaPersonaREST [http-nio-8080-exec-3] could not extract ResultSet; SQL [n/a]; nested exception is org.hibernate.exception.SQLGrammarException: could not extract ResultSet
+2019-06-05 00:45:08,237 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Starting ApiModelopersonaRestApplication on DESKTOP-N379CIV with PID 11516 (started by Agustin in C:\Users\Agustin\Documents\Java Workspaces\OSDEPYM\api-modelopersona-rest)
+2019-06-05 00:45:08,240 DEBUG com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Running with Spring Boot v2.1.4.RELEASE, Spring v5.1.6.RELEASE
+2019-06-05 00:45:08,241 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] No active profile set, falling back to default profiles: default
+2019-06-05 00:45:13,322 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Started ApiModelopersonaRestApplication in 5.341 seconds (JVM running for 6.175)
+2019-06-05 00:46:34,666 ERROR org.hibernate.engine.jdbc.spi.SqlExceptionHelper [http-nio-8080-exec-2] Conversion failed when converting date and/or time from character string.
+2019-06-05 00:46:35,503 ERROR com.osdepym.rest.server.BusquedaPersonaREST [http-nio-8080-exec-2] could not execute query; SQL [SELECT Persona_ID, Apellido, Nombre, FechaNacimiento, Sexo, CUIL, FechaVigenciaDesdeCUIL, TipoDocumento, NroDocumento FROM mp.vo_PersonaFisicaAfiliadoCompleto WHERE ((TipoDocumento = 'DU' AND NroDocumento = '26119778') OR (TipoDocumento = 'DU' AND NroDocumento = '12647741'))  AND Apellido = 'LEMOS' AND Nombre = 'EZEQUIEL' AND CAST(FechaNacimiento AS DATE) = CAST('1978-01-03' AS DATE) AND CUIL = '20261197783' AND CAST(FechaVigenciaDesdeCUIL AS DATE) = CAST('" + cuil.getFechaInicio() + "' AS DATE)]; nested exception is org.hibernate.exception.SQLGrammarException: could not execute query
+2019-06-05 00:47:13,432 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Starting ApiModelopersonaRestApplication on DESKTOP-N379CIV with PID 14320 (started by Agustin in C:\Users\Agustin\Documents\Java Workspaces\OSDEPYM\api-modelopersona-rest)
+2019-06-05 00:47:13,436 DEBUG com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Running with Spring Boot v2.1.4.RELEASE, Spring v5.1.6.RELEASE
+2019-06-05 00:47:13,436 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] No active profile set, falling back to default profiles: default
+2019-06-05 00:47:18,401 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Started ApiModelopersonaRestApplication in 5.22 seconds (JVM running for 6.044)
+2019-06-05 01:56:03,929 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Starting ApiModelopersonaRestApplication on DESKTOP-N379CIV with PID 14344 (started by Agustin in C:\Users\Agustin\Documents\Java Workspaces\OSDEPYM\api-modelopersona-rest)
+2019-06-05 01:56:03,931 DEBUG com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Running with Spring Boot v2.1.4.RELEASE, Spring v5.1.6.RELEASE
+2019-06-05 01:56:03,932 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] No active profile set, falling back to default profiles: default
+2019-06-05 01:56:08,011 ERROR org.springframework.boot.SpringApplication [main] Application run failed
+org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'modeloPersonaDAOImpl': Unsatisfied dependency expressed through field 'sessionFactory'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'localSessionFactory' defined in class path resource [spring.xml]: Invocation of init method failed; nested exception is org.hibernate.AnnotationException: No identifier specified for entity: com.osdepym.rest.entity.ActualizarPersonaProcedure
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:596)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:90)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:374)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1411)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:592)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:515)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:320)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:318)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:849)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:877)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:549)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:142)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:775)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:397)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:316)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1260)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1248)
+	at com.osdepym.persona.rest.ApiModelopersonaRestApplication.main(ApiModelopersonaRestApplication.java:18)
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'localSessionFactory' defined in class path resource [spring.xml]: Invocation of init method failed; nested exception is org.hibernate.AnnotationException: No identifier specified for entity: com.osdepym.rest.entity.ActualizarPersonaProcedure
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1778)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:593)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:515)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:320)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:318)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:277)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1247)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1167)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:593)
+	... 19 common frames omitted
+Caused by: org.hibernate.AnnotationException: No identifier specified for entity: com.osdepym.rest.entity.ActualizarPersonaProcedure
+	at org.hibernate.cfg.InheritanceState.determineDefaultAccessType(InheritanceState.java:266)
+	at org.hibernate.cfg.InheritanceState.getElementsToProcess(InheritanceState.java:211)
+	at org.hibernate.cfg.AnnotationBinder.bindClass(AnnotationBinder.java:781)
+	at org.hibernate.boot.model.source.internal.annotations.AnnotationMetadataSourceProcessorImpl.processEntityHierarchies(AnnotationMetadataSourceProcessorImpl.java:254)
+	at org.hibernate.boot.model.process.spi.MetadataBuildingProcess$1.processEntityHierarchies(MetadataBuildingProcess.java:230)
+	at org.hibernate.boot.model.process.spi.MetadataBuildingProcess.complete(MetadataBuildingProcess.java:273)
+	at org.hibernate.boot.model.process.spi.MetadataBuildingProcess.build(MetadataBuildingProcess.java:83)
+	at org.hibernate.boot.internal.MetadataBuilderImpl.build(MetadataBuilderImpl.java:473)
+	at org.hibernate.boot.internal.MetadataBuilderImpl.build(MetadataBuilderImpl.java:84)
+	at org.hibernate.cfg.Configuration.buildSessionFactory(Configuration.java:689)
+	at org.hibernate.cfg.Configuration.buildSessionFactory(Configuration.java:724)
+	at org.springframework.orm.hibernate5.LocalSessionFactoryBean.buildSessionFactory(LocalSessionFactoryBean.java:615)
+	at org.springframework.orm.hibernate5.LocalSessionFactoryBean.afterPropertiesSet(LocalSessionFactoryBean.java:599)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1837)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1774)
+	... 29 common frames omitted
+2019-06-05 01:59:27,439 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Starting ApiModelopersonaRestApplication on DESKTOP-N379CIV with PID 20320 (started by Agustin in C:\Users\Agustin\Documents\Java Workspaces\OSDEPYM\api-modelopersona-rest)
+2019-06-05 01:59:27,442 DEBUG com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Running with Spring Boot v2.1.4.RELEASE, Spring v5.1.6.RELEASE
+2019-06-05 01:59:27,443 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] No active profile set, falling back to default profiles: default
+2019-06-05 01:59:32,448 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Started ApiModelopersonaRestApplication in 5.257 seconds (JVM running for 6.106)
+2019-06-05 02:01:18,384 ERROR org.hibernate.engine.jdbc.spi.SqlExceptionHelper [http-nio-8080-exec-5] The value is not set for the parameter number 2.
+2019-06-05 02:04:12,605 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Starting ApiModelopersonaRestApplication on DESKTOP-N379CIV with PID 13768 (started by Agustin in C:\Users\Agustin\Documents\Java Workspaces\OSDEPYM\api-modelopersona-rest)
+2019-06-05 02:04:12,608 DEBUG com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Running with Spring Boot v2.1.4.RELEASE, Spring v5.1.6.RELEASE
+2019-06-05 02:04:12,608 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] No active profile set, falling back to default profiles: default
+2019-06-05 02:04:17,398 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Started ApiModelopersonaRestApplication in 5.035 seconds (JVM running for 5.924)
+2019-06-05 02:05:17,198 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Starting ApiModelopersonaRestApplication on DESKTOP-N379CIV with PID 13360 (started by Agustin in C:\Users\Agustin\Documents\Java Workspaces\OSDEPYM\api-modelopersona-rest)
+2019-06-05 02:05:17,200 DEBUG com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Running with Spring Boot v2.1.4.RELEASE, Spring v5.1.6.RELEASE
+2019-06-05 02:05:17,201 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] No active profile set, falling back to default profiles: default
+2019-06-05 02:05:22,287 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Started ApiModelopersonaRestApplication in 5.335 seconds (JVM running for 6.164)
+2019-06-05 02:05:47,755 ERROR org.hibernate.engine.jdbc.spi.SqlExceptionHelper [http-nio-8080-exec-2] Error converting data type varchar to bigint.
+2019-06-05 02:08:10,832 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Starting ApiModelopersonaRestApplication on DESKTOP-N379CIV with PID 7532 (started by Agustin in C:\Users\Agustin\Documents\Java Workspaces\OSDEPYM\api-modelopersona-rest)
+2019-06-05 02:08:10,835 DEBUG com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Running with Spring Boot v2.1.4.RELEASE, Spring v5.1.6.RELEASE
+2019-06-05 02:08:10,835 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] No active profile set, falling back to default profiles: default
+2019-06-05 02:08:15,872 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Started ApiModelopersonaRestApplication in 5.288 seconds (JVM running for 6.094)
+2019-06-05 02:08:33,851 ERROR org.hibernate.engine.jdbc.spi.SqlExceptionHelper [http-nio-8080-exec-1] Error converting data type varchar to bigint.
+2019-06-05 02:11:43,673 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Starting ApiModelopersonaRestApplication on DESKTOP-N379CIV with PID 6968 (started by Agustin in C:\Users\Agustin\Documents\Java Workspaces\OSDEPYM\api-modelopersona-rest)
+2019-06-05 02:11:43,676 DEBUG com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Running with Spring Boot v2.1.4.RELEASE, Spring v5.1.6.RELEASE
+2019-06-05 02:11:43,677 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] No active profile set, falling back to default profiles: default
+2019-06-05 02:11:48,786 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Started ApiModelopersonaRestApplication in 5.359 seconds (JVM running for 6.207)
+2019-06-05 02:15:55,552 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Starting ApiModelopersonaRestApplication on DESKTOP-N379CIV with PID 9948 (started by Agustin in C:\Users\Agustin\Documents\Java Workspaces\OSDEPYM\api-modelopersona-rest)
+2019-06-05 02:15:55,554 DEBUG com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Running with Spring Boot v2.1.4.RELEASE, Spring v5.1.6.RELEASE
+2019-06-05 02:15:55,555 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] No active profile set, falling back to default profiles: default
+2019-06-05 02:16:00,402 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Started ApiModelopersonaRestApplication in 5.094 seconds (JVM running for 5.885)
+2019-06-05 02:21:48,026 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Starting ApiModelopersonaRestApplication on DESKTOP-N379CIV with PID 20472 (started by Agustin in C:\Users\Agustin\Documents\Java Workspaces\OSDEPYM\api-modelopersona-rest)
+2019-06-05 02:21:48,029 DEBUG com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Running with Spring Boot v2.1.4.RELEASE, Spring v5.1.6.RELEASE
+2019-06-05 02:21:48,030 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] No active profile set, falling back to default profiles: default
+2019-06-05 02:21:52,896 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Started ApiModelopersonaRestApplication in 5.112 seconds (JVM running for 5.922)
+2019-06-05 02:33:13,431 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Starting ApiModelopersonaRestApplication on DESKTOP-N379CIV with PID 15196 (started by Agustin in C:\Users\Agustin\Documents\Java Workspaces\OSDEPYM\api-modelopersona-rest)
+2019-06-05 02:33:13,434 DEBUG com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Running with Spring Boot v2.1.4.RELEASE, Spring v5.1.6.RELEASE
+2019-06-05 02:33:13,434 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] No active profile set, falling back to default profiles: default
+2019-06-05 02:33:19,357 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Started ApiModelopersonaRestApplication in 6.188 seconds (JVM running for 7.069)
+2019-06-05 02:33:40,205 ERROR com.osdepym.rest.server.ActualizacionPersonaREST [http-nio-8080-exec-2] Bind value [2611977] was not of specified type [class java.lang.String
+2019-06-05 02:35:33,189 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Starting ApiModelopersonaRestApplication on DESKTOP-N379CIV with PID 16164 (started by Agustin in C:\Users\Agustin\Documents\Java Workspaces\OSDEPYM\api-modelopersona-rest)
+2019-06-05 02:35:33,192 DEBUG com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Running with Spring Boot v2.1.4.RELEASE, Spring v5.1.6.RELEASE
+2019-06-05 02:35:33,192 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] No active profile set, falling back to default profiles: default
+2019-06-05 02:35:38,275 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Started ApiModelopersonaRestApplication in 5.332 seconds (JVM running for 6.192)
+2019-06-05 02:35:52,888 ERROR com.osdepym.rest.server.ActualizacionPersonaREST [http-nio-8080-exec-1] The parameter named [Sexo] was null. You need to call ParameterRegistration#enablePassingNulls(true) in order to pass null parameters.
+2019-06-05 02:44:04,362 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Starting ApiModelopersonaRestApplication on DESKTOP-N379CIV with PID 15776 (started by Agustin in C:\Users\Agustin\Documents\Java Workspaces\OSDEPYM\api-modelopersona-rest)
+2019-06-05 02:44:04,365 DEBUG com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Running with Spring Boot v2.1.4.RELEASE, Spring v5.1.6.RELEASE
+2019-06-05 02:44:04,366 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] No active profile set, falling back to default profiles: default
+2019-06-05 02:44:16,568 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Started ApiModelopersonaRestApplication in 12.451 seconds (JVM running for 13.24)
+2019-06-05 02:46:24,139 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Starting ApiModelopersonaRestApplication on DESKTOP-N379CIV with PID 6388 (started by Agustin in C:\Users\Agustin\Documents\Java Workspaces\OSDEPYM\api-modelopersona-rest)
+2019-06-05 02:46:24,141 DEBUG com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Running with Spring Boot v2.1.4.RELEASE, Spring v5.1.6.RELEASE
+2019-06-05 02:46:24,142 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] No active profile set, falling back to default profiles: default
+2019-06-05 02:46:42,393 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Started ApiModelopersonaRestApplication in 18.501 seconds (JVM running for 19.293)
+2019-06-05 02:46:45,241 ERROR org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/].[dispatcherServlet] [http-nio-8080-exec-2] Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception
+java.lang.IllegalArgumentException: There is no PasswordEncoder mapped for the id "null"
+	at org.springframework.security.crypto.password.DelegatingPasswordEncoder$UnmappedIdPasswordEncoder.matches(DelegatingPasswordEncoder.java:244)
+	at org.springframework.security.crypto.password.DelegatingPasswordEncoder.matches(DelegatingPasswordEncoder.java:198)
+	at org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration$LazyPasswordEncoder.matches(AuthenticationConfiguration.java:289)
+	at org.springframework.security.authentication.dao.DaoAuthenticationProvider.additionalAuthenticationChecks(DaoAuthenticationProvider.java:90)
+	at org.springframework.security.authentication.dao.AbstractUserDetailsAuthenticationProvider.authenticate(AbstractUserDetailsAuthenticationProvider.java:166)
+	at org.springframework.security.authentication.ProviderManager.authenticate(ProviderManager.java:175)
+	at org.springframework.security.authentication.ProviderManager.authenticate(ProviderManager.java:200)
+	at org.springframework.security.web.authentication.www.BasicAuthenticationFilter.doFilterInternal(BasicAuthenticationFilter.java:180)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:74)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:105)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:56)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:215)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:178)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:357)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:270)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:99)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:92)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:200)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:200)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:490)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:834)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1415)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+2019-06-05 02:47:05,986 ERROR org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/].[dispatcherServlet] [http-nio-8080-exec-3] Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception
+java.lang.IllegalArgumentException: There is no PasswordEncoder mapped for the id "null"
+	at org.springframework.security.crypto.password.DelegatingPasswordEncoder$UnmappedIdPasswordEncoder.matches(DelegatingPasswordEncoder.java:244)
+	at org.springframework.security.crypto.password.DelegatingPasswordEncoder.matches(DelegatingPasswordEncoder.java:198)
+	at org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration$LazyPasswordEncoder.matches(AuthenticationConfiguration.java:289)
+	at org.springframework.security.authentication.dao.DaoAuthenticationProvider.additionalAuthenticationChecks(DaoAuthenticationProvider.java:90)
+	at org.springframework.security.authentication.dao.AbstractUserDetailsAuthenticationProvider.authenticate(AbstractUserDetailsAuthenticationProvider.java:166)
+	at org.springframework.security.authentication.ProviderManager.authenticate(ProviderManager.java:175)
+	at org.springframework.security.authentication.ProviderManager.authenticate(ProviderManager.java:200)
+	at org.springframework.security.web.authentication.www.BasicAuthenticationFilter.doFilterInternal(BasicAuthenticationFilter.java:180)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:74)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:105)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:56)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:215)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:178)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:357)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:270)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:99)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:92)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:200)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:200)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:490)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:834)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1415)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+2019-06-05 02:47:17,806 ERROR org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/].[dispatcherServlet] [http-nio-8080-exec-4] Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception
+java.lang.IllegalArgumentException: There is no PasswordEncoder mapped for the id "null"
+	at org.springframework.security.crypto.password.DelegatingPasswordEncoder$UnmappedIdPasswordEncoder.matches(DelegatingPasswordEncoder.java:244)
+	at org.springframework.security.crypto.password.DelegatingPasswordEncoder.matches(DelegatingPasswordEncoder.java:198)
+	at org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration$LazyPasswordEncoder.matches(AuthenticationConfiguration.java:289)
+	at org.springframework.security.authentication.dao.DaoAuthenticationProvider.additionalAuthenticationChecks(DaoAuthenticationProvider.java:90)
+	at org.springframework.security.authentication.dao.AbstractUserDetailsAuthenticationProvider.authenticate(AbstractUserDetailsAuthenticationProvider.java:166)
+	at org.springframework.security.authentication.ProviderManager.authenticate(ProviderManager.java:175)
+	at org.springframework.security.authentication.ProviderManager.authenticate(ProviderManager.java:200)
+	at org.springframework.security.web.authentication.www.BasicAuthenticationFilter.doFilterInternal(BasicAuthenticationFilter.java:180)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:74)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:105)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:56)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:215)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:178)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:357)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:270)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:99)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:92)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:200)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:200)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:490)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:834)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1415)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+2019-06-05 02:47:22,769 ERROR org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/].[dispatcherServlet] [http-nio-8080-exec-5] Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception
+java.lang.IllegalArgumentException: There is no PasswordEncoder mapped for the id "null"
+	at org.springframework.security.crypto.password.DelegatingPasswordEncoder$UnmappedIdPasswordEncoder.matches(DelegatingPasswordEncoder.java:244)
+	at org.springframework.security.crypto.password.DelegatingPasswordEncoder.matches(DelegatingPasswordEncoder.java:198)
+	at org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration$LazyPasswordEncoder.matches(AuthenticationConfiguration.java:289)
+	at org.springframework.security.authentication.dao.DaoAuthenticationProvider.additionalAuthenticationChecks(DaoAuthenticationProvider.java:90)
+	at org.springframework.security.authentication.dao.AbstractUserDetailsAuthenticationProvider.authenticate(AbstractUserDetailsAuthenticationProvider.java:166)
+	at org.springframework.security.authentication.ProviderManager.authenticate(ProviderManager.java:175)
+	at org.springframework.security.authentication.ProviderManager.authenticate(ProviderManager.java:200)
+	at org.springframework.security.web.authentication.www.BasicAuthenticationFilter.doFilterInternal(BasicAuthenticationFilter.java:180)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:74)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:105)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:56)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:215)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:178)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:357)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:270)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:99)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:92)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:200)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:200)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:490)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:834)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1415)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+2019-06-05 02:48:31,046 ERROR org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/].[dispatcherServlet] [http-nio-8080-exec-8] Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception
+java.lang.IllegalArgumentException: There is no PasswordEncoder mapped for the id "null"
+	at org.springframework.security.crypto.password.DelegatingPasswordEncoder$UnmappedIdPasswordEncoder.matches(DelegatingPasswordEncoder.java:244)
+	at org.springframework.security.crypto.password.DelegatingPasswordEncoder.matches(DelegatingPasswordEncoder.java:198)
+	at org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration$LazyPasswordEncoder.matches(AuthenticationConfiguration.java:289)
+	at org.springframework.security.authentication.dao.DaoAuthenticationProvider.additionalAuthenticationChecks(DaoAuthenticationProvider.java:90)
+	at org.springframework.security.authentication.dao.AbstractUserDetailsAuthenticationProvider.authenticate(AbstractUserDetailsAuthenticationProvider.java:166)
+	at org.springframework.security.authentication.ProviderManager.authenticate(ProviderManager.java:175)
+	at org.springframework.security.authentication.ProviderManager.authenticate(ProviderManager.java:200)
+	at org.springframework.security.web.authentication.www.BasicAuthenticationFilter.doFilterInternal(BasicAuthenticationFilter.java:180)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:74)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:105)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:56)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:215)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:178)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:357)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:270)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:99)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:92)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:200)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:200)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:490)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:834)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1415)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+2019-06-05 02:50:07,706 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Starting ApiModelopersonaRestApplication on DESKTOP-N379CIV with PID 11972 (started by Agustin in C:\Users\Agustin\Documents\Java Workspaces\OSDEPYM\api-modelopersona-rest)
+2019-06-05 02:50:07,708 DEBUG com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Running with Spring Boot v2.1.4.RELEASE, Spring v5.1.6.RELEASE
+2019-06-05 02:50:07,709 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] No active profile set, falling back to default profiles: default
+2019-06-05 02:50:15,169 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Started ApiModelopersonaRestApplication in 7.711 seconds (JVM running for 8.588)
+2019-06-05 02:52:33,040 ERROR org.hibernate.engine.jdbc.spi.SqlExceptionHelper [http-nio-8080-exec-7] Incorrect syntax near the keyword 'AND'.
+2019-06-05 02:52:33,102 ERROR com.osdepym.rest.server.BusquedaPersonaREST [http-nio-8080-exec-7] could not extract ResultSet; SQL [n/a]; nested exception is org.hibernate.exception.SQLGrammarException: could not extract ResultSet
+2019-06-05 02:53:35,406 ERROR org.hibernate.engine.jdbc.spi.SqlExceptionHelper [http-nio-8080-exec-8] Incorrect syntax near the keyword 'AND'.
+2019-06-05 02:53:35,450 ERROR com.osdepym.rest.server.BusquedaPersonaREST [http-nio-8080-exec-8] could not extract ResultSet; SQL [n/a]; nested exception is org.hibernate.exception.SQLGrammarException: could not extract ResultSet
+2019-06-05 02:54:30,845 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Starting ApiModelopersonaRestApplication on DESKTOP-N379CIV with PID 6344 (started by Agustin in C:\Users\Agustin\Documents\Java Workspaces\OSDEPYM\api-modelopersona-rest)
+2019-06-05 02:54:30,847 DEBUG com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Running with Spring Boot v2.1.4.RELEASE, Spring v5.1.6.RELEASE
+2019-06-05 02:54:30,848 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] No active profile set, falling back to default profiles: default
+2019-06-05 02:54:40,611 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Started ApiModelopersonaRestApplication in 10.015 seconds (JVM running for 10.822)
+2019-06-05 02:54:49,608 ERROR org.hibernate.engine.jdbc.spi.SqlExceptionHelper [http-nio-8080-exec-1] Incorrect syntax near 'AND'.
+2019-06-05 02:54:50,076 ERROR com.osdepym.rest.server.BusquedaPersonaREST [http-nio-8080-exec-1] could not extract ResultSet; SQL [n/a]; nested exception is org.hibernate.exception.SQLGrammarException: could not extract ResultSet
+2019-06-05 02:55:19,944 ERROR org.hibernate.engine.jdbc.spi.SqlExceptionHelper [http-nio-8080-exec-3] Incorrect syntax near 'AND'.
+2019-06-05 02:55:20,045 ERROR com.osdepym.rest.server.BusquedaPersonaREST [http-nio-8080-exec-3] could not extract ResultSet; SQL [n/a]; nested exception is org.hibernate.exception.SQLGrammarException: could not extract ResultSet
+2019-06-05 02:56:31,987 ERROR org.hibernate.engine.jdbc.spi.SqlExceptionHelper [http-nio-8080-exec-4] Incorrect syntax near 'AND'.
+2019-06-05 02:56:32,042 ERROR com.osdepym.rest.server.BusquedaPersonaREST [http-nio-8080-exec-4] could not extract ResultSet; SQL [n/a]; nested exception is org.hibernate.exception.SQLGrammarException: could not extract ResultSet
+2019-06-05 02:57:09,701 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Starting ApiModelopersonaRestApplication on DESKTOP-N379CIV with PID 18412 (started by Agustin in C:\Users\Agustin\Documents\Java Workspaces\OSDEPYM\api-modelopersona-rest)
+2019-06-05 02:57:09,703 DEBUG com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Running with Spring Boot v2.1.4.RELEASE, Spring v5.1.6.RELEASE
+2019-06-05 02:57:09,704 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] No active profile set, falling back to default profiles: default
+2019-06-05 02:57:15,871 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Started ApiModelopersonaRestApplication in 6.427 seconds (JVM running for 7.247)
+2019-06-05 03:04:48,323 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Starting ApiModelopersonaRestApplication on DESKTOP-N379CIV with PID 6900 (started by Agustin in C:\Users\Agustin\Documents\Java Workspaces\OSDEPYM\api-modelopersona-rest)
+2019-06-05 03:04:48,327 DEBUG com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Running with Spring Boot v2.1.4.RELEASE, Spring v5.1.6.RELEASE
+2019-06-05 03:04:48,327 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] No active profile set, falling back to default profiles: default
+2019-06-05 03:04:52,014 ERROR org.apache.tomcat.jdbc.pool.ConnectionPool [main] Unable to create initial connections of pool.
+com.microsoft.sqlserver.jdbc.SQLServerException: Cannot open database "OsdepymProd" requested by the login. The login failed. ClientConnectionId:168b57f5-befe-4a8d-88dd-b3ba3efa58d2
+	at com.microsoft.sqlserver.jdbc.SQLServerException.makeFromDatabaseError(SQLServerException.java:259)
+	at com.microsoft.sqlserver.jdbc.TDSTokenHandler.onEOF(tdsparser.java:256)
+	at com.microsoft.sqlserver.jdbc.TDSParser.parse(tdsparser.java:108)
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection.sendLogon(SQLServerConnection.java:4548)
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection.logon(SQLServerConnection.java:3409)
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection.access$100(SQLServerConnection.java:85)
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection$LogonCommand.doExecute(SQLServerConnection.java:3373)
+	at com.microsoft.sqlserver.jdbc.TDSCommand.execute(IOBuffer.java:7344)
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection.executeCommand(SQLServerConnection.java:2713)
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection.connectHelper(SQLServerConnection.java:2261)
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection.login(SQLServerConnection.java:1921)
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection.connectInternal(SQLServerConnection.java:1762)
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection.connect(SQLServerConnection.java:1077)
+	at com.microsoft.sqlserver.jdbc.SQLServerDriver.connect(SQLServerDriver.java:623)
+	at org.apache.tomcat.jdbc.pool.PooledConnection.connectUsingDriver(PooledConnection.java:319)
+	at org.apache.tomcat.jdbc.pool.PooledConnection.connect(PooledConnection.java:212)
+	at org.apache.tomcat.jdbc.pool.ConnectionPool.createConnection(ConnectionPool.java:739)
+	at org.apache.tomcat.jdbc.pool.ConnectionPool.borrowConnection(ConnectionPool.java:671)
+	at org.apache.tomcat.jdbc.pool.ConnectionPool.init(ConnectionPool.java:483)
+	at org.apache.tomcat.jdbc.pool.ConnectionPool.<init>(ConnectionPool.java:154)
+	at org.apache.tomcat.jdbc.pool.DataSourceProxy.pCreatePool(DataSourceProxy.java:118)
+	at org.apache.tomcat.jdbc.pool.DataSourceProxy.createPool(DataSourceProxy.java:107)
+	at org.apache.tomcat.jdbc.pool.DataSourceProxy.getConnection(DataSourceProxy.java:131)
+	at org.hibernate.engine.jdbc.connections.internal.DatasourceConnectionProviderImpl.getConnection(DatasourceConnectionProviderImpl.java:122)
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess.obtainConnection(JdbcEnvironmentInitiator.java:180)
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.initiateService(JdbcEnvironmentInitiator.java:68)
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.initiateService(JdbcEnvironmentInitiator.java:35)
+	at org.hibernate.boot.registry.internal.StandardServiceRegistryImpl.initiateService(StandardServiceRegistryImpl.java:101)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.createService(AbstractServiceRegistryImpl.java:263)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.initializeService(AbstractServiceRegistryImpl.java:237)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.getService(AbstractServiceRegistryImpl.java:214)
+	at org.hibernate.id.factory.internal.DefaultIdentifierGeneratorFactory.injectServices(DefaultIdentifierGeneratorFactory.java:152)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.injectDependencies(AbstractServiceRegistryImpl.java:286)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.initializeService(AbstractServiceRegistryImpl.java:243)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.getService(AbstractServiceRegistryImpl.java:214)
+	at org.hibernate.boot.internal.InFlightMetadataCollectorImpl.<init>(InFlightMetadataCollectorImpl.java:175)
+	at org.hibernate.boot.model.process.spi.MetadataBuildingProcess.complete(MetadataBuildingProcess.java:118)
+	at org.hibernate.boot.model.process.spi.MetadataBuildingProcess.build(MetadataBuildingProcess.java:83)
+	at org.hibernate.boot.internal.MetadataBuilderImpl.build(MetadataBuilderImpl.java:473)
+	at org.hibernate.boot.internal.MetadataBuilderImpl.build(MetadataBuilderImpl.java:84)
+	at org.hibernate.cfg.Configuration.buildSessionFactory(Configuration.java:689)
+	at org.hibernate.cfg.Configuration.buildSessionFactory(Configuration.java:724)
+	at org.springframework.orm.hibernate5.LocalSessionFactoryBean.buildSessionFactory(LocalSessionFactoryBean.java:615)
+	at org.springframework.orm.hibernate5.LocalSessionFactoryBean.afterPropertiesSet(LocalSessionFactoryBean.java:599)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1837)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1774)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:593)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:515)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:320)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:318)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:277)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1247)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1167)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:593)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:90)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:374)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1411)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:592)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:515)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:320)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:318)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:849)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:877)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:549)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:142)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:775)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:397)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:316)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1260)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1248)
+	at com.osdepym.persona.rest.ApiModelopersonaRestApplication.main(ApiModelopersonaRestApplication.java:18)
+2019-06-05 03:04:53,417 ERROR org.apache.tomcat.jdbc.pool.ConnectionPool [main] Unable to create initial connections of pool.
+com.microsoft.sqlserver.jdbc.SQLServerException: Cannot open database "OsdepymProd" requested by the login. The login failed. ClientConnectionId:57a38b70-f38f-41e4-a880-86230cee2f92
+	at com.microsoft.sqlserver.jdbc.SQLServerException.makeFromDatabaseError(SQLServerException.java:259)
+	at com.microsoft.sqlserver.jdbc.TDSTokenHandler.onEOF(tdsparser.java:256)
+	at com.microsoft.sqlserver.jdbc.TDSParser.parse(tdsparser.java:108)
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection.sendLogon(SQLServerConnection.java:4548)
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection.logon(SQLServerConnection.java:3409)
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection.access$100(SQLServerConnection.java:85)
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection$LogonCommand.doExecute(SQLServerConnection.java:3373)
+	at com.microsoft.sqlserver.jdbc.TDSCommand.execute(IOBuffer.java:7344)
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection.executeCommand(SQLServerConnection.java:2713)
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection.connectHelper(SQLServerConnection.java:2261)
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection.login(SQLServerConnection.java:1921)
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection.connectInternal(SQLServerConnection.java:1762)
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection.connect(SQLServerConnection.java:1077)
+	at com.microsoft.sqlserver.jdbc.SQLServerDriver.connect(SQLServerDriver.java:623)
+	at org.apache.tomcat.jdbc.pool.PooledConnection.connectUsingDriver(PooledConnection.java:319)
+	at org.apache.tomcat.jdbc.pool.PooledConnection.connect(PooledConnection.java:212)
+	at org.apache.tomcat.jdbc.pool.ConnectionPool.createConnection(ConnectionPool.java:739)
+	at org.apache.tomcat.jdbc.pool.ConnectionPool.borrowConnection(ConnectionPool.java:671)
+	at org.apache.tomcat.jdbc.pool.ConnectionPool.init(ConnectionPool.java:483)
+	at org.apache.tomcat.jdbc.pool.ConnectionPool.<init>(ConnectionPool.java:154)
+	at org.apache.tomcat.jdbc.pool.DataSourceProxy.pCreatePool(DataSourceProxy.java:118)
+	at org.apache.tomcat.jdbc.pool.DataSourceProxy.createPool(DataSourceProxy.java:107)
+	at org.apache.tomcat.jdbc.pool.DataSourceProxy.getConnection(DataSourceProxy.java:131)
+	at org.springframework.jdbc.datasource.DataSourceUtils.fetchConnection(DataSourceUtils.java:157)
+	at org.springframework.jdbc.datasource.DataSourceUtils.doGetConnection(DataSourceUtils.java:115)
+	at org.springframework.jdbc.datasource.DataSourceUtils.getConnection(DataSourceUtils.java:78)
+	at org.springframework.jdbc.support.JdbcUtils.extractDatabaseMetaData(JdbcUtils.java:319)
+	at org.springframework.jdbc.support.JdbcUtils.extractDatabaseMetaData(JdbcUtils.java:356)
+	at org.springframework.boot.autoconfigure.orm.jpa.DatabaseLookup.getDatabase(DatabaseLookup.java:73)
+	at org.springframework.boot.autoconfigure.orm.jpa.JpaProperties.determineDatabase(JpaProperties.java:142)
+	at org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration.jpaVendorAdapter(JpaBaseConfiguration.java:113)
+	at org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaConfiguration$$EnhancerBySpringCGLIB$$f8633b91.CGLIB$jpaVendorAdapter$3(<generated>)
+	at org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaConfiguration$$EnhancerBySpringCGLIB$$f8633b91$$FastClassBySpringCGLIB$$d380f2e5.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invokeSuper(MethodProxy.java:244)
+	at org.springframework.context.annotation.ConfigurationClassEnhancer$BeanMethodInterceptor.intercept(ConfigurationClassEnhancer.java:363)
+	at org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaConfiguration$$EnhancerBySpringCGLIB$$f8633b91.jpaVendorAdapter(<generated>)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:154)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:622)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:456)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1321)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1160)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:555)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:515)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:320)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:318)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:849)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:877)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:549)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:142)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:775)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:397)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:316)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1260)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1248)
+	at com.osdepym.persona.rest.ApiModelopersonaRestApplication.main(ApiModelopersonaRestApplication.java:18)
+2019-06-05 03:04:53,653 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Started ApiModelopersonaRestApplication in 5.58 seconds (JVM running for 6.452)
+2019-06-05 03:05:22,833 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Starting ApiModelopersonaRestApplication on DESKTOP-N379CIV with PID 8892 (started by Agustin in C:\Users\Agustin\Documents\Java Workspaces\OSDEPYM\api-modelopersona-rest)
+2019-06-05 03:05:22,836 DEBUG com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Running with Spring Boot v2.1.4.RELEASE, Spring v5.1.6.RELEASE
+2019-06-05 03:05:22,836 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] No active profile set, falling back to default profiles: default
+2019-06-05 03:05:27,478 ERROR org.apache.tomcat.jdbc.pool.ConnectionPool [main] Unable to create initial connections of pool.
+com.microsoft.sqlserver.jdbc.SQLServerException: Cannot open database "OsdepymProd" requested by the login. The login failed. ClientConnectionId:fb34740b-1da6-4201-bfb5-8c1523d3699f
+	at com.microsoft.sqlserver.jdbc.SQLServerException.makeFromDatabaseError(SQLServerException.java:259)
+	at com.microsoft.sqlserver.jdbc.TDSTokenHandler.onEOF(tdsparser.java:256)
+	at com.microsoft.sqlserver.jdbc.TDSParser.parse(tdsparser.java:108)
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection.sendLogon(SQLServerConnection.java:4548)
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection.logon(SQLServerConnection.java:3409)
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection.access$100(SQLServerConnection.java:85)
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection$LogonCommand.doExecute(SQLServerConnection.java:3373)
+	at com.microsoft.sqlserver.jdbc.TDSCommand.execute(IOBuffer.java:7344)
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection.executeCommand(SQLServerConnection.java:2713)
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection.connectHelper(SQLServerConnection.java:2261)
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection.login(SQLServerConnection.java:1921)
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection.connectInternal(SQLServerConnection.java:1762)
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection.connect(SQLServerConnection.java:1077)
+	at com.microsoft.sqlserver.jdbc.SQLServerDriver.connect(SQLServerDriver.java:623)
+	at org.apache.tomcat.jdbc.pool.PooledConnection.connectUsingDriver(PooledConnection.java:319)
+	at org.apache.tomcat.jdbc.pool.PooledConnection.connect(PooledConnection.java:212)
+	at org.apache.tomcat.jdbc.pool.ConnectionPool.createConnection(ConnectionPool.java:739)
+	at org.apache.tomcat.jdbc.pool.ConnectionPool.borrowConnection(ConnectionPool.java:671)
+	at org.apache.tomcat.jdbc.pool.ConnectionPool.init(ConnectionPool.java:483)
+	at org.apache.tomcat.jdbc.pool.ConnectionPool.<init>(ConnectionPool.java:154)
+	at org.apache.tomcat.jdbc.pool.DataSourceProxy.pCreatePool(DataSourceProxy.java:118)
+	at org.apache.tomcat.jdbc.pool.DataSourceProxy.createPool(DataSourceProxy.java:107)
+	at org.apache.tomcat.jdbc.pool.DataSourceProxy.getConnection(DataSourceProxy.java:131)
+	at org.hibernate.engine.jdbc.connections.internal.DatasourceConnectionProviderImpl.getConnection(DatasourceConnectionProviderImpl.java:122)
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess.obtainConnection(JdbcEnvironmentInitiator.java:180)
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.initiateService(JdbcEnvironmentInitiator.java:68)
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.initiateService(JdbcEnvironmentInitiator.java:35)
+	at org.hibernate.boot.registry.internal.StandardServiceRegistryImpl.initiateService(StandardServiceRegistryImpl.java:101)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.createService(AbstractServiceRegistryImpl.java:263)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.initializeService(AbstractServiceRegistryImpl.java:237)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.getService(AbstractServiceRegistryImpl.java:214)
+	at org.hibernate.id.factory.internal.DefaultIdentifierGeneratorFactory.injectServices(DefaultIdentifierGeneratorFactory.java:152)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.injectDependencies(AbstractServiceRegistryImpl.java:286)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.initializeService(AbstractServiceRegistryImpl.java:243)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.getService(AbstractServiceRegistryImpl.java:214)
+	at org.hibernate.boot.internal.InFlightMetadataCollectorImpl.<init>(InFlightMetadataCollectorImpl.java:175)
+	at org.hibernate.boot.model.process.spi.MetadataBuildingProcess.complete(MetadataBuildingProcess.java:118)
+	at org.hibernate.boot.model.process.spi.MetadataBuildingProcess.build(MetadataBuildingProcess.java:83)
+	at org.hibernate.boot.internal.MetadataBuilderImpl.build(MetadataBuilderImpl.java:473)
+	at org.hibernate.boot.internal.MetadataBuilderImpl.build(MetadataBuilderImpl.java:84)
+	at org.hibernate.cfg.Configuration.buildSessionFactory(Configuration.java:689)
+	at org.hibernate.cfg.Configuration.buildSessionFactory(Configuration.java:724)
+	at org.springframework.orm.hibernate5.LocalSessionFactoryBean.buildSessionFactory(LocalSessionFactoryBean.java:615)
+	at org.springframework.orm.hibernate5.LocalSessionFactoryBean.afterPropertiesSet(LocalSessionFactoryBean.java:599)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1837)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1774)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:593)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:515)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:320)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:318)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:277)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1247)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1167)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:593)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:90)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:374)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1411)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:592)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:515)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:320)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:318)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:849)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:877)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:549)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:142)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:775)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:397)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:316)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1260)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1248)
+	at com.osdepym.persona.rest.ApiModelopersonaRestApplication.main(ApiModelopersonaRestApplication.java:18)
+2019-06-05 03:05:28,461 ERROR org.apache.tomcat.jdbc.pool.ConnectionPool [main] Unable to create initial connections of pool.
+com.microsoft.sqlserver.jdbc.SQLServerException: Cannot open database "OsdepymProd" requested by the login. The login failed. ClientConnectionId:9ec384c3-87f3-4128-88bb-78833ec01070
+	at com.microsoft.sqlserver.jdbc.SQLServerException.makeFromDatabaseError(SQLServerException.java:259)
+	at com.microsoft.sqlserver.jdbc.TDSTokenHandler.onEOF(tdsparser.java:256)
+	at com.microsoft.sqlserver.jdbc.TDSParser.parse(tdsparser.java:108)
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection.sendLogon(SQLServerConnection.java:4548)
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection.logon(SQLServerConnection.java:3409)
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection.access$100(SQLServerConnection.java:85)
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection$LogonCommand.doExecute(SQLServerConnection.java:3373)
+	at com.microsoft.sqlserver.jdbc.TDSCommand.execute(IOBuffer.java:7344)
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection.executeCommand(SQLServerConnection.java:2713)
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection.connectHelper(SQLServerConnection.java:2261)
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection.login(SQLServerConnection.java:1921)
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection.connectInternal(SQLServerConnection.java:1762)
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection.connect(SQLServerConnection.java:1077)
+	at com.microsoft.sqlserver.jdbc.SQLServerDriver.connect(SQLServerDriver.java:623)
+	at org.apache.tomcat.jdbc.pool.PooledConnection.connectUsingDriver(PooledConnection.java:319)
+	at org.apache.tomcat.jdbc.pool.PooledConnection.connect(PooledConnection.java:212)
+	at org.apache.tomcat.jdbc.pool.ConnectionPool.createConnection(ConnectionPool.java:739)
+	at org.apache.tomcat.jdbc.pool.ConnectionPool.borrowConnection(ConnectionPool.java:671)
+	at org.apache.tomcat.jdbc.pool.ConnectionPool.init(ConnectionPool.java:483)
+	at org.apache.tomcat.jdbc.pool.ConnectionPool.<init>(ConnectionPool.java:154)
+	at org.apache.tomcat.jdbc.pool.DataSourceProxy.pCreatePool(DataSourceProxy.java:118)
+	at org.apache.tomcat.jdbc.pool.DataSourceProxy.createPool(DataSourceProxy.java:107)
+	at org.apache.tomcat.jdbc.pool.DataSourceProxy.getConnection(DataSourceProxy.java:131)
+	at org.springframework.jdbc.datasource.DataSourceUtils.fetchConnection(DataSourceUtils.java:157)
+	at org.springframework.jdbc.datasource.DataSourceUtils.doGetConnection(DataSourceUtils.java:115)
+	at org.springframework.jdbc.datasource.DataSourceUtils.getConnection(DataSourceUtils.java:78)
+	at org.springframework.jdbc.support.JdbcUtils.extractDatabaseMetaData(JdbcUtils.java:319)
+	at org.springframework.jdbc.support.JdbcUtils.extractDatabaseMetaData(JdbcUtils.java:356)
+	at org.springframework.boot.autoconfigure.orm.jpa.DatabaseLookup.getDatabase(DatabaseLookup.java:73)
+	at org.springframework.boot.autoconfigure.orm.jpa.JpaProperties.determineDatabase(JpaProperties.java:142)
+	at org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration.jpaVendorAdapter(JpaBaseConfiguration.java:113)
+	at org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaConfiguration$$EnhancerBySpringCGLIB$$fdfd5aac.CGLIB$jpaVendorAdapter$5(<generated>)
+	at org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaConfiguration$$EnhancerBySpringCGLIB$$fdfd5aac$$FastClassBySpringCGLIB$$3faf2999.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invokeSuper(MethodProxy.java:244)
+	at org.springframework.context.annotation.ConfigurationClassEnhancer$BeanMethodInterceptor.intercept(ConfigurationClassEnhancer.java:363)
+	at org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaConfiguration$$EnhancerBySpringCGLIB$$fdfd5aac.jpaVendorAdapter(<generated>)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:154)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:622)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:456)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1321)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1160)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:555)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:515)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:320)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:318)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:849)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:877)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:549)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:142)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:775)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:397)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:316)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1260)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1248)
+	at com.osdepym.persona.rest.ApiModelopersonaRestApplication.main(ApiModelopersonaRestApplication.java:18)
+2019-06-05 03:05:28,675 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Started ApiModelopersonaRestApplication in 6.087 seconds (JVM running for 6.89)
+2019-06-05 22:47:38,732 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Starting ApiModelopersonaRestApplication on DESKTOP-N379CIV with PID 7948 (started by Agustin in C:\Users\Agustin\Documents\Java Workspaces\OSDEPYM\api-modelopersona-rest)
+2019-06-05 22:47:38,734 DEBUG com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Running with Spring Boot v2.1.4.RELEASE, Spring v5.1.6.RELEASE
+2019-06-05 22:47:38,735 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] No active profile set, falling back to default profiles: default
+2019-06-05 22:48:18,843 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Started ApiModelopersonaRestApplication in 40.374 seconds (JVM running for 41.353)
+2019-06-05 22:49:15,146 ERROR org.hibernate.engine.jdbc.spi.SqlExceptionHelper [http-nio-8080-exec-3] Conversion failed when converting date and/or time from character string.
+2019-06-05 22:49:15,342 ERROR com.osdepym.rest.server.BusquedaPersonaREST [http-nio-8080-exec-3] could not execute query; SQL [SELECT Persona_ID, Apellido, Nombre, FechaNacimiento, Sexo, CUIL, FechaVigenciaDesdeCUIL, TipoDocumento, NroDocumento FROM mp.vo_PersonaFisicaAfiliadoCompleto WHERE CAST(FechaNacimiento AS DATE) = CAST('54353' AS DATE)]; nested exception is org.hibernate.exception.SQLGrammarException: could not execute query
+2019-06-05 23:15:24,012 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Starting ApiModelopersonaRestApplication on DESKTOP-N379CIV with PID 14284 (started by Agustin in C:\Users\Agustin\Documents\Java Workspaces\OSDEPYM\api-modelopersona-rest)
+2019-06-05 23:15:24,015 DEBUG com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Running with Spring Boot v2.1.4.RELEASE, Spring v5.1.6.RELEASE
+2019-06-05 23:15:24,016 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] No active profile set, falling back to default profiles: default
+2019-06-05 23:15:37,283 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Started ApiModelopersonaRestApplication in 13.536 seconds (JVM running for 14.355)
+2019-06-05 23:15:44,004 ERROR org.hibernate.engine.jdbc.spi.SqlExceptionHelper [http-nio-8080-exec-1] Conversion failed when converting date and/or time from character string.
+2019-06-05 23:15:44,037 ERROR com.osdepym.rest.dao.ModeloPersonaDAOImpl [http-nio-8080-exec-1] [Ljava.lang.StackTraceElement;@22e45538
+2019-06-05 23:15:44,045 ERROR com.osdepym.exception.CustomException [http-nio-8080-exec-1] [Ljava.lang.StackTraceElement;@1ad09f87
+2019-06-05 23:15:44,045 ERROR com.osdepym.exception.CustomException [http-nio-8080-exec-1] org.hibernate.exception.SQLGrammarException: could not execute query
+2019-06-05 23:16:19,457 ERROR org.hibernate.engine.jdbc.spi.SqlExceptionHelper [http-nio-8080-exec-4] Conversion failed when converting date and/or time from character string.
+2019-06-05 23:16:19,466 ERROR com.osdepym.rest.dao.ModeloPersonaDAOImpl [http-nio-8080-exec-4] [Ljava.lang.StackTraceElement;@3189aaf2
+2019-06-05 23:16:19,470 ERROR com.osdepym.exception.CustomException [http-nio-8080-exec-4] [Ljava.lang.StackTraceElement;@55952d4d
+2019-06-05 23:16:19,470 ERROR com.osdepym.exception.CustomException [http-nio-8080-exec-4] org.hibernate.exception.SQLGrammarException: could not execute query
+2019-06-05 23:17:47,843 ERROR org.hibernate.engine.jdbc.spi.SqlExceptionHelper [http-nio-8080-exec-6] Conversion failed when converting date and/or time from character string.
+2019-06-05 23:17:47,847 ERROR com.osdepym.rest.dao.ModeloPersonaDAOImpl [http-nio-8080-exec-6] [Ljava.lang.StackTraceElement;@7e17536
+2019-06-05 23:17:47,851 ERROR com.osdepym.rest.dao.ModeloPersonaDAOImpl [http-nio-8080-exec-6] org.hibernate.exception.SQLGrammarException: could not execute query
+2019-06-05 23:17:47,851 ERROR com.osdepym.exception.CustomException [http-nio-8080-exec-6] [Ljava.lang.StackTraceElement;@132dc5dc
+2019-06-05 23:17:47,855 ERROR com.osdepym.exception.CustomException [http-nio-8080-exec-6] org.hibernate.exception.SQLGrammarException: could not execute query
+2019-06-05 23:17:59,044 ERROR org.hibernate.engine.jdbc.spi.SqlExceptionHelper [http-nio-8080-exec-8] Conversion failed when converting date and/or time from character string.
+2019-06-05 23:18:00,497 ERROR com.osdepym.rest.dao.ModeloPersonaDAOImpl [http-nio-8080-exec-8] [Ljava.lang.StackTraceElement;@141cf17f
+2019-06-05 23:18:00,990 ERROR com.osdepym.rest.dao.ModeloPersonaDAOImpl [http-nio-8080-exec-8] org.hibernate.exception.SQLGrammarException: could not execute query
+2019-06-05 23:18:03,372 ERROR com.osdepym.exception.CustomException [http-nio-8080-exec-8] [Ljava.lang.StackTraceElement;@7fe3b9ea
+2019-06-05 23:18:03,393 ERROR com.osdepym.exception.CustomException [http-nio-8080-exec-8] org.hibernate.exception.SQLGrammarException: could not execute query
+2019-06-05 23:19:31,505 ERROR org.hibernate.engine.jdbc.spi.SqlExceptionHelper [http-nio-8080-exec-10] Conversion failed when converting date and/or time from character string.
+2019-06-05 23:19:32,434 ERROR com.osdepym.rest.dao.ModeloPersonaDAOImpl [http-nio-8080-exec-10] [Ljava.lang.StackTraceElement;@16840101
+2019-06-05 23:19:32,821 ERROR com.osdepym.rest.dao.ModeloPersonaDAOImpl [http-nio-8080-exec-10] org.hibernate.exception.SQLGrammarException: could not execute query
+2019-06-05 23:19:34,066 ERROR com.osdepym.exception.DatabaseException [http-nio-8080-exec-10] [Ljava.lang.StackTraceElement;@38a7c872
+2019-06-05 23:19:34,496 ERROR com.osdepym.exception.DatabaseException [http-nio-8080-exec-10] org.hibernate.exception.SQLGrammarException: could not execute query
+2019-06-05 23:21:07,219 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Starting ApiModelopersonaRestApplication on DESKTOP-N379CIV with PID 18324 (started by Agustin in C:\Users\Agustin\Documents\Java Workspaces\OSDEPYM\api-modelopersona-rest)
+2019-06-05 23:21:07,222 DEBUG com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Running with Spring Boot v2.1.4.RELEASE, Spring v5.1.6.RELEASE
+2019-06-05 23:21:07,222 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] No active profile set, falling back to default profiles: default
+2019-06-05 23:21:16,233 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Started ApiModelopersonaRestApplication in 9.263 seconds (JVM running for 10.119)
+2019-06-05 23:21:22,399 ERROR org.hibernate.engine.jdbc.spi.SqlExceptionHelper [http-nio-8080-exec-1] Conversion failed when converting date and/or time from character string.
+2019-06-05 23:21:22,427 ERROR com.osdepym.rest.dao.ModeloPersonaDAOImpl [http-nio-8080-exec-1] [Ljava.lang.StackTraceElement;@435b41cf
+2019-06-05 23:21:22,439 ERROR com.osdepym.rest.dao.ModeloPersonaDAOImpl [http-nio-8080-exec-1] org.hibernate.exception.SQLGrammarException: could not execute query
+2019-06-05 23:21:24,271 ERROR com.osdepym.exception.DatabaseException [http-nio-8080-exec-1] [Ljava.lang.StackTraceElement;@1aa74109
+2019-06-05 23:21:24,656 ERROR com.osdepym.exception.DatabaseException [http-nio-8080-exec-1] org.hibernate.exception.SQLGrammarException: could not execute query
+2019-06-05 23:22:31,725 ERROR org.hibernate.engine.jdbc.spi.SqlExceptionHelper [http-nio-8080-exec-4] Conversion failed when converting date and/or time from character string.
+2019-06-05 23:22:31,731 ERROR com.osdepym.rest.dao.ModeloPersonaDAOImpl [http-nio-8080-exec-4] [Ljava.lang.StackTraceElement;@2b86431d
+2019-06-05 23:22:31,731 ERROR com.osdepym.rest.dao.ModeloPersonaDAOImpl [http-nio-8080-exec-4] org.hibernate.exception.SQLGrammarException: could not execute query
+2019-06-05 23:22:32,758 ERROR com.osdepym.exception.DatabaseException [http-nio-8080-exec-4] [Ljava.lang.StackTraceElement;@2aa507d7
+2019-06-05 23:22:32,777 ERROR com.osdepym.exception.DatabaseException [http-nio-8080-exec-4] org.hibernate.exception.SQLGrammarException: could not execute query
+2019-06-05 23:22:59,605 ERROR org.hibernate.engine.jdbc.spi.SqlExceptionHelper [http-nio-8080-exec-6] Conversion failed when converting date and/or time from character string.
+2019-06-05 23:22:59,611 ERROR com.osdepym.rest.dao.ModeloPersonaDAOImpl [http-nio-8080-exec-6] [Ljava.lang.StackTraceElement;@3cae85e6
+2019-06-05 23:22:59,615 ERROR com.osdepym.rest.dao.ModeloPersonaDAOImpl [http-nio-8080-exec-6] org.hibernate.exception.SQLGrammarException: could not execute query
+2019-06-05 23:23:00,464 ERROR com.osdepym.exception.DatabaseException [http-nio-8080-exec-6] [Ljava.lang.StackTraceElement;@6cd4ffe3
+2019-06-05 23:23:00,484 ERROR com.osdepym.exception.DatabaseException [http-nio-8080-exec-6] org.hibernate.exception.SQLGrammarException: could not execute query
+2019-06-05 23:24:17,187 ERROR org.hibernate.engine.jdbc.spi.SqlExceptionHelper [http-nio-8080-exec-8] Conversion failed when converting date and/or time from character string.
+2019-06-05 23:24:17,196 ERROR com.osdepym.rest.dao.ModeloPersonaDAOImpl [http-nio-8080-exec-8] [Ljava.lang.StackTraceElement;@7d67a435
+2019-06-05 23:24:17,196 ERROR com.osdepym.rest.dao.ModeloPersonaDAOImpl [http-nio-8080-exec-8] org.hibernate.exception.SQLGrammarException: could not execute query
+2019-06-05 23:24:18,079 ERROR com.osdepym.exception.DatabaseException [http-nio-8080-exec-8] [Ljava.lang.StackTraceElement;@2593299a
+2019-06-05 23:24:18,099 ERROR com.osdepym.exception.DatabaseException [http-nio-8080-exec-8] org.hibernate.exception.SQLGrammarException: could not execute query
+2019-06-05 23:27:12,895 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Starting ApiModelopersonaRestApplication on DESKTOP-N379CIV with PID 15468 (started by Agustin in C:\Users\Agustin\Documents\Java Workspaces\OSDEPYM\api-modelopersona-rest)
+2019-06-05 23:27:12,897 DEBUG com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Running with Spring Boot v2.1.4.RELEASE, Spring v5.1.6.RELEASE
+2019-06-05 23:27:12,898 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] No active profile set, falling back to default profiles: default
+2019-06-05 23:27:22,148 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Started ApiModelopersonaRestApplication in 9.506 seconds (JVM running for 10.329)
+2019-06-05 23:27:33,456 ERROR org.hibernate.engine.jdbc.spi.SqlExceptionHelper [http-nio-8080-exec-2] Conversion failed when converting date and/or time from character string.
+2019-06-05 23:27:33,494 ERROR com.osdepym.rest.dao.ModeloPersonaDAOImpl [http-nio-8080-exec-2] [Ljava.lang.StackTraceElement;@15f2d737
+2019-06-05 23:27:33,505 ERROR com.osdepym.rest.dao.ModeloPersonaDAOImpl [http-nio-8080-exec-2] org.hibernate.exception.SQLGrammarException: could not execute query
+2019-06-05 23:27:34,561 ERROR com.osdepym.exception.DatabaseException [http-nio-8080-exec-2] [Ljava.lang.StackTraceElement;@619364a2
+2019-06-05 23:27:34,568 ERROR com.osdepym.exception.DatabaseException [http-nio-8080-exec-2] org.hibernate.exception.SQLGrammarException: could not execute query
+2019-06-05 23:28:52,763 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Starting ApiModelopersonaRestApplication on DESKTOP-N379CIV with PID 18492 (started by Agustin in C:\Users\Agustin\Documents\Java Workspaces\OSDEPYM\api-modelopersona-rest)
+2019-06-05 23:28:52,766 DEBUG com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Running with Spring Boot v2.1.4.RELEASE, Spring v5.1.6.RELEASE
+2019-06-05 23:28:52,766 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] No active profile set, falling back to default profiles: default
+2019-06-05 23:29:01,612 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Started ApiModelopersonaRestApplication in 9.118 seconds (JVM running for 9.954)
+2019-06-05 23:29:05,322 ERROR org.hibernate.engine.jdbc.spi.SqlExceptionHelper [http-nio-8080-exec-1] Conversion failed when converting date and/or time from character string.
+2019-06-05 23:29:05,334 ERROR com.osdepym.rest.dao.ModeloPersonaDAOImpl [http-nio-8080-exec-1] [Ljava.lang.StackTraceElement;@20bbc1fa
+2019-06-05 23:29:05,338 ERROR com.osdepym.rest.dao.ModeloPersonaDAOImpl [http-nio-8080-exec-1] org.hibernate.exception.SQLGrammarException: could not execute query
+2019-06-05 23:29:07,553 ERROR com.osdepym.exception.DatabaseException [http-nio-8080-exec-1] [Ljava.lang.StackTraceElement;@2e67ab55
+2019-06-05 23:29:07,561 ERROR com.osdepym.exception.DatabaseException [http-nio-8080-exec-1] org.hibernate.exception.SQLGrammarException: could not execute query
+2019-06-05 23:33:00,271 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Starting ApiModelopersonaRestApplication on DESKTOP-N379CIV with PID 14504 (started by Agustin in C:\Users\Agustin\Documents\Java Workspaces\OSDEPYM\api-modelopersona-rest)
+2019-06-05 23:33:00,274 DEBUG com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Running with Spring Boot v2.1.4.RELEASE, Spring v5.1.6.RELEASE
+2019-06-05 23:33:00,274 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] No active profile set, falling back to default profiles: default
+2019-06-05 23:33:09,191 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Started ApiModelopersonaRestApplication in 9.169 seconds (JVM running for 9.997)
+2019-06-05 23:34:18,601 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Starting ApiModelopersonaRestApplication on DESKTOP-N379CIV with PID 2592 (started by Agustin in C:\Users\Agustin\Documents\Java Workspaces\OSDEPYM\api-modelopersona-rest)
+2019-06-05 23:34:18,604 DEBUG com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Running with Spring Boot v2.1.4.RELEASE, Spring v5.1.6.RELEASE
+2019-06-05 23:34:18,604 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] No active profile set, falling back to default profiles: default
+2019-06-05 23:34:27,875 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Started ApiModelopersonaRestApplication in 9.529 seconds (JVM running for 10.421)
+2019-06-05 23:35:11,377 ERROR org.hibernate.engine.jdbc.spi.SqlExceptionHelper [http-nio-8080-exec-3] Conversion failed when converting date and/or time from character string.
+2019-06-05 23:35:11,406 ERROR com.osdepym.rest.dao.ModeloPersonaDAOImpl [http-nio-8080-exec-3] [Ljava.lang.StackTraceElement;@6df98bf6
+2019-06-05 23:35:11,414 ERROR com.osdepym.rest.dao.ModeloPersonaDAOImpl [http-nio-8080-exec-3] org.hibernate.exception.SQLGrammarException: could not execute query
+2019-06-05 23:35:11,414 ERROR com.osdepym.exception.DatabaseException [http-nio-8080-exec-3] [Ljava.lang.StackTraceElement;@447f3dc6
+2019-06-05 23:35:11,421 ERROR com.osdepym.exception.DatabaseException [http-nio-8080-exec-3] org.hibernate.exception.SQLGrammarException: could not execute query
+2019-06-05 23:39:41,871 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Starting ApiModelopersonaRestApplication on DESKTOP-N379CIV with PID 16108 (started by Agustin in C:\Users\Agustin\Documents\Java Workspaces\OSDEPYM\api-modelopersona-rest)
+2019-06-05 23:39:41,875 DEBUG com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Running with Spring Boot v2.1.4.RELEASE, Spring v5.1.6.RELEASE
+2019-06-05 23:39:41,875 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] No active profile set, falling back to default profiles: default
+2019-06-05 23:39:50,655 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Started ApiModelopersonaRestApplication in 9.039 seconds (JVM running for 9.96)
+2019-06-05 23:40:00,361 ERROR org.hibernate.engine.jdbc.spi.SqlExceptionHelper [http-nio-8080-exec-2] Conversion failed when converting date and/or time from character string.
+2019-06-05 23:40:00,372 ERROR com.osdepym.rest.dao.ModeloPersonaDAOImpl [http-nio-8080-exec-2] [Ljava.lang.StackTraceElement;@628ae6f1
+2019-06-05 23:40:00,376 ERROR com.osdepym.rest.dao.ModeloPersonaDAOImpl [http-nio-8080-exec-2] org.hibernate.exception.SQLGrammarException: could not execute query
+2019-06-05 23:40:00,377 ERROR com.osdepym.exception.DatabaseException [http-nio-8080-exec-2] [Ljava.lang.StackTraceElement;@ed10b41
+2019-06-05 23:40:00,380 ERROR com.osdepym.exception.DatabaseException [http-nio-8080-exec-2] org.hibernate.exception.SQLGrammarException: could not execute query
+2019-06-05 23:44:22,953 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Starting ApiModelopersonaRestApplication on DESKTOP-N379CIV with PID 8248 (started by Agustin in C:\Users\Agustin\Documents\Java Workspaces\OSDEPYM\api-modelopersona-rest)
+2019-06-05 23:44:22,956 DEBUG com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Running with Spring Boot v2.1.4.RELEASE, Spring v5.1.6.RELEASE
+2019-06-05 23:44:22,957 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] No active profile set, falling back to default profiles: default
+2019-06-05 23:44:44,654 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Started ApiModelopersonaRestApplication in 21.959 seconds (JVM running for 22.908)
+2019-06-05 23:44:58,912 ERROR org.hibernate.engine.jdbc.spi.SqlExceptionHelper [http-nio-8080-exec-3] Conversion failed when converting date and/or time from character string.
+2019-06-05 23:44:58,923 ERROR com.osdepym.rest.dao.ModeloPersonaDAOImpl [http-nio-8080-exec-3] [Ljava.lang.StackTraceElement;@195c1a2f
+2019-06-05 23:44:58,927 ERROR com.osdepym.rest.dao.ModeloPersonaDAOImpl [http-nio-8080-exec-3] org.hibernate.exception.SQLGrammarException: could not execute query
+2019-06-05 23:44:59,883 ERROR com.osdepym.exception.DatabaseException [http-nio-8080-exec-3] [Ljava.lang.StackTraceElement;@492ca6c6
+2019-06-05 23:44:59,894 ERROR com.osdepym.exception.DatabaseException [http-nio-8080-exec-3] org.hibernate.exception.SQLGrammarException: could not execute query
+2019-06-05 23:45:58,419 ERROR org.hibernate.engine.jdbc.spi.SqlExceptionHelper [http-nio-8080-exec-4] Conversion failed when converting date and/or time from character string.
+2019-06-05 23:46:00,880 ERROR com.osdepym.rest.server.BusquedaPersonaREST [http-nio-8080-exec-4] could not execute query; SQL [SELECT Persona_ID, Apellido, Nombre, FechaNacimiento, Sexo, CUIL, FechaVigenciaDesdeCUIL, TipoDocumento, NroDocumento FROM mp.vo_PersonaFisicaAfiliadoCompleto WHERE CAST(FechaNacimiento AS DATE) = CAST('123131' AS DATE)]; nested exception is org.hibernate.exception.SQLGrammarException: could not execute query
+2019-06-05 23:51:30,986 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Starting ApiModelopersonaRestApplication on DESKTOP-N379CIV with PID 10540 (started by Agustin in C:\Users\Agustin\Documents\Java Workspaces\OSDEPYM\api-modelopersona-rest)
+2019-06-05 23:51:30,988 DEBUG com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Running with Spring Boot v2.1.4.RELEASE, Spring v5.1.6.RELEASE
+2019-06-05 23:51:30,989 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] No active profile set, falling back to default profiles: default
+2019-06-05 23:51:39,862 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Started ApiModelopersonaRestApplication in 9.13 seconds (JVM running for 9.965)
+2019-06-05 23:51:47,505 ERROR org.hibernate.engine.jdbc.spi.SqlExceptionHelper [http-nio-8080-exec-1] Conversion failed when converting date and/or time from character string.
+2019-06-05 23:51:47,547 ERROR com.osdepym.rest.dao.ModeloPersonaDAOImpl [http-nio-8080-exec-1] [Ljava.lang.StackTraceElement;@32e67d81
+2019-06-05 23:51:47,554 ERROR com.osdepym.rest.dao.ModeloPersonaDAOImpl [http-nio-8080-exec-1] org.hibernate.exception.SQLGrammarException: could not execute query
+2019-06-05 23:52:05,587 ERROR com.osdepym.rest.server.BusquedaPersonaREST [http-nio-8080-exec-1] [Ljava.lang.StackTraceElement;@52ef6eb3
+2019-06-05 23:52:05,603 ERROR com.osdepym.rest.server.BusquedaPersonaREST [http-nio-8080-exec-1] could not execute query; SQL [SELECT Persona_ID, Apellido, Nombre, FechaNacimiento, Sexo, CUIL, FechaVigenciaDesdeCUIL, TipoDocumento, NroDocumento FROM mp.vo_PersonaFisicaAfiliadoCompleto WHERE CAST(FechaNacimiento AS DATE) = CAST('123131' AS DATE)]; nested exception is org.hibernate.exception.SQLGrammarException: could not execute query
+2019-06-05 23:52:52,624 ERROR org.hibernate.engine.jdbc.spi.SqlExceptionHelper [http-nio-8080-exec-3] Conversion failed when converting date and/or time from character string.
+2019-06-05 23:52:52,629 ERROR com.osdepym.rest.dao.ModeloPersonaDAOImpl [http-nio-8080-exec-3] [Ljava.lang.StackTraceElement;@670d7873
+2019-06-05 23:52:52,630 ERROR com.osdepym.rest.dao.ModeloPersonaDAOImpl [http-nio-8080-exec-3] org.hibernate.exception.SQLGrammarException: could not execute query
+2019-06-05 23:53:16,261 ERROR com.osdepym.rest.server.BusquedaPersonaREST [http-nio-8080-exec-3] [Ljava.lang.StackTraceElement;@7327e31d
+2019-06-05 23:53:16,271 ERROR com.osdepym.rest.server.BusquedaPersonaREST [http-nio-8080-exec-3] could not execute query; SQL [SELECT Persona_ID, Apellido, Nombre, FechaNacimiento, Sexo, CUIL, FechaVigenciaDesdeCUIL, TipoDocumento, NroDocumento FROM mp.vo_PersonaFisicaAfiliadoCompleto WHERE CAST(FechaNacimiento AS DATE) = CAST('123131' AS DATE)]; nested exception is org.hibernate.exception.SQLGrammarException: could not execute query
+2019-06-05 23:54:48,855 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Starting ApiModelopersonaRestApplication on DESKTOP-N379CIV with PID 13128 (started by Agustin in C:\Users\Agustin\Documents\Java Workspaces\OSDEPYM\api-modelopersona-rest)
+2019-06-05 23:54:48,859 DEBUG com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Running with Spring Boot v2.1.4.RELEASE, Spring v5.1.6.RELEASE
+2019-06-05 23:54:48,859 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] No active profile set, falling back to default profiles: default
+2019-06-05 23:54:58,081 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Started ApiModelopersonaRestApplication in 9.496 seconds (JVM running for 10.379)
+2019-06-05 23:55:06,156 ERROR org.hibernate.engine.jdbc.spi.SqlExceptionHelper [http-nio-8080-exec-2] Conversion failed when converting date and/or time from character string.
+2019-06-05 23:55:06,167 ERROR com.osdepym.rest.dao.ModeloPersonaDAOImpl [http-nio-8080-exec-2] [Ljava.lang.StackTraceElement;@70979784
+2019-06-05 23:55:06,172 ERROR com.osdepym.rest.dao.ModeloPersonaDAOImpl [http-nio-8080-exec-2] org.hibernate.exception.SQLGrammarException: could not execute query
+2019-06-05 23:55:06,277 ERROR com.osdepym.rest.server.BusquedaPersonaREST [http-nio-8080-exec-2] [Ljava.lang.StackTraceElement;@61b0a2fe
+2019-06-05 23:55:06,288 ERROR com.osdepym.rest.server.BusquedaPersonaREST [http-nio-8080-exec-2] could not execute query; SQL [SELECT Persona_ID, Apellido, Nombre, FechaNacimiento, Sexo, CUIL, FechaVigenciaDesdeCUIL, TipoDocumento, NroDocumento FROM mp.vo_PersonaFisicaAfiliadoCompleto WHERE CAST(FechaNacimiento AS DATE) = CAST('123131' AS DATE)]; nested exception is org.hibernate.exception.SQLGrammarException: could not execute query
+2019-06-05 23:55:58,175 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Starting ApiModelopersonaRestApplication on DESKTOP-N379CIV with PID 11628 (started by Agustin in C:\Users\Agustin\Documents\Java Workspaces\OSDEPYM\api-modelopersona-rest)
+2019-06-05 23:55:58,178 DEBUG com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Running with Spring Boot v2.1.4.RELEASE, Spring v5.1.6.RELEASE
+2019-06-05 23:55:58,178 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] No active profile set, falling back to default profiles: default
+2019-06-05 23:55:59,831 ERROR org.springframework.boot.SpringApplication [main] Application run failed
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'modeloPersonaDAOImpl': Lookup method resolution failed; nested exception is java.lang.IllegalStateException: Failed to introspect Class [com.osdepym.rest.dao.ModeloPersonaDAOImpl] from ClassLoader [sun.misc.Launcher$AppClassLoader@18b4aac2]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.determineCandidateConstructors(AutowiredAnnotationBeanPostProcessor.java:265)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.determineConstructorsFromBeanPostProcessors(AbstractAutowireCapableBeanFactory.java:1269)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1184)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:555)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:515)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:320)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:318)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:849)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:877)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:549)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:142)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:775)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:397)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:316)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1260)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1248)
+	at com.osdepym.persona.rest.ApiModelopersonaRestApplication.main(ApiModelopersonaRestApplication.java:18)
+Caused by: java.lang.IllegalStateException: Failed to introspect Class [com.osdepym.rest.dao.ModeloPersonaDAOImpl] from ClassLoader [sun.misc.Launcher$AppClassLoader@18b4aac2]
+	at org.springframework.util.ReflectionUtils.getDeclaredMethods(ReflectionUtils.java:507)
+	at org.springframework.util.ReflectionUtils.doWithMethods(ReflectionUtils.java:404)
+	at org.springframework.util.ReflectionUtils.doWithMethods(ReflectionUtils.java:389)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.determineCandidateConstructors(AutowiredAnnotationBeanPostProcessor.java:248)
+	... 18 common frames omitted
+Caused by: java.lang.NoClassDefFoundError: DatabaseException
+	at java.lang.Class.getDeclaredMethods0(Native Method)
+	at java.lang.Class.privateGetDeclaredMethods(Class.java:2701)
+	at java.lang.Class.getDeclaredMethods(Class.java:1975)
+	at org.springframework.util.ReflectionUtils.getDeclaredMethods(ReflectionUtils.java:489)
+	... 21 common frames omitted
+Caused by: java.lang.ClassNotFoundException: DatabaseException
+	at java.net.URLClassLoader.findClass(URLClassLoader.java:382)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:424)
+	at sun.misc.Launcher$AppClassLoader.loadClass(Launcher.java:349)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:357)
+	... 25 common frames omitted
+2019-06-05 23:57:13,855 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Starting ApiModelopersonaRestApplication on DESKTOP-N379CIV with PID 15752 (started by Agustin in C:\Users\Agustin\Documents\Java Workspaces\OSDEPYM\api-modelopersona-rest)
+2019-06-05 23:57:13,858 DEBUG com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Running with Spring Boot v2.1.4.RELEASE, Spring v5.1.6.RELEASE
+2019-06-05 23:57:13,859 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] No active profile set, falling back to default profiles: default
+2019-06-05 23:57:23,315 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Started ApiModelopersonaRestApplication in 9.72 seconds (JVM running for 10.542)
+2019-06-05 23:58:02,717 ERROR org.hibernate.engine.jdbc.spi.SqlExceptionHelper [http-nio-8080-exec-3] Conversion failed when converting date and/or time from character string.
+2019-06-05 23:58:02,743 ERROR com.osdepym.rest.dao.ModeloPersonaDAOImpl [http-nio-8080-exec-3] [Ljava.lang.StackTraceElement;@437af9d5
+2019-06-05 23:58:02,752 ERROR com.osdepym.rest.dao.ModeloPersonaDAOImpl [http-nio-8080-exec-3] org.hibernate.exception.SQLGrammarException: could not execute query
+2019-06-05 23:58:02,885 ERROR com.osdepym.rest.server.BusquedaPersonaREST [http-nio-8080-exec-3] [Ljava.lang.StackTraceElement;@2d4781c9
+2019-06-05 23:58:02,890 ERROR com.osdepym.rest.server.BusquedaPersonaREST [http-nio-8080-exec-3] could not execute query; SQL [SELECT Persona_ID, Apellido, Nombre, FechaNacimiento, Sexo, CUIL, FechaVigenciaDesdeCUIL, TipoDocumento, NroDocumento FROM mp.vo_PersonaFisicaAfiliadoCompleto WHERE CAST(FechaNacimiento AS DATE) = CAST('3231312' AS DATE)]; nested exception is org.hibernate.exception.SQLGrammarException: could not execute query
+2019-06-05 23:58:48,321 ERROR org.hibernate.engine.jdbc.spi.SqlExceptionHelper [http-nio-8080-exec-4] Conversion failed when converting date and/or time from character string.
+2019-06-05 23:58:48,327 ERROR com.osdepym.rest.dao.ModeloPersonaDAOImpl [http-nio-8080-exec-4] [Ljava.lang.StackTraceElement;@98d5a4d
+2019-06-05 23:58:48,328 ERROR com.osdepym.rest.dao.ModeloPersonaDAOImpl [http-nio-8080-exec-4] org.hibernate.exception.SQLGrammarException: could not execute query
+2019-06-05 23:58:50,200 ERROR com.osdepym.rest.server.BusquedaPersonaREST [http-nio-8080-exec-4] [Ljava.lang.StackTraceElement;@72376c42
+2019-06-05 23:58:50,312 ERROR com.osdepym.rest.server.BusquedaPersonaREST [http-nio-8080-exec-4] could not execute query; SQL [SELECT Persona_ID, Apellido, Nombre, FechaNacimiento, Sexo, CUIL, FechaVigenciaDesdeCUIL, TipoDocumento, NroDocumento FROM mp.vo_PersonaFisicaAfiliadoCompleto WHERE CAST(FechaNacimiento AS DATE) = CAST('3231312' AS DATE)]; nested exception is org.hibernate.exception.SQLGrammarException: could not execute query
