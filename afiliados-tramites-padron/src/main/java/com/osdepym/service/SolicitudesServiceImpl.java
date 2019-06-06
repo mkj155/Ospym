@@ -3,6 +3,8 @@ package com.osdepym.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -10,11 +12,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.osdepym.dto.AfiliadoDTO;
+import com.osdepym.dto.EstadoDTO;
+import com.osdepym.dto.ObraSocialDTO;
 import com.osdepym.exception.CustomException;
 import com.osdepym.exception.ErrorMessages;
 import com.osdepym.form.SolicitudesForm;
 import com.osdepym.hibernate.dao.SolicitudesDAO;
 import com.osdepym.hibernate.entity.Afiliado;
+import com.osdepym.hibernate.entity.Estado;
+import com.osdepym.hibernate.entity.ObraSocial;
+import com.osdepym.util.EntityToDTOUtil;
 import com.osdepym.util.SessionUtil;
 
 @Service("SolicitudesService")
@@ -43,29 +50,83 @@ public class SolicitudesServiceImpl implements SolicitudesService{
 	}
 	
 	@Override
-	public List<AfiliadoDTO> buscarAfiliados(AfiliadoDTO afiliadoDTO) throws CustomException {
+	public List<AfiliadoDTO> buscar(SolicitudesForm form) throws CustomException {
 		List<AfiliadoDTO> afiliadosDTO = new ArrayList<AfiliadoDTO>();
-		Session session = null;
-		Transaction tx = null;
+		//Session session = null;
+		//Transaction tx = null;
 		try {
-			session = this.sessionFactory.getCurrentSession();
-			tx = session.beginTransaction();
-			List<Afiliado> afiliados = solicitudesDAO.buscarAfiliados(afiliadoDTO);
+			/*session = this.sessionFactory.getCurrentSession();
+			tx = session.beginTransaction();*/
+			List<Afiliado> afiliados = solicitudesDAO.buscar(form);
 			if (afiliados != null) {
-				for (Afiliado afiliado : afiliados) {
-					//afiliadosDTO.add(entityToDTO(afiliado));
+				for (Afiliado entity : afiliados) {
+					afiliadosDTO.add(EntityToDTOUtil.entityToDTO(entity));
 				}
 			}
-			tx.commit();
-			session.close();
+			//tx.commit();
+			//session.close();
 		} catch (CustomException e) {
-			SessionUtil.rollbackTransaction(session, tx);
+			//SessionUtil.rollbackTransaction(session, tx);
 			throw e;
 		} catch (Exception e) {
-			SessionUtil.rollbackTransaction(session, tx);
+			//SessionUtil.rollbackTransaction(session, tx);
 			e.printStackTrace();
 			throw new CustomException(e.getMessage(), ErrorMessages.LOAD_CONTACT_ERROR);
 		}
 		return afiliadosDTO;
+	}
+	
+	/*@Transactional*/
+	public List<ObraSocialDTO> getAllObrasSociales() throws CustomException {
+		List<ObraSocialDTO> osDTOList = new ArrayList<ObraSocialDTO>();
+		//Session session = null;
+		//Transaction tx = null;
+		try {
+			//session = this.sessionFactory.getCurrentSession();
+			//tx = session.beginTransaction();
+			List<ObraSocial> osList = solicitudesDAO.getAllObrasSociales();
+			if (osList != null) {
+				for (ObraSocial entity : osList) {
+					osDTOList.add(EntityToDTOUtil.entityToDTO(entity));
+				}
+			}
+			//tx.commit();
+			//session.close();
+		} catch (CustomException e) {
+			//SessionUtil.rollbackTransaction(session, tx);
+			throw e;
+		} catch (Exception e) {
+			//SessionUtil.rollbackTransaction(session, tx);
+			e.printStackTrace();
+			throw new CustomException(e.getMessage(), ErrorMessages.LOAD_CONTACT_ERROR);
+		}
+		return osDTOList;
+	}
+	
+	/*@Transactional*/
+	public List<EstadoDTO> getAllEstados() throws CustomException {
+		List<EstadoDTO> estadoDTOList = new ArrayList<EstadoDTO>();
+		//Session session = null;
+		//Transaction tx = null;
+		try {
+			//session = this.sessionFactory.getCurrentSession();
+			//tx = session.beginTransaction();
+			List<Estado> estadoList = solicitudesDAO.getAllEstados();
+			if (estadoList != null) {
+				for (Estado entity : estadoList) {
+					estadoDTOList.add(EntityToDTOUtil.entityToDTO(entity));
+				}
+			}
+			//tx.commit();
+			//session.close();
+		} catch (CustomException e) {
+			//SessionUtil.rollbackTransaction(session, tx);
+			throw e;
+		} catch (Exception e) {
+			//SessionUtil.rollbackTransaction(session, tx);
+			e.printStackTrace();
+			throw new CustomException(e.getMessage(), ErrorMessages.LOAD_CONTACT_ERROR);
+		}
+		return estadoDTOList;
 	}
 }

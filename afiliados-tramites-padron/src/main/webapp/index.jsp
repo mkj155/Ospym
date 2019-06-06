@@ -38,7 +38,7 @@
 		<div class="container">
 			<div class="buttons">
 				<div class="content-button">
-					<a href="./busquedaAfiliado" class="btn btn-primary button">
+					<a href="./solicitudes" class="btn btn-primary button">
 						<i class="fas fa-id-card block"></i>
 						<span>Estado de Solicitudes</span>
 					</a>

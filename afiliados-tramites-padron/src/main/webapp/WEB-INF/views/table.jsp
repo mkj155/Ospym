@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<script src="https://unpkg.com/jquery@3.2.1/dist/jquery.min.js"></script>
+<script src="https://unpkg.com/vue@2.4.2/dist/vue.min.js"></script>
 <style>
 	th {
 		width: 100px;
@@ -7,8 +9,13 @@
 		text-overflow: ellipsis;
    }
 </style>
+<button>Load some fake data from mockaroo.com</button>
 <div>
-	<input type="checkbox" id="check-all-afiliados"/>
+	<label class="control control-checkbox">
+        Seleccionar todo
+            <input type="checkbox" id="check-all-afiliados" />
+        <div class="control_indicator"></div>
+    </label>
 </div>
 <table id="tablePreview" class="table table-striped table-hover table-sm">
 	<thead>
@@ -40,60 +47,20 @@
 			<th></th>
 		</tr>
   	</thead>
-	<tbody>
-    	<tr>
-      		<td><input type="checkbox" class="afiliado-check" /></td>
-			<td>Mark</td>
-			<td>Otto</td>
-			<td>amdo</td>
-			<td>Mark</td>
-			<td>Otto</td>
-			<td>amdo</td>
-			<td>Mark</td>
-			<td>Otto</td>
-			<td>amdo</td>
-			<td>Mark</td>
-			<td>Otto</td>
-			<td>amdo</td>
-			<td>Otto</td>
-			<td>amdo</td>
-			<td>Mark</td>
-			<td>Otto</td>
-			<td>amdo</td>
-			<td>Mark</td>
-			<td>Otto</td>
-			<td>amdo</td>
-			<td>afat</td>
-			<td>Mark</td>
-			<td>Otto</td>
-			<td>Anular</td>
+	<tbody> 
+    	<tr v-for="row in users">
+    		<td>
+				<label class="control control-checkbox">
+		            <input type="checkbox" class="afiliado-check" />
+			        <div class="control_indicator"></div>
+			    </label>
+			</td>
+      		<td v-for="column in row">{{ column }}</td>
+      		<td><a href="#">Anular</a></td>
     	</tr>
-    	<tr>
-			<td><input type="checkbox" class="afiliado-check" /></td>
-			<td>Mark</td>
-			<td>Otto</td>
-			<td>amdo</td>
-			<td>Mark</td>
-			<td>Otto</td>
-			<td>amdo</td>
-			<td>Mark</td>
-			<td>Otto</td>
-			<td>amdo</td>
-			<td>Mark</td>
-			<td>Otto</td>
-			<td>amdo</td>
-			<td>Otto</td>
-			<td>amdo</td>
-			<td>Mark</td>
-			<td>Otto</td>
-			<td>amdo</td>
-			<td>Mark</td>
-			<td>Otto</td>
-			<td>amdo</td>
-			<td>afat</td>
-			<td>Mark</td>
-			<td>Otto</td>
-			<td>Anular</td>
+    <tr>
+			
+			
     	</tr>
 	</tbody>
 </table>

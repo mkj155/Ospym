@@ -2,22 +2,28 @@ package com.osdepym.form;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class SolicitudesForm {
-	private String cuil;
+	private Long cuil;
 	private Long numeroRegistro;
 	private String obraSocial;
 	private String apellido;
 	private String nombre;
 	private String estado;
+	
+	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd/MM/yyyy")
 	private Date fechaCarga;
 	private Long numeroSolicitud;
 	private Long dni;
 	private Long cuit;
 	
-	public String getCuil() {
+	public SolicitudesForm() {}
+	
+	public Long getCuil() {
 		return cuil;
 	}
-	public void setCuil(String cuil) {
+	public void setCuil(Long cuil) {
 		this.cuil = cuil;
 	}
 	public Long getNumeroRegistro() {
