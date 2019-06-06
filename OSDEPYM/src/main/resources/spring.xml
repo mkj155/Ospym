@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?> 
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
 	xmlns:tx="http://www.springframework.org/schema/tx"
@@ -28,10 +28,17 @@
 		<property name="dataSource" ref="dataSource" />
 		<property name="annotatedClasses">
 			<list>
-<!-- 				<value>com.osdepym.hibernate.entity.Categoria</value> -->
-<!-- 				<value>com.osdepym.hibernate.entity.MotivoCategoria</value> -->
-<!-- 				<value>com.osdepym.hibernate.entity.Motivo</value> -->
-<!-- 				<value>com.osdepym.hibernate.entity.Contacto</value> -->
+				<value>com.osdepym.hibernate.entity.AutorizacionDoc</value>
+				<value>com.osdepym.hibernate.entity.Beneficiario</value>
+				<value>com.osdepym.hibernate.entity.Categoria</value>
+				<value>com.osdepym.hibernate.entity.MotivoCategoria</value>
+				<value>com.osdepym.hibernate.entity.Motivo</value>
+				<value>com.osdepym.hibernate.entity.Contacto</value>
+				<value>com.osdepym.hibernate.entity.PlanItem</value>
+				<value>com.osdepym.hibernate.entity.PlanSeccion</value>
+				<value>com.osdepym.hibernate.entity.Especialidad</value>
+				<value>com.osdepym.hibernate.entity.EspecialidadPrestacion</value>
+				<value>com.osdepym.hibernate.entity.Prestacion</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">
