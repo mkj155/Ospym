@@ -13,8 +13,10 @@
 			<spring:url value="/impExp/showGrid" var="enviarUrl" />
 			<form:form class="form-cartilla custom-form" method="post" modelAttribute="impExpForm" action="${enviarUrl}">
 				<div class="form-group">
-					<div class="text-center">
-						<button type="submit" class="btn btn-outline-primary btn-block btn-sm button-contact"><spring:message code="button.status" /></button>
+					<div class="text-left">
+						<button type="submit" class="btn btn-success">
+							<spring:message code="button.status"/>
+						</button>
 					</div>
 				</div>
 			</form:form>
