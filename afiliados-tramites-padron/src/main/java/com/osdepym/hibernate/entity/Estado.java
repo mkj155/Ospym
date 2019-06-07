@@ -1,30 +1,34 @@
 package com.osdepym.hibernate.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 
 import org.hibernate.annotations.Immutable;
 
 @Entity
 @Immutable
 public class Estado {
-	private Long id;
-	private String nombre;
+	@Id
+	@Column(name = "EstadoRegistro_ID", updatable = false, nullable = false)
+	private Long estadoRegistroID;
 	
-	public Estado() {}
+	@Column(name = "DescripcionEstado", updatable = false)
+	private String descripcionEstado;
 
-	public Long getId() {
-		return id;
+	public Long getEstadoRegistroID() {
+		return estadoRegistroID;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setEstadoRegistroID(Long estadoRegistroID) {
+		this.estadoRegistroID = estadoRegistroID;
 	}
 
-	public String getNombre() {
-		return nombre;
+	public String getDescripcionEstado() {
+		return descripcionEstado;
 	}
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setDescripcionEstado(String descripcionEstado) {
+		this.descripcionEstado = descripcionEstado;
 	}
 }

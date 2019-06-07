@@ -29,6 +29,8 @@
 		<property name="annotatedClasses">
 			<list>
 				<value>com.osdepym.hibernate.entity.Afiliado</value>
+				<value>com.osdepym.hibernate.entity.ObraSocial</value>
+				<value>com.osdepym.hibernate.entity.Estado</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">

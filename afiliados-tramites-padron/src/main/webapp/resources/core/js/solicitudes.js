@@ -42,10 +42,11 @@ $(document).ready(function () {
 	    });
 	    if (values[0]) values[0] = checkValue(values[0], 12);
 	    if (values[1]) values[1] = checkValue(values[1], 31);
+	    if (values[2]) values[2] = checkValue(values[2], new Date().getFullYear());
 	    var output = values.map(function(v, i) {
 	      return v.length == 2 && i < 2 ? v + '/' : v;
 	    });
-	    this.value = output.join('').substr(0, 14);
+	    this.value = output.join('').substr(0, 10);
 	});
 });
 

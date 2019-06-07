@@ -1,24 +1,24 @@
 package com.osdepym.dto;
 
 public class ObraSocialDTO {
-	private Long id;
-	private String nombre;
+	private Long obraSocialID;
+	private String descripcionObraSocial;
 	
 	public ObraSocialDTO() {}
 
-	public Long getId() {
-		return id;
+	public Long getObraSocialID() {
+		return obraSocialID;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setObraSocialID(Long obraSocialID) {
+		this.obraSocialID = obraSocialID;
 	}
 
-	public String getNombre() {
-		return nombre;
+	public String getDescripcionObraSocial() {
+		return descripcionObraSocial;
 	}
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setDescripcionObraSocial(String descripcionObraSocial) {
+		this.descripcionObraSocial = descripcionObraSocial;
 	}
 }

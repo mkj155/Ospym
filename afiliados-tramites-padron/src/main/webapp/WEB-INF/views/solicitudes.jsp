@@ -41,7 +41,7 @@
                                 </label>
                                 <form:select path="obraSocial" class="form-control" id="obraSocial">
                                 	<form:option value="" label=" ${emptyValue} " />
-                                	<form:options items="${obrassociales}" itemValue="id" itemLabel="nombre" />
+                                	<form:options items="${obrassociales}" itemValue="obraSocialID" itemLabel="descripcionObraSocial" />
                             	</form:select>
                             </div>
                         </div>
@@ -73,7 +73,7 @@
                                 </label>
                                 <form:select path="estado" class="form-control" id="estado">
                                 	<form:option value="" label=" ${emptyValue} " />
-                                	<form:options items="${estados}" itemValue="id" itemLabel="nombre" />
+                                	<form:options items="${estados}" itemValue="estadoRegistroID" itemLabel="descripcionEstado" />
                             	</form:select>
                             </div>
                         </div>
@@ -85,7 +85,7 @@
                                 </label>
                                 <div class='right-inner-addon date datepicker' data-date-format="dd-MM-yyyy">
 								      <i class="far fa-calendar-alt"></i>
-								<form:input path="fechaCarga" type="text" maxlength="40" id="fechaCarga" class="form-control date-picker" data-date-format="yyyy-mm-dd" />
+								<form:input path="fechaCarga" type="text" maxlength="14" id="fechaCarga" class="form-control date-picker" data-date-format="yyyy-mm-dd" />
 								</div>
                            	</div>
                     	</div>
@@ -116,15 +116,6 @@
                                 <form:input path="cuit" type="number" class="form-control" maxlength="40" />
                             </div>
                         </div>
-                        <div class="col-md-2">
-                            <!--  SOLICITUD N -->
-                            <div class="form-group">
-                                <label class="control-label">
-                                    CUIT
-                                </label>
-                                <input type="checkbox" class="form-control" />
-                            </div>
-                        </div>
                        	<div class="col-md-2">
                            <button type="button" class="btn btn-primary btn-lg mt-4 btn-form" id="search">Buscar</button>
                         </div>
@@ -138,6 +129,6 @@
             </div>
         </section>
     </body>
-                    <jsp:include page="./footer.jsp" />
+<jsp:include page="./footer.jsp" />
 
-                    </html>
+</html>

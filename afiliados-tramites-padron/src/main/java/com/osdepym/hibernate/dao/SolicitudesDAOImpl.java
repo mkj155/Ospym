@@ -1,6 +1,5 @@
 package com.osdepym.hibernate.dao;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -162,34 +161,12 @@ public class SolicitudesDAOImpl implements SolicitudesDAO {
 	public List<ObraSocial> getAllObrasSociales() throws CustomException {
 		List<ObraSocial> osList = new ArrayList<ObraSocial>();
 		try {
-			/*Session session = this.sessionFactory.getCurrentSession();
-			String sqlString = "SELECT * FROM ga.vo_ObraSocial";
-			osList = session.createNativeQuery(sqlString, ObraSocial.class).getResultList();*/
+			Session session = this.sessionFactory.getCurrentSession();
+			String sqlString = "SELECT ObraSocial_ID, DescripcionObraSocial FROM ga.vo_ObraSocial";
+			osList = session.createNativeQuery(sqlString, ObraSocial.class).getResultList();
 		} catch (Exception e) {
 			throw new CustomException(e.getMessage(), ErrorMessages.DATABASE_GET_ERROR);
 		}
-		
-		/* INICIO TEST */
-		ObraSocial obj1 = new ObraSocial();
-		obj1.setId(new Long(1)); obj1.setNombre("Obra Social 1");
-		osList.add(obj1);
-		
-		ObraSocial obj2 = new ObraSocial();
-		obj2.setId(new Long(2)); obj2.setNombre("Obra Social 2");
-		osList.add(obj2);
-		
-		ObraSocial obj3 = new ObraSocial();
-		obj3.setId(new Long(3)); obj3.setNombre("Obra Social 3");
-		osList.add(obj3);
-		
-		ObraSocial obj4 = new ObraSocial();
-		obj4.setId(new Long(4)); obj4.setNombre("Obra Social 4");
-		osList.add(obj4);
-		
-		ObraSocial obj5 = new ObraSocial();
-		obj5.setId(new Long(5)); obj5.setNombre("Obra Social 5");
-		osList.add(obj5);
-		/* FIN TEST */
 		
 		return osList;
 	}
@@ -197,35 +174,13 @@ public class SolicitudesDAOImpl implements SolicitudesDAO {
 	public List<Estado> getAllEstados() throws CustomException {
 		List<Estado> estadoList = new ArrayList<Estado>();
 		try {
-			/*Session session = this.sessionFactory.getCurrentSession();
-			String sqlString = "SELECT * FROM ga.vo_RegistroEstado";
-			estadoList = session.createNativeQuery(sqlString, Estado.class).getResultList();*/
+			Session session = this.sessionFactory.getCurrentSession();
+			String sqlString = "SELECT EstadoRegistro_ID, DescripcionEstado FROM ga.vo_EstadoRegistro";
+			estadoList = session.createNativeQuery(sqlString, Estado.class).getResultList();
 		} catch (Exception e) {
 			throw new CustomException(e.getMessage(), ErrorMessages.DATABASE_GET_ERROR);
 		}
-		
-		/* INICIO TEST */
-		Estado obj1 = new Estado();
-		obj1.setId(new Long(1)); obj1.setNombre("Estado 1");
-		estadoList.add(obj1);
-		
-		Estado obj2 = new Estado();
-		obj2.setId(new Long(2)); obj2.setNombre("Estado 2");
-		estadoList.add(obj2);
-		
-		Estado obj3 = new Estado();
-		obj3.setId(new Long(3)); obj3.setNombre("Estado 3");
-		estadoList.add(obj3);
-		
-		Estado obj4 = new Estado();
-		obj4.setId(new Long(4)); obj4.setNombre("Estado 4");
-		estadoList.add(obj4);
-		
-		Estado obj5 = new Estado();
-		obj5.setId(new Long(5)); obj5.setNombre("Estado 5");
-		estadoList.add(obj5);
-		/* FIN TEST */
-		
+
 		return estadoList;
 	}
 }

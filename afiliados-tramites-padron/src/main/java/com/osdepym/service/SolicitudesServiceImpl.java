@@ -76,54 +76,54 @@ public class SolicitudesServiceImpl implements SolicitudesService{
 		return afiliadosDTO;
 	}
 	
-	/*@Transactional*/
+	@Transactional
 	public List<ObraSocialDTO> getAllObrasSociales() throws CustomException {
 		List<ObraSocialDTO> osDTOList = new ArrayList<ObraSocialDTO>();
-		//Session session = null;
-		//Transaction tx = null;
+		Session session = null;
+		Transaction tx = null;
 		try {
-			//session = this.sessionFactory.getCurrentSession();
-			//tx = session.beginTransaction();
+			session = this.sessionFactory.getCurrentSession();
+			tx = session.beginTransaction();
 			List<ObraSocial> osList = solicitudesDAO.getAllObrasSociales();
 			if (osList != null) {
 				for (ObraSocial entity : osList) {
 					osDTOList.add(EntityToDTOUtil.entityToDTO(entity));
 				}
 			}
-			//tx.commit();
-			//session.close();
+			tx.commit();
+			session.close();
 		} catch (CustomException e) {
-			//SessionUtil.rollbackTransaction(session, tx);
+			SessionUtil.rollbackTransaction(session, tx);
 			throw e;
 		} catch (Exception e) {
-			//SessionUtil.rollbackTransaction(session, tx);
+			SessionUtil.rollbackTransaction(session, tx);
 			e.printStackTrace();
 			throw new CustomException(e.getMessage(), ErrorMessages.LOAD_CONTACT_ERROR);
 		}
 		return osDTOList;
 	}
 	
-	/*@Transactional*/
+	@Transactional
 	public List<EstadoDTO> getAllEstados() throws CustomException {
 		List<EstadoDTO> estadoDTOList = new ArrayList<EstadoDTO>();
-		//Session session = null;
-		//Transaction tx = null;
+		Session session = null;
+		Transaction tx = null;
 		try {
-			//session = this.sessionFactory.getCurrentSession();
-			//tx = session.beginTransaction();
+			session = this.sessionFactory.getCurrentSession();
+			tx = session.beginTransaction();
 			List<Estado> estadoList = solicitudesDAO.getAllEstados();
 			if (estadoList != null) {
 				for (Estado entity : estadoList) {
 					estadoDTOList.add(EntityToDTOUtil.entityToDTO(entity));
 				}
 			}
-			//tx.commit();
-			//session.close();
+			tx.commit();
+			session.close();
 		} catch (CustomException e) {
-			//SessionUtil.rollbackTransaction(session, tx);
+			SessionUtil.rollbackTransaction(session, tx);
 			throw e;
 		} catch (Exception e) {
-			//SessionUtil.rollbackTransaction(session, tx);
+			SessionUtil.rollbackTransaction(session, tx);
 			e.printStackTrace();
 			throw new CustomException(e.getMessage(), ErrorMessages.LOAD_CONTACT_ERROR);
 		}

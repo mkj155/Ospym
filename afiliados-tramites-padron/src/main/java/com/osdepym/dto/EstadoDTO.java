@@ -1,24 +1,22 @@
 package com.osdepym.dto;
 
 public class EstadoDTO {
-	private Long id;
-	private String nombre;
-	
-	public EstadoDTO() {}
+	private Long estadoRegistroID;
+	private String descripcionEstado;
 
-	public Long getId() {
-		return id;
+	public Long getEstadoRegistroID() {
+		return estadoRegistroID;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setEstadoRegistroID(Long estadoRegistroID) {
+		this.estadoRegistroID = estadoRegistroID;
 	}
 
-	public String getNombre() {
-		return nombre;
+	public String getDescripcionEstado() {
+		return descripcionEstado;
 	}
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setDescripcionEstado(String descripcionEstado) {
+		this.descripcionEstado = descripcionEstado;
 	}
 }
