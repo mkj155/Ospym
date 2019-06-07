@@ -38,7 +38,7 @@ public class PlanItemDAOImpl implements PlanItemDAO{
 	
 
 	@Override
-	public PlanItem get(Integer id) throws CustomException {
+	public PlanItem get(Long id) throws CustomException {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -64,7 +64,7 @@ public class PlanItemDAOImpl implements PlanItemDAO{
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<PlanItem> getItemsByPlan(String idPlan) throws CustomException {
+	public List<PlanItem> getItemsByPlan(Long idPlan) throws CustomException {
 		List<PlanItem> items = null;
 		try {
 			Session session = this.sessionFactory.getCurrentSession();

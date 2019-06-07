@@ -15,7 +15,7 @@ import javax.persistence.Table;
 public class EspecialidadPrestacion{
 	
 	
-	private int idEspecPrest;
+	private Long idEspecPrest;
 	private Especialidad especialidad;
 	private Prestacion prestacion;
 	private String correo;
@@ -37,11 +37,11 @@ public class EspecialidadPrestacion{
 	@Id
 	@Column(name="ID_ESPEC_PREST")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	public int getIdEspecPrest() {
+	public Long getIdEspecPrest() {
 		return idEspecPrest;
 	}
 
-	public void setIdEspecPrest(int idEspecPrest) {
+	public void setIdEspecPrest(Long idEspecPrest) {
 		this.idEspecPrest = idEspecPrest;
 	}
 	

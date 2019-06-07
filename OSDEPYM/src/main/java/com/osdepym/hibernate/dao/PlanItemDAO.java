@@ -7,5 +7,5 @@ import com.osdepym.hibernate.entity.PlanItem;
 
 public interface PlanItemDAO extends Dao<PlanItem>{
 
-	public List<PlanItem> getItemsByPlan(String idPlan) throws CustomException;
+	public List<PlanItem> getItemsByPlan(Long idPlan) throws CustomException;
 }

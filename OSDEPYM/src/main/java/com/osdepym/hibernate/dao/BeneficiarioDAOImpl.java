@@ -23,7 +23,7 @@ public class BeneficiarioDAOImpl implements BeneficiarioDAO {
 	}
 	
 	@Override
-	public Beneficiario get(Integer id) throws CustomException {
+	public Beneficiario get(Long id) throws CustomException {
 		return null;
 	}
 
@@ -58,11 +58,11 @@ public class BeneficiarioDAOImpl implements BeneficiarioDAO {
 	}
 	
 	@Override
-	public List<Beneficiario> getBeneficiariosByIdAfiliado(int idAfiliado) throws CustomException {
+	public List<Beneficiario> getBeneficiariosByIdAfiliado(Long idAfiliado) throws CustomException {
 		try {
 			List<Beneficiario> b = new ArrayList<Beneficiario>();
 			Session session = this.sessionFactory.getCurrentSession();
-			String sqlString = "SELECT Id_Afiliado, Id_Titular, Apellido, Nombre FROM dbo.v_familiares_a_cargo WHERE Id_Titular = " + idAfiliado;
+			String sqlString = "SELECT Id_Afiliado, Id_Titular, Apellido, Nombre FROM dbo.v_familiares_a_cargo WHERE id_titular_busqueda = " + idAfiliado;
 			b = session.createNativeQuery(sqlString, Beneficiario.class).getResultList();
 			return b;
 		} catch (Exception e) {

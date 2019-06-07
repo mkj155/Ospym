@@ -3,12 +3,12 @@ package com.osdepym.dto;
 import java.util.List;
 
 public class PlanSeccionDTO {
-	private String id;
+	private Long id;
 	private String title;
 	private String subtitle;
 	private List<PlanItemDTO> itemsList;
 	
-	public PlanSeccionDTO(String id, String title, String subtitle, List<PlanItemDTO> list) {
+	public PlanSeccionDTO(Long id, String title, String subtitle, List<PlanItemDTO> list) {
 		this.id = id;
 		this.title = title;
 		this.subtitle = subtitle;
@@ -34,11 +34,11 @@ public class PlanSeccionDTO {
 		this.itemsList = itemsList;
 	}
 
-	public String getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 }

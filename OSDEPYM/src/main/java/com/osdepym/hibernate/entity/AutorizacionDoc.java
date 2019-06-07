@@ -19,7 +19,7 @@ public class AutorizacionDoc implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = -8470252089407072942L;
-	private int idAutorizacionDoc;
+	private Long idAutorizacionDoc;
 	private EspecialidadPrestacion especialidadPrestacion;
 	private String documentacion;
     
@@ -36,11 +36,11 @@ public class AutorizacionDoc implements Serializable {
 	@Id
 	@Column(name="ID_AUTORIZACION_DOC")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	public int getIdAutorizacionDoc() {
+	public Long getIdAutorizacionDoc() {
 		return idAutorizacionDoc;
 	}
 
-	public void setIdAutorizacionDoc(int idAutorizacionDoc) {
+	public void setIdAutorizacionDoc(Long idAutorizacionDoc) {
 		this.idAutorizacionDoc = idAutorizacionDoc;
 	}
 	

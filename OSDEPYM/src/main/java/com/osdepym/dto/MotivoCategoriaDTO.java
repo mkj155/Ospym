@@ -5,14 +5,14 @@ import com.osdepym.hibernate.entity.Motivo;
 
 public class MotivoCategoriaDTO {
 	
-	private int idMotCat;
+	private Long idMotCat;
     private Motivo motivo;
     private Categoria categoria;
     private String correo;
-	public int getIdMotCat() {
+	public Long getIdMotCat() {
 		return idMotCat;
 	}
-	public void setIdMotCat(int idMotCat) {
+	public void setIdMotCat(Long idMotCat) {
 		this.idMotCat = idMotCat;
 	}
 	public Motivo getMotivo() {

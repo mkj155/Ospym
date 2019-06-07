@@ -23,7 +23,7 @@ public class EspecialidadDAOImpl implements EspecialidadDAO{
 	}
 	
 	@Override
-	public Especialidad get(Integer id) throws CustomException {
+	public Especialidad get(Long id) throws CustomException {
 		// TODO Auto-generated method stub
 		return null;
 	}

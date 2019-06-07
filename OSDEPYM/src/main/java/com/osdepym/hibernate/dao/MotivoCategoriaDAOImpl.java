@@ -27,7 +27,7 @@ public class MotivoCategoriaDAOImpl implements MotivoCategoriaDAO {
 	}
 	
 	@Override
-	public MotivoCategoria get(Integer id) throws CustomException {
+	public MotivoCategoria get(Long id) throws CustomException {
 		return null;
 	}
 
@@ -79,7 +79,7 @@ public class MotivoCategoriaDAOImpl implements MotivoCategoriaDAO {
 	}
 
 	@Override
-	public List<Categoria> getCategoriasByMotivoId(int idMotivo) throws CustomException {
+	public List<Categoria> getCategoriasByMotivoId(Long idMotivo) throws CustomException {
 		try {
 			List<Categoria> categorias = new ArrayList<Categoria>();
 			Session session = this.sessionFactory.getCurrentSession();
@@ -92,7 +92,7 @@ public class MotivoCategoriaDAOImpl implements MotivoCategoriaDAO {
 	}
 
 	@Override
-	public String getMailByIds(String idMotivo, String idCategoria) throws CustomException {
+	public String getMailByIds(Long idMotivo, Long idCategoria) throws CustomException {
 		String mail = "";
 		try {
 			String sqlString;
@@ -114,7 +114,7 @@ public class MotivoCategoriaDAOImpl implements MotivoCategoriaDAO {
 	}
 
 	@Override
-	public String getMotivoById(String idMotivo) throws CustomException {
+	public String getMotivoById(Long idMotivo) throws CustomException {
 		String motivo = null;
 		try {
 			Session session = this.sessionFactory.getCurrentSession();
@@ -129,7 +129,7 @@ public class MotivoCategoriaDAOImpl implements MotivoCategoriaDAO {
 	}
 
 	@Override
-	public String getCategoriaById(String idCategoria) throws CustomException {
+	public String getCategoriaById(Long idCategoria) throws CustomException {
 		String categoria = null;
 		try {
 			Session session = this.sessionFactory.getCurrentSession();

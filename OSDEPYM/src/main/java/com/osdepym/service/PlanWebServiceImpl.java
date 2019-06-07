@@ -45,7 +45,7 @@ public class PlanWebServiceImpl implements PlanWebService {
 	}
 
 	@Override
-	public List<PlanSeccionDTO> getSeccionesByPlan(String idPlan) throws CustomException {
+	public List<PlanSeccionDTO> getSeccionesByPlan(Long idPlan) throws CustomException {
 		List<PlanSeccionDTO> secciones = null;
 		Session session = null;
 		Transaction tx = null;
@@ -69,20 +69,20 @@ public class PlanWebServiceImpl implements PlanWebService {
 	}
 
 	private List<PlanSeccionDTO> entityToDto(List<PlanItem> items) {
-		HashMap<Integer, PlanSeccionDTO> seccionMap = new HashMap<Integer, PlanSeccionDTO>();
-		HashMap<Integer, PlanItemDTO> itemMap = new HashMap<Integer, PlanItemDTO>();
-		HashMap<Integer, Integer> itemToSection = new HashMap<Integer, Integer>();
+		HashMap<Long, PlanSeccionDTO> seccionMap = new HashMap<Long, PlanSeccionDTO>();
+		HashMap<Long, PlanItemDTO> itemMap = new HashMap<Long, PlanItemDTO>();
+		HashMap<Long, Long> itemToSection = new HashMap<Long, Long>();
 		List<PlanItem> childItems = new ArrayList<PlanItem>();
 		//Creamos todas las secciones, y obtenemos los items de primer nivel
 		for (PlanItem item : items) {
 			if (item.getItemPadre() == null) {
-				if (seccionMap.get((Integer) item.getSeccion().getIdPlanSeccion()) == null) {
-					seccionMap.put((Integer) item.getSeccion().getIdPlanSeccion(),
-							new PlanSeccionDTO(String.valueOf(item.getSeccion().getIdPlanSeccion()), item.getSeccion().getTitulo(), item.getSeccion().getSubtitulo(),
+				if (seccionMap.get((Long) item.getSeccion().getIdPlanSeccion()) == null) {
+					seccionMap.put((Long) item.getSeccion().getIdPlanSeccion(),
+							new PlanSeccionDTO((item.getSeccion().getIdPlanSeccion()), item.getSeccion().getTitulo(), item.getSeccion().getSubtitulo(),
 									new ArrayList<PlanItemDTO>()));
 				}
 					itemMap.put(item.getIdPlanItem(),
-							new PlanItemDTO(String.valueOf(item.getIdPlanItem()), item.getTitulo(), item.getValor(), new ArrayList<PlanItemDTO>()));
+							new PlanItemDTO(item.getIdPlanItem(), item.getTitulo(), item.getValor(), new ArrayList<PlanItemDTO>()));
 					itemToSection.put(item.getIdPlanItem(), item.getSeccion().getIdPlanSeccion());
 				
 			} else {
@@ -91,21 +91,21 @@ public class PlanWebServiceImpl implements PlanWebService {
 		}
 		//Seteamos todos los items de segundo nivel a los de primer nivel
 		for (PlanItem subitem : childItems) {
-			if (itemMap.get((Integer) subitem.getItemPadre().getIdPlanItem()) != null) {
-				PlanItemDTO parent = itemMap.get((Integer) subitem.getItemPadre().getIdPlanItem());
+			if (itemMap.get((Long) subitem.getItemPadre().getIdPlanItem()) != null) {
+				PlanItemDTO parent = itemMap.get((Long) subitem.getItemPadre().getIdPlanItem());
 				List<PlanItemDTO> childItemList = parent.getSubitemsList();
-				childItemList.add(new PlanItemDTO(String.valueOf(subitem.getIdPlanItem()), subitem.getTitulo(), subitem.getValor(), new ArrayList<PlanItemDTO>()));
+				childItemList.add(new PlanItemDTO(subitem.getIdPlanItem(), subitem.getTitulo(), subitem.getValor(), new ArrayList<PlanItemDTO>()));
 				parent.setSubitemsList(childItemList);
-				itemMap.put((Integer) subitem.getItemPadre().getIdPlanItem(), parent);
+				itemMap.put((Long) subitem.getItemPadre().getIdPlanItem(), parent);
 			}
 		}
 		//Seteamos los items a las secciones
-		for(Entry<Integer, PlanItemDTO> entry : itemMap.entrySet()) {
-			PlanSeccionDTO seccion = seccionMap.get(itemToSection.get(Integer.parseInt(entry.getValue().getId())));
+		for(Entry<Long, PlanItemDTO> entry : itemMap.entrySet()) {
+			PlanSeccionDTO seccion = seccionMap.get(itemToSection.get(entry.getValue().getId()));
 			List<PlanItemDTO> itemList = seccion.getItemsList();
 			itemList.add(entry.getValue());
 			seccion.setItemsList(itemList);
-			seccionMap.put(itemToSection.get(Integer.parseInt(entry.getValue().getId())), seccion);
+			seccionMap.put(itemToSection.get(entry.getValue().getId()), seccion);
 		}
 		
 		return new ArrayList<PlanSeccionDTO>(seccionMap.values());

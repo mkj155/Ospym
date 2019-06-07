@@ -23,7 +23,7 @@ public class PlanController {
 	public ModelAndView loadPlanConditions(@PathVariable(value = "idPlan") String idPlan) {
 		ModelAndView view = null;
 		try {
-			List<PlanSeccionDTO> planSectionList = service.getSeccionesByPlan(idPlan);
+			List<PlanSeccionDTO> planSectionList = service.getSeccionesByPlan(Long.valueOf(idPlan));
 			view = new ModelAndView("plan");
 			view.addObject("planSectionList", planSectionList);
 		} catch(Exception e) {

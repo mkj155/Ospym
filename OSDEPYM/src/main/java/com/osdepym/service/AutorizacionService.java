@@ -12,8 +12,8 @@ import com.osdepym.form.AutorizacionForm;
 
 public interface AutorizacionService {
 	public List<EspecialidadDTO> getAllEspecialidades() throws CustomException;
-	public List<PrestacionDTO> getPrestacionesByEspecialidadId(int idEspecialidad) throws CustomException;
-	public List<String> getDocumentosByEspecialidadYPrestacion(int idEspecialidad, int idPrestacion) throws CustomException;
+	public List<PrestacionDTO> getPrestacionesByEspecialidadId(Long idEspecialidad) throws CustomException;
+	public List<String> getDocumentosByEspecialidadYPrestacion(Long idEspecialidad, Long idPrestacion) throws CustomException;
 	public String procesarContacto(AutorizacionForm autorizacionForm, MultipartFile[] files) throws CustomException;
 	public List<BeneficiarioDTO> getBeneficiarios(AutorizacionForm autorizacionForm) throws CustomException;
 }

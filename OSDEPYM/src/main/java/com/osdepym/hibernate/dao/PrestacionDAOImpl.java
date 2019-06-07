@@ -12,7 +12,7 @@ import com.osdepym.hibernate.entity.Prestacion;
 public class PrestacionDAOImpl implements PrestacionDAO{
 
 	@Override
-	public Prestacion get(Integer id) throws CustomException {
+	public Prestacion get(Long id) throws CustomException {
 		// TODO Auto-generated method stub
 		return null;
 	}

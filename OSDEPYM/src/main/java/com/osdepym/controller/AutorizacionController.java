@@ -75,7 +75,7 @@ public class AutorizacionController {
 	public @ResponseBody List<PrestacionDTO> getPrestacionesByEspecialidadId(@RequestBody String idEspecialidad) {
 		List<PrestacionDTO> prestaciones = null;
 		try {
-			prestaciones = service.getPrestacionesByEspecialidadId(Integer.parseInt(idEspecialidad));
+			prestaciones = service.getPrestacionesByEspecialidadId(Long.valueOf(idEspecialidad));
 		} catch (Exception e) {
 		}
 		return prestaciones;
@@ -85,7 +85,7 @@ public class AutorizacionController {
 	public @ResponseBody List<PrestacionDTO> getPrestacionesByEspecialidadIdAfterError(@RequestBody String idEspecialidad) {
 		List<PrestacionDTO> prestaciones = null;
 		try {
-			prestaciones = service.getPrestacionesByEspecialidadId(Integer.parseInt(idEspecialidad));
+			prestaciones = service.getPrestacionesByEspecialidadId(Long.valueOf(idEspecialidad));
 		} catch (Exception e) {
 		
 		}
@@ -116,14 +116,17 @@ public class AutorizacionController {
 		ModelAndView view = null;
 		try {
 			form.setIdAfiliado(idAfiliado);
-			form.setNombreAfiliado("");
 			List<BeneficiarioDTO> beneficiarios = getBeneficiarios(form);
 			for(BeneficiarioDTO b : beneficiarios) {
-				if(b.getId() == Integer.valueOf(idAfiliado)) {
-					form.setNombreAfiliado(b.getNombreCompleto());
+				for(BeneficiarioDTO c : beneficiarios) {
+					if(b.getId().equals(Long.valueOf(c.getTitular()))) {
+						form.setIdAfiliado(b.getId().toString());
+						form.setNombreAfiliado(b.getNombreCompleto());
+						break;
+					}
 				}
 			}
-			
+
 			view = new ModelAndView("autorizacion");
 			view.addObject("beneficiarios", beneficiarios);
 			view.addObject("especialidades", service.getAllEspecialidades());
