@@ -87,11 +87,11 @@ public class Afiliado {
 	@Column(name = "CentroMedico", updatable = false)
 	String centroMedico;
 	
-	@Column(name = "Plan", updatable = false)
+	@Column(name = "CodigoPlan", updatable = false)
 	String plan;
 	
 	@Column(name = "Estado", updatable = false)
-	String estado;
+	Long estado;
 	
 	@Column(name = "Solicitud_ID", updatable = false)
 	Long solicitudID;
@@ -339,11 +339,11 @@ public class Afiliado {
 	  this.plan = value;
 	}
 
-	public String getEstado() {
+	public Long getEstado() {
 	  return this.estado;
 	}
 
-	public void setEstado(String value) {
+	public void setEstado(Long value) {
 	  this.estado = value;
 	}
 

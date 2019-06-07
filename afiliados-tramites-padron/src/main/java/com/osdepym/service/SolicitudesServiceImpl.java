@@ -52,24 +52,24 @@ public class SolicitudesServiceImpl implements SolicitudesService{
 	@Override
 	public List<AfiliadoDTO> buscar(SolicitudesForm form) throws CustomException {
 		List<AfiliadoDTO> afiliadosDTO = new ArrayList<AfiliadoDTO>();
-		//Session session = null;
-		//Transaction tx = null;
+		Session session = null;
+		Transaction tx = null;
 		try {
-			/*session = this.sessionFactory.getCurrentSession();
-			tx = session.beginTransaction();*/
+			session = this.sessionFactory.getCurrentSession();
+			tx = session.beginTransaction();
 			List<Afiliado> afiliados = solicitudesDAO.buscar(form);
 			if (afiliados != null) {
 				for (Afiliado entity : afiliados) {
 					afiliadosDTO.add(EntityToDTOUtil.entityToDTO(entity));
 				}
 			}
-			//tx.commit();
-			//session.close();
+			tx.commit();
+			session.close();
 		} catch (CustomException e) {
-			//SessionUtil.rollbackTransaction(session, tx);
+			SessionUtil.rollbackTransaction(session, tx);
 			throw e;
 		} catch (Exception e) {
-			//SessionUtil.rollbackTransaction(session, tx);
+			SessionUtil.rollbackTransaction(session, tx);
 			e.printStackTrace();
 			throw new CustomException(e.getMessage(), ErrorMessages.LOAD_CONTACT_ERROR);
 		}

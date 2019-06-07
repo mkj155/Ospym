@@ -8,19 +8,36 @@
 		overflow: hidden;
 		text-overflow: ellipsis;
    }
+   
+   .checkbox-all {
+   		margin-left: 4.8px;
+   }
+   
+   #tablePreview td, #tablePreview th {
+   	border: 1px solid gray;
+   }
+   
+.search-table{table-layout: fixed; }
+.search-table, td, th{border-collapse:collapse; }
+th{padding:20px 7px; }
+td{padding:5px 10px; }
+
+.search-table-outter { overflow-x: scroll; }
+th, td { min-width: 200px; }
 </style>
-<button>Load some fake data from mockaroo.com</button>
-<div>
+<div class="checkbox-all">
 	<label class="control control-checkbox">
         Seleccionar todo
             <input type="checkbox" id="check-all-afiliados" />
         <div class="control_indicator"></div>
     </label>
 </div>
-<table id="tablePreview" class="table table-striped table-hover table-sm">
+<div id="loading"></div>
+<div class="search-table-outter wrapper">
+<table id="tablePreview" class="table table-striped table-hover table-sm search-table inner">
 	<thead>
     	<tr>
-      		<th></th>
+      		<th style="padding-left: 40px"></th>
 			<th>Registro N&deg;</th>
 			<th>Obra Social</th>
 			<th>Tipo carga (Titular - Adherente)</th>
@@ -48,19 +65,6 @@
 		</tr>
   	</thead>
 	<tbody> 
-    	<tr v-for="row in users">
-    		<td>
-				<label class="control control-checkbox">
-		            <input type="checkbox" class="afiliado-check" />
-			        <div class="control_indicator"></div>
-			    </label>
-			</td>
-      		<td v-for="column in row">{{ column }}</td>
-      		<td><a href="#">Anular</a></td>
-    	</tr>
-    <tr>
-			
-			
-    	</tr>
 	</tbody>
 </table>
+</div>

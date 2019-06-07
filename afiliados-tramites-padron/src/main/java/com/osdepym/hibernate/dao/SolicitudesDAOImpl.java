@@ -1,5 +1,6 @@
 package com.osdepym.hibernate.dao;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,6 +15,7 @@ import com.osdepym.form.SolicitudesForm;
 import com.osdepym.hibernate.entity.Afiliado;
 import com.osdepym.hibernate.entity.Estado;
 import com.osdepym.hibernate.entity.ObraSocial;
+import com.osdepym.util.ValidateUtil;
 
 @Repository
 public class SolicitudesDAOImpl implements SolicitudesDAO {
@@ -59,80 +61,100 @@ public class SolicitudesDAOImpl implements SolicitudesDAO {
 	public List<Afiliado> buscar(SolicitudesForm form) throws CustomException {
 		List<Afiliado> aList = new ArrayList<Afiliado>();
 		try {
-			/*Session session = this.sessionFactory.getCurrentSession();
-			StringBuilder query = new StringBuilder("SELECT Registro_ID, ObraSocial, TipoCarga , TipoAfiliado , CUIT, CUIL, Apellido, Nombre, TipoDocumento, NroDocumento, Direccion, DireccionNumero, DireccionPiso, DireccionDepartamento, DireccionLocalidad, DireccionProvincia, CodigoPostal, Telefono, Email, FechaNacimiento, Sexo, EstadoCivil, CUILTitular, FechaInicio, CentroMedico, Plan, Estado, Solicitud_ID, Archivo, FechaCarga, CodigoError, DescripcionError FROM ga.vo_solicitud");
+			Session session = this.sessionFactory.getCurrentSession();
+			StringBuilder query = new StringBuilder("SELECT Registro_ID, ObraSocial, TipoCarga , TipoAfiliado , CUIT, CUIL, Apellido, Nombre, TipoDocumento, NroDocumento, Direccion, DireccionNumero, DireccionPiso, DireccionDepartamento, DireccionLocalidad, DireccionProvincia, CodigoPostal, Telefono, Email, FechaNacimiento, Sexo, EstadoCivil, CUILTitular, FechaInicio, CentroMedico, CodigoPlan, Estado, Solicitud_ID, Archivo, FechaCarga, CodigoError, DescripcionError FROM ga.vo_solicitud");
 			Boolean isFirst = true; 
 			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-		    if(form.getApellido() != null) {
-				if(isFirst)
+		    if(ValidateUtil.isNotEmpty(form.getApellido())) {
+				if(isFirst) {
 					query.append(" WHERE Apellido = '" + form.getApellido() + "'");
-				else
+					isFirst = false;
+				} else {
 					query.append(" AND Apellido = '" + form.getApellido() + "'");
+				}
 		    }
 		    
-		    if(form.getCuil() != null) {
-				if(isFirst)
+		    if(ValidateUtil.isNotEmpty(form.getCuil())) {
+				if(isFirst) {
 					query.append(" WHERE CUIL = " + form.getCuil());
-				else
+					isFirst = false;
+				} else {
 					query.append(" AND CUIL = " + form.getCuil());
+				} 
 		    }
 		    
-		    if(form.getCuit() != null) {
-				if(isFirst)
+		    if(ValidateUtil.isNotEmpty(form.getCuit())) {
+				if(isFirst) {
 					query.append(" WHERE CUIT = " + form.getCuit());
-				else
+					isFirst = false;
+				} else {
 					query.append(" AND CUIT = " + form.getCuit());
+				} 
 		    }
 
-		    if(form.getDni() != null) {
-				if(isFirst)
+		    if(ValidateUtil.isNotEmpty(form.getDni())) {
+				if(isFirst) {
 					query.append(" WHERE NroDocumento = " + form.getDni());
-				else
+					isFirst = false;
+				} else {
 					query.append(" AND NroDocumento = " + form.getDni());
+				} 
 		    }
 
-		    if(form.getEstado() != null) {
-				if(isFirst)
-					query.append(" WHERE Estado = '" + form.getEstado() + "'");
-				else
-					query.append(" AND Estado = '" + form.getEstado() + "'");
+		    if(ValidateUtil.isNotEmpty(form.getEstado())) {
+				if(isFirst) {
+					query.append(" WHERE Estado = " + form.getEstado());
+					isFirst = false;
+				} else {
+					query.append(" AND Estado = " + form.getEstado());
+				} 
 		    }
 		    
-		    if(form.getFechaCarga() != null) {
-				if(isFirst)
+		    if(ValidateUtil.isNotEmpty(form.getFechaCarga())) {
+				if(isFirst) {
 					query.append(" WHERE FechaCarga = '" + sdf.format(form.getFechaCarga()) + "'");
-				else
+					isFirst = false;
+				} else {
 					query.append(" AND FechaCarga = '" + sdf.format(form.getFechaCarga()) + "'");
+				} 
 		    }
 		    
-		    if(form.getNombre() != null) {
-				if(isFirst)
+		    if(ValidateUtil.isNotEmpty(form.getNombre())) {
+				if(isFirst) {
 					query.append(" WHERE Nombre = '" + form.getNombre() + "'");
-				else
+					isFirst = false;
+				} else {
 					query.append(" AND Nombre = '" + form.getNombre() + "'");
+				} 
 		    }
 		    
-		    if(form.getNumeroRegistro() != null) {
-				if(isFirst)
+		    if(ValidateUtil.isNotEmpty(form.getNumeroRegistro())) {
+				if(isFirst) {
 					query.append(" WHERE Registro_ID = " + form.getNumeroRegistro());
-				else
+					isFirst = false;
+				} else {
 					query.append(" AND Registro_ID = " + form.getNumeroRegistro());
+				} 
 		    }
 		    
-		    if(form.getNumeroSolicitud() != null) {
-				if(isFirst)
+		    if(ValidateUtil.isNotEmpty(form.getNumeroSolicitud())) {
+				if(isFirst) {
 					query.append(" WHERE Solicitud_ID = " + form.getNumeroSolicitud());
-				else
+				 	isFirst = false;
+				} else {
 					query.append(" AND Solicitud_ID = " + form.getNumeroSolicitud());
+				} 
 		    }
 		    
-		    if(form.getObraSocial() != null) {
-				if(isFirst)
-					query.append(" WHERE Apellido = '" + form.getObraSocial() + "'");
-				else
-					query.append(" AND Apellido = '" + form.getObraSocial() + "'");
+		    if(ValidateUtil.isNotEmpty(form.getObraSocial())) {
+				if(isFirst) {
+					query.append(" WHERE ObraSocial = '" + form.getObraSocial() + "'");
+					isFirst = false;
+				} else {
+					query.append(" AND ObraSocial = '" + form.getObraSocial() + "'");
+				} 
 		    }
-			aList = session.createNativeQuery(query.toString(), Afiliado.class).getResultList();*/
+			aList = session.createNativeQuery(query.toString(), Afiliado.class).getResultList();
 		} catch (Exception e) {
 			throw new CustomException(e.getMessage(), ErrorMessages.DATABASE_GET_ERROR);
 		}
@@ -143,15 +165,15 @@ public class SolicitudesDAOImpl implements SolicitudesDAO {
 		aList.add(obj1);
 		
 		Afiliado obj2 = new Afiliado();
-		obj1.setNombre("TEST 2");
+		obj2.setNombre("TEST 2");
 		aList.add(obj2);
 		
 		Afiliado obj3 = new Afiliado();
-		obj1.setNombre("TEST 3");
+		obj3.setNombre("TEST 3");
 		aList.add(obj3);
 		
 		Afiliado obj4 = new Afiliado();
-		obj1.setNombre("TEST 4");
+		obj4.setNombre("TEST 4");
 		aList.add(obj4);
 		/* FIN TEST */
 		

@@ -1,15 +1,5 @@
 $(document).ready(function () {
-	var table = new Vue({
-		  el: '#tablePreview',
-		  data: {
-		    users: []
-		  }
-		});
-
-		// And on click just assign loaded JSON to component model
-		// and view (table) will be re-rendered automatically
-		
-	$(".afiliado-check").on("change", function(){
+	$( document ).on("click", ".afiliado-check", function(){
         if ($(".afiliado-check:checked").length == $(".afiliado-check").length) {
         	$("#check-all-afiliados")[0].checked = true;
         } else {
@@ -17,7 +7,7 @@ $(document).ready(function () {
         }
     });
 	
-	$("#check-all-afiliados").on("change", function(){
+	$( document ).on("change", "#check-all-afiliados", function(){
         if (this.checked) {
         	$(".afiliado-check").each(function(){
                 this.checked = true;
@@ -29,20 +19,19 @@ $(document).ready(function () {
         }
     });
 	
-	$('#search').on("click", function() {
+	$( document ).on("click", "#search", function() {
 		search();
 	});
 	
-	$(".date-picker").on("keyup", function(){
+	$( document ).on("keyup", ".date-picker", function(){
 		this.type = 'text';
 	    var input = this.value;
-	    if (/\D\/$/.test(input)) input = input.substr(0, input.length - 3);
+	    if (/\D\/$/.test(input)) input = input.substr(0, 10);
 	    var values = input.split('/').map(function(v) {
 	      return v.replace(/\D/g, '')
 	    });
 	    if (values[0]) values[0] = checkValue(values[0], 12);
 	    if (values[1]) values[1] = checkValue(values[1], 31);
-	    if (values[2]) values[2] = checkValue(values[2], new Date().getFullYear());
 	    var output = values.map(function(v, i) {
 	      return v.length == 2 && i < 2 ? v + '/' : v;
 	    });
@@ -61,6 +50,9 @@ function checkValue(str, max) {
 }
 
 function search(){
+		$("#check-all-afiliados")[0].checked = false;
+		$('#tablePreview').hide();
+		$("#loading").html('<div role="status" class="spinner-border spinner-border"><span class="sr-only">Loading...</span></div>');
 		var documentOptions = convertFormToJSON($("#solicitudesForm"));
 		
 		$.ajax({
@@ -72,7 +64,41 @@ function search(){
 			async: true,
 			timeout : 100000,
 			success : function(data) {
-				data;
+				$("#loading").html("");
+				$('#tablePreview').show();
+				$('#tablePreview tbody').html("");
+				$.each(data, function(key, card) {
+
+					var htmlrow = '<tr><td><label class="control control-checkbox">' +
+		            '<input type="checkbox" class="afiliado-check" />' +
+			        '<div class="control_indicator"></div>' +
+			        '</label></td>' +						
+					"<td>" + card.nombre + "</td>" +					
+					"<td></td>" +
+					"<td></td>" +
+					"<td></td>" +
+					"<td></td>" +
+					"<td></td>" +
+					"<td></td>" +
+					"<td></td>" +
+					"<td></td>" +
+					"<td></td>" +
+					"<td></td>" +
+					"<td></td>" +
+					"<td></td>" +
+					"<td></td>" +
+					"<td></td>" +
+					"<td></td>" +
+					"<td></td>" +
+					"<td></td>" +
+					"<td></td>" +
+					"<td></td>" +
+					"<td></td>" +
+					"<td></td>" +
+					"<td></td>" +
+		            '<td><a href="#">Anular</a></td></tr>';
+		            $('#tablePreview tbody').append(htmlrow);
+		        });
 			},
 			error : function(e) {
 				console.log("ERROR: ", e);
