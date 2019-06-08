@@ -1,0 +1,133 @@
+2019-06-06 00:01:04,066 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Starting ApiModelopersonaRestApplication on DESKTOP-N379CIV with PID 1048 (started by Agustin in C:\Users\Agustin\Documents\Java Workspaces\OSDEPYM\api-modelopersona-rest)
+2019-06-06 00:01:04,074 DEBUG com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Running with Spring Boot v2.1.4.RELEASE, Spring v5.1.6.RELEASE
+2019-06-06 00:01:04,075 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] No active profile set, falling back to default profiles: default
+2019-06-06 00:01:11,574 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Started ApiModelopersonaRestApplication in 7.756 seconds (JVM running for 8.593)
+2019-06-06 00:01:22,813 ERROR org.hibernate.engine.jdbc.spi.SqlExceptionHelper [http-nio-8080-exec-2] Conversion failed when converting date and/or time from character string.
+2019-06-06 00:01:22,823 ERROR com.osdepym.rest.dao.ModeloPersonaDAOImpl [http-nio-8080-exec-2] [Ljava.lang.StackTraceElement;@44fa72a2
+2019-06-06 00:01:22,823 ERROR com.osdepym.rest.dao.ModeloPersonaDAOImpl [http-nio-8080-exec-2] org.hibernate.exception.SQLGrammarException: could not execute query
+2019-06-06 00:01:22,910 ERROR com.osdepym.rest.server.BusquedaPersonaREST [http-nio-8080-exec-2] [Ljava.lang.StackTraceElement;@50167039
+2019-06-06 00:01:22,911 ERROR com.osdepym.rest.server.BusquedaPersonaREST [http-nio-8080-exec-2] could not execute query; SQL [SELECT Persona_ID, Apellido, Nombre, FechaNacimiento, Sexo, CUIL, FechaVigenciaDesdeCUIL, TipoDocumento, NroDocumento FROM mp.vo_PersonaFisicaAfiliadoCompleto WHERE CAST(FechaNacimiento AS DATE) = CAST('3231312' AS DATE)]; nested exception is org.hibernate.exception.SQLGrammarException: could not execute query
+2019-06-06 00:01:29,266 ERROR org.hibernate.engine.jdbc.spi.SqlExceptionHelper [http-nio-8080-exec-3] Conversion failed when converting date and/or time from character string.
+2019-06-06 00:01:29,271 ERROR com.osdepym.rest.dao.ModeloPersonaDAOImpl [http-nio-8080-exec-3] [Ljava.lang.StackTraceElement;@408bbc85
+2019-06-06 00:01:29,274 ERROR com.osdepym.rest.dao.ModeloPersonaDAOImpl [http-nio-8080-exec-3] org.hibernate.exception.SQLGrammarException: could not execute query
+2019-06-06 00:01:29,382 ERROR com.osdepym.rest.server.BusquedaPersonaREST [http-nio-8080-exec-3] [Ljava.lang.StackTraceElement;@453655ed
+2019-06-06 00:01:29,387 ERROR com.osdepym.rest.server.BusquedaPersonaREST [http-nio-8080-exec-3] could not execute query; SQL [SELECT Persona_ID, Apellido, Nombre, FechaNacimiento, Sexo, CUIL, FechaVigenciaDesdeCUIL, TipoDocumento, NroDocumento FROM mp.vo_PersonaFisicaAfiliadoCompleto WHERE CAST(FechaNacimiento AS DATE) = CAST('3231312' AS DATE)]; nested exception is org.hibernate.exception.SQLGrammarException: could not execute query
+2019-06-06 00:01:40,058 ERROR org.hibernate.engine.jdbc.spi.SqlExceptionHelper [http-nio-8080-exec-4] Conversion failed when converting date and/or time from character string.
+2019-06-06 00:01:40,064 ERROR com.osdepym.rest.dao.ModeloPersonaDAOImpl [http-nio-8080-exec-4] [Ljava.lang.StackTraceElement;@77bad201
+2019-06-06 00:01:40,068 ERROR com.osdepym.rest.dao.ModeloPersonaDAOImpl [http-nio-8080-exec-4] org.hibernate.exception.SQLGrammarException: could not execute query
+2019-06-06 00:01:40,180 ERROR com.osdepym.rest.server.BusquedaPersonaREST [http-nio-8080-exec-4] [Ljava.lang.StackTraceElement;@4ec9b785
+2019-06-06 00:01:40,180 ERROR com.osdepym.rest.server.BusquedaPersonaREST [http-nio-8080-exec-4] could not execute query; SQL [SELECT Persona_ID, Apellido, Nombre, FechaNacimiento, Sexo, CUIL, FechaVigenciaDesdeCUIL, TipoDocumento, NroDocumento FROM mp.vo_PersonaFisicaAfiliadoCompleto WHERE CAST(FechaNacimiento AS DATE) = CAST('3231312' AS DATE)]; nested exception is org.hibernate.exception.SQLGrammarException: could not execute query
+2019-06-06 00:01:59,975 ERROR org.hibernate.engine.jdbc.spi.SqlExceptionHelper [http-nio-8080-exec-5] Conversion failed when converting date and/or time from character string.
+2019-06-06 00:01:59,981 ERROR com.osdepym.rest.dao.ModeloPersonaDAOImpl [http-nio-8080-exec-5] [Ljava.lang.StackTraceElement;@41a55f3b
+2019-06-06 00:01:59,986 ERROR com.osdepym.rest.dao.ModeloPersonaDAOImpl [http-nio-8080-exec-5] org.hibernate.exception.SQLGrammarException: could not execute query
+2019-06-06 00:02:00,067 ERROR com.osdepym.rest.server.BusquedaPersonaREST [http-nio-8080-exec-5] [Ljava.lang.StackTraceElement;@325cbfd6
+2019-06-06 00:02:00,073 ERROR com.osdepym.rest.server.BusquedaPersonaREST [http-nio-8080-exec-5] could not execute query; SQL [SELECT Persona_ID, Apellido, Nombre, FechaNacimiento, Sexo, CUIL, FechaVigenciaDesdeCUIL, TipoDocumento, NroDocumento FROM mp.vo_PersonaFisicaAfiliadoCompleto WHERE CAST(FechaNacimiento AS DATE) = CAST('3231312' AS DATE)]; nested exception is org.hibernate.exception.SQLGrammarException: could not execute query
+2019-06-06 00:02:07,838 ERROR org.hibernate.engine.jdbc.spi.SqlExceptionHelper [http-nio-8080-exec-6] Conversion failed when converting date and/or time from character string.
+2019-06-06 00:02:07,847 ERROR com.osdepym.rest.dao.ModeloPersonaDAOImpl [http-nio-8080-exec-6] [Ljava.lang.StackTraceElement;@68baeefb
+2019-06-06 00:02:07,848 ERROR com.osdepym.rest.dao.ModeloPersonaDAOImpl [http-nio-8080-exec-6] org.hibernate.exception.SQLGrammarException: could not execute query
+2019-06-06 00:02:07,934 ERROR com.osdepym.rest.server.BusquedaPersonaREST [http-nio-8080-exec-6] [Ljava.lang.StackTraceElement;@4f2f1f7a
+2019-06-06 00:02:07,934 ERROR com.osdepym.rest.server.BusquedaPersonaREST [http-nio-8080-exec-6] could not execute query; SQL [SELECT Persona_ID, Apellido, Nombre, FechaNacimiento, Sexo, CUIL, FechaVigenciaDesdeCUIL, TipoDocumento, NroDocumento FROM mp.vo_PersonaFisicaAfiliadoCompleto WHERE CAST(FechaNacimiento AS DATE) = CAST('3231312' AS DATE)]; nested exception is org.hibernate.exception.SQLGrammarException: could not execute query
+2019-06-06 00:11:19,771 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Starting ApiModelopersonaRestApplication on DESKTOP-N379CIV with PID 15536 (started by Agustin in C:\Users\Agustin\Documents\Java Workspaces\OSDEPYM\api-modelopersona-rest)
+2019-06-06 00:11:19,784 DEBUG com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Running with Spring Boot v2.1.4.RELEASE, Spring v5.1.6.RELEASE
+2019-06-06 00:11:19,784 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] No active profile set, falling back to default profiles: default
+2019-06-06 00:11:27,523 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Started ApiModelopersonaRestApplication in 7.991 seconds (JVM running for 8.828)
+2019-06-06 00:11:38,683 ERROR org.hibernate.engine.jdbc.spi.SqlExceptionHelper [http-nio-8080-exec-1] Conversion failed when converting date and/or time from character string.
+2019-06-06 00:11:38,700 ERROR com.osdepym.rest.dao.ModeloPersonaDAOImpl [http-nio-8080-exec-1] [Ljava.lang.StackTraceElement;@575954d7
+2019-06-06 00:11:38,719 ERROR com.osdepym.rest.dao.ModeloPersonaDAOImpl [http-nio-8080-exec-1] org.hibernate.exception.SQLGrammarException: could not execute query
+2019-06-06 00:11:38,817 ERROR com.osdepym.rest.server.BusquedaPersonaREST [http-nio-8080-exec-1] [Ljava.lang.StackTraceElement;@625540f2
+2019-06-06 00:11:38,822 ERROR com.osdepym.rest.server.BusquedaPersonaREST [http-nio-8080-exec-1] could not execute query; SQL [SELECT Persona_ID, Apellido, Nombre, FechaNacimiento, Sexo, CUIL, FechaVigenciaDesdeCUIL, TipoDocumento, NroDocumento FROM mp.vo_PersonaFisicaAfiliadoCompleto WHERE CAST(FechaNacimiento AS DATE) = CAST('3231312' AS DATE)]; nested exception is org.hibernate.exception.SQLGrammarException: could not execute query
+2019-06-06 00:12:54,611 ERROR org.hibernate.engine.jdbc.spi.SqlExceptionHelper [http-nio-8080-exec-7] Conversion failed when converting date and/or time from character string.
+2019-06-06 00:12:54,617 ERROR com.osdepym.rest.dao.ModeloPersonaDAOImpl [http-nio-8080-exec-7] [Ljava.lang.StackTraceElement;@35c28217
+2019-06-06 00:12:54,618 ERROR com.osdepym.rest.dao.ModeloPersonaDAOImpl [http-nio-8080-exec-7] org.hibernate.exception.SQLGrammarException: could not execute query
+2019-06-06 00:12:54,711 ERROR com.osdepym.rest.server.BusquedaPersonaREST [http-nio-8080-exec-7] [Ljava.lang.StackTraceElement;@c8bc515
+2019-06-06 00:12:54,712 ERROR com.osdepym.rest.server.BusquedaPersonaREST [http-nio-8080-exec-7] could not execute query; SQL [SELECT Persona_ID, Apellido, Nombre, FechaNacimiento, Sexo, CUIL, FechaVigenciaDesdeCUIL, TipoDocumento, NroDocumento FROM mp.vo_PersonaFisicaAfiliadoCompleto WHERE CAST(FechaNacimiento AS DATE) = CAST('asdasda' AS DATE)]; nested exception is org.hibernate.exception.SQLGrammarException: could not execute query
+2019-06-06 00:14:53,775 ERROR org.hibernate.engine.jdbc.spi.SqlExceptionHelper [http-nio-8080-exec-10] Conversion failed when converting date and/or time from character string.
+2019-06-06 00:14:53,780 ERROR com.osdepym.rest.dao.ModeloPersonaDAOImpl [http-nio-8080-exec-10] [Ljava.lang.StackTraceElement;@41a55f3b
+2019-06-06 00:14:53,786 ERROR com.osdepym.rest.dao.ModeloPersonaDAOImpl [http-nio-8080-exec-10] org.hibernate.exception.SQLGrammarException: could not execute query
+2019-06-06 00:14:53,864 ERROR com.osdepym.rest.server.BusquedaPersonaREST [http-nio-8080-exec-10] [Ljava.lang.StackTraceElement;@325cbfd6
+2019-06-06 00:14:53,870 ERROR com.osdepym.rest.server.BusquedaPersonaREST [http-nio-8080-exec-10] could not execute query; SQL [SELECT Persona_ID, Apellido, Nombre, FechaNacimiento, Sexo, CUIL, FechaVigenciaDesdeCUIL, TipoDocumento, NroDocumento FROM mp.vo_PersonaFisicaAfiliadoCompleto WHERE CAST(FechaNacimiento AS DATE) = CAST('asdasda' AS DATE)]; nested exception is org.hibernate.exception.SQLGrammarException: could not execute query
+2019-06-06 00:15:31,878 ERROR com.osdepym.rest.dao.ModeloPersonaDAOImpl [http-nio-8080-exec-1] [Ljava.lang.StackTraceElement;@4e6d3219
+2019-06-06 00:15:31,884 ERROR com.osdepym.rest.dao.ModeloPersonaDAOImpl [http-nio-8080-exec-1] Index: 0, Size: 0
+2019-06-06 00:15:31,940 ERROR com.osdepym.rest.server.ActualizacionPersonaREST [http-nio-8080-exec-1] [Ljava.lang.StackTraceElement;@7bd36cbb
+2019-06-06 00:15:44,441 ERROR com.osdepym.rest.dao.ModeloPersonaDAOImpl [http-nio-8080-exec-4] [Ljava.lang.StackTraceElement;@7c7917d6
+2019-06-06 00:15:44,449 ERROR com.osdepym.rest.dao.ModeloPersonaDAOImpl [http-nio-8080-exec-4] Index: 0, Size: 0
+2019-06-06 00:15:44,501 ERROR com.osdepym.rest.server.ActualizacionPersonaREST [http-nio-8080-exec-4] [Ljava.lang.StackTraceElement;@29132b3e
+2019-06-06 00:15:54,245 ERROR com.osdepym.rest.dao.ModeloPersonaDAOImpl [http-nio-8080-exec-6] [Ljava.lang.StackTraceElement;@22ff6ea0
+2019-06-06 00:15:54,252 ERROR com.osdepym.rest.dao.ModeloPersonaDAOImpl [http-nio-8080-exec-6] Index: 0, Size: 0
+2019-06-06 00:15:54,305 ERROR com.osdepym.rest.server.ActualizacionPersonaREST [http-nio-8080-exec-6] [Ljava.lang.StackTraceElement;@5ee2c688
+2019-06-06 00:16:07,889 ERROR com.osdepym.rest.dao.ModeloPersonaDAOImpl [http-nio-8080-exec-8] [Ljava.lang.StackTraceElement;@1b6b6be
+2019-06-06 00:16:07,896 ERROR com.osdepym.rest.dao.ModeloPersonaDAOImpl [http-nio-8080-exec-8] Index: 0, Size: 0
+2019-06-06 00:16:07,961 ERROR com.osdepym.rest.server.ActualizacionPersonaREST [http-nio-8080-exec-8] [Ljava.lang.StackTraceElement;@5893250
+2019-06-06 00:16:22,096 ERROR com.osdepym.rest.dao.ModeloPersonaDAOImpl [http-nio-8080-exec-9] [Ljava.lang.StackTraceElement;@3687d83a
+2019-06-06 00:16:22,115 ERROR com.osdepym.rest.dao.ModeloPersonaDAOImpl [http-nio-8080-exec-9] Index: 0, Size: 0
+2019-06-06 00:16:34,729 ERROR com.osdepym.rest.server.ActualizacionPersonaREST [http-nio-8080-exec-9] [Ljava.lang.StackTraceElement;@32b84a32
+2019-06-06 00:17:25,183 ERROR com.osdepym.rest.dao.ModeloPersonaDAOImpl [http-nio-8080-exec-1] [Ljava.lang.StackTraceElement;@54b34445
+2019-06-06 00:17:25,190 ERROR com.osdepym.rest.dao.ModeloPersonaDAOImpl [http-nio-8080-exec-1] Index: 0, Size: 0
+2019-06-06 00:18:07,319 ERROR com.osdepym.rest.dao.ModeloPersonaDAOImpl [http-nio-8080-exec-4] [Ljava.lang.StackTraceElement;@5f1e0b17
+2019-06-06 00:18:07,325 ERROR com.osdepym.rest.dao.ModeloPersonaDAOImpl [http-nio-8080-exec-4] Index: 0, Size: 0
+2019-06-06 00:28:38,093 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Starting ApiModelopersonaRestApplication on DESKTOP-N379CIV with PID 11200 (started by Agustin in C:\Users\Agustin\Documents\Java Workspaces\OSDEPYM\api-modelopersona-rest)
+2019-06-06 00:28:38,096 DEBUG com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Running with Spring Boot v2.1.4.RELEASE, Spring v5.1.6.RELEASE
+2019-06-06 00:28:38,097 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] No active profile set, falling back to default profiles: default
+2019-06-06 00:28:43,206 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Started ApiModelopersonaRestApplication in 5.368 seconds (JVM running for 6.258)
+2019-06-06 00:30:18,784 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Starting ApiModelopersonaRestApplication on DESKTOP-N379CIV with PID 18404 (started by Agustin in C:\Users\Agustin\Documents\Java Workspaces\OSDEPYM\api-modelopersona-rest)
+2019-06-06 00:30:18,788 DEBUG com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Running with Spring Boot v2.1.4.RELEASE, Spring v5.1.6.RELEASE
+2019-06-06 00:30:18,788 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] No active profile set, falling back to default profiles: default
+2019-06-06 00:30:23,945 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Started ApiModelopersonaRestApplication in 5.418 seconds (JVM running for 6.23)
+2019-06-06 00:31:49,778 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Starting ApiModelopersonaRestApplication on DESKTOP-N379CIV with PID 18196 (started by Agustin in C:\Users\Agustin\Documents\Java Workspaces\OSDEPYM\api-modelopersona-rest)
+2019-06-06 00:31:49,781 DEBUG com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Running with Spring Boot v2.1.4.RELEASE, Spring v5.1.6.RELEASE
+2019-06-06 00:31:49,781 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] No active profile set, falling back to default profiles: default
+2019-06-06 00:31:54,927 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Started ApiModelopersonaRestApplication in 5.399 seconds (JVM running for 6.229)
+2019-06-06 00:32:47,585 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Starting ApiModelopersonaRestApplication on DESKTOP-N379CIV with PID 19748 (started by Agustin in C:\Users\Agustin\Documents\Java Workspaces\OSDEPYM\api-modelopersona-rest)
+2019-06-06 00:32:47,588 DEBUG com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Running with Spring Boot v2.1.4.RELEASE, Spring v5.1.6.RELEASE
+2019-06-06 00:32:47,588 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] No active profile set, falling back to default profiles: default
+2019-06-06 00:32:52,887 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Started ApiModelopersonaRestApplication in 5.554 seconds (JVM running for 6.39)
+2019-06-06 00:41:30,491 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Starting ApiModelopersonaRestApplication on DESKTOP-N379CIV with PID 10844 (started by Agustin in C:\Users\Agustin\Documents\Java Workspaces\OSDEPYM\api-modelopersona-rest)
+2019-06-06 00:41:30,502 DEBUG com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Running with Spring Boot v2.1.4.RELEASE, Spring v5.1.6.RELEASE
+2019-06-06 00:41:30,502 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] No active profile set, falling back to default profiles: default
+2019-06-06 00:41:35,589 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Started ApiModelopersonaRestApplication in 5.341 seconds (JVM running for 6.183)
+2019-06-06 00:43:46,892 ERROR org.hibernate.engine.jdbc.spi.SqlExceptionHelper [http-nio-8080-exec-6] Error converting data type nvarchar to datetime.
+2019-06-06 00:43:46,905 ERROR com.osdepym.rest.dao.ModeloPersonaDAOImpl [http-nio-8080-exec-6] [Ljava.lang.StackTraceElement;@522ee576
+2019-06-06 00:43:46,909 ERROR com.osdepym.rest.dao.ModeloPersonaDAOImpl [http-nio-8080-exec-6] org.hibernate.exception.SQLGrammarException: Error calling CallableStatement.getMoreResults
+2019-06-06 21:55:02,111 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Starting ApiModelopersonaRestApplication on DESKTOP-N379CIV with PID 18908 (started by Agustin in C:\Users\Agustin\Documents\Java Workspaces\OSDEPYM\api-modelopersona-rest)
+2019-06-06 21:55:02,125 DEBUG com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Running with Spring Boot v2.1.4.RELEASE, Spring v5.1.6.RELEASE
+2019-06-06 21:55:02,125 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] No active profile set, falling back to default profiles: default
+2019-06-06 21:55:07,324 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Started ApiModelopersonaRestApplication in 5.461 seconds (JVM running for 6.372)
+2019-06-06 21:55:15,919 ERROR org.hibernate.engine.jdbc.spi.SqlExceptionHelper [http-nio-8080-exec-2] Error converting data type nvarchar to datetime.
+2019-06-06 21:55:15,972 ERROR com.osdepym.rest.server.ActualizacionPersonaREST [http-nio-8080-exec-2] Error calling CallableStatement.getMoreResults; SQL [mp.Spo_PersonaFisicaActualizar]; nested exception is org.hibernate.exception.SQLGrammarException: Error calling CallableStatement.getMoreResults
+2019-06-06 22:22:09,532 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Starting ApiModelopersonaRestApplication on DESKTOP-N379CIV with PID 96 (started by Agustin in C:\Users\Agustin\Documents\Java Workspaces\OSDEPYM\api-modelopersona-rest)
+2019-06-06 22:22:09,535 DEBUG com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Running with Spring Boot v2.1.4.RELEASE, Spring v5.1.6.RELEASE
+2019-06-06 22:22:09,536 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] No active profile set, falling back to default profiles: default
+2019-06-06 22:22:17,731 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Started ApiModelopersonaRestApplication in 8.452 seconds (JVM running for 9.45)
+2019-06-06 22:22:21,966 ERROR org.hibernate.engine.jdbc.spi.SqlExceptionHelper [http-nio-8080-exec-2] Error converting data type nvarchar to datetime.
+2019-06-06 22:22:21,973 ERROR com.osdepym.rest.dao.ModeloPersonaDAOImpl [http-nio-8080-exec-2] [Ljava.lang.StackTraceElement;@224758b4
+2019-06-06 22:22:21,974 ERROR com.osdepym.rest.dao.ModeloPersonaDAOImpl [http-nio-8080-exec-2] org.hibernate.exception.SQLGrammarException: Error calling CallableStatement.getMoreResults
+2019-06-06 22:44:24,144 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Starting ApiModelopersonaRestApplication on DESKTOP-N379CIV with PID 13404 (started by Agustin in C:\Users\Agustin\Documents\Java Workspaces\OSDEPYM\api-modelopersona-rest)
+2019-06-06 22:44:24,147 DEBUG com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Running with Spring Boot v2.1.4.RELEASE, Spring v5.1.6.RELEASE
+2019-06-06 22:44:24,148 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] No active profile set, falling back to default profiles: default
+2019-06-06 22:44:33,424 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Started ApiModelopersonaRestApplication in 9.541 seconds (JVM running for 10.446)
+2019-06-06 22:47:28,145 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Starting ApiModelopersonaRestApplication on DESKTOP-N379CIV with PID 12456 (started by Agustin in C:\Users\Agustin\Documents\Java Workspaces\OSDEPYM\api-modelopersona-rest)
+2019-06-06 22:47:28,156 DEBUG com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Running with Spring Boot v2.1.4.RELEASE, Spring v5.1.6.RELEASE
+2019-06-06 22:47:28,156 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] No active profile set, falling back to default profiles: default
+2019-06-06 22:47:36,953 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Started ApiModelopersonaRestApplication in 9.055 seconds (JVM running for 9.892)
+2019-06-06 22:52:06,508 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Starting ApiModelopersonaRestApplication on DESKTOP-N379CIV with PID 9076 (started by Agustin in C:\Users\Agustin\Documents\Java Workspaces\OSDEPYM\api-modelopersona-rest)
+2019-06-06 22:52:06,511 DEBUG com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Running with Spring Boot v2.1.4.RELEASE, Spring v5.1.6.RELEASE
+2019-06-06 22:52:06,511 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] No active profile set, falling back to default profiles: default
+2019-06-06 22:52:15,376 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Started ApiModelopersonaRestApplication in 9.116 seconds (JVM running for 9.972)
+2019-06-06 22:55:21,578 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Starting ApiModelopersonaRestApplication on DESKTOP-N379CIV with PID 11772 (started by Agustin in C:\Users\Agustin\Documents\Java Workspaces\OSDEPYM\api-modelopersona-rest)
+2019-06-06 22:55:21,590 DEBUG com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Running with Spring Boot v2.1.4.RELEASE, Spring v5.1.6.RELEASE
+2019-06-06 22:55:21,591 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] No active profile set, falling back to default profiles: default
+2019-06-06 22:55:30,970 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Started ApiModelopersonaRestApplication in 9.657 seconds (JVM running for 10.483)
+2019-06-06 22:55:55,922 ERROR org.hibernate.engine.jdbc.spi.SqlExceptionHelper [http-nio-8080-exec-2] Error converting data type nvarchar to datetime.
+2019-06-06 22:55:55,938 ERROR com.osdepym.rest.dao.ModeloPersonaDAOImpl [http-nio-8080-exec-2] [Ljava.lang.StackTraceElement;@76460fcc
+2019-06-06 22:55:55,939 ERROR com.osdepym.rest.dao.ModeloPersonaDAOImpl [http-nio-8080-exec-2] org.hibernate.exception.SQLGrammarException: Error calling CallableStatement.getMoreResults
+2019-06-06 23:00:53,930 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Starting ApiModelopersonaRestApplication on DESKTOP-N379CIV with PID 20088 (started by Agustin in C:\Users\Agustin\Documents\Java Workspaces\OSDEPYM\api-modelopersona-rest)
+2019-06-06 23:00:53,933 DEBUG com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Running with Spring Boot v2.1.4.RELEASE, Spring v5.1.6.RELEASE
+2019-06-06 23:00:53,933 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] No active profile set, falling back to default profiles: default
+2019-06-06 23:01:03,103 INFO com.osdepym.persona.rest.ApiModelopersonaRestApplication [main] Started ApiModelopersonaRestApplication in 9.454 seconds (JVM running for 10.312)
+2019-06-06 23:01:08,663 ERROR org.hibernate.engine.jdbc.spi.SqlExceptionHelper [http-nio-8080-exec-1] Error converting data type nvarchar to datetime.
+2019-06-06 23:01:08,672 ERROR com.osdepym.rest.dao.ModeloPersonaDAOImpl [http-nio-8080-exec-1] [Ljava.lang.StackTraceElement;@3013012
+2019-06-06 23:01:08,673 ERROR com.osdepym.rest.dao.ModeloPersonaDAOImpl [http-nio-8080-exec-1] org.hibernate.exception.SQLGrammarException: Error calling CallableStatement.getMoreResults
+2019-06-06 23:01:13,290 ERROR com.osdepym.rest.server.ActualizacionPersonaREST [http-nio-8080-exec-4] JSON parse error: Unexpected character ('a' (code 97)): was expecting comma to separate Object entries; nested exception is com.fasterxml.jackson.databind.JsonMappingException: Unexpected character ('a' (code 97)): was expecting comma to separate Object entries
+ at [Source: (PushbackInputStream); line: 15, column: 17] (through reference chain: com.osdepym.rest.json.BusquedaPersonaRequest["personaFisica"]->com.osdepym.rest.json.PersonaFisicaRequest["CUIL"])
+2019-06-06 23:01:55,546 ERROR com.osdepym.rest.dao.ModeloPersonaDAOImpl [http-nio-8080-exec-7] [Ljava.lang.StackTraceElement;@1041e576
+2019-06-06 23:01:55,547 ERROR com.osdepym.rest.dao.ModeloPersonaDAOImpl [http-nio-8080-exec-7] null

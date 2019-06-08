@@ -95,7 +95,7 @@ public class BusquedaPersonaREST extends RestTemplate {
 	}
 	
 	private BusquedaPersonaResponse getResponse(List<AfiliadoCompleto> afiliados) {
-		DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		BusquedaPersonaResponse busquedaPersonaResponse = new BusquedaPersonaResponse();
 		Mensaje mensaje = new Mensaje();
 		if(afiliados.size() > 0) {
