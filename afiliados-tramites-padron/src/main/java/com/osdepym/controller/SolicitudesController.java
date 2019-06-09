@@ -17,6 +17,8 @@ import com.osdepym.dto.AfiliadoDTO;
 import com.osdepym.dto.AfiliadoTableDTO;
 import com.osdepym.dto.EstadoDTO;
 import com.osdepym.dto.ObraSocialDTO;
+import com.osdepym.dto.TipoCargaDTO;
+import com.osdepym.form.ImportForm;
 import com.osdepym.form.SolicitudesForm;
 import com.osdepym.service.SolicitudesService;
 import com.osdepym.util.ExcelWriter;
@@ -55,6 +57,7 @@ public class SolicitudesController {
 		return afiliados;	
 	}
 	
+	
 	private ModelAndView getSolicitudesFormView(Model model, SolicitudesForm form) {
 		ModelAndView view = null;
 		try {
@@ -71,4 +74,42 @@ public class SolicitudesController {
 		}
 		return view;
 	}
+	
+	@RequestMapping(value = "/solicitudes/importar", method = RequestMethod.GET)
+	public ModelAndView importar(Model model) {
+		ModelAndView view = new ModelAndView("importar");
+		try {
+			
+			List<ObraSocialDTO> obrasSociales = service.getAllObrasSociales();
+			List<TipoCargaDTO> tipoCargas = service.getAllTipoCarga();
+			view.addObject("obrassociales", obrasSociales);
+			view.addObject("tipocargas", tipoCargas);
+			model.addAttribute("importForm", new ImportForm());
+		}catch(Exception e) {
+			view = new ModelAndView("error");
+			view.addObject("error", e);
+		}
+		return view;
+	}
+	
+	@RequestMapping(value = "/solicitudes/confirmar")
+	public @ResponseBody List<AfiliadoTableDTO> confirmar(@RequestBody SolicitudesForm element) {
+		List<AfiliadoTableDTO> afiliados = new ArrayList<AfiliadoTableDTO>();
+		try {
+			// Validar si están en pendientes
+			Integer id = 666; 
+			if(validarPendientes(element)) {
+				service.obtenerSolicitudMultiple();
+				service.confirmarAltaAfiliado(id);
+			}
+			return afiliados;
+		} catch (Exception e) {
+		}
+		return afiliados;
+	}
+	
+	public boolean validarPendientes(SolicitudesForm element) {
+		return true;
+	}
+	
 }

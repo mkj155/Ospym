@@ -15,13 +15,22 @@ import com.osdepym.dto.AfiliadoDTO;
 import com.osdepym.dto.AfiliadoTableDTO;
 import com.osdepym.dto.EstadoDTO;
 import com.osdepym.dto.ObraSocialDTO;
+import com.osdepym.dto.PautaDTO;
+import com.osdepym.dto.TipoAfiliadoDTO;
+import com.osdepym.dto.TipoCargaDTO;
 import com.osdepym.exception.CustomException;
 import com.osdepym.exception.ErrorMessages;
 import com.osdepym.form.SolicitudesForm;
+import com.osdepym.hibernate.dao.PautaDAO;
 import com.osdepym.hibernate.dao.SolicitudesDAO;
+import com.osdepym.hibernate.dao.TipoAfiliadoDAO;
+import com.osdepym.hibernate.dao.TipoCargaDAO;
 import com.osdepym.hibernate.entity.Afiliado;
 import com.osdepym.hibernate.entity.Estado;
 import com.osdepym.hibernate.entity.ObraSocial;
+import com.osdepym.hibernate.entity.Pauta;
+import com.osdepym.hibernate.entity.TipoAfiliado;
+import com.osdepym.hibernate.entity.TipoCarga;
 import com.osdepym.util.EntityToDTOUtil;
 import com.osdepym.util.SessionUtil;
 
@@ -48,6 +57,37 @@ public class SolicitudesServiceImpl implements SolicitudesService{
 
 	public void setSolicitudesDAO(SolicitudesDAO solicitudesDAO) {
 		this.solicitudesDAO = solicitudesDAO;
+	}
+	
+	@Autowired
+	private TipoCargaDAO tipoCargaDAO ;
+
+	public TipoCargaDAO getTipoCargaDAO() {
+		return tipoCargaDAO;
+	}
+
+	public void setTipoCargaDAO(TipoCargaDAO tipoCargaDAO) {
+		this.tipoCargaDAO = tipoCargaDAO;
+	}
+	@Autowired
+	private TipoAfiliadoDAO tipoAfiliadoDAO ;
+
+	public TipoAfiliadoDAO getTipoAfiliadoDAO() {
+		return tipoAfiliadoDAO;
+	}
+
+	public void setTipoAfiliadoDAO(TipoAfiliadoDAO tipoAfiliadoDAO) {
+		this.tipoAfiliadoDAO = tipoAfiliadoDAO;
+	}
+	@Autowired
+	private PautaDAO pautaDAO ;
+
+	public PautaDAO getPautaDAO() {
+		return pautaDAO;
+	}
+
+	public void setPautaDAO(PautaDAO pautaDAO) {
+		this.pautaDAO = pautaDAO;
 	}
 	
 	@Override
@@ -156,4 +196,129 @@ public class SolicitudesServiceImpl implements SolicitudesService{
 		}
 		return estadoDTOList;
 	}
+	
+	@Override
+	public List<TipoCargaDTO> getAllTipoCarga() throws CustomException{
+		List<TipoCargaDTO> tipoCargaDTOList = new ArrayList<TipoCargaDTO>();
+		Session session = null;
+		Transaction tx = null;
+		try {
+			session = this.sessionFactory.getCurrentSession();
+			tx = session.beginTransaction();
+			List<TipoCarga> tipoCargaList = tipoCargaDAO.getAll();
+			if (tipoCargaList != null) {
+				for (TipoCarga entity : tipoCargaList) {
+					tipoCargaDTOList.add(EntityToDTOUtil.entityToDTO(entity));
+				}
+			}
+			tx.commit();
+			session.close();
+		} catch (CustomException e) {
+			SessionUtil.rollbackTransaction(session, tx);
+			throw e;
+		} catch (Exception e) {
+			SessionUtil.rollbackTransaction(session, tx);
+			e.printStackTrace();
+			throw new CustomException(e.getMessage(), ErrorMessages.LOAD_CONTACT_ERROR);
+		}
+		return tipoCargaDTOList;
+	}
+
+	@Override
+	public List<TipoAfiliadoDTO> getAllTipoAfiliado() throws CustomException{
+		List<TipoAfiliadoDTO> tipoAfiliadoDTOList = new ArrayList<TipoAfiliadoDTO>();
+		Session session = null;
+		Transaction tx = null;
+		try {
+			session = this.sessionFactory.getCurrentSession();
+			tx = session.beginTransaction();
+			List<TipoAfiliado> tipoAfiliadoList = tipoAfiliadoDAO.getAll();
+			if (tipoAfiliadoList != null) {
+				for (TipoAfiliado entity : tipoAfiliadoList) {
+					tipoAfiliadoDTOList.add(EntityToDTOUtil.entityToDTO(entity));
+				}
+			}
+			tx.commit();
+			session.close();
+		} catch (CustomException e) {
+			SessionUtil.rollbackTransaction(session, tx);
+			throw e;
+		} catch (Exception e) {
+			SessionUtil.rollbackTransaction(session, tx);
+			e.printStackTrace();
+			throw new CustomException(e.getMessage(), ErrorMessages.LOAD_CONTACT_ERROR);
+		}
+		return tipoAfiliadoDTOList;
+	}
+
+	@Override
+	public List<PautaDTO> getPautasByCuit(String cuit) throws CustomException{
+		List<PautaDTO> pautaDTOList = new ArrayList<PautaDTO>();
+		Session session = null;
+		Transaction tx = null;
+		try {
+			session = this.sessionFactory.getCurrentSession();
+			tx = session.beginTransaction();
+			List<Pauta> pautaList = pautaDAO.getByCUIT(cuit);
+			if (pautaList != null) {
+				for (Pauta entity : pautaList) {
+					pautaDTOList.add(EntityToDTOUtil.entityToDTO(entity));
+				}
+			}
+			tx.commit();
+			session.close();
+		} catch (CustomException e) {
+			SessionUtil.rollbackTransaction(session, tx);
+			throw e;
+		} catch (Exception e) {
+			SessionUtil.rollbackTransaction(session, tx);
+			e.printStackTrace();
+			throw new CustomException(e.getMessage(), ErrorMessages.LOAD_CONTACT_ERROR);
+		}
+		return pautaDTOList;
+	}
+	
+	@Override
+	public boolean confirmarAltaAfiliado(Integer id) throws CustomException {
+		Session session = null;
+		Transaction tx = null;
+		try {
+			session = this.sessionFactory.getCurrentSession();
+			tx = session.beginTransaction();
+			solicitudesDAO.confirmarAltaAfiliado(id);
+			tx.commit();
+			session.close();
+			return true; 
+		} catch (CustomException e) {
+			SessionUtil.rollbackTransaction(session, tx);
+			throw e;
+		} catch (Exception e) {
+			SessionUtil.rollbackTransaction(session, tx);
+			e.printStackTrace();
+			throw new CustomException(e.getMessage(), ErrorMessages.LOAD_CONTACT_ERROR);
+		}
+	}
+
+	@Override
+	public Integer obtenerSolicitudMultiple() throws CustomException {
+		Session session = null;
+		Transaction tx = null;
+		Integer value;
+		try {
+			session = this.sessionFactory.getCurrentSession();
+			tx = session.beginTransaction();
+			value = solicitudesDAO.obtenerSolicitudMultiple();
+			tx.commit();
+			session.close();
+			return value; 
+		} catch (CustomException e) {
+			SessionUtil.rollbackTransaction(session, tx);
+			throw e;
+		} catch (Exception e) {
+			SessionUtil.rollbackTransaction(session, tx);
+			e.printStackTrace();
+			throw new CustomException(e.getMessage(), ErrorMessages.LOAD_CONTACT_ERROR);
+		}
+	}
+
 }

@@ -3,11 +3,13 @@ package com.osdepym.hibernate.entity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 import org.hibernate.annotations.Immutable;
 
 @Entity
 @Immutable
+@Table(name = "vo_TipoCarga", schema = "ga")
 public class ObraSocial {
 	@Id
 	@Column(name = "ObraSocial_ID", updatable = false, nullable = false)

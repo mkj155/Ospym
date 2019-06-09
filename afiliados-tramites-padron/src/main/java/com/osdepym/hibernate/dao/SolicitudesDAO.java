@@ -12,4 +12,6 @@ public interface SolicitudesDAO extends Dao<Afiliado>{
 	public List<Afiliado> buscar(SolicitudesForm form) throws CustomException;
 	public List<ObraSocial> getAllObrasSociales() throws CustomException;
 	public List<Estado> getAllEstados() throws CustomException;
+	public Integer obtenerSolicitudMultiple() throws CustomException;
+	public boolean confirmarAltaAfiliado(Integer id) throws CustomException;
 }
