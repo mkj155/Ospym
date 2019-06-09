@@ -1,6 +1,25 @@
 var date;
 var exportForm;
+(function($) {
+	  $.fn.inputFilter = function(inputFilter) {
+	    return this.on("input keydown keyup mousedown mouseup select contextmenu drop", function() {
+	      if (inputFilter(this.value)) {
+	        this.oldValue = this.value;
+	        this.oldSelectionStart = this.selectionStart;
+	        this.oldSelectionEnd = this.selectionEnd;
+	      } else if (this.hasOwnProperty("oldValue")) {
+	        this.value = this.oldValue;
+	        this.setSelectionRange(this.oldSelectionStart, this.oldSelectionEnd);
+	      }
+	    });
+	  };
+	}(jQuery));
+
 $(document).ready(function () {
+	$(".number-input").inputFilter(function(value) {
+		return /^\d*$/.test(value); 	
+	});
+	
 	$(document).on("keyup", function () {
 		$("#error-date").hide();
 		$("#error-confirmar").hide();
@@ -31,7 +50,6 @@ $(document).ready(function () {
         }
     });
 	
-	
 	$("#loading").hide();
 	$("#fechaCarga").datepicker({
 		format: 'dd/mm/yyyy'
@@ -44,7 +62,7 @@ $(document).ready(function () {
         }
     });
 	
-	$( document ).on("change", "#check-all-afiliados", function(){
+	$( document ).on("click", "#check-all-afiliados", function(){
         if (this.checked) {
         	$(".afiliado-check").each(function(){
                 this.checked = true;
@@ -72,7 +90,7 @@ $(document).ready(function () {
 });
 
 function search(){
-		if((document.getElementById('fechaCarga').value !== null && document.getElementById('fechaCarga').value !== "") && !validateDate(document.getElementById('fechaCarga'))) {
+		if(!validateForm()) {
 			$("#error-date").show();
 			return false;
 		}
@@ -110,6 +128,30 @@ function search(){
 					
 		            $('#table-preview tbody').append(htmlrow);
 		        });
+				
+				$('#nav').remove();
+				$('#content-table-child').after('<div id="nav"></div>');
+			    var rowsShown = 10;
+			    var rowsTotal = $('#table-preview tbody tr').length;
+			    var numPages = rowsTotal/rowsShown;
+			    for(i = 0;i < numPages;i++) {
+			        var pageNum = i + 1;
+			        $('#nav').append('<a class="btn" rel="'+i+'">'+pageNum+'</a> ');
+			    }
+			    $('#table-preview tbody tr').hide();
+			    $('#table-preview tbody tr').slice(0, rowsShown).show();
+			    
+			    $('#nav a').addClass('btn');
+			    $('#nav a:first').addClass('btn btn-primary');
+			    $('#nav a').bind('click', function(){
+			        $('#nav a').removeClass('btn-primary');
+			        $(this).addClass('btn-primary');
+			        var currPage = $(this).attr('rel');
+			        var startItem = currPage * rowsShown;
+			        var endItem = startItem + rowsShown;
+			        $('#table-preview tbody tr').css('opacity','0.0').hide().slice(startItem, endItem).
+			        css('display','table-row').animate({opacity:1}, 300);
+			    });
 			},
 			error : function(e) {
 				console.log("ERROR: ", e);
@@ -150,6 +192,23 @@ function convertFormToJSON(form){
     return json;
 }
 
+function confirmar() {
+	var pendings = 0;
+	var selected = $('#table-preview > tbody > tr .afiliado-check:checked').length;
+	$.each($('#table-preview > tbody > tr .afiliado-check:checked'), function(){
+		pendings += $(this).parent().parent().parent().children('td[data-row="Pendiente"]').length;
+	}); 
+	
+	return pendings > 0 && selected > 0 && pendings === selected;
+}
+
+function validateForm() {
+	if(document.getElementById('fechaCarga').value !== null && document.getElementById('fechaCarga').value !== "" && !validateDate(document.getElementById('fechaCarga'))) {
+		return false;
+	}
+	return true;
+}
+
 function validateDate(inputText) {
 	var dateformat = /^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/;
 	// Match the date format through regular expression
@@ -186,14 +245,4 @@ function validateDate(inputText) {
 		return false;
 	}
 	return true;
-}
-
-function confirmar() {
-	var pendings = 0;
-	var selected = $('#table-preview > tbody > tr .afiliado-check:checked').length;
-	$.each($('#table-preview > tbody > tr .afiliado-check:checked'), function(){
-		pendings += $(this).parent().parent().parent().children('td[data-row="Pendiente"]').length;
-	}); 
-	
-	return pendings > 0 && selected > 0 && pendings === selected;
 }

@@ -3,7 +3,6 @@
 
 <div id="loading"><div role="status" class="spinner-border spinner-border"><span class="sr-only">Loading...</span></div></div>
 <div id="content-table">
-	<div class="search-table-outter wrapper">
 		<div class="checkbox-all">
 			<label class="control control-checkbox">
 		        <spring:message code="label.select.all" />
@@ -11,7 +10,7 @@
 		        <div class="control-indicator"></div>
 		    </label>
 		</div>
-	
+	<div class="search-table-outter wrapper" id="content-table-child">
 		<table id="table-preview" class="table table-striped table-hover table-sm search-table inner">
 			<thead>
 		    	<tr>
@@ -135,6 +134,11 @@
             <span class="pl-1">
      			<button type="button" class="btn btn-primary btn-lg btn-search btn-form" id="confirmar"><spring:message code="button.confirmar" /></button>
 			</span>
+			<span class="pl-1">
+     			<button type="button" class="btn btn-primary btn-lg btn-search btn-form" id="exportar"><spring:message code="button.exportar" /></button>
+			</span>
      	</div>
     </div>
+    <div id="error-confirmar" class="alert alert-danger my-4"><spring:message code="error.confirmar.pendientes" /></div>
+    
 </div>
