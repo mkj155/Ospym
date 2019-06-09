@@ -1,9 +1,12 @@
 var date;
+var exportForm;
 $(document).ready(function () {
 	$(document).on("keyup", function () {
-		$("#error-show").hide();
+		$("#error-date").hide();
+		$("#error-confirmar").hide();
 	});
-	$("#error-show").hide();
+	$("#error-confirmar").hide();
+	$("#error-date").hide();
 	$("#fechaCarga").keyup(function (e) {
         if (e.keyCode != 193 && e.keyCode != 111) {
             console.log(e.keyCode);
@@ -57,23 +60,27 @@ $(document).ready(function () {
 		search();
 	});
 	
+	$( document ).on("click", "#exportar", function() {
+		exportar();
+	});
+	
 	$(document).on("click", "#confirmar", function() {
 		if(!confirmar()) {
-			$("#error-show").show();
+			$("#error-confirmar").show();
 		}
 	});
 });
 
 function search(){
 		if((document.getElementById('fechaCarga').value !== null && document.getElementById('fechaCarga').value !== "") && !validateDate(document.getElementById('fechaCarga'))) {
-			$("#error-show").show();
+			$("#error-date").show();
 			return false;
 		}
 		$("#check-all-afiliados")[0].checked = false;
 		$('#content-table').hide();
 		$("#loading").show();
 		var documentOptions = convertFormToJSON($("#solicitudes-form"));
-		
+		exportForm = documentOptions;
 		$.ajax({
 			type: "POST",
 			contentType : 'application/json',
@@ -99,7 +106,7 @@ function search(){
 					    htmlrow += "<td data-row='" + (value ? value : "") + "'>" + (value ? value : "") + "</td>";
 					}
 		            
-					htmlrow += '<td><a href="#">Anular</a></td></tr>';
+					htmlrow += '<td></td></tr>';
 					
 		            $('#table-preview tbody').append(htmlrow);
 		        });
@@ -108,6 +115,28 @@ function search(){
 				console.log("ERROR: ", e);
 			}
 		});
+}
+
+function exportar(){
+	if(exportForm) {
+		$.ajax({
+			type: "POST",
+			contentType : 'application/json',
+			url: "solicitudes/exportar",
+			data: JSON.stringify(exportForm),
+			dataType : "json",
+			async: true,
+			timeout : 100000,
+			success : function(data) {
+
+			},
+			error : function(e) {
+				console.log("ERROR: ", e);
+			}
+		});
+	} else {
+		
+	}
 }
 
 function convertFormToJSON(form){

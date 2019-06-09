@@ -86,7 +86,7 @@
                                 </label>
                                 <div class='right-inner-addon date datepicker-input' data-date-format="dd-MM-yyyy">
 								      <i class="far fa-calendar-alt"></i>
-								<form:input path="fechaCarga" type="text" maxlength="10" id="fechaCarga" class="form-control date-picker" data-date-format="yyyy-mm-dd" />
+								<form:input path="fechaCarga" placeholder="dd/mm/aaaa" type="text" maxlength="10" id="fechaCarga" class="form-control date-picker" data-date-format="yyyy-mm-dd" />
 								</div>
                            	</div>
                     	</div>
@@ -123,7 +123,7 @@
                     </div>
             	</form:form>
             	</div>
-            	<div id="error-show" class="alert alert-danger my-4">Formato de fecha incorrecto</div>
+            	<div id="error-date" class="alert alert-danger my-4"><spring:message code="error.format.date.incorrect" /></div>
             	<div id="table">
             		<jsp:include page="table.jsp" />	
             	</div>
