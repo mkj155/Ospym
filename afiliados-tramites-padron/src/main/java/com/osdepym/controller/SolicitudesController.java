@@ -57,15 +57,6 @@ public class SolicitudesController {
 		return afiliados;	
 	}
 	
-	@RequestMapping(value = "/solicitudes/exportar")
-	public @ResponseBody List<AfiliadoTableDTO> exportar(@RequestBody SolicitudesForm element) {
-		List<AfiliadoTableDTO> afiliados = new ArrayList<AfiliadoTableDTO>();
-		try {
-			afiliados = service.buscar(element);
-		} catch (Exception e) {
-		}
-		return afiliados;	
-	}
 	
 	private ModelAndView getSolicitudesFormView(Model model, SolicitudesForm form) {
 		ModelAndView view = null;
