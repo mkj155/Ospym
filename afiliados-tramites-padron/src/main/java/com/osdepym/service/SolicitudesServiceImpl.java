@@ -11,7 +11,7 @@ import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.osdepym.dto.AfiliadoDTO;
+import com.osdepym.dto.AfiliadoTableDTO;
 import com.osdepym.dto.EstadoDTO;
 import com.osdepym.dto.ObraSocialDTO;
 import com.osdepym.exception.CustomException;
@@ -50,8 +50,8 @@ public class SolicitudesServiceImpl implements SolicitudesService{
 	}
 	
 	@Override
-	public List<AfiliadoDTO> buscar(SolicitudesForm form) throws CustomException {
-		List<AfiliadoDTO> afiliadosDTO = new ArrayList<AfiliadoDTO>();
+	public List<AfiliadoTableDTO> buscar(SolicitudesForm form) throws CustomException {
+		List<AfiliadoTableDTO> afiliadosDTO = new ArrayList<AfiliadoTableDTO>();
 		Session session = null;
 		Transaction tx = null;
 		try {
@@ -60,7 +60,7 @@ public class SolicitudesServiceImpl implements SolicitudesService{
 			List<Afiliado> afiliados = solicitudesDAO.buscar(form);
 			if (afiliados != null) {
 				for (Afiliado entity : afiliados) {
-					afiliadosDTO.add(EntityToDTOUtil.entityToDTO(entity));
+					afiliadosDTO.add(EntityToDTOUtil.entityToDTO2(entity));
 				}
 			}
 			tx.commit();

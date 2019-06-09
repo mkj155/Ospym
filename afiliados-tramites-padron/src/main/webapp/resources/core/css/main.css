@@ -143,12 +143,22 @@ b, strong {
     -webkit-appearance: none;
     background-image: url(../img/arrow-down.svg);
     background-repeat: no-repeat;
-    background-position: top right;
+    background-position: center right;
+    background-size: 25px;
     cursor: pointer;
     padding-right: 45px;
 }
+
 .custom-form select:hover {
     background-image: url(../img/arrow-down-over.svg);
+}
+
+.custom-form input, .custom-form select {
+    border-color: #09673E;
+    border-radius: 0;
+    -webkit-border-radius: 0px;
+    height: 45px;
+    overflow: hidden;
 }
 
 .arrow-down {

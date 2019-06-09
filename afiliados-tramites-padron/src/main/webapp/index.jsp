@@ -5,39 +5,14 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <html>
 <style>
-	a.button {
-	    white-space: normal;
-	    word-wrap: break-word;
-	    height: 100px;
-	    position: absolute;
-	 	top: 50%;
-	 	padding-top: 30px;
-	 	width: 200px;
-    }
-    
-    .buttons {
-    	width: auto;
-	    position: absolute;
-	    left: 50%;
-	    margin-left: -50px;
-   	}
-   	
-   	.content-button {
-	   	width: 200px;
-	    height: 100px;
-	    margin: 25px;
-    }
-   	
-    i.block {
-    	display: block;
-    }
+	
 </style>
 <jsp:include page="./WEB-INF/views/header.jsp" />
 <body>
 	<section id="main" class="bg-gray">
 		<div class="container">
 			<div class="buttons">
-				<div class="content-button">
+				<div id="content-buttons">
 					<a href="./solicitudes" class="btn btn-primary button">
 						<i class="fas fa-id-card block"></i>
 						<span>Estado de Solicitudes</span>

@@ -2,7 +2,7 @@ package com.osdepym.dto;
 
 import java.sql.Timestamp;
 
-public class AfiliadoDTO {
+public class AfiliadoTableDTO {
 	int registroID;
 	String obraSocial;
 	String tipoCarga;
@@ -13,15 +13,6 @@ public class AfiliadoDTO {
 	String nombre;
 	String tipoDocumento;
 	String nroDocumento;
-	String direccion;
-	String direccionNumero;
-	String direccionPiso;
-	String direccionDepartamento;
-	String direccionLocalidad;
-	String direccionProvincia;
-	String codigoPostal;
-	String telefono;
-	String email;
 	Timestamp fechaNacimiento;
 	String sexo;
 	String estadoCivil;
@@ -35,16 +26,8 @@ public class AfiliadoDTO {
 	Timestamp fechaCarga;
 	Integer codigoError;
 	String descripcionError;
-	Integer estadoRegistroID;
-	Integer obraSocialID;
-	Integer tipoCargaID;
-	Integer tipoAfiliadoID;
-	Integer estadoCivilID;
-	Integer provinciaID;
-	Integer localidadID;
-	Boolean anular;
 	   
-	public AfiliadoDTO() {}
+	public AfiliadoTableDTO() {}
 
 	public int getRegistroID() {
 		return registroID;
@@ -124,78 +107,6 @@ public class AfiliadoDTO {
 
 	public void setNroDocumento(String nroDocumento) {
 		this.nroDocumento = nroDocumento;
-	}
-
-	public String getDireccion() {
-		return direccion;
-	}
-
-	public void setDireccion(String direccion) {
-		this.direccion = direccion;
-	}
-
-	public String getDireccionNumero() {
-		return direccionNumero;
-	}
-
-	public void setDireccionNumero(String direccionNumero) {
-		this.direccionNumero = direccionNumero;
-	}
-
-	public String getDireccionPiso() {
-		return direccionPiso;
-	}
-
-	public void setDireccionPiso(String direccionPiso) {
-		this.direccionPiso = direccionPiso;
-	}
-
-	public String getDireccionDepartamento() {
-		return direccionDepartamento;
-	}
-
-	public void setDireccionDepartamento(String direccionDepartamento) {
-		this.direccionDepartamento = direccionDepartamento;
-	}
-
-	public String getDireccionLocalidad() {
-		return direccionLocalidad;
-	}
-
-	public void setDireccionLocalidad(String direccionLocalidad) {
-		this.direccionLocalidad = direccionLocalidad;
-	}
-
-	public String getDireccionProvincia() {
-		return direccionProvincia;
-	}
-
-	public void setDireccionProvincia(String direccionProvincia) {
-		this.direccionProvincia = direccionProvincia;
-	}
-
-	public String getCodigoPostal() {
-		return codigoPostal;
-	}
-
-	public void setCodigoPostal(String codigoPostal) {
-		this.codigoPostal = codigoPostal;
-	}
-
-	public String getTelefono() {
-		return telefono;
-	}
-
-	public void setTelefono(String telefono) {
-		this.telefono = telefono;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
 	}
 
 	public Timestamp getFechaNacimiento() {
@@ -300,69 +211,5 @@ public class AfiliadoDTO {
 
 	public void setDescripcionError(String descripcionError) {
 		this.descripcionError = descripcionError;
-	}
-
-	public Integer getEstadoRegistroID() {
-		return estadoRegistroID;
-	}
-
-	public void setEstadoRegistroID(Integer estadoRegistroID) {
-		this.estadoRegistroID = estadoRegistroID;
-	}
-
-	public Integer getObraSocialID() {
-		return obraSocialID;
-	}
-
-	public void setObraSocialID(Integer obraSocialID) {
-		this.obraSocialID = obraSocialID;
-	}
-
-	public Integer getTipoCargaID() {
-		return tipoCargaID;
-	}
-
-	public void setTipoCargaID(Integer tipoCargaID) {
-		this.tipoCargaID = tipoCargaID;
-	}
-
-	public Integer getTipoAfiliadoID() {
-		return tipoAfiliadoID;
-	}
-
-	public void setTipoAfiliadoID(Integer tipoAfiliadoID) {
-		this.tipoAfiliadoID = tipoAfiliadoID;
-	}
-
-	public Integer getEstadoCivilID() {
-		return estadoCivilID;
-	}
-
-	public void setEstadoCivilID(Integer estadoCivilID) {
-		this.estadoCivilID = estadoCivilID;
-	}
-
-	public Integer getProvinciaID() {
-		return provinciaID;
-	}
-
-	public void setProvinciaID(Integer provinciaID) {
-		this.provinciaID = provinciaID;
-	}
-
-	public Integer getLocalidadID() {
-		return localidadID;
-	}
-
-	public void setLocalidadID(Integer localidadID) {
-		this.localidadID = localidadID;
-	}
-
-	public Boolean getAnular() {
-		return anular;
-	}
-
-	public void setAnular(Boolean anular) {
-		this.anular = anular;
 	}
 }

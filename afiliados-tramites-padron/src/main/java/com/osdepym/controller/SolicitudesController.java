@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.osdepym.dto.AfiliadoDTO;
+import com.osdepym.dto.AfiliadoTableDTO;
 import com.osdepym.dto.EstadoDTO;
 import com.osdepym.dto.ObraSocialDTO;
 import com.osdepym.form.SolicitudesForm;
@@ -33,8 +33,8 @@ public class SolicitudesController {
 	}
 	
 	@RequestMapping(value = "/solicitudes/buscar")
-	public @ResponseBody List<AfiliadoDTO> buscar(@RequestBody SolicitudesForm element) {
-		List<AfiliadoDTO> afiliados = new ArrayList<AfiliadoDTO>();
+	public @ResponseBody List<AfiliadoTableDTO> buscar(@RequestBody SolicitudesForm element) {
+		List<AfiliadoTableDTO> afiliados = new ArrayList<AfiliadoTableDTO>();
 		try {
 			afiliados = service.buscar(element);
 		} catch (Exception e) {

@@ -15,7 +15,7 @@ public class SolicitudesForm {
 	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd/MM/yyyy")
 	private Date fechaCarga;
 	private Long numeroSolicitud;
-	private Long dni;
+	private String dni;
 	private Long cuit;
 	
 	public SolicitudesForm() {}
@@ -68,10 +68,10 @@ public class SolicitudesForm {
 	public void setNumeroSolicitud(Long numeroSolicitud) {
 		this.numeroSolicitud = numeroSolicitud;
 	}
-	public Long getDni() {
+	public String getDni() {
 		return dni;
 	}
-	public void setDni(Long dni) {
+	public void setDni(String dni) {
 		this.dni = dni;
 	}
 	public Long getCuit() {

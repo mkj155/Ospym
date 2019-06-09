@@ -1,11 +1,8 @@
 package com.osdepym.util;
 
-import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.ObjectOutputStream;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
@@ -27,7 +24,7 @@ public class ExcelWriter {
 
     private static String[] columns = {"Name", "Email", "Date Of Birth", "Salary"};
 
-    private static List<Object> objs =  new ArrayList<>();
+    //private static List<Object> objs =  new ArrayList<>();
 
 
 
@@ -136,7 +133,7 @@ public class ExcelWriter {
 
         int rowNum = 1;
         
-        for(Object o : objs) {
+        //for(Object o : objs) {
 
             Row row = sheet.createRow(rowNum++);
 
@@ -166,7 +163,7 @@ public class ExcelWriter {
 
                     .setCellValue("12");
 
-        }
+        //}
 
 		// Resize all columns to fit the content size
         for(int i = 0; i < columns.length; i++) {

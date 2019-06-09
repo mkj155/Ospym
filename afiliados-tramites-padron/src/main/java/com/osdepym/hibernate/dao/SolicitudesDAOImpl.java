@@ -94,19 +94,19 @@ public class SolicitudesDAOImpl implements SolicitudesDAO {
 
 		    if(ValidateUtil.isNotEmpty(form.getDni())) {
 				if(isFirst) {
-					query.append(" WHERE NroDocumento = " + form.getDni());
+					query.append(" WHERE NroDocumento = '" + form.getDni() + "'");
 					isFirst = false;
 				} else {
-					query.append(" AND NroDocumento = " + form.getDni());
+					query.append(" AND NroDocumento = '" + form.getDni() + "'");
 				} 
 		    }
 
 		    if(ValidateUtil.isNotEmpty(form.getEstado())) {
 				if(isFirst) {
-					query.append(" WHERE Estado = " + form.getEstado());
+					query.append(" WHERE Estado = '" + form.getEstado() + "'");
 					isFirst = false;
 				} else {
-					query.append(" AND Estado = " + form.getEstado());
+					query.append(" AND Estado = '" + form.getEstado() + "'");
 				} 
 		    }
 		    
@@ -162,10 +162,12 @@ public class SolicitudesDAOImpl implements SolicitudesDAO {
 		/* INICIO TEST */
 		Afiliado obj1 = new Afiliado();
 		obj1.setNombre("TEST 1");
+		obj1.setEstado("Pendiente");
 		aList.add(obj1);
 		
 		Afiliado obj2 = new Afiliado();
 		obj2.setNombre("TEST 2");
+		obj2.setEstado("Pendiente");
 		aList.add(obj2);
 		
 		Afiliado obj3 = new Afiliado();
