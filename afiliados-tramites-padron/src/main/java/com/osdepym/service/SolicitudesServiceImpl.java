@@ -11,6 +11,7 @@ import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.osdepym.dto.AfiliadoDTO;
 import com.osdepym.dto.AfiliadoTableDTO;
 import com.osdepym.dto.EstadoDTO;
 import com.osdepym.dto.ObraSocialDTO;
@@ -101,6 +102,32 @@ public class SolicitudesServiceImpl implements SolicitudesService{
 			if (afiliados != null) {
 				for (Afiliado entity : afiliados) {
 					afiliadosDTO.add(EntityToDTOUtil.entityToDTO2(entity));
+				}
+			}
+			tx.commit();
+			session.close();
+		} catch (CustomException e) {
+			SessionUtil.rollbackTransaction(session, tx);
+			throw e;
+		} catch (Exception e) {
+			SessionUtil.rollbackTransaction(session, tx);
+			e.printStackTrace();
+			throw new CustomException(e.getMessage(), ErrorMessages.LOAD_CONTACT_ERROR);
+		}
+		return afiliadosDTO;
+	}
+	
+	public List<AfiliadoDTO> buscarExportar(SolicitudesForm form) throws CustomException {
+		List<AfiliadoDTO> afiliadosDTO = new ArrayList<AfiliadoDTO>();
+		Session session = null;
+		Transaction tx = null;
+		try {
+			session = this.sessionFactory.getCurrentSession();
+			tx = session.beginTransaction();
+			List<Afiliado> afiliados = solicitudesDAO.buscar(form);
+			if (afiliados != null) {
+				for (Afiliado entity : afiliados) {
+					afiliadosDTO.add(EntityToDTOUtil.entityToDTO(entity));
 				}
 			}
 			tx.commit();

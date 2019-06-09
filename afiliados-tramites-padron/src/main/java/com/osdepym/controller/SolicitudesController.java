@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.osdepym.dto.AfiliadoDTO;
 import com.osdepym.dto.AfiliadoTableDTO;
 import com.osdepym.dto.EstadoDTO;
 import com.osdepym.dto.ObraSocialDTO;
@@ -20,6 +21,7 @@ import com.osdepym.dto.TipoCargaDTO;
 import com.osdepym.form.ImportForm;
 import com.osdepym.form.SolicitudesForm;
 import com.osdepym.service.SolicitudesService;
+import com.osdepym.util.ExcelWriter;
 
 @Controller
 public class SolicitudesController {
@@ -44,25 +46,16 @@ public class SolicitudesController {
 		return afiliados;	
 	}
 	
-	/*@RequestMapping(value = "/busqueda/exportar", method = RequestMethod.POST)
-	public ModelAndView exportar(@ModelAttribute("solicitudesForm") @Validated SolicitudesForm solicitudesForm, BindingResult result, Model model, final RedirectAttributes redirectAttributes) {
-		ModelAndView view = null;
+	@RequestMapping(value = "/solicitudes/exportar", method = RequestMethod.POST)
+	public @ResponseBody List<AfiliadoDTO> exportar(@RequestBody SolicitudesForm element) {
+		List<AfiliadoDTO> afiliados = new ArrayList<AfiliadoDTO>();
 		try {
-			if (result.hasErrors()) {
-				view = getSolicitudesFormView(model, solicitudesForm);
-			} else {
-				List<AfiliadoDTO> list = new ArrayList<AfiliadoDTO>();
-				ExcelWriter.export(list);
-				//view = new ModelAndView("busquedaAfiliado");
-				//view.addObject("tablaAfiliados", afiliados);
-				redirectAttributes.addFlashAttribute("css", "success");
-			}
+			afiliados = service.buscarExportar(element);
+			ExcelWriter.export(afiliados);
 		} catch (Exception e) {
-			view = new ModelAndView("error");
-			view.addObject("error", e);
 		}
-		return view;	
-	}*/
+		return afiliados;	
+	}
 	
 	@RequestMapping(value = "/solicitudes/exportar")
 	public @ResponseBody List<AfiliadoTableDTO> exportar(@RequestBody SolicitudesForm element) {

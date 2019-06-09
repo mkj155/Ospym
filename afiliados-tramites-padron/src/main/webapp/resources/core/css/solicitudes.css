@@ -593,3 +593,7 @@ div.datepicker {
 	--white: #fff;
 	--yellow: #ffc107;
 }
+
+#exportar {
+	float: right;	
+}
