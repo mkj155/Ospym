@@ -17,6 +17,8 @@ import com.osdepym.dto.AfiliadoDTO;
 import com.osdepym.dto.AfiliadoTableDTO;
 import com.osdepym.dto.EstadoDTO;
 import com.osdepym.dto.ObraSocialDTO;
+import com.osdepym.dto.PautaDTO;
+import com.osdepym.dto.TipoAfiliadoDTO;
 import com.osdepym.dto.TipoCargaDTO;
 import com.osdepym.form.ImportForm;
 import com.osdepym.form.SolicitudesForm;
@@ -82,13 +84,45 @@ public class SolicitudesController {
 			
 			List<ObraSocialDTO> obrasSociales = service.getAllObrasSociales();
 			List<TipoCargaDTO> tipoCargas = service.getAllTipoCarga();
+			List<TipoAfiliadoDTO> tipoAfiliados = service.getAllTipoAfiliado();
 			view.addObject("obrassociales", obrasSociales);
 			view.addObject("tipocargas", tipoCargas);
+			view.addObject("tipoafiliados", tipoAfiliados);
 			model.addAttribute("importForm", new ImportForm());
 		}catch(Exception e) {
 			view = new ModelAndView("error");
 			view.addObject("error", e);
 		}
 		return view;
+	}
+	
+	@RequestMapping(value = "/solicitudes/procesarArchivo", method = RequestMethod.POST)
+	public ModelAndView procesarArchivo(@RequestBody SolicitudesForm element) {
+		ModelAndView view = new ModelAndView("importar");
+		try {
+			
+			List<ObraSocialDTO> obrasSociales = service.getAllObrasSociales();
+			List<TipoCargaDTO> tipoCargas = service.getAllTipoCarga();
+			List<TipoAfiliadoDTO> tipoAfiliados = service.getAllTipoAfiliado();
+			view.addObject("obrassociales", obrasSociales);
+			view.addObject("tipocargas", tipoCargas);
+			view.addObject("tipoafiliados", tipoAfiliados);
+			
+		}catch(Exception e) {
+			view = new ModelAndView("error");
+			view.addObject("error", e);
+		}
+		return view;
+	}
+	
+	@RequestMapping(value = "/solicitudes/obtenerPautas", method = RequestMethod.POST)
+	public @ResponseBody List<PautaDTO> getPautaByCuit(@RequestBody String cuit) {
+		List<PautaDTO> pautas = null;
+		try {
+			pautas = service.getPautasByCuit(cuit);
+		} catch (Exception e) {
+			
+		}
+		return pautas;
 	}
 }

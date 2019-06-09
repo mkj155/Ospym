@@ -5,7 +5,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <html>
 	<jsp:include page="./header.jsp" />
-
+	<script src="/OSDEPYM/resources/core/js/importar.js"></script>
     <body>
         <section id="main" class="bg-gray">
             <div class="container page page-cartilla">
@@ -23,7 +23,7 @@
                                 <label class="control-label">
                                     Obra Social
                                 </label>
-                                <form:select path="obraSocial" class="form-control" id="obraSocial">
+                                <form:select path="obraSocial" class="form-control" id="obraSocial" >
                                 	<form:option value="" label=" ${emptyValue} " />
                                 	<form:options items="${obrassociales}" itemValue="obraSocialID" itemLabel="descripcionObraSocial" />
                             	</form:select>
@@ -33,13 +33,13 @@
                     <div class="row">
                         <div class="col-md-4">
                             <!-- TIPO AFILIADO -->
-                            <div class="form-group">
+                            <div class="form-group" id="tipoAfiliadoDiv" style="display:none">
                                 <label class="control-label">
                                     Tipo de Afiliado
                                 </label>
-                                <form:select path="tipoCarga" class="form-control" id="tipoCarga">
+                                <form:select path="tipoAfiliado" class="form-control" id="tipoAfiliado" >
                                 	<form:option value="" label=" ${emptyValue} " />
-                                	<form:options items="${tipocargas}" itemValue="tipoCargaId" itemLabel="descripcionTipoCarga" />
+                                	<form:options items="${tipoafiliados}" itemValue="tipoAfiliadoId" itemLabel="descripcionTipoAfiliado" />
                             	</form:select>
                             </div>
                         </div>
@@ -63,10 +63,13 @@
                                 <label class="control-label">
                                     Tipo de Archivo
                                 </label>
-                                <form:select path="obraSocial" class="form-control" id="obraSocial">
+                                <form:select path="obraSocial" class="form-control" id="tipoCarga">
                                 	<form:option value="" label=" ${emptyValue} " />
-                                	<form:options items="${obrassociales}" itemValue="obraSocialID" itemLabel="descripcionObraSocial" />
+                                	<form:options items="${tipocargas}" itemValue="tipoCargaId" itemLabel="descripcionTipoCarga" />
                             	</form:select>
+                            	<c:forEach items="${tipocargas}" var="par">
+                            		<input type="hidden" id="tipoCarga-${par.tipoCargaId}" value="${par.requiereTipoAfiliado}" />
+                            	</c:forEach>
                             </div>
                         </div>
                         <div class="col-md-4">
@@ -75,10 +78,7 @@
                                 <label class="control-label">
                                     CUIT
                                 </label>
-                                <form:select path="tipoCarga" class="form-control" id="tipoCarga">
-                                	<form:option value="" label=" ${emptyValue} " />
-                                	<form:options items="${tipocargas}" itemValue="tipoCargaId" itemLabel="descripcionTipoCarga" />
-                            	</form:select>
+                                <form:input id="cuitId" path="cuit" type="text" class="form-control" />
                             </div>
                         </div>
                         <div class="col-md-4">
@@ -87,7 +87,9 @@
                                 <label class="control-label">
                                     Pauta
                                 </label>
-                                <form:input path="cuit" type="number" class="form-control" maxlength="40" />
+                                <form:select path="pauta" class="form-control" id="pautaId">
+                                	<form:option value="" label=" ${emptyValue} " />
+                            	</form:select>
                             </div>
                         </div>
                        
@@ -96,7 +98,7 @@
             	</div>
             	
             	<div id="table">
-            		<jsp:include page="table.jsp" />	
+            		<jsp:include page="importTable.jsp" />	
             	</div>
             </div>
         </section>
