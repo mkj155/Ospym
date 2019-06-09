@@ -16,6 +16,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.osdepym.dto.AfiliadoTableDTO;
 import com.osdepym.dto.EstadoDTO;
 import com.osdepym.dto.ObraSocialDTO;
+import com.osdepym.dto.TipoCargaDTO;
+import com.osdepym.form.ImportForm;
 import com.osdepym.form.SolicitudesForm;
 import com.osdepym.service.SolicitudesService;
 
@@ -62,6 +64,16 @@ public class SolicitudesController {
 		return view;	
 	}*/
 	
+	@RequestMapping(value = "/solicitudes/exportar")
+	public @ResponseBody List<AfiliadoTableDTO> exportar(@RequestBody SolicitudesForm element) {
+		List<AfiliadoTableDTO> afiliados = new ArrayList<AfiliadoTableDTO>();
+		try {
+			afiliados = service.buscar(element);
+		} catch (Exception e) {
+		}
+		return afiliados;	
+	}
+	
 	private ModelAndView getSolicitudesFormView(Model model, SolicitudesForm form) {
 		ModelAndView view = null;
 		try {
@@ -73,6 +85,23 @@ public class SolicitudesController {
 			
 			model.addAttribute("solicitudesForm", form);
 		} catch (Exception e) {
+			view = new ModelAndView("error");
+			view.addObject("error", e);
+		}
+		return view;
+	}
+	
+	@RequestMapping(value = "/solicitudes/importar", method = RequestMethod.GET)
+	public ModelAndView importar(Model model) {
+		ModelAndView view = new ModelAndView("importar");
+		try {
+			
+			List<ObraSocialDTO> obrasSociales = service.getAllObrasSociales();
+			List<TipoCargaDTO> tipoCargas = service.getAllTipoCarga();
+			view.addObject("obrassociales", obrasSociales);
+			view.addObject("tipocargas", tipoCargas);
+			model.addAttribute("importForm", new ImportForm());
+		}catch(Exception e) {
 			view = new ModelAndView("error");
 			view.addObject("error", e);
 		}
