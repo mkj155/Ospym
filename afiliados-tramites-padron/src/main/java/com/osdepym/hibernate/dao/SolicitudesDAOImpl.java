@@ -4,6 +4,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.ParameterMode;
+import javax.persistence.StoredProcedureQuery;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -207,4 +210,40 @@ public class SolicitudesDAOImpl implements SolicitudesDAO {
 
 		return estadoList;
 	}
+	
+	@Override
+	public Integer obtenerSolicitudMultiple() throws CustomException {
+		Integer value;
+		try {
+			Session session = this.sessionFactory.getCurrentSession();
+			StoredProcedureQuery storedProcedure = session.createStoredProcedureQuery("ga.spo_obtenerSolicitudMultiple");
+			storedProcedure.registerStoredProcedureParameter("Solicitud_ID", Integer.class, ParameterMode.OUT);
+			storedProcedure.execute();
+			value = (Integer)storedProcedure.getOutputParameterValue("Solicitud_ID");
+			return value;
+		} catch(Exception e){
+			throw new CustomException(e.getMessage(), ErrorMessages.DATABASE_GET_ERROR);
+		}
+	}
+	
+	@Override
+	public boolean confirmarAltaAfiliado(Integer id) throws CustomException {
+		String error;
+		String mensaje;
+		try {
+			Session session = this.sessionFactory.getCurrentSession();
+			StoredProcedureQuery storedProcedure = session.createStoredProcedureQuery("ga.spo_confirmarAltaAfiliado");
+			storedProcedure.registerStoredProcedureParameter("Registro_ID", Integer.class, ParameterMode.IN);
+			storedProcedure.registerStoredProcedureParameter("Error",       String.class,  ParameterMode.OUT);
+			storedProcedure.registerStoredProcedureParameter("Mensaje",     String.class,  ParameterMode.OUT);
+			storedProcedure.setParameter("Registro_ID", id);
+			storedProcedure.execute();
+			error   = (String)storedProcedure.getOutputParameterValue("Error");
+			mensaje = (String)storedProcedure.getOutputParameterValue("Mensaje");
+			return true;
+		} catch(Exception e){
+			throw new CustomException(e.getMessage(), ErrorMessages.DATABASE_GET_ERROR);
+		}
+	}
+	
 }

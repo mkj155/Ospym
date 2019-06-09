@@ -20,4 +20,6 @@ public interface SolicitudesService {
 	public List<TipoCargaDTO> getAllTipoCarga() throws CustomException;
 	public List<TipoAfiliadoDTO> getAllTipoAfiliado() throws CustomException;
 	public List<PautaDTO> getPautasByCuit(String cuit) throws CustomException;
+	public Integer obtenerSolicitudMultiple() throws CustomException;
+	public boolean confirmarAltaAfiliado(Integer id) throws CustomException;
 }

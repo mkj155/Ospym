@@ -91,4 +91,25 @@ public class SolicitudesController {
 		}
 		return view;
 	}
+	
+	@RequestMapping(value = "/solicitudes/confirmar")
+	public @ResponseBody List<AfiliadoTableDTO> confirmar(@RequestBody SolicitudesForm element) {
+		List<AfiliadoTableDTO> afiliados = new ArrayList<AfiliadoTableDTO>();
+		try {
+			// Validar si están en pendientes
+			Integer id = 666; 
+			if(validarPendientes(element)) {
+				service.obtenerSolicitudMultiple();
+				service.confirmarAltaAfiliado(id);
+			}
+			return afiliados;
+		} catch (Exception e) {
+		}
+		return afiliados;
+	}
+	
+	public boolean validarPendientes(SolicitudesForm element) {
+		return true;
+	}
+	
 }

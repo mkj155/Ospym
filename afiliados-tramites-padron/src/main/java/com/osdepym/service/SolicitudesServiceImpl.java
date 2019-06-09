@@ -277,5 +277,48 @@ public class SolicitudesServiceImpl implements SolicitudesService{
 		}
 		return pautaDTOList;
 	}
+	
+	@Override
+	public boolean confirmarAltaAfiliado(Integer id) throws CustomException {
+		Session session = null;
+		Transaction tx = null;
+		try {
+			session = this.sessionFactory.getCurrentSession();
+			tx = session.beginTransaction();
+			solicitudesDAO.confirmarAltaAfiliado(id);
+			tx.commit();
+			session.close();
+			return true; 
+		} catch (CustomException e) {
+			SessionUtil.rollbackTransaction(session, tx);
+			throw e;
+		} catch (Exception e) {
+			SessionUtil.rollbackTransaction(session, tx);
+			e.printStackTrace();
+			throw new CustomException(e.getMessage(), ErrorMessages.LOAD_CONTACT_ERROR);
+		}
+	}
+
+	@Override
+	public Integer obtenerSolicitudMultiple() throws CustomException {
+		Session session = null;
+		Transaction tx = null;
+		Integer value;
+		try {
+			session = this.sessionFactory.getCurrentSession();
+			tx = session.beginTransaction();
+			value = solicitudesDAO.obtenerSolicitudMultiple();
+			tx.commit();
+			session.close();
+			return value; 
+		} catch (CustomException e) {
+			SessionUtil.rollbackTransaction(session, tx);
+			throw e;
+		} catch (Exception e) {
+			SessionUtil.rollbackTransaction(session, tx);
+			e.printStackTrace();
+			throw new CustomException(e.getMessage(), ErrorMessages.LOAD_CONTACT_ERROR);
+		}
+	}
 
 }
