@@ -10,7 +10,6 @@ import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.BorderStyle;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
-import org.apache.poi.ss.usermodel.CreationHelper;
 import org.apache.poi.ss.usermodel.Font;
 import org.apache.poi.ss.usermodel.IndexedColors;
 import org.apache.poi.ss.usermodel.Row;
@@ -145,9 +144,9 @@ public class ExcelWriter {
         	e.getStackTrace();
         }
 		// Resize all columns to fit the content size
-        //for(int i = 0; i < columns.length; i++) {
-        //    sheet.autoSizeColumn(i);
-       // }
+        for(int i = 0; i < columns.length; i++) {
+            sheet.autoSizeColumn(i);
+        }
         
         try { 
         	// this Writes the workbook excel 

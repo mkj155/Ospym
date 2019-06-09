@@ -1,8 +1,10 @@
 package com.osdepym.form;
 
 import java.util.Date;
+import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.osdepym.dto.AfiliadoDTO;
 
 public class SolicitudesForm {
 	private Long cuil;
@@ -11,6 +13,7 @@ public class SolicitudesForm {
 	private String apellido;
 	private String nombre;
 	private String estado;
+	private List<AfiliadoDTO> afiliadoList;
 	
 	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd/MM/yyyy")
 	private Date fechaCarga;
@@ -80,5 +83,12 @@ public class SolicitudesForm {
 	public void setCuit(Long cuit) {
 		this.cuit = cuit;
 	}
+	
+	public List<AfiliadoDTO> getAfiliadoList() {
+		return afiliadoList;
+	}
 
+	public void setAfiliadoList(List<AfiliadoDTO> afiliadoList) {
+		this.afiliadoList = afiliadoList;
+	}
 }

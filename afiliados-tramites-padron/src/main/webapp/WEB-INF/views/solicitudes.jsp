@@ -10,10 +10,11 @@
     <body>
         <section id="main" class="bg-gray">
             <div class="container page page-cartilla">
+            <form:form class="form-cartilla custom-form" method="post" id="solicitudes-form" modelAttribute="solicitudesForm" action="${enviarUrl}">
                 <div>
                 	<spring:url value="/buscar/buscar" var="enviarUrl" />
                 	<spring:url value="/buscar/exportar" var="exportar" />
-                	<form:form class="form-cartilla custom-form" method="post" id="solicitudes-form" modelAttribute="solicitudesForm" action="${enviarUrl}">
+                	
                 	<spring:message code="select.label.empty" var="emptyValue" />
                     <div class="row">
                         <div class="col-md-2">
@@ -22,7 +23,7 @@
                                 <label class="control-label">
                                 	<spring:message code="label.solicitudes.cuil" />
                                 </label>
-                                <form:input path="cuil" type="number" class="form-control" maxlength="20" />
+                                <form:input path="cuil" type="text" class="form-control number-input" id="test1" maxlength="20" />
                             </div>
                         </div>
                         <div class="col-md-2">
@@ -31,7 +32,7 @@
                                 <label class="control-label">
                                     <spring:message code="label.solicitudes.registro" />
                                 </label>
-                                <form:input path="numeroRegistro" type="number" class="form-control" maxlength="8" />
+                                <form:input path="numeroRegistro" type="text" class="form-control number-input" maxlength="8" />
                             </div>
                         </div>
                         <div class="col-md-2">
@@ -96,7 +97,7 @@
                                 <label class="control-label">
                                     <spring:message code="label.solicitudes.solicitud.n" />
                                 </label>
-                                <form:input path="numeroSolicitud" type="number" class="form-control" maxlength="8" />
+                                <form:input path="numeroSolicitud" type="text" class="form-control number-input" maxlength="8" />
                             </div>
                         </div>
                         <div class="col-md-2">
@@ -105,7 +106,7 @@
                                 <label class="control-label">
                                     <spring:message code="label.solicitudes.nro.documento" />
                                 </label>
-                                <form:input path="dni" type="number" class="form-control" maxlength="20" />
+                                <form:input path="dni" type="text" class="form-control number-input" maxlength="20" />
                             </div>
                         </div>
                         <div class="col-md-2">
@@ -114,19 +115,20 @@
                                 <label class="control-label">
                                     <spring:message code="label.solicitudes.cuit" />
                                 </label>
-                                <form:input path="cuit" type="number" class="form-control" maxlength="20" />
+                                <form:input path="cuit" type="text" class="form-control number-input" maxlength="20" />
                             </div>
                         </div>
                        	<div class="col-md-2">
                            <button type="button" class="btn btn-primary btn-lg btn-search btn-form" id="search"><spring:message code="button.search" /></button>
                         </div>
                     </div>
-            	</form:form>
+            	
             	</div>
             	<div id="error-date" class="alert alert-danger my-4"><spring:message code="error.format.date.incorrect" /></div>
             	<div id="table">
             		<jsp:include page="table.jsp" />	
             	</div>
+            </form:form>
             </div>
         </section>
     </body>

@@ -149,15 +149,22 @@ th {
 }
 
 .search-table-outter {
-	overflow-x: scroll; 
+	overflow-x: hidden;
+	padding-bottom: 9px; 
+}
+
+.search-table-outter:hover {
+	overflow-x: scroll;
+	padding-bottom: 0px; 
 }
 
 #table-preview th {
-	padding:20px 7px; 
+	padding:20px 7px;
+	background-color: #CCC; 
 }
 
 #table-preview td {
-	padding:5px 10px; 
+	padding: 10px; 
 }
 
 #table-preview th, #table-preview td { 
@@ -596,4 +603,22 @@ div.datepicker {
 
 #exportar {
 	float: right;	
+}
+
+.btn-outline-secondary:hover {
+    color: #fff;
+    background-color: #15616c;
+    border-color: #15616c;
+}
+
+#nav a.btn {
+	margin-top: 5px !important;
+	width: 35px;
+	height: inherit;
+	margin-top: inherit;
+	border: 1px solid rgb(9, 103, 62);	
+}
+
+#nav a.btn-primary {
+	color: #fff;	
 }
