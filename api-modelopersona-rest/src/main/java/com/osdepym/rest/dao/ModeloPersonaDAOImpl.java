@@ -71,7 +71,12 @@ public class ModeloPersonaDAOImpl implements ModeloPersonaDAO {
 				}
 				whereClause += "CAST(FechaNacimiento AS DATE) = CAST('" + personaFisicaRequest.getFechaNacimiento() + "' AS DATE)";
 			}
-			
+			if(!personaFisicaRequest.getSexo().equals("")) {
+				if(!whereClause.equals("")) {
+					whereClause += " AND ";
+				}
+				whereClause += "SEXO = '" + personaFisicaRequest.getSexo() + "'";
+			}
 			
 			if(!cuil.getId().equals("")) {
 				if(!whereClause.equals("")) {

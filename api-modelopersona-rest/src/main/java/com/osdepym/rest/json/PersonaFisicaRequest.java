@@ -65,7 +65,7 @@ public class PersonaFisicaRequest {
 	 public void setDocumentoIdentidad(ArrayList < DocumentoIdentidad > documentoIdentidad) {
 		 this.documentoIdentidad = documentoIdentidad;
 	 }
-	 @JsonProperty("documentoIdeantidad")
+	 @JsonProperty("documentoIdentidad")
 	 public ArrayList < DocumentoIdentidad > getDocumentoIdeantidad(){
 		 return this.documentoIdentidad;
 	 }

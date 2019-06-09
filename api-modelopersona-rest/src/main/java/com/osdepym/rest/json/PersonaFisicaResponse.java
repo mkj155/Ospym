@@ -16,7 +16,7 @@ public class PersonaFisicaResponse {
 	 private String fechaNacimiento = "";
 	@JsonProperty("Sexo")
 	 private String sexo = "";
-	@JsonProperty("documentoIdeantidad")
+	@JsonProperty("documentoIdentidad")
 	 ArrayList < DocumentoIdentidad > documentoIdentidad;
 	@JsonProperty
 	 Cuil CUIL = new Cuil();
@@ -65,11 +65,11 @@ public class PersonaFisicaResponse {
 	 public void setCUIL(Cuil CUIL) {
 	  this.CUIL = CUIL;
 	 }
-	 @JsonProperty("documentoIdeantidad")
+	 @JsonProperty("documentoIdentidad")
 	 public void setDocumentoIdentidad(ArrayList < DocumentoIdentidad > documentoIdentidad) {
 		 this.documentoIdentidad = documentoIdentidad;
 	 }
-	 @JsonProperty("documentoIdeantidad")
+	 @JsonProperty("documentoIdentidad")
 	 public ArrayList < DocumentoIdentidad > getDocumentoIdeantidad(){
 		 return this.documentoIdentidad;
 	 }
