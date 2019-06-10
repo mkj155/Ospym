@@ -16,29 +16,25 @@
 			<thead>
 		    	<tr>
 		      		<th style="padding-left: 40px"></th>
-					<th><spring:message code="label.table.1" /></th>
-					<th><spring:message code="label.table.2" /></th>
-					<th><spring:message code="label.table.3" /></th>
-					<th><spring:message code="label.table.4" /></th>
-					<th><spring:message code="label.table.5" /></th>
-					<th><spring:message code="label.table.6" /></th>
-					<th><spring:message code="label.table.7" /></th>
-					<th><spring:message code="label.table.8" /></th>
-					<th><spring:message code="label.table.9" /></th>
-					<th><spring:message code="label.table.10" /></th>
-					<th><spring:message code="label.table.11" /></th>
-					<th><spring:message code="label.table.12" /></th>
-					<th><spring:message code="label.table.13" /></th>
-					<th><spring:message code="label.table.14" /></th>
-					<th><spring:message code="label.table.15" /></th>
-					<th><spring:message code="label.table.16" /></th>
-					<th><spring:message code="label.table.17" /></th>
-					<th><spring:message code="label.table.18" /></th>
-					<th><spring:message code="label.table.19" /></th>
-					<th><spring:message code="label.table.20" /></th>
-					<th><spring:message code="label.table.21" /></th>
-					<th><spring:message code="label.table.22" /></th>
-					<th><spring:message code="label.table.23" /></th>
+					<th><spring:message code="label.importtable.1" /></th>
+					<th><spring:message code="label.importtable.2" /></th>
+					<th><spring:message code="label.importtable.3" /></th>
+					<th><spring:message code="label.importtable.4" /></th>
+					<th><spring:message code="label.importtable.5" /></th>
+					<th><spring:message code="label.importtable.6" /></th>
+					<th><spring:message code="label.importtable.7" /></th>
+					<th><spring:message code="label.importtable.8" /></th>
+					<th><spring:message code="label.importtable.9" /></th>
+					<th><spring:message code="label.importtable.10" /></th>
+					<th><spring:message code="label.importtable.11" /></th>
+					<th><spring:message code="label.importtable.12" /></th>
+					<th><spring:message code="label.importtable.13" /></th>
+					<th><spring:message code="label.importtable.14" /></th>
+					<th><spring:message code="label.importtable.15" /></th>
+					<th><spring:message code="label.importtable.16" /></th>
+					<th><spring:message code="label.importtable.17" /></th>
+					<th><spring:message code="label.importtable.18" /></th>
+					<th><spring:message code="label.importtable.19" /></th>
 					<th></th>
 				</tr>
 			</thead>
@@ -63,12 +59,6 @@
 					<td></td>
 					<td></td>
 					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
 				</tr>
 				<tr>
 		      		<td>&nbsp;</td>
@@ -90,21 +80,9 @@
 					<td></td>
 					<td></td>
 					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
 				</tr>
 				<tr>
 		      		<td>&nbsp;</td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
 					<td></td>
 					<td></td>
 					<td></td>

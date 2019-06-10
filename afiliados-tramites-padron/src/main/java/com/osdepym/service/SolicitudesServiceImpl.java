@@ -20,6 +20,7 @@ import com.osdepym.dto.TipoAfiliadoDTO;
 import com.osdepym.dto.TipoCargaDTO;
 import com.osdepym.exception.CustomException;
 import com.osdepym.exception.ErrorMessages;
+import com.osdepym.form.ImportForm;
 import com.osdepym.form.SolicitudesForm;
 import com.osdepym.hibernate.dao.PautaDAO;
 import com.osdepym.hibernate.dao.SolicitudesDAO;
@@ -308,6 +309,52 @@ public class SolicitudesServiceImpl implements SolicitudesService{
 			session = this.sessionFactory.getCurrentSession();
 			tx = session.beginTransaction();
 			value = solicitudesDAO.obtenerSolicitudMultiple();
+			tx.commit();
+			session.close();
+			return value; 
+		} catch (CustomException e) {
+			SessionUtil.rollbackTransaction(session, tx);
+			throw e;
+		} catch (Exception e) {
+			SessionUtil.rollbackTransaction(session, tx);
+			e.printStackTrace();
+			throw new CustomException(e.getMessage(), ErrorMessages.LOAD_CONTACT_ERROR);
+		}
+	}
+
+	@Override
+	public boolean archivoCargaMasivaCargarRegistro(Integer archivoId, ImportForm form) throws CustomException {
+		Session session = null;
+		Transaction tx = null;
+		try {
+			session = this.sessionFactory.getCurrentSession();
+			tx = session.beginTransaction();
+			for(AfiliadoDTO afiliado : form.getAfiliados()) {
+				solicitudesDAO.archivoCargaMasivaCargarRegistro(archivoId, afiliado);
+			}
+			
+			tx.commit();
+			session.close();
+			return true; 
+		} catch (CustomException e) {
+			SessionUtil.rollbackTransaction(session, tx);
+			throw e;
+		} catch (Exception e) {
+			SessionUtil.rollbackTransaction(session, tx);
+			e.printStackTrace();
+			throw new CustomException(e.getMessage(), ErrorMessages.LOAD_CONTACT_ERROR);
+		}
+	}
+
+	@Override
+	public Integer archivoCargaMasivaObtenerIdentificar(Integer obraSocial, Integer tipoCarga, Integer tipoAfiliado, String cuit, Integer pauta, String nombreArchivo) throws CustomException {
+		Session session = null;
+		Transaction tx = null;
+		Integer value;
+		try {
+			session = this.sessionFactory.getCurrentSession();
+			tx = session.beginTransaction();
+			value = solicitudesDAO.archivoCargaMasivaObtenerIdentificar(obraSocial, tipoCarga, tipoAfiliado, cuit, pauta, nombreArchivo);
 			tx.commit();
 			session.close();
 			return value; 

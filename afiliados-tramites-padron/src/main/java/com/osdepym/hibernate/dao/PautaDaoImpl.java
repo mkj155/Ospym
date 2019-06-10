@@ -57,7 +57,7 @@ public class PautaDaoImpl implements PautaDAO{
 		try {
 			List<Pauta> pautas = new ArrayList<Pauta>();
 			Session session = this.sessionFactory.getCurrentSession();
-			String sqlString = "SELECT P.* FROM ga.Pauta P WHERE CUIT ='" + cuitNumber + "'";
+			String sqlString = "SELECT P.* FROM ga.vo_Pauta P WHERE CUIT ='" + cuitNumber + "'";
 			pautas = session.createNativeQuery(sqlString, Pauta.class).getResultList();
 			return pautas;
 		} catch (Exception e) {
