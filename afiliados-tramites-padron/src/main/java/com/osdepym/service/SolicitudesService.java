@@ -10,6 +10,7 @@ import com.osdepym.dto.PautaDTO;
 import com.osdepym.dto.TipoAfiliadoDTO;
 import com.osdepym.dto.TipoCargaDTO;
 import com.osdepym.exception.CustomException;
+import com.osdepym.form.ImportForm;
 import com.osdepym.form.SolicitudesForm;
 
 public interface SolicitudesService {
@@ -22,4 +23,6 @@ public interface SolicitudesService {
 	public List<PautaDTO> getPautasByCuit(String cuit) throws CustomException;
 	public Integer obtenerSolicitudMultiple() throws CustomException;
 	public boolean confirmarAltaAfiliado(Integer id) throws CustomException;
+	public boolean archivoCargaMasivaCargarRegistro(Integer archivoId, ImportForm form) throws CustomException;
+	public Integer archivoCargaMasivaObtenerIdentificar(Integer obraSocial, Integer tipoCarga, Integer tipoAfiliado, String cuit, Integer pauta, String nombreArchivo) throws CustomException;
 }

@@ -13,6 +13,7 @@ public class SolicitudesForm {
 	private String apellido;
 	private String nombre;
 	private String estado;
+	
 	private List<AfiliadoDTO> afiliadoList;
 	
 	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd/MM/yyyy")
