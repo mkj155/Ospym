@@ -1,5 +1,6 @@
 var date;
 var exportForm;
+var afiliadoAnular = {};
 (function($) {
 	  $.fn.inputFilter = function(inputFilter) {
 	    return this.on("input keydown keyup mousedown mouseup select contextmenu drop", function() {
@@ -85,6 +86,49 @@ $(document).ready(function () {
 	$(document).on("click", "#confirmar", function() {
 		confirmar();
 	});
+	
+	$(document).on("click", ".anular-link", function() {
+		afiliadoAnular = {};
+		$.each($(this).parent().parent().find('td'), function() {
+			var field = $(this).attr('data-field');
+        	var value = $(this).attr('data-value');
+        	if(field !== undefined) {
+        		if(value === undefined)
+        			afiliadoAnular[field] = null;
+        		else
+        			afiliadoAnular[field] = value;
+        	}
+        });
+		
+		$('#anular-modal').modal('show');
+	});
+	
+	$(document).on("click", "#accept-anular", function() {
+		$('#anular-modal').modal('hide');
+		if(afiliadoAnular) {
+			$.ajax({
+				type: "POST",
+				contentType : 'application/json',
+				url: "anular",
+				data: JSON.stringify(afiliadoAnular), 
+				dataType : "json",
+				async: true,
+				timeout : 100000,
+				success : function(data) {
+					
+				},
+				error : function(e) {
+					console.log("ERROR: ", e);
+				}
+			});
+		}	
+	});
+	
+	$(document).on("click", "#cancel-anular", function() {
+		afiliadoAnular = {};
+		$('#anular-modal').modal('hide');
+		return false;
+	});
 });
 
 function search(){
@@ -100,7 +144,7 @@ function search(){
 		$.ajax({
 			type: "POST",
 			contentType : 'application/json',
-			url: "solicitudes/buscar",
+			url: "buscar",
 			data: JSON.stringify(documentOptions),
 			dataType : "json",
 			async: true,
@@ -110,7 +154,7 @@ function search(){
 				$('#content-table').show();
 				$('#table-preview tbody').html("");
 				$.each(data, function(key, card) {
-					var htmlrow = '<tr><td><label class="control control-checkbox">' +
+					var htmlrow = '<tr data-id="'+card.registroID+'"><td><label class="control control-checkbox">' +
 		            '<input type="checkbox" class="afiliado-check" />' +
 			        '<div class="control-indicator"></div>' +
 			        '</label></td>';
@@ -119,11 +163,15 @@ function search(){
 					
 					for(var i = 0; i < keys.length; i++){
 					    var value = card[keys[i]];
-					    htmlrow += "<td data-field='" + keys[i] + "' data-row='" + (value ? value : "") + "'>" + (value ? value : "") + "</td>";
+					    
+					    if(card.estado === 'Pendiente' && keys[i] === 'anular')
+							htmlrow += "<td data-field='" + keys[i] + "' " + (value ? "data-value='" + value + "' " : "") + "'><a href='#' class='anular-link'>Anular</a></td>";
+						else if(card.estado !== 'Pendiente' && keys[i] === 'anular')
+							htmlrow += "<td data-field='" + keys[i] + "' " + (value ? "data-value='" + value + "' " : "") + "'></td>";
+						else
+							htmlrow += "<td data-field='" + keys[i] + "' " + (value ? "data-value='" + value + "' " : "") + "'>" + (value ? value : "") + "</td>";
 					}
-		            
-					htmlrow += '<td></td></tr>';
-					
+					htmlrow += "</tr>";
 		            $('#table-preview tbody').append(htmlrow);
 		        });
 				
@@ -162,7 +210,7 @@ function exportar(){
 		$.ajax({
 			type: "POST",
 			contentType : 'application/json',
-			url: "solicitudes/exportar",
+			url: "exportar",
 			data: JSON.stringify(exportForm),
 			dataType : "json",
 			async: true,
@@ -194,7 +242,7 @@ function confirmar() {
 	var pendings = 0;
 	var selected = $('#table-preview > tbody > tr .afiliado-check:checked').length;
 	$.each($('#table-preview > tbody > tr .afiliado-check:checked'), function(){
-		pendings += $(this).parent().parent().parent().children('td[data-row="Pendiente"]').length;
+		pendings += $(this).parent().parent().parent().children('td[data-value="Pendiente"]').length;
 	}); 
 	
 	if(!(pendings > 0 && selected > 0 && pendings === selected)) {
@@ -205,17 +253,19 @@ function confirmar() {
 	var obj = [];
 	$.each($('#table-preview > tbody > tr .afiliado-check:checked'), function(){
 		index = 0;
-	    if($(this).parent().parent().parent().children('td[data-row="Pendiente"]')) {
+	    if($(this).parent().parent().parent().children('td[data-value="Pendiente"]')) {
 	    	var field;
 	    	var value;
 	        $td = $(this).parent().parent().parent().find('td');
 	        var field = {};
 	        $($td).each(function () {
 	        	var row = $(this).attr('data-field');
-	        	var value = $(this).attr('data-row');
-	        	if(row !== undefined && value !== undefined) {
-	        		field[row] = value;
-	        		
+	        	var value = $(this).attr('data-value');
+	        	if(row !== undefined) {
+	        		if(value === undefined)
+	        			field[row] = null;
+	        		else
+	        			field[row] = value;
 	        	}
 	        });
 	        obj.push(field);
@@ -224,13 +274,59 @@ function confirmar() {
 	$.ajax({
 		type: "POST",
 		contentType : 'application/json',
-		url: "solicitudes/confirmar", 
+		url: "confirmar", 
 		data: JSON.stringify(obj),
 		dataType : "json",
 		async: true,
 		timeout : 100000,
 		success : function(data) {
-
+			$("#loading").hide();
+			$('#content-table').show();
+			$.each(data, function(key, card) {
+				var htmlrow = '<td><label class="control control-checkbox">' +
+	            '<input type="checkbox" class="afiliado-check" />' +
+		        '<div class="control-indicator"></div>' +
+		        '</label></td>';
+				
+				var keys = Object.keys(card);
+				
+				for(var i = 0; i < keys.length; i++){
+				    var value = card[keys[i]];
+				    
+				    if(keys[i] === 'anular' && card.estado === 'Pendiente')
+						htmlrow += "<td data-field='" + keys[i] + "' " + (value ? "data-value='" + value + "' " : "") + "'><a href='#' class='anular-link'>Anular</a></td>";
+					else if(keys[i] === 'anular' && card.estado !== 'Pendiente')
+						htmlrow += "<td data-field='" + keys[i] + "' " + (value ? "data-value='" + value + "' " : "") + "'></td>";
+					else
+						htmlrow += "<td data-field='" + keys[i] + "' " + (value ? "data-value='" + value + "' " : "") + "'>" + (value ? value : "") + "</td>";
+				}
+	            
+				$('#table-preview tr[data-id="'+card.registroID+'"').html(htmlrow);
+	        });
+			
+			$('#nav').remove();
+			$('#content-table-child').after('<div id="nav"></div>');
+		    var rowsShown = 10;
+		    var rowsTotal = $('#table-preview tbody tr').length;
+		    var numPages = rowsTotal/rowsShown;
+		    for(i = 0;i < numPages;i++) {
+		        var pageNum = i + 1;
+		        $('#nav').append('<a class="btn" rel="'+i+'">'+pageNum+'</a> ');
+		    }
+		    $('#table-preview tbody tr').hide();
+		    $('#table-preview tbody tr').slice(0, rowsShown).show();
+		    
+		    $('#nav a').addClass('btn');
+		    $('#nav a:first').addClass('btn btn-primary');
+		    $('#nav a').bind('click', function(){
+		        $('#nav a').removeClass('btn-primary');
+		        $(this).addClass('btn-primary');
+		        var currPage = $(this).attr('rel');
+		        var startItem = currPage * rowsShown;
+		        var endItem = startItem + rowsShown;
+		        $('#table-preview tbody tr').css('opacity','0.0').hide().slice(startItem, endItem).
+		        css('display','table-row').animate({opacity:1}, 300);
+		    });
 		},
 		error : function(e) {
 			console.log("ERROR: ", e);

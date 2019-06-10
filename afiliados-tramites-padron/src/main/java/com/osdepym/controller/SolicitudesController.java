@@ -176,15 +176,12 @@ public class SolicitudesController {
 			                		//afiliado.setNombre(cell.toString());
 			                	
 			               }
-	
-		                    	
-
 		                }
 		            }
 		            afiliados.add(afiliado);
 		        }
 		    }
-			
+			wb.close();
 		}catch(Exception e) {
 			e.printStackTrace();
 			System.out.println(e.getMessage());
@@ -209,13 +206,25 @@ public class SolicitudesController {
 			if(validarPendientes(afiliados)) {
 				service.obtenerSolicitudMultiple();
 				for(AfiliadoTableDTO a : afiliados) {
-					service.confirmarAltaAfiliado(a.getRegistroID());
+					boolean altaAfiliado = service.confirmarAltaAfiliado(a.getRegistroID());
+					a.setAnular(altaAfiliado);
 				}
 			}
 			return afiliados;
 		} catch (Exception e) {
 		}
 		return afiliados;
+	}
+	
+	@RequestMapping(value = "/solicitudes/anular")
+	public @ResponseBody AfiliadoTableDTO anular(@RequestBody AfiliadoTableDTO afiliado) {
+		try {
+			System.out.print(true);
+			return afiliado;
+		} catch (Exception e) {
+		
+		}
+		return afiliado;
 	}
 	
 	public boolean validarPendientes(List<AfiliadoTableDTO> afiliados) {

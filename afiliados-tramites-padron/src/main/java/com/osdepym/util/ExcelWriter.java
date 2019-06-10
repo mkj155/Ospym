@@ -1,9 +1,10 @@
 package com.osdepym.util;
 
-import java.awt.Desktop;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.util.List;
 
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
@@ -167,8 +168,13 @@ public class ExcelWriter {
 	        workbook.close();
 	        
 	        try {
-	        	Desktop dt = Desktop.getDesktop();
-	        	dt.open(f);
+	        	FileInputStream fileInputStream = new FileInputStream(f);
+                int bytes;
+                while ((bytes = fileInputStream.read()) != -1) {
+                    out.write(bytes);
+                }
+
+               // fileInputStream.close();
 	        } catch (IOException e) {
 	            // TODO Auto-generated catch block
 	            e.printStackTrace();

@@ -130,6 +130,26 @@
             	</div>
             </form:form>
             </div>
+            <div class="modal fade show" id="anular-modal" role="dialog" >
+				 <div class="modal-dialog" role="document">
+				   <div class="modal-content rounded-0">
+				     <div class="title-section-modal mb-0">
+				       <h5 class="text"><spring:message code="title.popup.anular" /></h5>
+				     </div>
+				     <div class="modal-body px-4">
+				       <p><spring:message code="message.popup.anular" /></p>
+				     </div>
+				     <div class="px-4 pb-4">
+				      	<span class="float-left w-50 pr-1">
+				        	<button type="button" class="btn btn-primary btn-block" id="accept-anular"><spring:message code="button.accept" /></button>
+							</span>
+				                     	<span class="float-right w-50 pl-1">
+				        	<button type="button" class="btn btn-outline-primary btn-block" data-dismiss="modal" id="cancel-anular"><spring:message code="button.cancel" /></button>
+					 	</span>
+				     </div>
+				   </div>
+				 </div>
+			</div>
         </section>
     </body>
 <jsp:include page="./footer.jsp" />
