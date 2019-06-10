@@ -14,6 +14,11 @@ $(document).ready(function() {
 	$('#cuitId').blur(function(){
 		getPauta();
 	});
+	
+	$('#uploadFile').change(function(){
+		uploadFile();
+	});
+	
 });
 
 function getPauta(){
@@ -33,6 +38,39 @@ function getPauta(){
 					}
 				}else{
 					$("#pautaId").html('<form:option value="" label="Seleccionar" />');
+				}
+				
+			
+			},
+			error : function(e) {
+				console.log("ERROR: ", e);
+
+				
+			},
+		});
+	} 
+}
+
+
+function uploadFile(){
+	if($('#uploadFile').val() != null && $('#uploadFile').val() != ''){
+		var form = $('#importForm')[0];
+	    var formData = new FormData(form);
+	    formData.append("file", $('#uploadFile')[0].files[0]);
+		$.ajax({
+			url : "procesarArchivo",
+			enctype: 'multipart/form-data',
+			data : formData,
+		    cache: false,
+		    contentType: false,
+		    processData: false,
+		    method: 'POST',
+		    type: 'POST',
+			success : function(data) {
+				if(data != null && data.length > 0){
+					
+				}else{
+					
 				}
 				
 			

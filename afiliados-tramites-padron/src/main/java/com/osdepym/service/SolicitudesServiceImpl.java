@@ -329,7 +329,10 @@ public class SolicitudesServiceImpl implements SolicitudesService{
 		try {
 			session = this.sessionFactory.getCurrentSession();
 			tx = session.beginTransaction();
-			solicitudesDAO.archivoCargaMasivaCargarRegistro(archivoId, form);
+			for(AfiliadoDTO afiliado : form.getAfiliados()) {
+				solicitudesDAO.archivoCargaMasivaCargarRegistro(archivoId, afiliado);
+			}
+			
 			tx.commit();
 			session.close();
 			return true; 

@@ -10,9 +10,9 @@
         <section id="main" class="bg-gray">
             <div class="container page page-cartilla">
                 <div>
-                	<spring:url value="/buscar/buscar" var="enviarUrl" />
+                	<spring:url value="/solicitudes/procesarArchivo" var="enviarUrl" />
                 	<spring:url value="/buscar/exportar" var="exportar" />
-                	<form:form class="form-cartilla custom-form" method="post" id="importForm" modelAttribute="importForm" action="${enviarUrl}">
+                	<form:form class="form-cartilla custom-form" method="post" id="importForm" modelAttribute="importForm" action="${enviarUrl}" enctype="multipart/form-data">
                 	<spring:message code="select.label.empty" var="emptyValue" />
                     <div class="row">
                         
@@ -46,10 +46,11 @@
                         <div class="col-md-6">
                             <!--  ARCHIVO-->
                             <div class="form-group">
-                                <label class="control-label">
-                                    Archivo
-                                </label>
-                                <form:input path="cuit" type="number" class="form-control" maxlength="40" />
+                                <div class="col-md-12">
+	                        <div id="file-container" class="form-group ${status.error ? 'has-error' : ''}">
+								<input type="file" id="uploadFile" class="btn-file" name="uploadFile" accept=".xls,.xlsx"/>
+	                        </div>
+	                    </div>
                             </div>
                         </div>
                        
@@ -94,6 +95,7 @@
                         </div>
                        
                     </div>
+                    <input type="submit" value="Upload file" />
             	</form:form>
             	</div>
             	

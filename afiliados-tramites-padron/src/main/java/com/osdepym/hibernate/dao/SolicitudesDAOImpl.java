@@ -12,9 +12,9 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.osdepym.dto.AfiliadoDTO;
 import com.osdepym.exception.CustomException;
 import com.osdepym.exception.ErrorMessages;
-import com.osdepym.form.ImportForm;
 import com.osdepym.form.SolicitudesForm;
 import com.osdepym.hibernate.entity.Afiliado;
 import com.osdepym.hibernate.entity.Estado;
@@ -330,7 +330,7 @@ public class SolicitudesDAOImpl implements SolicitudesDAO {
 	}
 
 	@Override
-	public boolean archivoCargaMasivaCargarRegistro(Integer archivoId, ImportForm form) throws CustomException {
+	public boolean archivoCargaMasivaCargarRegistro(Integer archivoId, AfiliadoDTO afiliado) throws CustomException {
 		String error;
 		String mensaje;
 		try {
@@ -358,24 +358,24 @@ public class SolicitudesDAOImpl implements SolicitudesDAO {
 			storedProcedure.registerStoredProcedureParameter("Error",					String.class,  ParameterMode.OUT);
 			storedProcedure.registerStoredProcedureParameter("Mensaje",					String.class,  ParameterMode.OUT);
 			storedProcedure.setParameter("Archivo_ID", 				archivoId);
-			storedProcedure.setParameter("CUIL",					form.getCuil());
-			storedProcedure.setParameter("Apellido",				form.getApellido());
-			storedProcedure.setParameter("Nombre",					form.getNombre());
-			storedProcedure.setParameter("TipoDocumento",			form.getTipoDocumento());
-			storedProcedure.setParameter("NroDocumento",			form.getNroDocumento());
-			storedProcedure.setParameter("DireccionCalle",			form.getDireccionCalle());
-			storedProcedure.setParameter("DireccionNumero",			form.getDireccionNumero());
-			storedProcedure.setParameter("DireccionPiso",			form.getDireccionPiso());
-			storedProcedure.setParameter("DireccionDepartamento",	form.getDireccionDepartamento());
-			storedProcedure.setParameter("DireccionLocalidad",		form.getDireccionLocalidad());
-			storedProcedure.setParameter("DireccionProvincia",		form.getDireccionProvincia());
-			storedProcedure.setParameter("DireccionCodigoPostal",	form.getDireccionCodigoPostal());
-			storedProcedure.setParameter("DireccionTelefono",		form.getDireccionTelefono());
-			storedProcedure.setParameter("FechaNacimiento",			form.getFechaNacimiento());
-			storedProcedure.setParameter("Sexo",					form.getSexo());
-			storedProcedure.setParameter("EstadoCivil",				form.getEstadoCivil());
-			storedProcedure.setParameter("FechaInicioCobertura",	form.getFechaInicioCobertura());
-			storedProcedure.setParameter("Email",					form.getEmail());
+			storedProcedure.setParameter("CUIL",					afiliado.getCuil());
+			storedProcedure.setParameter("Apellido",				afiliado.getApellido());
+			storedProcedure.setParameter("Nombre",					afiliado.getNombre());
+			storedProcedure.setParameter("TipoDocumento",			afiliado.getTipoDocumento());
+			storedProcedure.setParameter("NroDocumento",			afiliado.getNroDocumento());
+			storedProcedure.setParameter("DireccionCalle",			afiliado.getDireccion());
+			storedProcedure.setParameter("DireccionNumero",			afiliado.getDireccionNumero());
+			storedProcedure.setParameter("DireccionPiso",			afiliado.getDireccionPiso());
+			storedProcedure.setParameter("DireccionDepartamento",	afiliado.getDireccionDepartamento());
+			storedProcedure.setParameter("DireccionLocalidad",		afiliado.getDireccionLocalidad());
+			storedProcedure.setParameter("DireccionProvincia",		afiliado.getDireccionProvincia());
+			storedProcedure.setParameter("DireccionCodigoPostal",	afiliado.getCodigoPostal());
+			storedProcedure.setParameter("DireccionTelefono",		afiliado.getTelefono());
+			storedProcedure.setParameter("FechaNacimiento",			afiliado.getFechaNacimiento());
+			storedProcedure.setParameter("Sexo",					afiliado.getSexo());
+			storedProcedure.setParameter("EstadoCivil",				afiliado.getEstadoCivil());
+			storedProcedure.setParameter("FechaInicioCobertura",	afiliado.getFechaInicio());
+			storedProcedure.setParameter("Email",					afiliado.getEmail());
 			storedProcedure.execute();
 			error   = (String) storedProcedure.getOutputParameterValue("Error");
 			mensaje = (String) storedProcedure.getOutputParameterValue("Mensaje");
