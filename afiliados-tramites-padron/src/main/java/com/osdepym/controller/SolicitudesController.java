@@ -93,14 +93,13 @@ public class SolicitudesController {
 	}
 	
 	@RequestMapping(value = "/solicitudes/confirmar")
-	public @ResponseBody List<AfiliadoTableDTO> confirmar(@RequestBody SolicitudesForm element) {
-		List<AfiliadoTableDTO> afiliados = new ArrayList<AfiliadoTableDTO>();
+	public @ResponseBody List<AfiliadoTableDTO> confirmar(@RequestBody List<AfiliadoTableDTO> afiliados) {
 		try {
-			// Validar si están en pendientes
-			Integer id = 666; 
-			if(validarPendientes(element)) {
+			if(validarPendientes(afiliados)) {
 				service.obtenerSolicitudMultiple();
-				service.confirmarAltaAfiliado(id);
+				for(AfiliadoTableDTO a : afiliados) {
+					service.confirmarAltaAfiliado(a.getRegistroID());
+				}
 			}
 			return afiliados;
 		} catch (Exception e) {
@@ -108,7 +107,11 @@ public class SolicitudesController {
 		return afiliados;
 	}
 	
-	public boolean validarPendientes(SolicitudesForm element) {
+	public boolean validarPendientes(List<AfiliadoTableDTO> afiliados) {
+		for(AfiliadoTableDTO a : afiliados) {
+			if(!"Pendiente".equalsIgnoreCase(a.getEstado()))
+				return false;
+		}
 		return true;
 	}
 	

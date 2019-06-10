@@ -83,9 +83,7 @@ $(document).ready(function () {
 	});
 	
 	$(document).on("click", "#confirmar", function() {
-		if(!confirmar()) {
-			$("#error-confirmar").show();
-		}
+		confirmar();
 	});
 });
 
@@ -121,7 +119,7 @@ function search(){
 					
 					for(var i = 0; i < keys.length; i++){
 					    var value = card[keys[i]];
-					    htmlrow += "<td data-row='" + (value ? value : "") + "'>" + (value ? value : "") + "</td>";
+					    htmlrow += "<td data-field='" + keys[i] + "' data-row='" + (value ? value : "") + "'>" + (value ? value : "") + "</td>";
 					}
 		            
 					htmlrow += '<td></td></tr>';
@@ -199,7 +197,45 @@ function confirmar() {
 		pendings += $(this).parent().parent().parent().children('td[data-row="Pendiente"]').length;
 	}); 
 	
-	return pendings > 0 && selected > 0 && pendings === selected;
+	if(!(pendings > 0 && selected > 0 && pendings === selected)) {
+		$("#error-confirmar").show();
+		return false;
+	}
+	
+	var obj = [];
+	$.each($('#table-preview > tbody > tr .afiliado-check:checked'), function(){
+		index = 0;
+	    if($(this).parent().parent().parent().children('td[data-row="Pendiente"]')) {
+	    	var field;
+	    	var value;
+	        $td = $(this).parent().parent().parent().find('td');
+	        var field = {};
+	        $($td).each(function () {
+	        	var row = $(this).attr('data-field');
+	        	var value = $(this).attr('data-row');
+	        	if(row !== undefined && value !== undefined) {
+	        		field[row] = value;
+	        		
+	        	}
+	        });
+	        obj.push(field);
+	    }		
+	});
+	$.ajax({
+		type: "POST",
+		contentType : 'application/json',
+		url: "solicitudes/confirmar", 
+		data: JSON.stringify(obj),
+		dataType : "json",
+		async: true,
+		timeout : 100000,
+		success : function(data) {
+
+		},
+		error : function(e) {
+			console.log("ERROR: ", e);
+		}
+	});
 }
 
 function validateForm() {
