@@ -3,6 +3,7 @@ package com.osdepym.hibernate.dao;
 import java.util.List;
 
 import com.osdepym.dto.AfiliadoDTO;
+import com.osdepym.dto.AfiliadoTableDTO;
 import com.osdepym.exception.CustomException;
 import com.osdepym.form.SolicitudesForm;
 import com.osdepym.hibernate.entity.Afiliado;
@@ -17,4 +18,5 @@ public interface SolicitudesDAO extends Dao<Afiliado>{
 	public boolean confirmarAltaAfiliado(Integer id) throws CustomException;
 	public boolean archivoCargaMasivaCargarRegistro(Integer archivoId, AfiliadoDTO afiliado) throws CustomException;
 	public Integer archivoCargaMasivaObtenerIdentificar(Integer obraSocial, Integer tipoCarga, Integer tipoAfiliado, String cuit, Integer pauta, String nombreArchivo) throws CustomException;
+	public void anularAfiliado(AfiliadoTableDTO afiliado) throws CustomException;
 }

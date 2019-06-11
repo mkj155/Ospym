@@ -3,6 +3,9 @@ package com.osdepym.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
@@ -56,7 +59,7 @@ public class SolicitudesController {
 	}
 	
 	@RequestMapping(value = "/solicitudes/exportar", method = RequestMethod.POST)
-	public @ResponseBody List<AfiliadoDTO> exportar(@RequestBody SolicitudesForm element) {
+	public @ResponseBody List<AfiliadoDTO> exportar(HttpServletRequest request, HttpServletResponse response, @RequestBody SolicitudesForm element) {
 		List<AfiliadoDTO> afiliados = new ArrayList<AfiliadoDTO>();
 		try {
 			afiliados = service.buscarExportar(element);
@@ -217,14 +220,13 @@ public class SolicitudesController {
 	}
 	
 	@RequestMapping(value = "/solicitudes/anular")
-	public @ResponseBody AfiliadoTableDTO anular(@RequestBody AfiliadoTableDTO afiliado) {
+	public @ResponseBody boolean anular(@RequestBody AfiliadoTableDTO afiliado) {
 		try {
-			System.out.print(true);
-			return afiliado;
+			service.anularAfiliado(afiliado);
 		} catch (Exception e) {
-		
+			return false;
 		}
-		return afiliado;
+		return true;
 	}
 	
 	public boolean validarPendientes(List<AfiliadoTableDTO> afiliados) {
@@ -234,5 +236,4 @@ public class SolicitudesController {
 		}
 		return true;
 	}
-	
 }

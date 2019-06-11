@@ -109,7 +109,7 @@ $(document).ready(function () {
 			$.ajax({
 				type: "POST",
 				contentType : 'application/json',
-				url: "anular",
+				url: "solicitudes/anular",
 				data: JSON.stringify(afiliadoAnular), 
 				dataType : "json",
 				async: true,
@@ -144,7 +144,7 @@ function search(){
 		$.ajax({
 			type: "POST",
 			contentType : 'application/json',
-			url: "buscar",
+			url: "solicitudes/buscar",
 			data: JSON.stringify(documentOptions),
 			dataType : "json",
 			async: true,
@@ -210,7 +210,7 @@ function exportar(){
 		$.ajax({
 			type: "POST",
 			contentType : 'application/json',
-			url: "exportar",
+			url: "solicitudes/exportar",
 			data: JSON.stringify(exportForm),
 			dataType : "json",
 			async: true,
@@ -274,7 +274,7 @@ function confirmar() {
 	$.ajax({
 		type: "POST",
 		contentType : 'application/json',
-		url: "confirmar", 
+		url: "solicitudes/confirmar", 
 		data: JSON.stringify(obj),
 		dataType : "json",
 		async: true,

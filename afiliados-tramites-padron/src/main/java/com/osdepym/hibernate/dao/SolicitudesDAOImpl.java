@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.osdepym.dto.AfiliadoDTO;
+import com.osdepym.dto.AfiliadoTableDTO;
 import com.osdepym.exception.CustomException;
 import com.osdepym.exception.ErrorMessages;
 import com.osdepym.form.SolicitudesForm;
@@ -385,4 +386,22 @@ public class SolicitudesDAOImpl implements SolicitudesDAO {
 		}
 	}
 
+	@Override
+	public void anularAfiliado(AfiliadoTableDTO afiliado) throws CustomException {
+		String error;
+		String mensaje;
+		try {
+			Session session = this.sessionFactory.getCurrentSession();
+			StoredProcedureQuery storedProcedure = session.createStoredProcedureQuery("a.definir");
+			/*storedProcedure.registerStoredProcedureParameter("Registro_ID", Integer.class, ParameterMode.IN);
+			storedProcedure.registerStoredProcedureParameter("Error",       String.class,  ParameterMode.OUT);
+			storedProcedure.registerStoredProcedureParameter("Mensaje",     String.class,  ParameterMode.OUT);
+			storedProcedure.setParameter("Registro_ID", afiliado.getRegistroID());*/
+			storedProcedure.execute();
+			error   = (String)storedProcedure.getOutputParameterValue("Error");
+			mensaje = (String)storedProcedure.getOutputParameterValue("Mensaje");
+		} catch(Exception e){
+			throw new CustomException(e.getMessage(), ErrorMessages.DATABASE_GET_ERROR);
+		}
+	}
 }
