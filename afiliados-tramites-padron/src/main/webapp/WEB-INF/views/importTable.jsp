@@ -3,14 +3,8 @@
 
 <div id="loading"><div role="status" class="spinner-border spinner-border"><span class="sr-only">Loading...</span></div></div>
 <div id="content-table">
-	<div class="search-table-outter wrapper">
-		<div class="checkbox-all">
-			<label class="control control-checkbox">
-		        <spring:message code="label.select.all" />
-		            <input type="checkbox" id="check-all-afiliados" />
-		        <div class="control-indicator"></div>
-		    </label>
-		</div>
+	<div style="height:600px" class="search-table-outter wrapper">
+	
 	
 		<table id="table-preview" class="table table-striped table-hover table-sm search-table inner">
 			<thead>
@@ -107,10 +101,10 @@
 	<div class="row">
 		<div class="col-md-12 align-middle text-left mt-2">
         	<span class="pr-1">
-				<button type="button" class="btn btn-primary btn-lg btn-search btn-form" id="ingreso-masivo"><spring:message code="button.ingreso.masivo" /></button>
+				<button onclick="window.location.href = '../solicitudes'" type="button" class="btn btn-primary btn-lg btn-search btn-form" id="ingreso-masivo">CANCELAR</button>
 			</span>
             <span class="pl-1">
-     			<button type="button" class="btn btn-primary btn-lg btn-search btn-form" id="confirmar"><spring:message code="button.confirmar" /></button>
+     			<input type="submit" class="btn btn-primary btn-lg btn-search btn-form disabled" value="CARGAR" id="confirmar" disabled/>
 			</span>
      	</div>
     </div>

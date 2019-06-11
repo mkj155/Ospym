@@ -129,7 +129,7 @@
 	<div class="row">
 		<div class="col-md-12 align-middle text-left mt-2">
         	<span class="pr-1">
-				<button type="button" class="btn btn-primary btn-lg btn-search btn-form" id="ingreso-masivo"><spring:message code="button.ingreso.masivo" /></button>
+				<button type="button" class="btn btn-primary btn-lg btn-search btn-form" id="ingreso-masivo" onclick="window.location.href = 'solicitudes/cargaMasiva'"><spring:message code="button.ingreso.masivo" /></button>
 			</span>
             <span class="pl-1">
      			<button type="button" class="btn btn-primary btn-lg btn-search btn-form" id="confirmar"><spring:message code="button.confirmar" /></button>

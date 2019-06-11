@@ -68,11 +68,17 @@ function uploadFile(){
 		    type: 'POST',
 			success : function(data) {
 				if(data != null && data.length > 0){
+					var hasError = false;
 					//$("#pautaId option[value!='']").remove();
 					$("#tableBody").html('');
 					for(var i = 0 ; i < data.length ; i++){
+						var row = '';
+						if(data[i].errorValidacion)
+							row = '<tr style="background-color:FF9494;color:white;">'
+						else
+							row = '<tr>'	
 						$("#tableBody").html($("#tableBody").html() +
-						"<tr>"+ 
+						row + 
 						"<td>" + data[i].cuil + "</td>"+
 						"<td>" + data[i].apellido + "</td>"+
 						"<td>" + data[i].nombre + "</td>"+
@@ -92,7 +98,18 @@ function uploadFile(){
 						"<td>" + data[i].fechaInicioCobertura + "</td>"+
 						"<td>" + data[i].email + "</td>"+
 						"<td>" + data[i].errorValidacion + "</td>"+
-						"</tr>");
+						"</tr>"
+						);
+						if(data[i].errorValidacion){
+							hasError = true;
+						}
+					}
+					if(!hasError){
+						$("#confirmar").prop("disabled", false);
+						$("#confirmar").removeClass( "disabled" );
+					}else{
+						$("#confirmar").prop("disabled", true);
+						$("#confirmar").addClass( "disabled" );
 					}
 				}else{
 					

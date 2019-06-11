@@ -321,7 +321,7 @@ public class SolicitudesDAOImpl implements SolicitudesDAO {
 			storedProcedure.setParameter("Pauta_ID", 		pauta);
 			storedProcedure.setParameter("ArchivoNombre", 	nombreArchivo);
 			storedProcedure.execute();
-			archivoId = (Long)storedProcedure.getOutputParameterValue("Error");
+			archivoId = (Long)storedProcedure.getOutputParameterValue("Archivo_id");
 			error     = (String) storedProcedure.getOutputParameterValue("Error");
 			mensaje   = (String) storedProcedure.getOutputParameterValue("Mensaje");
 			return archivoId;
@@ -337,7 +337,7 @@ public class SolicitudesDAOImpl implements SolicitudesDAO {
 		try {
 			Session session = this.sessionFactory.getCurrentSession();
 			StoredProcedureQuery storedProcedure = session.createStoredProcedureQuery("ga.spo_ArchivoCargaMasivaCargarRegistro");
-			storedProcedure.registerStoredProcedureParameter("Archivo_ID",				Integer.class, ParameterMode.IN);
+			storedProcedure.registerStoredProcedureParameter("Archivo_ID",				Long.class, ParameterMode.IN);
 			storedProcedure.registerStoredProcedureParameter("CUIL",					String.class,  ParameterMode.IN);
 			storedProcedure.registerStoredProcedureParameter("Apellido",				String.class,  ParameterMode.IN);
 			storedProcedure.registerStoredProcedureParameter("Nombre",					String.class,  ParameterMode.IN);
