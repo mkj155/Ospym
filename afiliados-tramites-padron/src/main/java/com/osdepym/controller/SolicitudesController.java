@@ -169,7 +169,7 @@ public class SolicitudesController {
 			if (result.hasErrors()) {
 				List<AfiliadoImportDTO> afiliados = getAfiliadosByFile(uploadFile);
 				importForm.setAfiliados(afiliados);
-				Long archivoId = service.archivoCargaMasivaObtenerIdentificar(importForm.getObraSocial().getObraSocialID(), importForm.getTipoCarga().getTipoCargaId(), importForm.getTipoAfiliado().getTipoAfiliadoId(), importForm.getCuit().toString(), importForm.getPauta().getPautaId(), uploadFile.getOriginalFilename());
+				Long archivoId = service.archivoCargaMasivaObtenerIdentificar(importForm.getObraSocialId(), importForm.getTipoCargaId(), importForm.getTipoAfiliadoId(), importForm.getCuit().toString(), importForm.getPautaId(), uploadFile.getOriginalFilename());
 				boolean isSuccess = service.archivoCargaMasivaCargarRegistro(archivoId, importForm);
 				System.out.println("is success:" + isSuccess);
 			} else {
