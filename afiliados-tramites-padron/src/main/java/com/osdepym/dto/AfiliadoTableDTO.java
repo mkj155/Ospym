@@ -26,6 +26,7 @@ public class AfiliadoTableDTO {
 	Timestamp fechaCarga;
 	Integer codigoError;
 	String descripcionError;
+	boolean anular;
 	   
 	public AfiliadoTableDTO() {}
 
@@ -211,5 +212,13 @@ public class AfiliadoTableDTO {
 
 	public void setDescripcionError(String descripcionError) {
 		this.descripcionError = descripcionError;
+	}
+	
+	public boolean isAnular() {
+		return anular;
+	}
+
+	public void setAnular(boolean anular) {
+		this.anular = anular;
 	}
 }

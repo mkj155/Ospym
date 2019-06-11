@@ -300,6 +300,25 @@ public class SolicitudesServiceImpl implements SolicitudesService{
 			throw new CustomException(e.getMessage(), ErrorMessages.LOAD_CONTACT_ERROR);
 		}
 	}
+	
+	public void anularAfiliado(AfiliadoTableDTO afiliado) throws CustomException {
+		Session session = null;
+		Transaction tx = null;
+		try {
+			session = this.sessionFactory.getCurrentSession();
+			tx = session.beginTransaction();
+			solicitudesDAO.anularAfiliado(afiliado);
+			tx.commit();
+			session.close();
+		} catch (CustomException e) {
+			SessionUtil.rollbackTransaction(session, tx);
+			throw e;
+		} catch (Exception e) {
+			SessionUtil.rollbackTransaction(session, tx);
+			e.printStackTrace();
+			throw new CustomException(e.getMessage(), ErrorMessages.LOAD_CONTACT_ERROR);
+		}
+	}
 
 	@Override
 	public Integer obtenerSolicitudMultiple() throws CustomException {

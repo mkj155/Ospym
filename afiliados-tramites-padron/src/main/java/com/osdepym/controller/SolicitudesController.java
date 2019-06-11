@@ -3,6 +3,9 @@ package com.osdepym.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
@@ -62,7 +65,7 @@ public class SolicitudesController {
 	}
 	
 	@RequestMapping(value = "/solicitudes/exportar", method = RequestMethod.POST)
-	public @ResponseBody List<AfiliadoDTO> exportar(@RequestBody SolicitudesForm element) {
+	public @ResponseBody List<AfiliadoDTO> exportar(HttpServletRequest request, HttpServletResponse response, @RequestBody SolicitudesForm element) {
 		List<AfiliadoDTO> afiliados = new ArrayList<AfiliadoDTO>();
 		try {
 			afiliados = service.buscarExportar(element);
@@ -136,14 +139,14 @@ public class SolicitudesController {
 	}
 
 	@RequestMapping(value = "/solicitudes/confirmar")
-	public @ResponseBody List<AfiliadoTableDTO> confirmar(@RequestBody SolicitudesForm element) {
-		List<AfiliadoTableDTO> afiliados = new ArrayList<AfiliadoTableDTO>();
+	public @ResponseBody List<AfiliadoTableDTO> confirmar(@RequestBody List<AfiliadoTableDTO> afiliados) {
 		try {
-			// Validar si están en pendientes
-			Integer id = 666; 
-			if(validarPendientes(element)) {
+			if(validarPendientes(afiliados)) {
 				service.obtenerSolicitudMultiple();
-				service.confirmarAltaAfiliado(id);
+				for(AfiliadoTableDTO a : afiliados) {
+					boolean altaAfiliado = service.confirmarAltaAfiliado(a.getRegistroID());
+					a.setAnular(altaAfiliado);
+				}
 			}
 			return afiliados;
 		} catch (Exception e) {
@@ -151,7 +154,11 @@ public class SolicitudesController {
 		return afiliados;
 	}
 	
-	public boolean validarPendientes(SolicitudesForm element) {
+	public boolean validarPendientes(List<AfiliadoTableDTO> afiliados) {
+		for(AfiliadoTableDTO a : afiliados) {
+			if(!"Pendiente".equalsIgnoreCase(a.getEstado()))
+				return false;
+		}
 		return true;
 	}
 	
@@ -258,6 +265,16 @@ public class SolicitudesController {
 		    wb.close();
 		    return afiliados;
 		
+	}
+	
+	@RequestMapping(value = "/solicitudes/anular")
+	public @ResponseBody boolean anular(@RequestBody AfiliadoTableDTO afiliado) {
+		try {
+			service.anularAfiliado(afiliado);
+		} catch (Exception e) {
+			return false;
+		}
+		return true;
 	}
 	
 }

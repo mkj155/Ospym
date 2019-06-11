@@ -25,4 +25,5 @@ public interface SolicitudesService {
 	public boolean confirmarAltaAfiliado(Integer id) throws CustomException;
 	public boolean archivoCargaMasivaCargarRegistro(Long archivoId, ImportForm form) throws CustomException;
 	public Long archivoCargaMasivaObtenerIdentificar(Long obraSocial, Long tipoCarga, Long tipoAfiliado, String cuit, Long pauta, String nombreArchivo) throws CustomException;
+	public void anularAfiliado(AfiliadoTableDTO afiliado) throws CustomException;
 }

@@ -42,7 +42,7 @@ public class AfiliadoDTO {
 	Integer estadoCivilID;
 	Integer provinciaID;
 	Integer localidadID;
-	Boolean anular;
+	boolean anular;
 	   
 	public AfiliadoDTO() {}
 
@@ -358,11 +358,11 @@ public class AfiliadoDTO {
 		this.localidadID = localidadID;
 	}
 
-	public Boolean getAnular() {
+	public boolean getAnular() {
 		return anular;
 	}
 
-	public void setAnular(Boolean anular) {
+	public void setAnular(boolean anular) {
 		this.anular = anular;
 	}
 }
