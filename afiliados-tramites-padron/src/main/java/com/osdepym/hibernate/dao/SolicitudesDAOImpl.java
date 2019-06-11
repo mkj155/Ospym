@@ -12,7 +12,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.osdepym.dto.AfiliadoDTO;
+import com.osdepym.dto.AfiliadoImportDTO;
 import com.osdepym.exception.CustomException;
 import com.osdepym.exception.ErrorMessages;
 import com.osdepym.form.SolicitudesForm;
@@ -297,20 +297,20 @@ public class SolicitudesDAOImpl implements SolicitudesDAO {
 	}
 	
 	@Override
-	public Integer archivoCargaMasivaObtenerIdentificar(Integer obraSocial, Integer tipoCarga, Integer tipoAfiliado, String cuit, Integer pauta, String nombreArchivo) throws CustomException {
-		Integer archivoId;
+	public Long archivoCargaMasivaObtenerIdentificar(Long obraSocial, Long tipoCarga, Long tipoAfiliado, String cuit, Long pauta, String nombreArchivo) throws CustomException {
+		Long archivoId;
 		String error;
 		String mensaje;
 		try {
 			Session session = this.sessionFactory.getCurrentSession();
 			StoredProcedureQuery storedProcedure = session.createStoredProcedureQuery("ga.spo_ArchivoCargaMasivaObtenerIdentificar");
-			storedProcedure.registerStoredProcedureParameter("ObraSocial_ID", 	Integer.class, ParameterMode.IN);
-			storedProcedure.registerStoredProcedureParameter("TipoCarga_ID", 	Integer.class, ParameterMode.IN);
-			storedProcedure.registerStoredProcedureParameter("TipoAfiliado_ID", Integer.class, ParameterMode.IN);
+			storedProcedure.registerStoredProcedureParameter("ObraSocial_ID", 	Long.class, ParameterMode.IN);
+			storedProcedure.registerStoredProcedureParameter("TipoCarga_ID", 	Long.class, ParameterMode.IN);
+			storedProcedure.registerStoredProcedureParameter("TipoAfiliado_ID", Long.class, ParameterMode.IN);
 			storedProcedure.registerStoredProcedureParameter("CUIT", 			String.class,  ParameterMode.IN);
-			storedProcedure.registerStoredProcedureParameter("Pauta_ID", 		Integer.class, ParameterMode.IN);
+			storedProcedure.registerStoredProcedureParameter("Pauta_ID", 		Long.class, ParameterMode.IN);
 			storedProcedure.registerStoredProcedureParameter("ArchivoNombre", 	String.class,  ParameterMode.IN);
-			storedProcedure.registerStoredProcedureParameter("Archivo_id",		Integer.class, ParameterMode.OUT);
+			storedProcedure.registerStoredProcedureParameter("Archivo_id",		Long.class, ParameterMode.OUT);
 			storedProcedure.registerStoredProcedureParameter("Error",			String.class,  ParameterMode.OUT);
 			storedProcedure.registerStoredProcedureParameter("Mensaje",			String.class,  ParameterMode.OUT);
 			storedProcedure.setParameter("ObraSocial_ID", 	obraSocial);
@@ -320,7 +320,7 @@ public class SolicitudesDAOImpl implements SolicitudesDAO {
 			storedProcedure.setParameter("Pauta_ID", 		pauta);
 			storedProcedure.setParameter("ArchivoNombre", 	nombreArchivo);
 			storedProcedure.execute();
-			archivoId = (Integer)storedProcedure.getOutputParameterValue("Error");
+			archivoId = (Long)storedProcedure.getOutputParameterValue("Error");
 			error     = (String) storedProcedure.getOutputParameterValue("Error");
 			mensaje   = (String) storedProcedure.getOutputParameterValue("Mensaje");
 			return archivoId;
@@ -330,7 +330,7 @@ public class SolicitudesDAOImpl implements SolicitudesDAO {
 	}
 
 	@Override
-	public boolean archivoCargaMasivaCargarRegistro(Integer archivoId, AfiliadoDTO afiliado) throws CustomException {
+	public boolean archivoCargaMasivaCargarRegistro(Long archivoId, AfiliadoImportDTO afiliado) throws CustomException {
 		String error;
 		String mensaje;
 		try {
@@ -364,17 +364,17 @@ public class SolicitudesDAOImpl implements SolicitudesDAO {
 			storedProcedure.setParameter("TipoDocumento",			afiliado.getTipoDocumento());
 			storedProcedure.setParameter("NroDocumento",			afiliado.getNroDocumento());
 			storedProcedure.setParameter("DireccionCalle",			afiliado.getDireccion());
-			storedProcedure.setParameter("DireccionNumero",			afiliado.getDireccionNumero());
-			storedProcedure.setParameter("DireccionPiso",			afiliado.getDireccionPiso());
-			storedProcedure.setParameter("DireccionDepartamento",	afiliado.getDireccionDepartamento());
-			storedProcedure.setParameter("DireccionLocalidad",		afiliado.getDireccionLocalidad());
-			storedProcedure.setParameter("DireccionProvincia",		afiliado.getDireccionProvincia());
+			storedProcedure.setParameter("DireccionNumero",			afiliado.getNumero());
+			storedProcedure.setParameter("DireccionPiso",			afiliado.getPiso());
+			storedProcedure.setParameter("DireccionDepartamento",	afiliado.getDepartamento());
+			storedProcedure.setParameter("DireccionLocalidad",		afiliado.getLocalidad());
+			storedProcedure.setParameter("DireccionProvincia",		afiliado.getProvincia());
 			storedProcedure.setParameter("DireccionCodigoPostal",	afiliado.getCodigoPostal());
 			storedProcedure.setParameter("DireccionTelefono",		afiliado.getTelefono());
 			storedProcedure.setParameter("FechaNacimiento",			afiliado.getFechaNacimiento());
 			storedProcedure.setParameter("Sexo",					afiliado.getSexo());
 			storedProcedure.setParameter("EstadoCivil",				afiliado.getEstadoCivil());
-			storedProcedure.setParameter("FechaInicioCobertura",	afiliado.getFechaInicio());
+			storedProcedure.setParameter("FechaInicioCobertura",	afiliado.getFechaInicioCobertura());
 			storedProcedure.setParameter("Email",					afiliado.getEmail());
 			storedProcedure.execute();
 			error   = (String) storedProcedure.getOutputParameterValue("Error");

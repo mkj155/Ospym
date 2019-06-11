@@ -15,7 +15,6 @@
 		<table id="table-preview" class="table table-striped table-hover table-sm search-table inner">
 			<thead>
 		    	<tr>
-		      		<th style="padding-left: 40px"></th>
 					<th><spring:message code="label.importtable.1" /></th>
 					<th><spring:message code="label.importtable.2" /></th>
 					<th><spring:message code="label.importtable.3" /></th>
@@ -38,7 +37,7 @@
 					<th></th>
 				</tr>
 			</thead>
-			<tbody>
+			<tbody id="tableBody">
 				<tr>
 		      		<td>&nbsp;</td>
 					<td></td>

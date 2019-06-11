@@ -23,6 +23,6 @@ public interface SolicitudesService {
 	public List<PautaDTO> getPautasByCuit(String cuit) throws CustomException;
 	public Integer obtenerSolicitudMultiple() throws CustomException;
 	public boolean confirmarAltaAfiliado(Integer id) throws CustomException;
-	public boolean archivoCargaMasivaCargarRegistro(Integer archivoId, ImportForm form) throws CustomException;
-	public Integer archivoCargaMasivaObtenerIdentificar(Integer obraSocial, Integer tipoCarga, Integer tipoAfiliado, String cuit, Integer pauta, String nombreArchivo) throws CustomException;
+	public boolean archivoCargaMasivaCargarRegistro(Long archivoId, ImportForm form) throws CustomException;
+	public Long archivoCargaMasivaObtenerIdentificar(Long obraSocial, Long tipoCarga, Long tipoAfiliado, String cuit, Long pauta, String nombreArchivo) throws CustomException;
 }

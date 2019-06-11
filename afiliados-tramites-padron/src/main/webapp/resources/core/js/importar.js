@@ -68,7 +68,32 @@ function uploadFile(){
 		    type: 'POST',
 			success : function(data) {
 				if(data != null && data.length > 0){
-					
+					//$("#pautaId option[value!='']").remove();
+					$("#tableBody").html('');
+					for(var i = 0 ; i < data.length ; i++){
+						$("#tableBody").html($("#tableBody").html() +
+						"<tr>"+ 
+						"<td>" + data[i].cuil + "</td>"+
+						"<td>" + data[i].apellido + "</td>"+
+						"<td>" + data[i].nombre + "</td>"+
+						"<td>" + data[i].tipoDocumento + "</td>"+
+						"<td>" + data[i].nroDocumento + "</td>"+
+						"<td>" + data[i].direccion + "</td>"+
+						"<td>" + data[i].numero + "</td>"+
+						"<td>" + data[i].piso + "</td>"+
+						"<td>" + data[i].departamento + "</td>"+
+						"<td>" + data[i].localidad + "</td>"+
+						"<td>" + data[i].provincia + "</td>"+
+						"<td>" + data[i].codigoPostal + "</td>"+
+						"<td>" + data[i].telefono + "</td>"+
+						"<td>" + data[i].fechaNacimiento + "</td>"+
+						"<td>" + data[i].sexo + "</td>"+
+						"<td>" + data[i].estadoCivil + "</td>"+
+						"<td>" + data[i].fechaInicioCobertura + "</td>"+
+						"<td>" + data[i].email + "</td>"+
+						"<td>" + data[i].errorValidacion + "</td>"+
+						"</tr>");
+					}
 				}else{
 					
 				}

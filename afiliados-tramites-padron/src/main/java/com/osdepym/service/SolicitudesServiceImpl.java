@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.osdepym.dto.AfiliadoDTO;
+import com.osdepym.dto.AfiliadoImportDTO;
 import com.osdepym.dto.AfiliadoTableDTO;
 import com.osdepym.dto.EstadoDTO;
 import com.osdepym.dto.ObraSocialDTO;
@@ -323,13 +324,13 @@ public class SolicitudesServiceImpl implements SolicitudesService{
 	}
 
 	@Override
-	public boolean archivoCargaMasivaCargarRegistro(Integer archivoId, ImportForm form) throws CustomException {
+	public boolean archivoCargaMasivaCargarRegistro(Long archivoId, ImportForm form) throws CustomException {
 		Session session = null;
 		Transaction tx = null;
 		try {
 			session = this.sessionFactory.getCurrentSession();
 			tx = session.beginTransaction();
-			for(AfiliadoDTO afiliado : form.getAfiliados()) {
+			for(AfiliadoImportDTO afiliado : form.getAfiliados()) {
 				solicitudesDAO.archivoCargaMasivaCargarRegistro(archivoId, afiliado);
 			}
 			
@@ -347,10 +348,10 @@ public class SolicitudesServiceImpl implements SolicitudesService{
 	}
 
 	@Override
-	public Integer archivoCargaMasivaObtenerIdentificar(Integer obraSocial, Integer tipoCarga, Integer tipoAfiliado, String cuit, Integer pauta, String nombreArchivo) throws CustomException {
+	public Long archivoCargaMasivaObtenerIdentificar(Long obraSocial, Long tipoCarga, Long tipoAfiliado, String cuit, Long pauta, String nombreArchivo) throws CustomException {
 		Session session = null;
 		Transaction tx = null;
-		Integer value;
+		Long value;
 		try {
 			session = this.sessionFactory.getCurrentSession();
 			tx = session.beginTransaction();

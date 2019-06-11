@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.osdepym.dto.AfiliadoDTO;
+import com.osdepym.dto.AfiliadoImportDTO;
 import com.osdepym.dto.ObraSocialDTO;
 import com.osdepym.dto.PautaDTO;
 import com.osdepym.dto.TipoAfiliadoDTO;
@@ -16,7 +17,7 @@ public class ImportForm {
 	private TipoAfiliadoDTO tipoAfiliado;
 	private String cuit;
 	private PautaDTO pauta;
-	private List<AfiliadoDTO> afiliados;
+	private List<AfiliadoImportDTO> afiliados;
 	private MultipartFile uploadFile;
 	
 
@@ -63,12 +64,12 @@ public class ImportForm {
 	}
 
 
-	public List<AfiliadoDTO> getAfiliados() {
+	public List<AfiliadoImportDTO> getAfiliados() {
 		return afiliados;
 	}
 
 
-	public void setAfiliados(List<AfiliadoDTO> afiliados) {
+	public void setAfiliados(List<AfiliadoImportDTO> afiliados) {
 		this.afiliados = afiliados;
 	}
 

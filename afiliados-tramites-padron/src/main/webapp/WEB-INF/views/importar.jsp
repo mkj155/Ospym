@@ -10,7 +10,7 @@
         <section id="main" class="bg-gray">
             <div class="container page page-cartilla">
                 <div>
-                	<spring:url value="/solicitudes/procesarArchivo" var="enviarUrl" />
+                	<spring:url value="/solicitudes/importar" var="enviarUrl" />
                 	<spring:url value="/buscar/exportar" var="exportar" />
                 	<form:form class="form-cartilla custom-form" method="post" id="importForm" modelAttribute="importForm" action="${enviarUrl}" enctype="multipart/form-data">
                 	<spring:message code="select.label.empty" var="emptyValue" />
