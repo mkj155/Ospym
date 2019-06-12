@@ -96,7 +96,7 @@
                             </div>
                         </div>        
                     </div>
-        
+        		<button onclick="descargarPlantilla()" type="button" class="btn btn-primary btn-lg btn-search" id="ingreso-masivo">DESCARGAR PLANTILLA</button>
             	<div id="table">
             		<jsp:include page="importTable.jsp" />	
             	</div>
