@@ -622,3 +622,22 @@ div.datepicker {
 #nav a.btn-primary {
 	color: #fff;	
 }
+
+#loading {
+    margin: auto;
+    width: 2rem;
+}
+
+.filenameupload {
+	line-height: 2em;
+}
+
+input[type=file] {
+    display: none;
+}
+
+input.btn-primary:disabled {
+    color: #fff;
+    background-color: gray;
+    border-color: gray;
+}

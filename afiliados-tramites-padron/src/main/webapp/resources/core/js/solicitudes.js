@@ -16,14 +16,17 @@ var afiliadoAnular = {};
 	  };
 	}(jQuery));
 
-$(document).ready(function () {
-	$(".number-input").inputFilter(function(value) {
-		return /^\d*$/.test(value); 	
-	});
-	
-	$(document).on("keyup", function () {
+document.onclick = function(e) {
+	if(e.target.type !=='button') {
 		$("#error-date").hide();
 		$("#error-confirmar").hide();
+	}
+}
+
+$(document).ready(function () {
+	$(".checkbox-all").hide();
+	$(".number-input").inputFilter(function(value) {
+		return /^\d*$/.test(value); 	
 	});
 	$("#error-confirmar").hide();
 	$("#error-date").hide();
@@ -75,19 +78,22 @@ $(document).ready(function () {
         }
     });
 	
-	$( document ).on("click", "#search", function() {
+	$( document ).on("click", "#search", function(e) {
 		search();
+		e.stopPropagation();
 	});
 	
-	$( document ).on("click", "#exportar", function() {
+	$( document ).on("click", "#exportar", function(e) {
 		exportar();
+		e.stopPropagation();
 	});
 	
-	$(document).on("click", "#confirmar", function() {
+	$(document).on("click", "#confirmar", function(e) {
 		confirmar();
+		e.stopPropagation();
 	});
 	
-	$(document).on("click", ".anular-link", function() {
+	$(document).on("click", ".anular-link", function(e) {
 		afiliadoAnular = {};
 		$.each($(this).parent().parent().find('td'), function() {
 			var field = $(this).attr('data-field');
@@ -99,7 +105,7 @@ $(document).ready(function () {
         			afiliadoAnular[field] = value;
         	}
         });
-		
+		e.stopPropagation();
 		$('#anular-modal').modal('show');
 	});
 	
@@ -136,7 +142,7 @@ function search(){
 			$("#error-date").show();
 			return false;
 		}
-		$("#check-all-afiliados")[0].checked = false;
+		
 		$('#content-table').hide();
 		$("#loading").show();
 		var documentOptions = convertFormToJSON($("#solicitudes-form"));
@@ -150,6 +156,8 @@ function search(){
 			async: true,
 			timeout : 100000,
 			success : function(data) {
+				$(".checkbox-all").show();
+				$("#check-all-afiliados")[0].checked = false;
 				$("#loading").hide();
 				$('#content-table').show();
 				$('#table-preview tbody').html("");
@@ -223,7 +231,8 @@ function exportar(){
 			}
 		});
 	} else {
-		
+		$("#error-confirmar").html($("#error-exportar").val());
+		$("#error-confirmar").show();
 	}
 }
 
@@ -245,7 +254,12 @@ function confirmar() {
 		pendings += $(this).parent().parent().parent().children('td[data-value="Pendiente"]').length;
 	}); 
 	
-	if(!(pendings > 0 && selected > 0 && pendings === selected)) {
+	if(pendings > 0 && selected > 0 && pendings !== selected) {
+		$("#error-confirmar").html($("#error-confirmar-input").val());
+		$("#error-confirmar").show();
+		return false;
+	} else if(selected === 0) {
+		$("#error-confirmar").html($("#error-no-seleccionado").val());
 		$("#error-confirmar").show();
 		return false;
 	}

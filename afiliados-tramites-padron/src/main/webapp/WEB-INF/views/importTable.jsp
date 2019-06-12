@@ -3,7 +3,7 @@
 
 <div id="loading"><div role="status" class="spinner-border spinner-border"><span class="sr-only">Loading...</span></div></div>
 <div id="content-table">
-	<div style="height:600px" class="search-table-outter wrapper">
+	<div class="search-table-outter wrapper">
 	
 	
 		<table id="table-preview" class="table table-striped table-hover table-sm search-table inner">
@@ -35,47 +35,6 @@
 				<tr>
 		      		<td>&nbsp;</td>
 					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-				</tr>
-				<tr>
-		      		<td>&nbsp;</td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-				</tr>
-				<tr>
-		      		<td>&nbsp;</td>
 					<td></td>
 					<td></td>
 					<td></td>

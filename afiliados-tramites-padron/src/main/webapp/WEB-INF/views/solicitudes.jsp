@@ -6,14 +6,21 @@
 
 <html>
 	<jsp:include page="./header.jsp" />
-
+	
     <body>
         <section id="main" class="bg-gray">
             <div class="container page page-cartilla">
             <form:form class="form-cartilla custom-form" method="post" id="solicitudes-form" modelAttribute="solicitudesForm" action="${enviarUrl}">
-                <div>
+                <div class="pb-4">
                 	<spring:url value="/buscar/buscar" var="enviarUrl" />
                 	<spring:url value="/buscar/exportar" var="exportar" />
+                	<!-- message error -->
+                	<c:set var="errorNoSeleccionado"><spring:message code="error.confirmar.no.seleccionado" /></c:set>
+                	<input id="error-no-seleccionado" type="hidden" value="${errorNoSeleccionado}"/>
+                	<c:set var="errorConfirmar"><spring:message code="error.confirmar.pendientes" /></c:set>
+                	<input id="error-confirmar-input" type="hidden" value="${errorConfirmar}"/>
+                	<c:set var="errorExportar"><spring:message code="error.exportar.no.data" /></c:set>
+                	<input id="error-exportar" type="hidden" value="${errorExportar}"/>
                 	
                 	<spring:message code="select.label.empty" var="emptyValue" />
                     <div class="row">

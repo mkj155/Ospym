@@ -50,17 +50,19 @@
                             <!--  ARCHIVO-->
                             <div class="form-group">
                                 <div class="col-md-12">
-	                        <div id="file-container" class="form-group ${status.error ? 'has-error' : ''}">
-								<input type="file" id="uploadFile" class="btn-file" name="uploadFile" accept=".xls,.xlsx"/>
-	                        </div>
-	                    </div>
+			                        <div id="file-container" class="form-group ${status.error ? 'has-error' : ''}">
+										<input type="file" id="uploadFile" class="btn-file" name="uploadFile" accept=".xls,.xlsx"/>
+						      			<button class="btn btn-primary btn-lg" id="buttonUploadFile">
+						      			  	<spring:message code="label.uploadfile" />
+								  		</button>
+										
+			                        </div>
+		                    	</div>
                             </div>
                         </div>
                        
                     </div>
-                    <div class="row">
-                        
-                       
+                    <div class="row pb-4">
                         <div class="col-md-4">
                             <!-- TIPO AFILIADO -->
                             <div class="form-group" id="tipoAfiliadoDiv" style="display:none">

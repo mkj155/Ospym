@@ -19,6 +19,11 @@ $(document).ready(function() {
 		uploadFile();
 	});
 	
+	$('#buttonUploadFile').on('click', function() {
+		  var fileSelector = document.getElementById('uploadFile');
+		  fileSelector.click();
+	     return false;	
+	});
 });
 
 function getPauta(){
@@ -50,6 +55,7 @@ function getPauta(){
 		});
 	} 
 }
+
 
 
 function uploadFile(){
