@@ -37,7 +37,7 @@ import com.osdepym.util.EntityToDTOUtil;
 import com.osdepym.util.SessionUtil;
 
 @Service("SolicitudesService")
-public class SolicitudesServiceImpl implements SolicitudesService{
+public class SolicitudesServiceImpl implements SolicitudesService {
 
 	@Autowired
 	private SessionFactory sessionFactory;
@@ -49,9 +49,9 @@ public class SolicitudesServiceImpl implements SolicitudesService{
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
-	
+
 	@Autowired
-	private SolicitudesDAO solicitudesDAO ;
+	private SolicitudesDAO solicitudesDAO;
 
 	public SolicitudesDAO getSolicitudesDAO() {
 		return solicitudesDAO;
@@ -60,9 +60,9 @@ public class SolicitudesServiceImpl implements SolicitudesService{
 	public void setSolicitudesDAO(SolicitudesDAO solicitudesDAO) {
 		this.solicitudesDAO = solicitudesDAO;
 	}
-	
+
 	@Autowired
-	private TipoCargaDAO tipoCargaDAO ;
+	private TipoCargaDAO tipoCargaDAO;
 
 	public TipoCargaDAO getTipoCargaDAO() {
 		return tipoCargaDAO;
@@ -71,8 +71,9 @@ public class SolicitudesServiceImpl implements SolicitudesService{
 	public void setTipoCargaDAO(TipoCargaDAO tipoCargaDAO) {
 		this.tipoCargaDAO = tipoCargaDAO;
 	}
+
 	@Autowired
-	private TipoAfiliadoDAO tipoAfiliadoDAO ;
+	private TipoAfiliadoDAO tipoAfiliadoDAO;
 
 	public TipoAfiliadoDAO getTipoAfiliadoDAO() {
 		return tipoAfiliadoDAO;
@@ -81,8 +82,9 @@ public class SolicitudesServiceImpl implements SolicitudesService{
 	public void setTipoAfiliadoDAO(TipoAfiliadoDAO tipoAfiliadoDAO) {
 		this.tipoAfiliadoDAO = tipoAfiliadoDAO;
 	}
+
 	@Autowired
-	private PautaDAO pautaDAO ;
+	private PautaDAO pautaDAO;
 
 	public PautaDAO getPautaDAO() {
 		return pautaDAO;
@@ -91,7 +93,7 @@ public class SolicitudesServiceImpl implements SolicitudesService{
 	public void setPautaDAO(PautaDAO pautaDAO) {
 		this.pautaDAO = pautaDAO;
 	}
-	
+
 	@Override
 	public List<AfiliadoTableDTO> buscar(SolicitudesForm form) throws CustomException {
 		List<AfiliadoTableDTO> afiliadosDTO = new ArrayList<AfiliadoTableDTO>();
@@ -118,7 +120,7 @@ public class SolicitudesServiceImpl implements SolicitudesService{
 		}
 		return afiliadosDTO;
 	}
-	
+
 	public List<AfiliadoDTO> buscarExportar(SolicitudesForm form) throws CustomException {
 		List<AfiliadoDTO> afiliadosDTO = new ArrayList<AfiliadoDTO>();
 		Session session = null;
@@ -144,7 +146,7 @@ public class SolicitudesServiceImpl implements SolicitudesService{
 		}
 		return afiliadosDTO;
 	}
-	
+
 	@Transactional
 	public List<ObraSocialDTO> getAllObrasSociales() throws CustomException {
 		List<ObraSocialDTO> osDTOList = new ArrayList<ObraSocialDTO>();
@@ -171,7 +173,7 @@ public class SolicitudesServiceImpl implements SolicitudesService{
 		}
 		return osDTOList;
 	}
-	
+
 	@Transactional
 	public List<EstadoDTO> getAllEstados() throws CustomException {
 		List<EstadoDTO> estadoDTOList = new ArrayList<EstadoDTO>();
@@ -198,9 +200,9 @@ public class SolicitudesServiceImpl implements SolicitudesService{
 		}
 		return estadoDTOList;
 	}
-	
+
 	@Override
-	public List<TipoCargaDTO> getAllTipoCarga() throws CustomException{
+	public List<TipoCargaDTO> getAllTipoCarga() throws CustomException {
 		List<TipoCargaDTO> tipoCargaDTOList = new ArrayList<TipoCargaDTO>();
 		Session session = null;
 		Transaction tx = null;
@@ -227,7 +229,7 @@ public class SolicitudesServiceImpl implements SolicitudesService{
 	}
 
 	@Override
-	public List<TipoAfiliadoDTO> getAllTipoAfiliado() throws CustomException{
+	public List<TipoAfiliadoDTO> getAllTipoAfiliado() throws CustomException {
 		List<TipoAfiliadoDTO> tipoAfiliadoDTOList = new ArrayList<TipoAfiliadoDTO>();
 		Session session = null;
 		Transaction tx = null;
@@ -254,7 +256,7 @@ public class SolicitudesServiceImpl implements SolicitudesService{
 	}
 
 	@Override
-	public List<PautaDTO> getPautasByCuit(String cuit) throws CustomException{
+	public List<PautaDTO> getPautasByCuit(String cuit) throws CustomException {
 		List<PautaDTO> pautaDTOList = new ArrayList<PautaDTO>();
 		Session session = null;
 		Transaction tx = null;
@@ -279,7 +281,7 @@ public class SolicitudesServiceImpl implements SolicitudesService{
 		}
 		return pautaDTOList;
 	}
-	
+
 	@Override
 	public boolean confirmarAltaAfiliado(Integer id) throws CustomException {
 		Session session = null;
@@ -290,7 +292,7 @@ public class SolicitudesServiceImpl implements SolicitudesService{
 			solicitudesDAO.confirmarAltaAfiliado(id);
 			tx.commit();
 			session.close();
-			return true; 
+			return true;
 		} catch (CustomException e) {
 			SessionUtil.rollbackTransaction(session, tx);
 			throw e;
@@ -300,7 +302,7 @@ public class SolicitudesServiceImpl implements SolicitudesService{
 			throw new CustomException(e.getMessage(), ErrorMessages.LOAD_CONTACT_ERROR);
 		}
 	}
-	
+
 	public void anularAfiliado(AfiliadoTableDTO afiliado) throws CustomException {
 		Session session = null;
 		Transaction tx = null;
@@ -331,7 +333,7 @@ public class SolicitudesServiceImpl implements SolicitudesService{
 			value = solicitudesDAO.obtenerSolicitudMultiple();
 			tx.commit();
 			session.close();
-			return value; 
+			return value;
 		} catch (CustomException e) {
 			SessionUtil.rollbackTransaction(session, tx);
 			throw e;
@@ -343,19 +345,21 @@ public class SolicitudesServiceImpl implements SolicitudesService{
 	}
 
 	@Override
-	public boolean archivoCargaMasivaCargarRegistro(Long archivoId, ImportForm form) throws CustomException {
+	public Boolean procesarArchivoXLS(ImportForm form, String fileName) throws CustomException{
 		Session session = null;
 		Transaction tx = null;
+		Long archivoId;
 		try {
 			session = this.sessionFactory.getCurrentSession();
 			tx = session.beginTransaction();
+			archivoId = solicitudesDAO.archivoCargaMasivaObtenerIdentificar(form.getObraSocialId(), form.getTipoCargaId(), form.getTipoAfiliadoId(), form.getCuit(),
+					form.getPautaId(), fileName);
 			for(AfiliadoImportDTO afiliado : form.getAfiliados()) {
 				solicitudesDAO.archivoCargaMasivaCargarRegistro(archivoId, afiliado);
 			}
-			
 			tx.commit();
 			session.close();
-			return true; 
+			return true;
 		} catch (CustomException e) {
 			SessionUtil.rollbackTransaction(session, tx);
 			throw e;
@@ -364,28 +368,6 @@ public class SolicitudesServiceImpl implements SolicitudesService{
 			e.printStackTrace();
 			throw new CustomException(e.getMessage(), ErrorMessages.LOAD_CONTACT_ERROR);
 		}
-	}
 
-	@Override
-	public Long archivoCargaMasivaObtenerIdentificar(Long obraSocial, Long tipoCarga, Long tipoAfiliado, String cuit, Long pauta, String nombreArchivo) throws CustomException {
-		Session session = null;
-		Transaction tx = null;
-		Long value;
-		try {
-			session = this.sessionFactory.getCurrentSession();
-			tx = session.beginTransaction();
-			value = solicitudesDAO.archivoCargaMasivaObtenerIdentificar(obraSocial, tipoCarga, tipoAfiliado, cuit, pauta, nombreArchivo);
-			tx.commit();
-			session.close();
-			return value; 
-		} catch (CustomException e) {
-			SessionUtil.rollbackTransaction(session, tx);
-			throw e;
-		} catch (Exception e) {
-			SessionUtil.rollbackTransaction(session, tx);
-			e.printStackTrace();
-			throw new CustomException(e.getMessage(), ErrorMessages.LOAD_CONTACT_ERROR);
-		}
 	}
-
 }

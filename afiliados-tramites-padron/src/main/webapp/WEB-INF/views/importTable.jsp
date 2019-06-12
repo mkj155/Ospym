@@ -6,7 +6,7 @@
 	<div class="search-table-outter wrapper">
 	
 	
-		<table id="table-preview" class="table table-striped table-hover table-sm search-table inner">
+		<table id="table-preview" class="table table-striped table-hover table-sm search-table inner" style="height:600px;">
 			<thead>
 		    	<tr>
 					<th><spring:message code="label.importtable.1" /></th>
