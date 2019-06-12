@@ -166,10 +166,10 @@ public class SolicitudesController {
 	public ModelAndView importar(@RequestParam("uploadFile") MultipartFile uploadFile, @ModelAttribute("importForm") @Validated ImportForm importForm, BindingResult result, Model model, final RedirectAttributes redirectAttributes) {
 		ModelAndView view = null;
 		try {
-			if (result.hasErrors()) {
+			if (!result.hasErrors()) {
 				List<AfiliadoImportDTO> afiliados = getAfiliadosByFile(uploadFile);
 				importForm.setAfiliados(afiliados);
-				Long archivoId = service.archivoCargaMasivaObtenerIdentificar(importForm.getObraSocial().getObraSocialID(), importForm.getTipoCarga().getTipoCargaId(), importForm.getTipoAfiliado().getTipoAfiliadoId(), importForm.getCuit().toString(), importForm.getPauta().getPautaId(), uploadFile.getOriginalFilename());
+				Long archivoId = service.archivoCargaMasivaObtenerIdentificar(importForm.getObraSocialId(), importForm.getTipoCargaId(), importForm.getTipoAfiliadoId(), importForm.getCuit().toString(), importForm.getPautaId(), uploadFile.getOriginalFilename());
 				boolean isSuccess = service.archivoCargaMasivaCargarRegistro(archivoId, importForm);
 				System.out.println("is success:" + isSuccess);
 			} else {
@@ -207,58 +207,115 @@ public class SolicitudesController {
 		    }
 
 		    for(int r = 1; r < rows; r++) {
+		    	Boolean hasError = new Boolean(false);
 		        row = sheet.getRow(r);
 		        if(row != null) {
 		        	AfiliadoImportDTO afiliado = new AfiliadoImportDTO();
 		            for(int c = 0; c < cols; c++) {
 		                cell = row.getCell((short)c);
 		                if(cell != null) {
-		                	cell.setCellType(CellType.STRING);
+		                	
 		                	switch (c) {
 			                	case 0:
+			                		cell.setCellType(CellType.STRING);
 			                		afiliado.setCuil(cell.toString());
+			                		if(cell.toString() == null || cell.toString().equals("")) {
+			                			hasError = true;
+			                		}
+			                		break;
+			                			
 			                	case 1:
 			                		afiliado.setApellido(cell.toString());
+			                		if(cell.toString() == null || cell.toString().equals("")) {
+			                			hasError = true;
+			                		}
+			                		break;
 			                	case 2:
 			                		afiliado.setNombre(cell.toString());
+			                		if(cell.toString() == null || cell.toString().equals("")) {
+			                			hasError = true;
+			                		}
+			                		break;
 			                	case 3:
 			                		afiliado.setTipoDocumento(cell.toString());
+			                		if(cell.toString() == null || cell.toString().equals("")) {
+			                			hasError = true;
+			                		}
+			                		break;
 			                	case 4:
+			                		cell.setCellType(CellType.STRING);
 			                		afiliado.setNroDocumento(cell.toString());
+			                		if(cell.toString() == null || cell.toString().equals("")) {
+			                			hasError = true;
+			                		}
+			                		break;
 			                	case 5:
 			                		afiliado.setCodParentesco(cell.toString());
+			                		break;
 			                	case 6:
 			                		afiliado.setDireccion(cell.toString());
+			                		break;
 			                	case 7:
+			                		cell.setCellType(CellType.STRING);
 			                		afiliado.setNumero(cell.toString());
+			                		break;
 			                	case 8:
+			                		cell.setCellType(CellType.STRING);
 			                		afiliado.setPiso(cell.toString());
+			                		break;
 			                	case 9:
 			                		afiliado.setDepartamento(cell.toString());
+			                		break;
 			                	case 10:
 			                		afiliado.setLocalidad(cell.toString());
+			                		break;
 			                	case 11:
+			                		cell.setCellType(CellType.STRING);
 			                		afiliado.setProvincia(cell.toString());
+			                		break;
 			                	case 12:
+			                		cell.setCellType(CellType.STRING);
 			                		afiliado.setCodigoPostal(cell.toString());
+			                		break;
 			                	case 13:
+			                		cell.setCellType(CellType.STRING);
 			                		afiliado.setTelefono(cell.toString());
+			                		break;
 			                	case 14:
 			                		afiliado.setFechaNacimiento(cell.toString());
+			                		if(cell.toString() == null || cell.toString().equals("")) {
+			                			hasError = true;
+			                		}
+			                		break;
 			                	case 15:
 			                		afiliado.setSexo(cell.toString());
+			                		if(cell.toString() == null || cell.toString().equals("")) {
+			                			hasError = true;
+			                		}
+			                		break;
 			                	case 16:
+			                		cell.setCellType(CellType.STRING);
 			                		afiliado.setEstadoCivil(cell.toString());
+			                		if(cell.toString() == null || cell.toString().equals("")) {
+			                			hasError = true;
+			                		}
+			                		break;
 			                	case 17:
 			                		afiliado.setFechaInicioCobertura(cell.toString());
+			                		if(cell.toString() == null || cell.toString().equals("")) {
+			                			hasError = true;
+			                		}
+			                		break;
 			                	case 18:
 			                		afiliado.setEmail(cell.toString());
-			                	case 19:
-			                		afiliado.setErrorValidacion(false);
-			                	
+			                		break;
 			               }
 		                }
 		            }
+		            if(hasError)
+		            	afiliado.setErrorValidacion(true);
+		            else
+		            	afiliado.setErrorValidacion(false);
 		            afiliados.add(afiliado);
 		        }
 		    }
