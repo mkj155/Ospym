@@ -1,11 +1,22 @@
 package com.osdepym.controller;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.poi.ss.usermodel.BorderStyle;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.Font;
+import org.apache.poi.ss.usermodel.IndexedColors;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -70,6 +81,93 @@ public class SolicitudesController {
 		return afiliados;	
 	}
 	
+	@RequestMapping(value = "/solicitudes/descargarPlantilla", method = RequestMethod.POST)
+	public @ResponseBody void descargarPlantilla(HttpServletRequest request, HttpServletResponse response) {
+		try {
+			 String[] columns = {
+						"CUIL",
+						"APELLIDO",
+						"NOMBRES",
+						"TipoDocumento",
+						"NroDocumento",
+						"COD PARENTESCO",
+						"Direccion",
+						"N°",
+						"PISO",
+						"DPTO",
+						"LOCALIDAD",
+						"COD PROV",
+						"COD POSTAL",
+						"Telefono",
+						"FECHA NACIMIENTO",
+						"SEXO",
+						"ESTADO CIVIL",
+						"VIGENCIA",
+						"EMAIL"
+				    };
+			 // Create a Workbook
+		    	Workbook workbook = new XSSFWorkbook(); // new HSSFWorkbook() for generating `.xls` file
+
+		        Sheet sheet = workbook.createSheet("File1");
+
+		        // Create a Font for styling header cells
+		        Font headerFont = workbook.createFont();
+
+		        headerFont.setBold(true);
+		        headerFont.setColor(IndexedColors.BLACK.getIndex());
+
+		        // Create a CellStyle with the font
+		        CellStyle headerCellStyle = workbook.createCellStyle();
+
+		        headerCellStyle.setBorderBottom(BorderStyle.MEDIUM);
+
+		        headerCellStyle.setFont(headerFont);
+
+		        // Create a Row
+		        Row headerRow = sheet.createRow(0);
+
+		        // Create cells
+		        for(int i = 0; i < columns.length; i++) {
+		        	Cell cell = headerRow.createCell(i);
+		            cell.setCellValue(columns[i]);
+		            cell.setCellStyle(headerCellStyle);
+		        }
+		     // Resize all columns to fit the content size
+		        for(int i = 0; i < columns.length; i++) {
+		            sheet.autoSizeColumn(i);
+		        }
+		        
+		        try { 
+		        	// this Writes the workbook excel 
+		        	File f = new File("TitularesXLS.xls");
+		            FileOutputStream out = new FileOutputStream(f); 
+		            workbook.write(out); 
+		            out.close(); 
+		            System.out.println("excel.xlsx written successfully on disk."); 
+		            
+			        /*ByteArrayOutputStream excelOutput = new ByteArrayOutputStream();
+			        byte[] byteRpt = null;
+			         
+			        workbook.write(excelOutput);
+			        byteRpt = excelOutput.toByteArray();
+			         
+			        byte[] encodedBytes = Base64.encodeBase64(byteRpt);
+			        String base64 = new String(encodedBytes);*/
+			        workbook.close();
+			        
+			        try {
+			        	Desktop dt = Desktop.getDesktop();
+			        	dt.open(f);
+			        } catch (IOException e) {
+			            // TODO Auto-generated catch block
+			            e.printStackTrace();
+			        }
+		        } catch (Exception e) { 
+		            e.printStackTrace(); 
+		        } 
+		} catch (Exception e) {
+		}
+	}
 	
 	private ModelAndView getSolicitudesFormView(Model model, SolicitudesForm form) {
 		ModelAndView view = null;

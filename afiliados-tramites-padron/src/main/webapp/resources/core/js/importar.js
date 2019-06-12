@@ -131,3 +131,25 @@ function uploadFile(){
 		});
 	} 
 }
+
+
+function descargarPlantilla(){
+		$.ajax({
+			url : "descargarPlantilla",
+		    cache: false,
+		    contentType: false,
+		    processData: false,
+		    method: 'POST',
+		    type: 'POST',
+			success : function(data) {
+				
+				
+			
+			},
+			error : function(e) {
+				console.log("ERROR: ", e);
+
+				
+			},
+		});
+	} 

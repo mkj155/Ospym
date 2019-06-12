@@ -4,20 +4,37 @@ import java.awt.Desktop;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.poi.hssf.usermodel.HSSFCell;
+import org.apache.poi.hssf.usermodel.HSSFFormulaEvaluator;
+import org.apache.poi.hssf.usermodel.HSSFRow;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+import org.apache.poi.openxml4j.opc.OPCPackage;
+import org.apache.poi.poifs.filesystem.POIFSFileSystem;
 import org.apache.poi.ss.usermodel.BorderStyle;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.DataFormatter;
 import org.apache.poi.ss.usermodel.Font;
+import org.apache.poi.ss.usermodel.FormulaEvaluator;
 import org.apache.poi.ss.usermodel.IndexedColors;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFFormulaEvaluator;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.osdepym.dto.AfiliadoDTO;
+import com.osdepym.dto.AfiliadoImportDTO;
 
 public class ExcelWriter {
     private static String[] columns = {
@@ -177,4 +194,337 @@ public class ExcelWriter {
             e.printStackTrace(); 
         } 
     }
+    
+    public static boolean isRowEmpty(Row row) {
+        for (int c = row.getFirstCellNum(); c < row.getLastCellNum(); c++) {
+            Cell cell = row.getCell(c);
+            if (cell != null && cell.getCellType() != Cell.CELL_TYPE_BLANK)
+                return false;
+        }
+        return true;
+    }
+    
+    public static List<AfiliadoImportDTO> getAfiliadosByFileXLSX(MultipartFile file) throws Exception {
+		List<AfiliadoImportDTO> afiliados = new ArrayList<AfiliadoImportDTO>();
+
+		SimpleDateFormat dateFormatter = new SimpleDateFormat("dd-MM-yyyy");
+		OPCPackage fs = OPCPackage.open(file.getInputStream());
+		XSSFWorkbook wb = new XSSFWorkbook(fs);
+		DataFormatter df = new DataFormatter();
+		FormulaEvaluator objFormulaEvaluator = new XSSFFormulaEvaluator((XSSFWorkbook) wb);
+		XSSFSheet sheet = wb.getSheetAt(0);
+		XSSFRow row;
+		XSSFCell cell;
+
+		int rows; // No of rows
+		rows = sheet.getPhysicalNumberOfRows();
+
+		int cols = 0; // No of columns
+		int tmp = 0;
+		// This trick ensures that we get the data properly even if it doesn't start
+		// from first few rows
+		for (int i = 0; i < 10 || i < rows; i++) {
+			row = sheet.getRow(i);
+			if (row != null) {
+				tmp = sheet.getRow(i).getPhysicalNumberOfCells();
+				if (tmp > cols)
+					cols = tmp;
+			}
+		}
+
+		for (int r = 1; r < rows; r++) {
+
+			Boolean hasError = new Boolean(false);
+			row = sheet.getRow(r);
+			if (row != null && !ExcelWriter.isRowEmpty(row)) {
+				AfiliadoImportDTO afiliado = new AfiliadoImportDTO();
+				for (int c = 0; c < cols; c++) {
+					cell = row.getCell((short) c);
+					String cellValue;
+					if (cell != null) {
+						objFormulaEvaluator.evaluate(cell);
+						cellValue = df.formatCellValue(cell, objFormulaEvaluator);
+					} else {
+						cellValue = "";
+					}
+					switch (c) {
+					case 0:
+						afiliado.setCuil(cellValue);
+						if (cellValue == null || cellValue.equals("")) {
+							hasError = true;
+						}
+						break;
+
+					case 1:
+						afiliado.setApellido(cellValue);
+						if (cellValue == null || cellValue.equals("")) {
+							hasError = true;
+						}
+						break;
+					case 2:
+						afiliado.setNombre(cellValue);
+						if (cellValue == null || cellValue.equals("")) {
+							hasError = true;
+						}
+						break;
+					case 3:
+						afiliado.setTipoDocumento(cellValue);
+						if (cellValue == null || cellValue.equals("")) {
+							hasError = true;
+						}
+						break;
+					case 4:
+						afiliado.setNroDocumento(cellValue);
+						if (cellValue == null || cellValue.equals("")) {
+							hasError = true;
+						}
+						break;
+					case 5:
+						afiliado.setCodParentesco(cellValue);
+						break;
+					case 6:
+						afiliado.setDireccion(cellValue);
+						break;
+					case 7:
+						afiliado.setNumero(cellValue);
+						break;
+					case 8:
+						afiliado.setPiso(cellValue);
+						break;
+					case 9:
+						afiliado.setDepartamento(cellValue);
+						break;
+					case 10:
+						afiliado.setLocalidad(cellValue);
+						break;
+					case 11:
+						afiliado.setProvincia(cellValue);
+						break;
+					case 12:
+						afiliado.setCodigoPostal(cellValue);
+						break;
+					case 13:
+						afiliado.setTelefono(cellValue);
+						break;
+					case 14:
+						if (cellValue == null || cellValue.equals("")) {
+							afiliado.setFechaNacimiento(cellValue);
+							hasError = true;
+						}else {
+							try {
+								afiliado.setFechaNacimiento(dateFormatter.format(cell.getDateCellValue()));
+							}catch(Exception e) {
+								hasError = true;
+								afiliado.setFechaNacimiento(cellValue);
+							}
+							
+						}
+						break;
+					case 15:
+						afiliado.setSexo(cellValue);
+						if (cellValue == null || cellValue.equals("")) {
+							hasError = true;
+						}
+						break;
+					case 16:
+						afiliado.setEstadoCivil(cellValue);
+						if (cellValue == null || cellValue.equals("")) {
+							hasError = true;
+						}
+						break;
+					case 17:
+						if (cellValue == null || cellValue.equals("")) {
+							afiliado.setFechaInicioCobertura(cellValue);
+							hasError = true;
+						}else {
+							try {
+								afiliado.setFechaInicioCobertura(dateFormatter.format(cell.getDateCellValue()));
+							}catch(Exception e) {
+								hasError = true;
+								afiliado.setFechaInicioCobertura(cellValue);
+							}
+							
+						}
+						break;
+					case 18:
+						afiliado.setEmail(cellValue);
+						break;
+					}
+				}
+
+				if (hasError)
+					afiliado.setErrorValidacion(true);
+				else
+					afiliado.setErrorValidacion(false);
+				afiliados.add(afiliado);
+			}
+		}
+		wb.close();
+		return afiliados;
+
+	}
+
+	
+    public static List<AfiliadoImportDTO> getAfiliadosByFileXLS(MultipartFile file) throws Exception {
+		List<AfiliadoImportDTO> afiliados = new ArrayList<AfiliadoImportDTO>();
+
+		SimpleDateFormat dateFormatter = new SimpleDateFormat("dd-MM-yyyy");
+		
+		
+		POIFSFileSystem fs = new POIFSFileSystem(file.getInputStream());
+	    HSSFWorkbook wb = new HSSFWorkbook(fs);
+	    DataFormatter df = new DataFormatter();
+	    FormulaEvaluator objFormulaEvaluator = new HSSFFormulaEvaluator((HSSFWorkbook) wb);
+	    HSSFSheet sheet = wb.getSheetAt(0);
+	    HSSFRow row;
+	    HSSFCell cell;
+
+		int rows; // No of rows
+		rows = sheet.getPhysicalNumberOfRows();
+
+		int cols = 0; // No of columns
+		int tmp = 0;
+		// This trick ensures that we get the data properly even if it doesn't start
+		// from first few rows
+		for (int i = 0; i < 10 || i < rows; i++) {
+			row = sheet.getRow(i);
+			if (row != null) {
+				tmp = sheet.getRow(i).getPhysicalNumberOfCells();
+				if (tmp > cols)
+					cols = tmp;
+			}
+		}
+
+		for (int r = 1; r < rows; r++) {
+
+			Boolean hasError = new Boolean(false);
+			row = sheet.getRow(r);
+			if (row != null && !ExcelWriter.isRowEmpty(row)) {
+				AfiliadoImportDTO afiliado = new AfiliadoImportDTO();
+				for (int c = 0; c < cols; c++) {
+					cell = row.getCell((short) c);
+					String cellValue;
+					if (cell != null) {
+						objFormulaEvaluator.evaluate(cell);
+						cellValue = df.formatCellValue(cell, objFormulaEvaluator);
+					} else {
+						cellValue = "";
+					}
+					switch (c) {
+					case 0:
+						afiliado.setCuil(cellValue);
+						if (cellValue == null || cellValue.equals("")) {
+							hasError = true;
+						}
+						break;
+
+					case 1:
+						afiliado.setApellido(cellValue);
+						if (cellValue == null || cellValue.equals("")) {
+							hasError = true;
+						}
+						break;
+					case 2:
+						afiliado.setNombre(cellValue);
+						if (cellValue == null || cellValue.equals("")) {
+							hasError = true;
+						}
+						break;
+					case 3:
+						afiliado.setTipoDocumento(cellValue);
+						if (cellValue == null || cellValue.equals("")) {
+							hasError = true;
+						}
+						break;
+					case 4:
+						afiliado.setNroDocumento(cellValue);
+						if (cellValue == null || cellValue.equals("")) {
+							hasError = true;
+						}
+						break;
+					case 5:
+						afiliado.setCodParentesco(cellValue);
+						break;
+					case 6:
+						afiliado.setDireccion(cellValue);
+						break;
+					case 7:
+						afiliado.setNumero(cellValue);
+						break;
+					case 8:
+						afiliado.setPiso(cellValue);
+						break;
+					case 9:
+						afiliado.setDepartamento(cellValue);
+						break;
+					case 10:
+						afiliado.setLocalidad(cellValue);
+						break;
+					case 11:
+						afiliado.setProvincia(cellValue);
+						break;
+					case 12:
+						afiliado.setCodigoPostal(cellValue);
+						break;
+					case 13:
+						afiliado.setTelefono(cellValue);
+						break;
+					case 14:
+						if (cellValue == null || cellValue.equals("")) {
+							afiliado.setFechaNacimiento(cellValue);
+							hasError = true;
+						}else {
+							try {
+								afiliado.setFechaNacimiento(dateFormatter.format(cell.getDateCellValue()));
+							}catch(Exception e) {
+								hasError = true;
+								afiliado.setFechaNacimiento(cellValue);
+							}
+							
+						}
+						break;
+					case 15:
+						afiliado.setSexo(cellValue);
+						if (cellValue == null || cellValue.equals("")) {
+							hasError = true;
+						}
+						break;
+					case 16:
+						afiliado.setEstadoCivil(cellValue);
+						if (cellValue == null || cellValue.equals("")) {
+							hasError = true;
+						}
+						break;
+					case 17:
+						if (cellValue == null || cellValue.equals("")) {
+							afiliado.setFechaInicioCobertura(cellValue);
+							hasError = true;
+						}else {
+							try {
+								afiliado.setFechaInicioCobertura(dateFormatter.format(cell.getDateCellValue()));
+							}catch(Exception e) {
+								hasError = true;
+								afiliado.setFechaInicioCobertura(cellValue);
+							}
+							
+						}
+						break;
+					case 18:
+						afiliado.setEmail(cellValue);
+						break;
+					}
+				}
+
+				if (hasError)
+					afiliado.setErrorValidacion(true);
+				else
+					afiliado.setErrorValidacion(false);
+				afiliados.add(afiliado);
+			}
+		}
+		wb.close();
+		return afiliados;
+
+	}
+	
 }
