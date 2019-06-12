@@ -6,12 +6,6 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.poi.hssf.usermodel.HSSFCell;
-import org.apache.poi.hssf.usermodel.HSSFRow;
-import org.apache.poi.hssf.usermodel.HSSFSheet;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.poifs.filesystem.POIFSFileSystem;
-import org.apache.poi.ss.usermodel.CellType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -65,7 +59,8 @@ public class SolicitudesController {
 	}
 	
 	@RequestMapping(value = "/solicitudes/exportar", method = RequestMethod.POST)
-	public @ResponseBody List<AfiliadoDTO> exportar(HttpServletRequest request, HttpServletResponse response, @RequestBody SolicitudesForm element) {
+	public @ResponseBody List<AfiliadoDTO> exportar(HttpServletRequest request, HttpServletResponse response,
+			@RequestBody SolicitudesForm element) {
 		List<AfiliadoDTO> afiliados = new ArrayList<AfiliadoDTO>();
 		try {
 			afiliados = service.buscarExportar(element);
@@ -117,9 +112,11 @@ public class SolicitudesController {
 	public List<AfiliadoImportDTO> procesarArchivo(@RequestParam("file") MultipartFile uploadFile) {
 		List<AfiliadoImportDTO> afiliados = new ArrayList<AfiliadoImportDTO>();
 		try {
+			if(uploadFile.getOriginalFilename().endsWith("xls"))
+				afiliados = ExcelWriter.getAfiliadosByFileXLS(uploadFile);
+			else
+				afiliados = ExcelWriter.getAfiliadosByFileXLSX(uploadFile);
 		
-			afiliados = getAfiliadosByFile(uploadFile);
-			
 		}catch(Exception e) {
 			e.printStackTrace();
 			System.out.println(e.getMessage());
@@ -165,17 +162,28 @@ public class SolicitudesController {
 	}
 	
 	@RequestMapping(value = "/solicitudes/importar", method = RequestMethod.POST)
-	public ModelAndView importar(@RequestParam("uploadFile") MultipartFile uploadFile, @ModelAttribute("importForm") @Validated ImportForm importForm, BindingResult result, Model model, final RedirectAttributes redirectAttributes) {
+	public ModelAndView importar(@RequestParam("uploadFile") MultipartFile uploadFile,
+			@ModelAttribute("importForm") @Validated ImportForm importForm, BindingResult result, Model model,
+			final RedirectAttributes redirectAttributes) {
 		ModelAndView view = null;
 		try {
-			if (result.hasErrors()) {
-				List<AfiliadoImportDTO> afiliados = getAfiliadosByFile(uploadFile);
+			if (!result.hasErrors()) {
+				List<AfiliadoImportDTO> afiliados = new ArrayList<AfiliadoImportDTO>();
+				if(uploadFile.getOriginalFilename().endsWith("xls"))
+					afiliados = ExcelWriter.getAfiliadosByFileXLS(uploadFile);
+				else
+					afiliados = ExcelWriter.getAfiliadosByFileXLSX(uploadFile);
 				importForm.setAfiliados(afiliados);
-				Long archivoId = service.archivoCargaMasivaObtenerIdentificar(importForm.getObraSocialId(), importForm.getTipoCargaId(), importForm.getTipoAfiliadoId(), importForm.getCuit().toString(), importForm.getPautaId(), uploadFile.getOriginalFilename());
-				boolean isSuccess = service.archivoCargaMasivaCargarRegistro(archivoId, importForm);
+				boolean isSuccess = service.procesarArchivoXLS(importForm, uploadFile.getOriginalFilename());
 				System.out.println("is success:" + isSuccess);
-			} else {
-				
+				view = new ModelAndView("importar");
+				List<ObraSocialDTO> obrasSociales = service.getAllObrasSociales();
+				List<TipoCargaDTO> tipoCargas = service.getAllTipoCarga();
+				List<TipoAfiliadoDTO> tipoAfiliados = service.getAllTipoAfiliado();
+				view.addObject("obrassociales", obrasSociales);
+				view.addObject("tipocargas", tipoCargas);
+				view.addObject("tipoafiliados", tipoAfiliados);
+				model.addAttribute("importForm", new ImportForm());
 			}
 		} catch (Exception e) {
 			view = new ModelAndView("error");
@@ -185,89 +193,6 @@ public class SolicitudesController {
 	}
 	
 	
-	private List<AfiliadoImportDTO> getAfiliadosByFile(MultipartFile file) throws Exception{
-		List<AfiliadoImportDTO> afiliados = new ArrayList<AfiliadoImportDTO>();
-	
-			POIFSFileSystem fs = new POIFSFileSystem(file.getInputStream());
-		    HSSFWorkbook wb = new HSSFWorkbook(fs);
-		    HSSFSheet sheet = wb.getSheetAt(0);
-		    HSSFRow row;
-		    HSSFCell cell;
-
-		    int rows; // No of rows
-		    rows = sheet.getPhysicalNumberOfRows();
-
-		    int cols = 0; // No of columns
-		    int tmp = 0;
-		 // This trick ensures that we get the data properly even if it doesn't start from first few rows
-		    for(int i = 0; i < 10 || i < rows; i++) {
-		        row = sheet.getRow(i);
-		        if(row != null) {
-		            tmp = sheet.getRow(i).getPhysicalNumberOfCells();
-		            if(tmp > cols) cols = tmp;
-		        }
-		    }
-
-		    for(int r = 1; r < rows; r++) {
-		        row = sheet.getRow(r);
-		        if(row != null) {
-		        	AfiliadoImportDTO afiliado = new AfiliadoImportDTO();
-		            for(int c = 0; c < cols; c++) {
-		                cell = row.getCell((short)c);
-		                if(cell != null) {
-		                	cell.setCellType(CellType.STRING);
-		                	switch (c) {
-			                	case 0:
-			                		afiliado.setCuil(cell.toString());
-			                	case 1:
-			                		afiliado.setApellido(cell.toString());
-			                	case 2:
-			                		afiliado.setNombre(cell.toString());
-			                	case 3:
-			                		afiliado.setTipoDocumento(cell.toString());
-			                	case 4:
-			                		afiliado.setNroDocumento(cell.toString());
-			                	case 5:
-			                		afiliado.setCodParentesco(cell.toString());
-			                	case 6:
-			                		afiliado.setDireccion(cell.toString());
-			                	case 7:
-			                		afiliado.setNumero(cell.toString());
-			                	case 8:
-			                		afiliado.setPiso(cell.toString());
-			                	case 9:
-			                		afiliado.setDepartamento(cell.toString());
-			                	case 10:
-			                		afiliado.setLocalidad(cell.toString());
-			                	case 11:
-			                		afiliado.setProvincia(cell.toString());
-			                	case 12:
-			                		afiliado.setCodigoPostal(cell.toString());
-			                	case 13:
-			                		afiliado.setTelefono(cell.toString());
-			                	case 14:
-			                		afiliado.setFechaNacimiento(cell.toString());
-			                	case 15:
-			                		afiliado.setSexo(cell.toString());
-			                	case 16:
-			                		afiliado.setEstadoCivil(cell.toString());
-			                	case 17:
-			                		afiliado.setFechaInicioCobertura(cell.toString());
-			                	case 18:
-			                		afiliado.setEmail(cell.toString());
-			                	case 19:
-			                		afiliado.setErrorValidacion(false);
-			                	
-			               }
-		                }
-		            }
-		            afiliados.add(afiliado);
-		        }
-		    }
-		    wb.close();
-		    return afiliados;
-		
-	}
 	
 	@RequestMapping(value = "/solicitudes/anular")
 	public @ResponseBody AfiliadoTableDTO anular(@RequestBody AfiliadoTableDTO afiliado) {

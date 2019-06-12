@@ -344,12 +344,15 @@ public class SolicitudesServiceImpl implements SolicitudesService{
 	}
 
 	@Override
-	public boolean archivoCargaMasivaCargarRegistro(Long archivoId, ImportForm form) throws CustomException {
+	public Boolean procesarArchivoXLS(ImportForm form, String fileName) throws CustomException{
 		Session session = null;
 		Transaction tx = null;
+		Long archivoId;
 		try {
 			session = this.sessionFactory.getCurrentSession();
 			tx = session.beginTransaction();
+			archivoId = solicitudesDAO.archivoCargaMasivaObtenerIdentificar(form.getObraSocialId(), form.getTipoCargaId(), form.getTipoAfiliadoId(), form.getCuit(),
+					form.getPautaId(), fileName);
 			for(AfiliadoImportDTO afiliado : form.getAfiliados()) {
 				solicitudesDAO.archivoCargaMasivaCargarRegistro(archivoId, afiliado);
 			}
@@ -366,27 +369,4 @@ public class SolicitudesServiceImpl implements SolicitudesService{
 			throw new CustomException(e.getMessage(), ErrorMessages.LOAD_CONTACT_ERROR);
 		}
 	}
-
-	@Override
-	public Long archivoCargaMasivaObtenerIdentificar(Long obraSocial, Long tipoCarga, Long tipoAfiliado, String cuit, Long pauta, String nombreArchivo) throws CustomException {
-		Session session = null;
-		Transaction tx = null;
-		Long value;
-		try {
-			session = this.sessionFactory.getCurrentSession();
-			tx = session.beginTransaction();
-			value = solicitudesDAO.archivoCargaMasivaObtenerIdentificar(obraSocial, tipoCarga, tipoAfiliado, cuit, pauta, nombreArchivo);
-			tx.commit();
-			session.close();
-			return value; 
-		} catch (CustomException e) {
-			SessionUtil.rollbackTransaction(session, tx);
-			throw e;
-		} catch (Exception e) {
-			SessionUtil.rollbackTransaction(session, tx);
-			e.printStackTrace();
-			throw new CustomException(e.getMessage(), ErrorMessages.LOAD_CONTACT_ERROR);
-		}
-	}
-
 }
