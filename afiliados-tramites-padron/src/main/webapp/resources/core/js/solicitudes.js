@@ -1,6 +1,7 @@
 var date;
 var exportForm;
 var afiliadoAnular = {};
+var paginado;
 (function($) {
 	  $.fn.inputFilter = function(inputFilter) {
 	    return this.on("input keydown keyup mousedown mouseup select contextmenu drop", function() {
@@ -20,15 +21,19 @@ document.onclick = function(e) {
 	if(e.target.type !=='button') {
 		$("#error-date").hide();
 		$("#error-confirmar").hide();
+		$("#success-confirmar").hide();
+		$("#error-table").hide();
 	}
 }
 
 $(document).ready(function () {
+	$("#error-table").hide();
 	$(".checkbox-all").hide();
 	$(".number-input").inputFilter(function(value) {
 		return /^\d*$/.test(value); 	
 	});
 	$("#error-confirmar").hide();
+	$("#success-confirmar").hide();
 	$("#error-date").hide();
 	$("#fechaCarga").keyup(function (e) {
         if (e.keyCode != 193 && e.keyCode != 111) {
@@ -121,7 +126,43 @@ $(document).ready(function () {
 				async: true,
 				timeout : 100000,
 				success : function(data) {
+					var messageError;
+					var messageSuccess;
+					if(data.errorAnular === "999") {
+						messageError = "ERROR: No se pudo anular el registro: " + data.registroID + " (" + data.messageErrorAnular + ")";
+					} else {
+						messageSuccess = "El registro fue anulado con &eacute;xito";
+					}
 					
+					var htmlrow = '<td><label class="control control-checkbox">' +
+		            '<input type="checkbox" class="afiliado-check" />' +
+			        '<div class="control-indicator"></div>' +
+			        '</label></td>';
+					
+					var keys = Object.keys(data);
+					
+					for(var i = 0; i < keys.length; i++){
+						if(keys[i] !== 'errorConfirmar' && keys[i] !== 'messageErrorConfirmar' &&
+								keys[i] !== 'errorAnular' && keys[i] !== 'messageErrorAnular') {
+							var value = data[keys[i]];
+					    
+						    if(keys[i] === 'anular' && (data.estado === 'Pendiente' && data.anular === true))
+								htmlrow += "<td data-field='" + keys[i] + "' " + (value ? "data-value='" + value + "' " : "") + "'><a href='#' class='anular-link'>Anular</a></td>";
+							else if(keys[i] === 'anular' && (data.estado !== 'Pendiente' || data.anular !== true))
+								htmlrow += "<td data-field='" + keys[i] + "' " + (value ? "data-value='" + value + "' " : "") + "'></td>";
+							else
+								htmlrow += "<td data-field='" + keys[i] + "' " + (value ? "data-value='" + value + "' " : "") + "'>" + (value ? value : "") + "</td>";
+						}
+					}
+					
+					$('#table-preview tr[data-id="'+data.registroID+'"').html(htmlrow);
+					 if(messageError) {
+				    	$("#error-confirmar").html(messageError);
+						$("#error-confirmar").show();
+				    } else if(messageSuccess) {
+				    	$("#success-confirmar").html(messageSuccess);
+						$("#success-confirmar").show();
+				    }
 				},
 				error : function(e) {
 					console.log("ERROR: ", e);
@@ -135,9 +176,44 @@ $(document).ready(function () {
 		$('#anular-modal').modal('hide');
 		return false;
 	});
+	
+	$(document).on("change", "#paginado", function() {
+		paginado = $(this).val();
+		
+		$('#nav').remove();
+		$('#content-table-child').after('<div id="nav" class="row pl-3"></div>');
+		var rowsShown = 10;
+		if(paginado)
+			rowsShown = paginado;
+	    
+	    var rowsTotal = $('#table-preview tbody tr').length;
+	    var numPages = rowsTotal/rowsShown;
+	    for(i = 0;i < numPages;i++) {
+	        var pageNum = i + 1;
+	        $('#nav').append('<div><div class="form-group"><a class="btn" rel="'+i+'">'+pageNum+'</a></div></div>');
+	    }
+	    $('#nav').append('<div><div class="form-group"><select id="paginado" class="form-control"><option>10</option><option>50</option><option>100</option><option>1000</option></select></div></div>');
+	    
+	    $("#paginado").val(rowsShown);
+	    $('#table-preview tbody tr').hide();
+	    $('#table-preview tbody tr').slice(0, rowsShown).show();
+	    
+	    $('#nav a').addClass('btn');
+	    $('#nav a:first').addClass('btn btn-primary');
+	    $('#nav a').bind('click', function(){
+	        $('#nav a').removeClass('btn-primary');
+	        $(this).addClass('btn-primary');
+	        var currPage = $(this).attr('rel');
+	        var startItem = currPage * rowsShown;
+	        var endItem = startItem + rowsShown;
+	        $('#table-preview tbody tr').css('opacity','0.0').hide().slice(startItem, endItem).
+	        css('display','table-row').animate({opacity:1}, 300);
+	    });
+	});
 });
 
 function search(){
+	$("#error-table").hide();
 		if(!validateForm()) {
 			$("#error-date").show();
 			return false;
@@ -156,56 +232,71 @@ function search(){
 			async: true,
 			timeout : 100000,
 			success : function(data) {
-				$(".checkbox-all").show();
-				$("#check-all-afiliados")[0].checked = false;
-				$("#loading").hide();
 				$('#content-table').show();
-				$('#table-preview tbody').html("");
-				$.each(data, function(key, card) {
-					var htmlrow = '<tr data-id="'+card.registroID+'"><td><label class="control control-checkbox">' +
-		            '<input type="checkbox" class="afiliado-check" />' +
-			        '<div class="control-indicator"></div>' +
-			        '</label></td>';
+				if(data && data.length > 0) {
+					$(".checkbox-all").show();
+					$("#check-all-afiliados")[0].checked = false;
+					$("#loading").hide();
+					$("#table-preview").show();
+					$('#table-preview tbody').html("");
+					$.each(data, function(key, card) {
+						var htmlrow = '<tr data-id="'+card.registroID+'"><td><label class="control control-checkbox">' +
+			            '<input type="checkbox" class="afiliado-check" />' +
+				        '<div class="control-indicator"></div>' +
+				        '</label></td>';
+						
+						var keys = Object.keys(card);
+						
+						for(var i = 0; i < keys.length; i++){
+							if(keys[i] !== 'errorConfirmar' && keys[i] !== 'messageErrorConfirmar' &&
+								keys[i] !== 'errorAnular' && keys[i] !== 'messageErrorAnular') {
+							    var value = card[keys[i]];
+							    
+							    if(card.estado === 'Pendiente' && keys[i] === 'anular')
+									htmlrow += "<td data-field='" + keys[i] + "' " + (value ? "data-value='" + value + "' " : "") + "'><a href='#' class='anular-link'>Anular</a></td>";
+								else if(card.estado !== 'Pendiente' && keys[i] === 'anular')
+									htmlrow += "<td data-field='" + keys[i] + "' " + (value ? "data-value='" + value + "' " : "") + "'></td>";
+								else
+									htmlrow += "<td data-field='" + keys[i] + "' " + (value ? "data-value='" + value + "' " : "") + "'>" + (value ? value : "") + "</td>";
+							}
+						}
+						
+						htmlrow += "</tr>";
+			            $('#table-preview tbody').append(htmlrow);
+			        });
 					
-					var keys = Object.keys(card);
-					
-					for(var i = 0; i < keys.length; i++){
-					    var value = card[keys[i]];
-					    
-					    if(card.estado === 'Pendiente' && keys[i] === 'anular')
-							htmlrow += "<td data-field='" + keys[i] + "' " + (value ? "data-value='" + value + "' " : "") + "'><a href='#' class='anular-link'>Anular</a></td>";
-						else if(card.estado !== 'Pendiente' && keys[i] === 'anular')
-							htmlrow += "<td data-field='" + keys[i] + "' " + (value ? "data-value='" + value + "' " : "") + "'></td>";
-						else
-							htmlrow += "<td data-field='" + keys[i] + "' " + (value ? "data-value='" + value + "' " : "") + "'>" + (value ? value : "") + "</td>";
-					}
-					htmlrow += "</tr>";
-		            $('#table-preview tbody').append(htmlrow);
-		        });
-				
-				$('#nav').remove();
-				$('#content-table-child').after('<div id="nav"></div>');
-			    var rowsShown = 10;
-			    var rowsTotal = $('#table-preview tbody tr').length;
-			    var numPages = rowsTotal/rowsShown;
-			    for(i = 0;i < numPages;i++) {
-			        var pageNum = i + 1;
-			        $('#nav').append('<a class="btn" rel="'+i+'">'+pageNum+'</a> ');
-			    }
-			    $('#table-preview tbody tr').hide();
-			    $('#table-preview tbody tr').slice(0, rowsShown).show();
-			    
-			    $('#nav a').addClass('btn');
-			    $('#nav a:first').addClass('btn btn-primary');
-			    $('#nav a').bind('click', function(){
-			        $('#nav a').removeClass('btn-primary');
-			        $(this).addClass('btn-primary');
-			        var currPage = $(this).attr('rel');
-			        var startItem = currPage * rowsShown;
-			        var endItem = startItem + rowsShown;
-			        $('#table-preview tbody tr').css('opacity','0.0').hide().slice(startItem, endItem).
-			        css('display','table-row').animate({opacity:1}, 300);
-			    });
+					$('#nav').remove();
+					$('#content-table-child').after('<div id="nav" class="row pl-3"></div>');
+					var rowsShown = 10;
+					if(paginado)
+						rowsShown = paginado;
+				    var rowsTotal = $('#table-preview tbody tr').length;
+				    var numPages = rowsTotal/rowsShown;
+				    for(i = 0;i < numPages;i++) {
+				        var pageNum = i + 1;
+				        $('#nav').append('<div><div class="form-group"><a class="btn" rel="'+i+'">'+pageNum+'</a></div></div>');
+				    }
+				    $('#nav').append('<div><div class="form-group"><select id="paginado" class="form-control"><option>10</option><option>50</option><option>100</option><option>1000</option></select></div></div>');
+				    $("#paginado").val(rowsShown);
+				    $('#table-preview tbody tr').hide();
+				    $('#table-preview tbody tr').slice(0, rowsShown).show();
+				    
+				    $('#nav a').addClass('btn');
+				    $('#nav a:first').addClass('btn btn-primary');
+				    $('#nav a').bind('click', function(){
+				        $('#nav a').removeClass('btn-primary');
+				        $(this).addClass('btn-primary');
+				        var currPage = $(this).attr('rel');
+				        var startItem = currPage * rowsShown;
+				        var endItem = startItem + rowsShown;
+				        $('#table-preview tbody tr').css('opacity','0.0').hide().slice(startItem, endItem).
+				        css('display','table-row').animate({opacity:1}, 300);
+				    });
+				} else {
+					$("#table-preview").hide();
+					$("#loading").hide();
+					$("#error-table").show();
+				}
 			},
 			error : function(e) {
 				console.log("ERROR: ", e);
@@ -233,6 +324,7 @@ function exportar(){
 	} else {
 		$("#error-confirmar").html($("#error-exportar").val());
 		$("#error-confirmar").show();
+		$("#success-confirmar").hide();
 	}
 }
 
@@ -254,13 +346,15 @@ function confirmar() {
 		pendings += $(this).parent().parent().parent().children('td[data-value="Pendiente"]').length;
 	}); 
 	
-	if(pendings > 0 && selected > 0 && pendings !== selected) {
+	if((pendings > 0 || selected > 0) && pendings !== selected) {
 		$("#error-confirmar").html($("#error-confirmar-input").val());
 		$("#error-confirmar").show();
+		$("#success-confirmar").hide();
 		return false;
 	} else if(selected === 0) {
 		$("#error-confirmar").html($("#error-no-seleccionado").val());
 		$("#error-confirmar").show();
+		$("#success-confirmar").hide();
 		return false;
 	}
 	
@@ -296,6 +390,9 @@ function confirmar() {
 		success : function(data) {
 			$("#loading").hide();
 			$('#content-table').show();
+			
+			var messageError;
+			var messageSuccess;
 			$.each(data, function(key, card) {
 				var htmlrow = '<td><label class="control control-checkbox">' +
 	            '<input type="checkbox" class="afiliado-check" />' +
@@ -305,28 +402,47 @@ function confirmar() {
 				var keys = Object.keys(card);
 				
 				for(var i = 0; i < keys.length; i++){
-				    var value = card[keys[i]];
+					if(keys[i] !== 'errorConfirmar' && keys[i] !== 'messageErrorConfirmar' &&
+							keys[i] !== 'errorAnular' && keys[i] !== 'messageErrorAnular') {
+						var value = card[keys[i]];
 				    
-				    if(keys[i] === 'anular' && card.estado === 'Pendiente')
-						htmlrow += "<td data-field='" + keys[i] + "' " + (value ? "data-value='" + value + "' " : "") + "'><a href='#' class='anular-link'>Anular</a></td>";
-					else if(keys[i] === 'anular' && card.estado !== 'Pendiente')
-						htmlrow += "<td data-field='" + keys[i] + "' " + (value ? "data-value='" + value + "' " : "") + "'></td>";
-					else
-						htmlrow += "<td data-field='" + keys[i] + "' " + (value ? "data-value='" + value + "' " : "") + "'>" + (value ? value : "") + "</td>";
+					    if(keys[i] === 'anular' && (card.estado === 'Pendiente' && card.anular === true))
+							htmlrow += "<td data-field='" + keys[i] + "' " + (value ? "data-value='" + value + "' " : "") + "'><a href='#' class='anular-link'>Anular</a></td>";
+						else if(keys[i] === 'anular' && (card.estado !== 'Pendiente' || card.anular !== true))
+							htmlrow += "<td data-field='" + keys[i] + "' " + (value ? "data-value='" + value + "' " : "") + "'></td>";
+						else
+							htmlrow += "<td data-field='" + keys[i] + "' " + (value ? "data-value='" + value + "' " : "") + "'>" + (value ? value : "") + "</td>";
+					}
 				}
-	            
+				
+				if(card.errorConfirmar === "999") {
+					if(!messageError) {
+						messageError = "ERROR: No se pudieron confirmar los siguientes registros: <br /><ul>";
+					}
+					messageError += "<li>" + card.registroID + ": " + card.messageErrorConfirmar + "</li>";
+				} else {
+					messageSuccess = "Los registros fueron confirmados con &eacute;xito.";
+				}
+				
 				$('#table-preview tr[data-id="'+card.registroID+'"').html(htmlrow);
 	        });
 			
+			if(messageError) {
+				messageError += '</ul>';
+			}
+			
 			$('#nav').remove();
-			$('#content-table-child').after('<div id="nav"></div>');
+			$('#content-table-child').after('<div id="nav" class="row pl-3"></div>');
 		    var rowsShown = 10;
 		    var rowsTotal = $('#table-preview tbody tr').length;
 		    var numPages = rowsTotal/rowsShown;
 		    for(i = 0;i < numPages;i++) {
 		        var pageNum = i + 1;
-		        $('#nav').append('<a class="btn" rel="'+i+'">'+pageNum+'</a> ');
+		        $('#nav').append('<div><div class="form-group"><a class="btn" rel="'+i+'">'+pageNum+'</a></div></div>');
 		    }
+		    $('#nav').append('<div><div class="form-group"><select id="paginado" class="form-control"><option>10</option><option>50</option><option>100</option><option>1000</option></select></div></div>');
+		    
+		    $("#paginado").val(rowsShown);
 		    $('#table-preview tbody tr').hide();
 		    $('#table-preview tbody tr').slice(0, rowsShown).show();
 		    
@@ -341,6 +457,16 @@ function confirmar() {
 		        $('#table-preview tbody tr').css('opacity','0.0').hide().slice(startItem, endItem).
 		        css('display','table-row').animate({opacity:1}, 300);
 		    });
+		    
+		    if(messageError) {
+		    	$("#error-confirmar").html(messageError);
+				$("#error-confirmar").show();
+				$("#success-confirmar").hide();
+		    } else if(messageSuccess) {
+		    	$("#success-confirmar").html(messageSuccess);
+				$("#success-confirmar").show();
+				$("#error-confirmar").hide();
+		    }
 		},
 		error : function(e) {
 			console.log("ERROR: ", e);

@@ -15,8 +15,8 @@ public interface SolicitudesDAO extends Dao<Afiliado>{
 	public List<ObraSocial> getAllObrasSociales() throws CustomException;
 	public List<Estado> getAllEstados() throws CustomException;
 	public Integer obtenerSolicitudMultiple() throws CustomException;
-	public boolean confirmarAltaAfiliado(Integer id) throws CustomException;
+	public String[] confirmarAltaAfiliado(Integer id) throws CustomException;
 	public boolean archivoCargaMasivaCargarRegistro(Long archivoId, AfiliadoImportDTO afiliado) throws CustomException;
 	public Long archivoCargaMasivaObtenerIdentificar(Long obraSocial, Long tipoCarga, Long tipoAfiliado, String cuit, Long pauta, String nombreArchivo) throws CustomException;
-	public void anularAfiliado(AfiliadoTableDTO afiliado) throws CustomException;
+	public String[] anularAfiliado(AfiliadoTableDTO afiliado) throws CustomException;
 }

@@ -22,8 +22,8 @@ public interface SolicitudesService {
 	public List<TipoAfiliadoDTO> getAllTipoAfiliado() throws CustomException;
 	public List<PautaDTO> getPautasByCuit(String cuit) throws CustomException;
 	public Integer obtenerSolicitudMultiple() throws CustomException;
-	public boolean confirmarAltaAfiliado(Integer id) throws CustomException;
+	public String[] confirmarAltaAfiliado(Integer id) throws CustomException;
 	public boolean archivoCargaMasivaCargarRegistro(Long archivoId, ImportForm form) throws CustomException;
 	public Long archivoCargaMasivaObtenerIdentificar(Long obraSocial, Long tipoCarga, Long tipoAfiliado, String cuit, Long pauta, String nombreArchivo) throws CustomException;
-	public void anularAfiliado(AfiliadoTableDTO afiliado) throws CustomException;
+	public String[] anularAfiliado(AfiliadoTableDTO afiliado) throws CustomException;
 }

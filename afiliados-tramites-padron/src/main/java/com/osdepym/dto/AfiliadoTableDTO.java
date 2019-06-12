@@ -27,7 +27,27 @@ public class AfiliadoTableDTO {
 	Integer codigoError;
 	String descripcionError;
 	boolean anular;
+	String errorConfirmar;
+	String messageErrorConfirmar;
+	String errorAnular;
+	String messageErrorAnular;
 	   
+	public String getErrorAnular() {
+		return errorAnular;
+	}
+
+	public void setErrorAnular(String errorAnular) {
+		this.errorAnular = errorAnular;
+	}
+
+	public String getMessageErrorAnular() {
+		return messageErrorAnular;
+	}
+
+	public void setMessageErrorAnular(String messageErrorAnular) {
+		this.messageErrorAnular = messageErrorAnular;
+	}
+
 	public AfiliadoTableDTO() {}
 
 	public int getRegistroID() {
@@ -220,5 +240,21 @@ public class AfiliadoTableDTO {
 
 	public void setAnular(boolean anular) {
 		this.anular = anular;
+	}
+	
+	public String getErrorConfirmar() {
+		return errorConfirmar;
+	}
+
+	public void setErrorConfirmar(String errorConfirmar) {
+		this.errorConfirmar = errorConfirmar;
+	}
+
+	public String getMessageErrorConfirmar() {
+		return messageErrorConfirmar;
+	}
+
+	public void setMessageErrorConfirmar(String messageErrorConfirmar) {
+		this.messageErrorConfirmar = messageErrorConfirmar;
 	}
 }

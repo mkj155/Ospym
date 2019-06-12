@@ -281,16 +281,16 @@ public class SolicitudesServiceImpl implements SolicitudesService{
 	}
 	
 	@Override
-	public boolean confirmarAltaAfiliado(Integer id) throws CustomException {
+	public String[] confirmarAltaAfiliado(Integer id) throws CustomException {
 		Session session = null;
 		Transaction tx = null;
 		try {
 			session = this.sessionFactory.getCurrentSession();
 			tx = session.beginTransaction();
-			solicitudesDAO.confirmarAltaAfiliado(id);
+			String[] response = solicitudesDAO.confirmarAltaAfiliado(id);
 			tx.commit();
 			session.close();
-			return true; 
+			return response; 
 		} catch (CustomException e) {
 			SessionUtil.rollbackTransaction(session, tx);
 			throw e;
@@ -301,15 +301,16 @@ public class SolicitudesServiceImpl implements SolicitudesService{
 		}
 	}
 	
-	public void anularAfiliado(AfiliadoTableDTO afiliado) throws CustomException {
+	public String[] anularAfiliado(AfiliadoTableDTO afiliado) throws CustomException {
 		Session session = null;
 		Transaction tx = null;
 		try {
 			session = this.sessionFactory.getCurrentSession();
 			tx = session.beginTransaction();
-			solicitudesDAO.anularAfiliado(afiliado);
+			String[] response = solicitudesDAO.anularAfiliado(afiliado);
 			tx.commit();
 			session.close();
+			return response;
 		} catch (CustomException e) {
 			SessionUtil.rollbackTransaction(session, tx);
 			throw e;

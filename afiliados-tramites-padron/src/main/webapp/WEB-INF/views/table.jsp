@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <div id="loading"><div role="status" class="spinner-border spinner-border"><span class="sr-only">Loading...</span></div></div>
+<div id="error-table" class="alert alert-info my-4"><spring:message code="error.tabla.datos.no.encontrados" /></div>
 <div id="content-table">
 		<div class="checkbox-all">
 			<label class="control control-checkbox">
@@ -12,7 +13,7 @@
 		    </label>
 		</div>
 	<div class="search-table-outter wrapper" id="content-table-child">
-		<table id="table-preview" class="table table-striped table-hover table-sm search-table inner">
+		<table id="table-preview" class="table table-striped table-hover table-sm search-table inner" style="display:none">
 			<thead>
 		    	<tr>
 		      		<th style="padding-left: 40px"></th>
@@ -29,6 +30,7 @@
 					<% for(int i = 0; i < 23; i++) { %>
 						<td></td>
 					<% } %>
+					<td></td>
 				</tr>
 		  	</tbody>
 		</table>
@@ -46,6 +48,6 @@
 			</span>
      	</div>
     </div>
-    <div id="error-confirmar" class="alert alert-danger my-4">
-    </div>
+    <div id="error-confirmar" class="alert alert-danger my-4"></div>
+    <div id="success-confirmar" class="alert alert-success my-4"></div>
 </div>

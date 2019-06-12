@@ -144,8 +144,10 @@ public class SolicitudesController {
 			if(validarPendientes(afiliados)) {
 				service.obtenerSolicitudMultiple();
 				for(AfiliadoTableDTO a : afiliados) {
-					boolean altaAfiliado = service.confirmarAltaAfiliado(a.getRegistroID());
-					a.setAnular(altaAfiliado);
+					String[] response = service.confirmarAltaAfiliado(a.getRegistroID());
+					a.setAnular(!"999".equals(response[0]));
+					a.setErrorConfirmar(response[0]);
+					a.setMessageErrorConfirmar(response[1]);
 				}
 			}
 			return afiliados;
@@ -268,13 +270,15 @@ public class SolicitudesController {
 	}
 	
 	@RequestMapping(value = "/solicitudes/anular")
-	public @ResponseBody boolean anular(@RequestBody AfiliadoTableDTO afiliado) {
+	public @ResponseBody AfiliadoTableDTO anular(@RequestBody AfiliadoTableDTO afiliado) {
 		try {
-			service.anularAfiliado(afiliado);
+			String[] response = service.anularAfiliado(afiliado);
+			afiliado.setAnular("999".equals(response[0]));
+			afiliado.setErrorAnular(response[0]);
+			afiliado.setMessageErrorAnular(response[1]);
 		} catch (Exception e) {
-			return false;
+		
 		}
-		return true;
+		return afiliado;
 	}
-	
 }
