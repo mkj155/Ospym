@@ -2,23 +2,13 @@ package com.osdepym.controller;
 
 import java.awt.Desktop;
 import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.FileInputStream;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.poi.ss.usermodel.BorderStyle;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.CellStyle;
-import org.apache.poi.ss.usermodel.Font;
-import org.apache.poi.ss.usermodel.IndexedColors;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -85,6 +75,18 @@ public class SolicitudesController {
 	
 	@RequestMapping(value = "/solicitudes/descargarPlantilla", method = RequestMethod.POST)
 	public @ResponseBody void descargarPlantilla(HttpServletRequest request, HttpServletResponse response) {
+		FileInputStream inputStream;
+		File tempFile = new File("File1.xlsx");
+		try {
+			inputStream = new FileInputStream(new File(getClass().getResource("/File1.xlsx").toURI()));
+			tempFile = File.createTempFile(String.valueOf(inputStream.hashCode()), ".xlsx");
+			
+			Desktop dt = Desktop.getDesktop();
+        	dt.open(tempFile);
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		/*
 		try {
 			 String[] columns = {
 						"CUIL",
@@ -142,7 +144,7 @@ public class SolicitudesController {
 		        try { 
 		        	// this Writes the workbook excel 
 		        	File f = new File("TitularesXLS.xls");
-		            FileOutputStream out = new FileOutputStream(f); 
+		            FileOutputStream out = new FileOutputStream(tempFile); 
 		            workbook.write(out); 
 		            out.close(); 
 		            System.out.println("excel.xlsx written successfully on disk."); 
@@ -154,12 +156,12 @@ public class SolicitudesController {
 			        byteRpt = excelOutput.toByteArray();
 			         
 			        byte[] encodedBytes = Base64.encodeBase64(byteRpt);
-			        String base64 = new String(encodedBytes);*/
+			        String base64 = new String(encodedBytes);* /
 			        workbook.close();
 			        
 			        try {
 			        	Desktop dt = Desktop.getDesktop();
-			        	dt.open(f);
+			        	dt.open(tempFile);
 			        } catch (IOException e) {
 			            // TODO Auto-generated catch block
 			            e.printStackTrace();
@@ -168,7 +170,7 @@ public class SolicitudesController {
 		            e.printStackTrace(); 
 		        } 
 		} catch (Exception e) {
-		}
+		}*/
 	}
 	
 	private ModelAndView getSolicitudesFormView(Model model, SolicitudesForm form) {
