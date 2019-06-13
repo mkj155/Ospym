@@ -16,6 +16,7 @@ import com.osdepym.exception.CustomException;
 import com.osdepym.rest.entity.AfiliadoCompleto;
 import com.osdepym.rest.json.Cuil;
 import com.osdepym.rest.json.DocumentoIdentidad;
+import com.osdepym.rest.json.Mensaje;
 import com.osdepym.rest.json.PersonaFisicaRequest;
 
 @Repository
@@ -107,7 +108,7 @@ public class ModeloPersonaDAOImpl implements ModeloPersonaDAO {
 	
 	
 	@Override
-	public void actualizarPersona(PersonaFisicaRequest personaFisicaRequest) throws CustomException{
+	public Mensaje actualizarPersona(PersonaFisicaRequest personaFisicaRequest) throws CustomException{
 		try {
 			StoredProcedureQuery query = sessionFactory.createEntityManager().createNamedStoredProcedureQuery("PersonaFisicaActualizar");
 			query.setParameter("TipoDocumento", personaFisicaRequest.getDocumentoIdeantidad().get(0).getTipo());
@@ -119,6 +120,10 @@ public class ModeloPersonaDAOImpl implements ModeloPersonaDAO {
 			query.setParameter("FechaNacimiento", personaFisicaRequest.getFechaNacimiento());
 			query.setParameter("Sexo", personaFisicaRequest.getSexo());
 			query.execute();
+			Mensaje mensaje = new Mensaje();
+			mensaje.setCodigo((String) query.getOutputParameterValue("CodigoError"));
+			mensaje.setMensaje((String) query.getOutputParameterValue("MensajeError"));
+			return mensaje;
 		}catch(Exception e){
 			logger.error(e.getStackTrace().toString());
 			logger.error(e.getMessage());

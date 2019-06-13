@@ -63,6 +63,10 @@ public class BusquedaPersonaREST extends RestTemplate {
 	@RequestMapping(value="/api-modelopersona-rest/buscarPersona", method = RequestMethod.GET)
 	@ResponseStatus(HttpStatus.OK)
 	public BusquedaPersonaFullResponse testJson(@RequestBody BusquedaPersonaRequest jsonBody, HttpServletResponse response) throws CustomException{
+		if(!jsonBody.getTipoMensaje().equals("BUSQUEDA")) {
+			throw new CustomException();
+		}
+		
 		Session session = null;
 		Transaction tx = null;
 		BusquedaPersonaFullResponse jsonResponse = new BusquedaPersonaFullResponse();
@@ -149,7 +153,7 @@ public class BusquedaPersonaREST extends RestTemplate {
 		
 		return busquedaPersonaResponse;
 	}
-	
+
 	
 	
 }

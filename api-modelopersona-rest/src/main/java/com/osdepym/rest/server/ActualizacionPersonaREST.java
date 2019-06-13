@@ -53,14 +53,17 @@ public class ActualizacionPersonaREST extends RestTemplate {
 	@RequestMapping(value = "/api-modelopersona-rest/actualizarPersona", method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.OK)
 	public ActualizacionPersonaFullResponse testJson(@RequestBody BusquedaPersonaRequest jsonBody, HttpServletResponse response) throws CustomException{
-		boolean isSuccess = true;
+		if(!jsonBody.getTipoMensaje().equals("ACTUALIZACION")) {
+			throw new CustomException();
+		}
 		Session session = null;
 		Transaction tx = null;
 		ActualizacionPersonaFullResponse jsonResponse = new ActualizacionPersonaFullResponse();
+		Mensaje mensaje = new Mensaje();
 		try {
 			session = this.sessionFactory.getCurrentSession();
 			tx = session.beginTransaction();
-			modeloPersonaDAO.actualizarPersona(jsonBody.getPersonaFisica());
+			mensaje = modeloPersonaDAO.actualizarPersona(jsonBody.getPersonaFisica());
 			tx.commit();
 			session.close();
 		}
@@ -80,26 +83,19 @@ public class ActualizacionPersonaREST extends RestTemplate {
 			jsonResponse.setPersonaFisica(jsonBody.getPersonaFisica());
 			jsonResponse.setSender(jsonBody.getSender());
 			jsonResponse.setTipoMensaje(jsonBody.getTipoMensaje());
-			jsonResponse.setRespuesta(getResponse(isSuccess));
+			jsonResponse.setRespuesta(getResponse(mensaje));
 		
 		return jsonResponse;
 	}
 
-	private ActualizacionPersonaResponse getResponse(boolean isSuccess) {
+	private ActualizacionPersonaResponse getResponse(Mensaje mensaje) {
 
 		ActualizacionPersonaResponse actualizacionPersonaResponse = new ActualizacionPersonaResponse();
-		Mensaje mensaje = new Mensaje();
 
-		if(isSuccess) {
-			actualizacionPersonaResponse.setEncontrada(true);
-			mensaje.setCodigo("000");
-			mensaje.setMensaje("Datos actualizados correctamente");
-		}else {
+		if(!mensaje.getCodigo().equals("000"))
 			actualizacionPersonaResponse.setEncontrada(false);
-			mensaje.setCodigo("001");
-			mensaje.setMensaje("Error al actualizar los datos");
-		}
-		
+		else
+			actualizacionPersonaResponse.setEncontrada(true);
 		actualizacionPersonaResponse.setMensaje(mensaje);
 
 		return actualizacionPersonaResponse;
