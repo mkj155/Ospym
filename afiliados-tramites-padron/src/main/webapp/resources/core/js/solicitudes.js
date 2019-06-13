@@ -147,11 +147,16 @@ $(document).ready(function () {
 							var value = data[keys[i]];
 					    
 						    if(keys[i] === 'anular' && (data.estado === 'Pendiente' && data.anular === true))
-								htmlrow += "<td data-field='" + keys[i] + "' " + (value ? "data-value='" + value + "' " : "") + "'><a href='#' class='anular-link'>Anular</a></td>";
+								htmlrow += "<td data-field='" + keys[i] + "' " + (value ? "data-value='" + value + "' " : "") + "><a href='#' class='anular-link'>Anular</a></td>";
 							else if(keys[i] === 'anular' && (data.estado !== 'Pendiente' || data.anular !== true))
-								htmlrow += "<td data-field='" + keys[i] + "' " + (value ? "data-value='" + value + "' " : "") + "'></td>";
-							else
-								htmlrow += "<td data-field='" + keys[i] + "' " + (value ? "data-value='" + value + "' " : "") + "'>" + (value ? value : "") + "</td>";
+								htmlrow += "<td data-field='" + keys[i] + "' " + (value ? "data-value='" + value + "' " : "") + "></td>";
+							else if(keys[i] === 'fechaCarga' || keys[i] === 'fechaInicio' || keys[i] === 'fechaNacimiento') {
+								var d = new Date(value);
+								var dString = ('0' + d.getDate()).slice(-2) + '/' + ('0' + (d.getMonth()+1)).slice(-2) + '/' + d.getFullYear();
+								htmlrow += "<td data-field='" + keys[i] + "' " + (value ? "data-value='" + value + "' " : "") + ">" + (value ? dString : "") + "</td>";
+							} else {
+								htmlrow += "<td data-field='" + keys[i] + "' " + (value ? "data-value='" + value + "' " : "") + ">" + (value ? value : "") + "</td>";
+							}
 						}
 					}
 					
@@ -188,20 +193,27 @@ $(document).ready(function () {
 	    
 	    var rowsTotal = $('#table-preview tbody tr').length;
 	    var numPages = rowsTotal/rowsShown;
+	    $('#nav').append('<div id="nav-buttons"></div>');
 	    for(i = 0;i < numPages;i++) {
 	        var pageNum = i + 1;
-	        $('#nav').append('<div><div class="form-group"><a class="btn" rel="'+i+'">'+pageNum+'</a></div></div>');
+	        $('#nav-buttons').append('<div><div><a class="btn" rel="'+i+'">'+pageNum+'</a></div></div>');
 	    }
-	    $('#nav').append('<div><div class="form-group"><select id="paginado" class="form-control"><option>10</option><option>50</option><option>100</option><option>1000</option></select></div></div>');
+	    $('#nav').append('<div id="paginado-select"><div class="form-group"><select id="paginado" class="form-control"><option>10</option><option>50</option><option>100</option><option>1000</option></select></div></div>');
 	    
 	    $("#paginado").val(rowsShown);
 	    $('#table-preview tbody tr').hide();
 	    $('#table-preview tbody tr').slice(0, rowsShown).show();
 	    
-	    $('#nav a').addClass('btn');
-	    $('#nav a:first').addClass('btn btn-primary');
-	    $('#nav a').bind('click', function(){
-	        $('#nav a').removeClass('btn-primary');
+	    var currPage = 0;
+        var startItem = currPage * rowsShown;
+        var endItem = startItem + rowsShown;
+        $('#table-preview tbody tr').css('opacity','0.0').hide().slice(startItem, endItem).
+        css('display','table-row').animate({opacity:1}, 300);
+        
+	    $('#nav-buttons a').addClass('btn');
+	    $('#nav-buttons a:first').addClass('btn btn-primary');
+	    $('#nav-buttons a').bind('click', function(){
+	        $('#nav-buttons a').removeClass('btn-primary');
 	        $(this).addClass('btn-primary');
 	        var currPage = $(this).attr('rel');
 	        var startItem = currPage * rowsShown;
@@ -209,6 +221,12 @@ $(document).ready(function () {
 	        $('#table-preview tbody tr').css('opacity','0.0').hide().slice(startItem, endItem).
 	        css('display','table-row').animate({opacity:1}, 300);
 	    });
+	});
+	
+	$(document).on("keyup", "#solicitudes-form input", function(e) {
+		if (e.keyCode == 13) {
+			search();
+		}
 	});
 });
 
@@ -253,11 +271,16 @@ function search(){
 							    var value = card[keys[i]];
 							    
 							    if(card.estado === 'Pendiente' && keys[i] === 'anular')
-									htmlrow += "<td data-field='" + keys[i] + "' " + (value ? "data-value='" + value + "' " : "") + "'><a href='#' class='anular-link'>Anular</a></td>";
+									htmlrow += "<td data-field='" + keys[i] + "' " + (value ? "data-value='" + value + "' " : "") + "><a href='#' class='anular-link'>Anular</a></td>";
 								else if(card.estado !== 'Pendiente' && keys[i] === 'anular')
-									htmlrow += "<td data-field='" + keys[i] + "' " + (value ? "data-value='" + value + "' " : "") + "'></td>";
-								else
-									htmlrow += "<td data-field='" + keys[i] + "' " + (value ? "data-value='" + value + "' " : "") + "'>" + (value ? value : "") + "</td>";
+									htmlrow += "<td data-field='" + keys[i] + "' " + (value ? "data-value='" + value + "' " : "") + "></td>";
+								else if(keys[i] === 'fechaCarga' || keys[i] === 'fechaInicio' || keys[i] === 'fechaNacimiento') {
+									var d = new Date(value);
+									var dString = ('0' + d.getDate()).slice(-2) + '/' + ('0' + (d.getMonth()+1)).slice(-2) + '/' + d.getFullYear();
+									htmlrow += "<td data-field='" + keys[i] + "' " + (value ? "data-value='" + value + "' " : "") + ">" + (value ? dString : "") + "</td>";
+								} else {
+									htmlrow += "<td data-field='" + keys[i] + "' " + (value ? "data-value='" + value + "' " : "") + ">" + (value ? value : "") + "</td>";
+								}
 							}
 						}
 						
@@ -272,19 +295,27 @@ function search(){
 						rowsShown = paginado;
 				    var rowsTotal = $('#table-preview tbody tr').length;
 				    var numPages = rowsTotal/rowsShown;
+				    $('#nav').append('<div id="nav-buttons"></div>');
 				    for(i = 0;i < numPages;i++) {
 				        var pageNum = i + 1;
-				        $('#nav').append('<div><div class="form-group"><a class="btn" rel="'+i+'">'+pageNum+'</a></div></div>');
+				        $('#nav-buttons').append('<div><div><a class="btn" rel="'+i+'">'+pageNum+'</a></div></div>');
 				    }
-				    $('#nav').append('<div><div class="form-group"><select id="paginado" class="form-control"><option>10</option><option>50</option><option>100</option><option>1000</option></select></div></div>');
+				    $('#nav').append('<div id="paginado-select"><div class="form-group"><select id="paginado" class="form-control"><option>10</option><option>50</option><option>100</option><option>1000</option></select></div></div>');
+
 				    $("#paginado").val(rowsShown);
 				    $('#table-preview tbody tr').hide();
 				    $('#table-preview tbody tr').slice(0, rowsShown).show();
 				    
-				    $('#nav a').addClass('btn');
-				    $('#nav a:first').addClass('btn btn-primary');
-				    $('#nav a').bind('click', function(){
-				        $('#nav a').removeClass('btn-primary');
+				    var currPage = 0;
+			        var startItem = currPage * rowsShown;
+			        var endItem = startItem + rowsShown;
+			        $('#table-preview tbody tr').css('opacity','0.0').hide().slice(startItem, endItem).
+			        css('display','table-row').animate({opacity:1}, 300);
+			        
+				    $('#nav-buttons a').addClass('btn');
+				    $('#nav-buttons a:first').addClass('btn btn-primary');
+				    $('#nav-buttons a').bind('click', function(){
+				        $('#nav-buttons a').removeClass('btn-primary');
 				        $(this).addClass('btn-primary');
 				        var currPage = $(this).attr('rel');
 				        var startItem = currPage * rowsShown;
@@ -296,6 +327,8 @@ function search(){
 					$("#table-preview").hide();
 					$("#loading").hide();
 					$("#error-table").show();
+					$(".checkbox-all").hide();
+					$("#nav").hide();
 				}
 			},
 			error : function(e) {
@@ -372,8 +405,9 @@ function confirmar() {
 	        	if(row !== undefined) {
 	        		if(value === undefined)
 	        			field[row] = null;
-	        		else
+	        		else {
 	        			field[row] = value;
+	        		}
 	        	}
 	        });
 	        obj.push(field);
@@ -407,11 +441,16 @@ function confirmar() {
 						var value = card[keys[i]];
 				    
 					    if(keys[i] === 'anular' && (card.estado === 'Pendiente' && card.anular === true))
-							htmlrow += "<td data-field='" + keys[i] + "' " + (value ? "data-value='" + value + "' " : "") + "'><a href='#' class='anular-link'>Anular</a></td>";
+							htmlrow += "<td data-field='" + keys[i] + "' " + (value ? "data-value='" + value + "' " : "") + "><a href='#' class='anular-link'>Anular</a></td>";
 						else if(keys[i] === 'anular' && (card.estado !== 'Pendiente' || card.anular !== true))
-							htmlrow += "<td data-field='" + keys[i] + "' " + (value ? "data-value='" + value + "' " : "") + "'></td>";
-						else
-							htmlrow += "<td data-field='" + keys[i] + "' " + (value ? "data-value='" + value + "' " : "") + "'>" + (value ? value : "") + "</td>";
+							htmlrow += "<td data-field='" + keys[i] + "' " + (value ? "data-value='" + value + "' " : "") + "></td>";
+						else if(keys[i] === 'fechaCarga' || keys[i] === 'fechaInicio' || keys[i] === 'fechaNacimiento') {
+							var d = new Date(value);
+							var dString = ('0' + d.getDate()).slice(-2) + '/' + ('0' + (d.getMonth()+1)).slice(-2) + '/' + d.getFullYear();
+							htmlrow += "<td data-field='" + keys[i] + "' " + (value ? "data-value='" + value + "' " : "") + ">" + (value ? dString : "") + "</td>";
+						} else {
+							htmlrow += "<td data-field='" + keys[i] + "' " + (value ? "data-value='" + value + "' " : "") + ">" + (value ? value : "") + "</td>";
+						}
 					}
 				}
 				
@@ -436,20 +475,28 @@ function confirmar() {
 		    var rowsShown = 10;
 		    var rowsTotal = $('#table-preview tbody tr').length;
 		    var numPages = rowsTotal/rowsShown;
+		    $('#nav').append('<div id="nav-buttons"></div>');
 		    for(i = 0;i < numPages;i++) {
 		        var pageNum = i + 1;
-		        $('#nav').append('<div><div class="form-group"><a class="btn" rel="'+i+'">'+pageNum+'</a></div></div>');
+		        $('#nav-buttons').append('<div><div><a class="btn" rel="'+i+'">'+pageNum+'</a></div></div>');
 		    }
-		    $('#nav').append('<div><div class="form-group"><select id="paginado" class="form-control"><option>10</option><option>50</option><option>100</option><option>1000</option></select></div></div>');
+		    $('#nav').append('<div id="paginado-select"><div class="form-group"><select id="paginado" class="form-control"><option>10</option><option>50</option><option>100</option><option>1000</option></select></div></div>');
+
 		    
 		    $("#paginado").val(rowsShown);
 		    $('#table-preview tbody tr').hide();
 		    $('#table-preview tbody tr').slice(0, rowsShown).show();
 		    
-		    $('#nav a').addClass('btn');
-		    $('#nav a:first').addClass('btn btn-primary');
-		    $('#nav a').bind('click', function(){
-		        $('#nav a').removeClass('btn-primary');
+		    var currPage = 0;
+	        var startItem = currPage * rowsShown;
+	        var endItem = startItem + rowsShown;
+	        $('#table-preview tbody tr').css('opacity','0.0').hide().slice(startItem, endItem).
+	        css('display','table-row').animate({opacity:1}, 300);
+	        
+		    $('#nav-buttons a').addClass('btn');
+		    $('#nav-buttons a:first').addClass('btn btn-primary');
+		    $('#nav-buttons a').bind('click', function(){
+		        $('#nav-buttons a').removeClass('btn-primary');
 		        $(this).addClass('btn-primary');
 		        var currPage = $(this).attr('rel');
 		        var startItem = currPage * rowsShown;

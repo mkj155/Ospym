@@ -12,7 +12,7 @@ import org.hibernate.annotations.Immutable;
 @Immutable
 public class Afiliado {
 	@Id
-	@Column(name = "registro_ID", updatable = false, nullable = false)
+	@Column(name = "Registro_ID", updatable = false, nullable = false)
 	int registroID;
 	 
 	@Column(name = "ObraSocial", updatable = false)

@@ -35,6 +35,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.osdepym.dto.AfiliadoDTO;
 import com.osdepym.dto.AfiliadoImportDTO;
+import com.osdepym.exception.CustomException;
 
 public class ExcelWriter {
     private static String[] columns = {
@@ -72,11 +73,11 @@ public class ExcelWriter {
 		"Descripción de error"	
     };
 
-    public static void export(List<AfiliadoDTO> objs) throws IOException, InvalidFormatException {
+    public static void export(List<AfiliadoDTO> objs) throws IOException, InvalidFormatException, CustomException {
         // Create a Workbook
     	Workbook workbook = new XSSFWorkbook(); // new HSSFWorkbook() for generating `.xls` file
 
-        Sheet sheet = workbook.createSheet("File1");
+        Sheet sheet = workbook.createSheet("Export");
 
         // Create a Font for styling header cells
         Font headerFont = workbook.createFont();
@@ -102,12 +103,16 @@ public class ExcelWriter {
         }
 
         // Create Cell Style for formatting Date
-        CellStyle dateCellStyle = workbook.createCellStyle();
+        CellStyle dateCellStyleDate = workbook.createCellStyle();
+        CellStyle dateCellStyleDatetime = workbook.createCellStyle();
+        dateCellStyleDate.setDataFormat(workbook.createDataFormat().getFormat("yyyy-MM-dd"));
+        dateCellStyleDatetime.setDataFormat(workbook.createDataFormat().getFormat("yyyy-MM-dd HH:mm:ss"));
         
         // Create Other rows and cells with employees data
         int rowNum = 1;
         try {
 	        for(AfiliadoDTO o : objs) {
+	        	Integer count = 0;
 	    		Integer cell = 0;
 	        	Row row = sheet.createRow(rowNum++);
 	
@@ -115,50 +120,86 @@ public class ExcelWriter {
 	            row.createCell(cell++).setCellValue(o.getObraSocial());
 	            row.createCell(cell++).setCellValue(o.getTipoCarga());
 	            row.createCell(cell++).setCellValue(o.getTipoAfiliado());
-	            row.createCell(cell++).setCellValue(o.getCuit() != null ? o.getCuit().toString() : "");
-	            row.createCell(cell++).setCellValue(o.getCuil() != null ? o.getCuil().toString() : "");
+	            if(o.getCuit() != null)
+	            	row.createCell(cell++).setCellValue(o.getCuit());
+	            else
+	            	row.createCell(cell++);
+	            if(o.getCuil() != null)
+	            	row.createCell(cell++).setCellValue(o.getCuil());
+	            else
+	            	row.createCell(cell++);
 	            row.createCell(cell++).setCellValue(o.getApellido());
 	            row.createCell(cell++).setCellValue(o.getNombre());
 	            row.createCell(cell++).setCellValue(o.getTipoDocumento());
-	            row.createCell(cell++).setCellValue(o.getNroDocumento());
+	            try {
+	            	count = cell++;
+	            	row.createCell(count).setCellValue(new Long(o.getNroDocumento()));
+	            } catch(Exception e) {
+	            	row.createCell(count).setCellValue(o.getNroDocumento());
+	            }
 	            row.createCell(cell++).setCellValue(o.getDireccion());
-	            row.createCell(cell++).setCellValue(o.getDireccionNumero());
-	            row.createCell(cell++).setCellValue(o.getDireccionPiso());
+	            try {
+	            	count = cell++;
+	            	row.createCell(count).setCellValue(new Long(o.getDireccionNumero()));
+	            } catch(Exception e) {
+	            	row.createCell(count).setCellValue(o.getDireccionNumero());
+	            }
+	            try {
+	            	count = cell++;
+	            	row.createCell(count).setCellValue(new Long(o.getDireccionPiso()));
+	            } catch(Exception e) {
+	            	row.createCell(count).setCellValue(o.getDireccionPiso());
+	            }
 	            row.createCell(cell++).setCellValue(o.getDireccionDepartamento());
 	            row.createCell(cell++).setCellValue(o.getDireccionLocalidad());
 	            row.createCell(cell++).setCellValue(o.getDireccionProvincia());
-	            row.createCell(cell++).setCellValue(o.getCodigoPostal());
+	            try {
+	            	count = cell++;
+	            	row.createCell(count).setCellValue(new Long(o.getCodigoPostal()));
+	            } catch(Exception e) {
+	            	row.createCell(count).setCellValue(o.getCodigoPostal());
+	            }
 	            row.createCell(cell++).setCellValue(o.getTelefono());
 	            row.createCell(cell++).setCellValue(o.getEmail());
 	            
 	            Cell c = row.createCell(cell++);
 	            c.setCellValue(o.getFechaNacimiento());
-	            c.setCellStyle(dateCellStyle);
+	            c.setCellStyle(dateCellStyleDate);
 	            
 	            row.createCell(cell++).setCellValue(o.getSexo());
 	            row.createCell(cell++).setCellValue(o.getEstadoCivil());
-	            row.createCell(cell++).setCellValue(o.getCuilTitular() != null ? o.getCuilTitular().toString() : "");
+	            if(o.getCuilTitular() != null)
+	            	row.createCell(cell++).setCellValue(o.getCuilTitular());
+	            else
+	            	row.createCell(cell++);
 	            
 	            c = row.createCell(cell++);
-	            row.createCell(cell++).setCellValue(o.getFechaInicio());
-	            c.setCellStyle(dateCellStyle);
+	            c.setCellValue(o.getFechaInicio());
+	            c.setCellStyle(dateCellStyleDatetime);
 	            
 	            row.createCell(cell++).setCellValue(o.getCentroMedico());
 	            row.createCell(cell++).setCellValue(o.getPlan());
 	            row.createCell(cell++).setCellValue(o.getEstado());
-	            row.createCell(cell++).setCellValue(o.getSolicitudID() != null ? o.getSolicitudID().toString() : "");
+	            if(o.getSolicitudID() != null)
+	            	row.createCell(cell++).setCellValue(o.getSolicitudID());
+	            else
+	            	row.createCell(cell++);
 	            row.createCell(cell++).setCellValue(o.getArchivo());
 	            
 	            c = row.createCell(cell++);
-	            row.createCell(cell++).setCellValue(o.getFechaCarga());
-	            c.setCellStyle(dateCellStyle);
+	            c.setCellValue(o.getFechaCarga());
+	            c.setCellStyle(dateCellStyleDatetime);
 	            
-	            row.createCell(cell++).setCellValue(o.getCodigoError() != null ? o.getCodigoError().toString() : "");
+	            if(o.getCodigoError() != null)
+	            	row.createCell(cell++).setCellValue(o.getCodigoError());
+	            else
+	            	row.createCell(cell++);
 	            row.createCell(cell++).setCellValue(o.getDescripcionError());
 	
 	        }
         } catch(Exception e) {
-        	e.getStackTrace();
+        	workbook.close();
+        	throw new CustomException(e.getMessage(), "ERROR AL EXPORTAR A EXCEL");
         }
 		// Resize all columns to fit the content size
         for(int i = 0; i < columns.length; i++) {
@@ -167,31 +208,21 @@ public class ExcelWriter {
         
         try { 
         	// this Writes the workbook excel 
-        	File f = new File("excel.xlsx");
+        	File f = new File("Export.xlsx");
             FileOutputStream out = new FileOutputStream(f); 
             workbook.write(out); 
             out.close(); 
             System.out.println("excel.xlsx written successfully on disk."); 
-            
-	        /*ByteArrayOutputStream excelOutput = new ByteArrayOutputStream();
-	        byte[] byteRpt = null;
-	         
-	        workbook.write(excelOutput);
-	        byteRpt = excelOutput.toByteArray();
-	         
-	        byte[] encodedBytes = Base64.encodeBase64(byteRpt);
-	        String base64 = new String(encodedBytes);*/
 	        workbook.close();
 	        
 	        try {
 	        	Desktop dt = Desktop.getDesktop();
 	        	dt.open(f);
 	        } catch (IOException e) {
-	            // TODO Auto-generated catch block
-	            e.printStackTrace();
+	        	throw new CustomException(e.getMessage(), "ERROR AL EXPORTAR A EXCEL");
 	        }
         } catch (Exception e) { 
-            e.printStackTrace(); 
+        	throw new CustomException(e.getMessage(), "ERROR AL EXPORTAR A EXCEL");
         } 
     }
     

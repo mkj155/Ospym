@@ -3,6 +3,7 @@ package com.osdepym.hibernate.dao;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.TimeZone;
 
 import javax.persistence.ParameterMode;
 import javax.persistence.StoredProcedureQuery;
@@ -68,15 +69,21 @@ public class SolicitudesDAOImpl implements SolicitudesDAO {
 		try {
 			Session session = this.sessionFactory.getCurrentSession();
 			//int numberOfRecords = 500;
-			StringBuilder query = new StringBuilder("SELECT Registro_ID, ObraSocial, TipoCarga , TipoAfiliado , CUIT, CUIL, Apellido, Nombre, TipoDocumento, NroDocumento, Direccion, DireccionNumero, DireccionPiso, DireccionDepartamento, DireccionLocalidad, DireccionProvincia, CodigoPostal, Telefono, Email, FechaNacimiento, Sexo, EstadoCivil, CUILTitular, FechaInicio, CentroMedico, CodigoPlan, Estado, Solicitud_ID, Archivo, FechaCarga, CodigoError, DescripcionError FROM ga.vo_solicitud");
+			StringBuilder query = new StringBuilder("SELECT Registro_ID, ObraSocial, TipoCarga, TipoAfiliado, CUIT, CUIL, Apellido, Nombre, TipoDocumento, NroDocumento, Direccion, DireccionNumero, DireccionPiso, DireccionDepartamento, DireccionLocalidad, DireccionProvincia, CodigoPostal, Telefono, Email, FechaNacimiento, Sexo, EstadoCivil, CUILTitular, FechaInicio, CentroMedico, CodigoPlan, Estado, Solicitud_ID, Archivo, FechaCarga, CodigoError, DescripcionError, EstadoRegistro_ID, ObraSocial_ID, TipoCarga_ID, TipoAfiliado_ID, EstadoCivil_ID, Provincia_ID, Localidad_ID FROM ga.vo_solicitud");
 			Boolean isFirst = true; 
-			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+			
+			TimeZone gmtTime = TimeZone.getTimeZone("GMT");
+			
+			SimpleDateFormat sdfInit = new SimpleDateFormat("yyyy-MM-dd 00:00:00");
+			SimpleDateFormat sdfEnd = new SimpleDateFormat("yyyy-MM-dd 23:59:59");
+			sdfInit.setTimeZone(gmtTime);
+			sdfEnd.setTimeZone(gmtTime);
 		    if(ValidateUtil.isNotEmpty(form.getApellido())) {
 				if(isFirst) {
-					query.append(" WHERE Apellido = '" + form.getApellido() + "'");
+					query.append(" WHERE Apellido = '" + form.getApellido().trim() + "'");
 					isFirst = false;
 				} else {
-					query.append(" AND Apellido = '" + form.getApellido() + "'");
+					query.append(" AND Apellido = '" + form.getApellido().trim() + "'");
 				}
 		    }
 		    
@@ -109,30 +116,28 @@ public class SolicitudesDAOImpl implements SolicitudesDAO {
 
 		    if(ValidateUtil.isNotEmpty(form.getEstado())) {
 				if(isFirst) {
-					//query.append(" WHERE Estado = '" + form.getEstado() + "'");
-					query.append(" WHERE CodigoError = " + form.getEstado());
+					query.append(" WHERE EstadoRegistro_ID = " + form.getEstado());
 					isFirst = false;
 				} else {
-					//query.append(" AND Estado = '" + form.getEstado() + "'");
-					query.append(" AND CodigoError = " + form.getEstado());
+					query.append(" AND EstadoRegistro_ID = " + form.getEstado());
 				} 
 		    }
 		    
 		    if(ValidateUtil.isNotEmpty(form.getFechaCarga())) {
 				if(isFirst) {
-					query.append(" WHERE FechaCarga = '" + sdf.format(form.getFechaCarga()) + "'");
+					query.append(" WHERE FechaCarga BETWEEN '" + sdfInit.format(form.getFechaCarga()) + "' AND '" + sdfEnd.format(form.getFechaCarga()) + "'");
 					isFirst = false;
 				} else {
-					query.append(" AND FechaCarga = '" + sdf.format(form.getFechaCarga()) + "'");
+					query.append(" AND FechaCarga BETWEEN '" + sdfInit.format(form.getFechaCarga()) + "' AND '" + sdfEnd.format(form.getFechaCarga()) + "'");
 				} 
 		    }
 		    
 		    if(ValidateUtil.isNotEmpty(form.getNombre())) {
 				if(isFirst) {
-					query.append(" WHERE Nombre = '" + form.getNombre() + "'");
+					query.append(" WHERE Nombre = '" + form.getNombre().trim() + "'");
 					isFirst = false;
 				} else {
-					query.append(" AND Nombre = '" + form.getNombre() + "'");
+					query.append(" AND Nombre = '" + form.getNombre().trim() + "'");
 				} 
 		    }
 		    
@@ -156,14 +161,12 @@ public class SolicitudesDAOImpl implements SolicitudesDAO {
 		    
 		    if(ValidateUtil.isNotEmpty(form.getObraSocial())) {
 				if(isFirst) {
-					//query.append(" WHERE ObraSocial = '" + form.getObraSocial() + "'");
 					query.append(" WHERE ObraSocial_ID = " + Integer.parseInt(form.getObraSocial())); 
 					isFirst = false;
 				} else {
-					//query.append(" AND ObraSocial = '" + form.getObraSocial() + "'");
 					query.append(" AND ObraSocial_ID = " + Integer.parseInt(form.getObraSocial()));
 				} 
-		    }
+		    }	
 			aList = session.createNativeQuery(query.toString(), Afiliado.class).getResultList();
 		} catch (Exception e) {
 			throw new CustomException(e.getMessage(), ErrorMessages.DATABASE_GET_ERROR);

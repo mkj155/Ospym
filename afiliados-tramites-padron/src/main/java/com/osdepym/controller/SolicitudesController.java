@@ -33,6 +33,8 @@ import com.osdepym.dto.ObraSocialDTO;
 import com.osdepym.dto.PautaDTO;
 import com.osdepym.dto.TipoAfiliadoDTO;
 import com.osdepym.dto.TipoCargaDTO;
+import com.osdepym.exception.CustomException;
+import com.osdepym.exception.ErrorMessages;
 import com.osdepym.form.ImportForm;
 import com.osdepym.form.SolicitudesForm;
 import com.osdepym.service.SolicitudesService;
@@ -46,35 +48,37 @@ public class SolicitudesController {
 	private SolicitudesService service;
 
 	@RequestMapping(value = "/solicitudes", method = RequestMethod.GET)
-	public ModelAndView init(Model model) {
+	public ModelAndView init(Model model) throws CustomException {
 		ModelAndView view = getSolicitudesFormView(model, new SolicitudesForm());
 		return view;
 	}
 	
 	@RequestMapping(value = "/solicitudes/buscar")
-	public @ResponseBody List<AfiliadoTableDTO> buscar(@RequestBody SolicitudesForm element) {
+	public @ResponseBody List<AfiliadoTableDTO> buscar(@RequestBody SolicitudesForm element) throws CustomException {
 		List<AfiliadoTableDTO> afiliados = new ArrayList<AfiliadoTableDTO>();
 		try {
 			afiliados = service.buscar(element);
 		} catch (Exception e) {
+			throw new CustomException(e.getMessage(), ErrorMessages.DATABASE_GET_ERROR);
 		}
 		return afiliados;	
 	}
 	
 	@RequestMapping(value = "/solicitudes/exportar", method = RequestMethod.POST)
 	public @ResponseBody List<AfiliadoDTO> exportar(HttpServletRequest request, HttpServletResponse response,
-			@RequestBody SolicitudesForm element) {
+			@RequestBody SolicitudesForm element) throws CustomException {
 		List<AfiliadoDTO> afiliados = new ArrayList<AfiliadoDTO>();
 		try {
 			afiliados = service.buscarExportar(element);
 			ExcelWriter.export(afiliados);
 		} catch (Exception e) {
+			throw new CustomException(e.getMessage(), ErrorMessages.DATABASE_GET_ERROR);
 		}
 		return afiliados;	
 	}
 	
 	@RequestMapping(value = "/solicitudes/descargarPlantilla", method = RequestMethod.POST)
-	public @ResponseBody void descargarPlantilla(HttpServletRequest request, HttpServletResponse response) {
+	public @ResponseBody void descargarPlantilla(HttpServletRequest request, HttpServletResponse response) throws CustomException {
 		FileInputStream inputStream;
 		File tempFile = new File("File1.xlsx");
 		try {
@@ -84,7 +88,7 @@ public class SolicitudesController {
 			Desktop dt = Desktop.getDesktop();
         	dt.open(tempFile);
 		} catch(Exception e) {
-			e.printStackTrace();
+			throw new CustomException(e.getMessage(), ErrorMessages.DATABASE_GET_ERROR);
 		}
 		/*
 		try {
@@ -173,7 +177,7 @@ public class SolicitudesController {
 		}*/
 	}
 	
-	private ModelAndView getSolicitudesFormView(Model model, SolicitudesForm form) {
+	private ModelAndView getSolicitudesFormView(Model model, SolicitudesForm form) throws CustomException {
 		ModelAndView view = null;
 		try {
 			view = new ModelAndView("solicitudes");
@@ -191,7 +195,7 @@ public class SolicitudesController {
 	}
 	
 	@RequestMapping(value = "/solicitudes/cargaMasiva", method = RequestMethod.GET)
-	public ModelAndView cargaMasiva(Model model) {
+	public ModelAndView cargaMasiva(Model model) throws CustomException {
 		ModelAndView view = new ModelAndView("importar");
 		try {
 			
@@ -205,13 +209,14 @@ public class SolicitudesController {
 		}catch(Exception e) {
 			view = new ModelAndView("error");
 			view.addObject("error", e);
+			throw new CustomException(e.getMessage(), ErrorMessages.DATABASE_GET_ERROR);
 		}
 		return view;
 	}
 	
 	@ResponseBody
 	@RequestMapping(value = "*/procesarArchivo", method = RequestMethod.POST)
-	public List<AfiliadoImportDTO> procesarArchivo(@RequestParam("file") MultipartFile uploadFile) {
+	public List<AfiliadoImportDTO> procesarArchivo(@RequestParam("file") MultipartFile uploadFile) throws CustomException {
 		List<AfiliadoImportDTO> afiliados = new ArrayList<AfiliadoImportDTO>();
 		try {
 			if(uploadFile.getOriginalFilename().endsWith("xls"))
@@ -220,25 +225,24 @@ public class SolicitudesController {
 				afiliados = ExcelWriter.getAfiliadosByFileXLSX(uploadFile);
 		
 		}catch(Exception e) {
-			e.printStackTrace();
-			System.out.println(e.getMessage());
+			throw new CustomException(e.getMessage(), ErrorMessages.DATABASE_GET_ERROR);
 		}
 		return afiliados;
 	}
 	
 	@RequestMapping(value = "/solicitudes/obtenerPautas", method = RequestMethod.POST)
-	public @ResponseBody List<PautaDTO> getPautaByCuit(@RequestBody String cuit) {
+	public @ResponseBody List<PautaDTO> getPautaByCuit(@RequestBody String cuit) throws CustomException {
 		List<PautaDTO> pautas = null;
 		try {
 			pautas = service.getPautasByCuit(cuit);
 		} catch (Exception e) {
-			
+			throw new CustomException(e.getMessage(), ErrorMessages.DATABASE_GET_ERROR);
 		}
 		return pautas;
 	}
 
 	@RequestMapping(value = "/solicitudes/confirmar")
-	public @ResponseBody List<AfiliadoTableDTO> confirmar(@RequestBody List<AfiliadoTableDTO> afiliados) {
+	public @ResponseBody List<AfiliadoTableDTO> confirmar(@RequestBody List<AfiliadoTableDTO> afiliados) throws CustomException {
 		try {
 			if(validarPendientes(afiliados)) {
 				service.obtenerSolicitudMultiple();
@@ -251,8 +255,8 @@ public class SolicitudesController {
 			}
 			return afiliados;
 		} catch (Exception e) {
+			throw new CustomException(e.getMessage(), ErrorMessages.DATABASE_GET_ERROR);
 		}
-		return afiliados;
 	}
 	
 	public boolean validarPendientes(List<AfiliadoTableDTO> afiliados) {
@@ -266,7 +270,7 @@ public class SolicitudesController {
 	@RequestMapping(value = "/solicitudes/importar", method = RequestMethod.POST)
 	public ModelAndView importar(@RequestParam("uploadFile") MultipartFile uploadFile,
 			@ModelAttribute("importForm") @Validated ImportForm importForm, BindingResult result, Model model,
-			final RedirectAttributes redirectAttributes) {
+			final RedirectAttributes redirectAttributes) throws CustomException {
 		ModelAndView view = null;
 		try {
 			if (!result.hasErrors()) {
@@ -290,6 +294,7 @@ public class SolicitudesController {
 		} catch (Exception e) {
 			view = new ModelAndView("error");
 			view.addObject("error", e);
+			throw new CustomException(e.getMessage(), ErrorMessages.DATABASE_GET_ERROR);
 		}
 		return view;	
 	}
@@ -297,14 +302,14 @@ public class SolicitudesController {
 	
 	
 	@RequestMapping(value = "/solicitudes/anular")
-	public @ResponseBody AfiliadoTableDTO anular(@RequestBody AfiliadoTableDTO afiliado) {
+	public @ResponseBody AfiliadoTableDTO anular(@RequestBody AfiliadoTableDTO afiliado) throws CustomException {
 		try {
 			String[] response = service.anularAfiliado(afiliado);
 			afiliado.setAnular("999".equals(response[0]));
 			afiliado.setErrorAnular(response[0]);
 			afiliado.setMessageErrorAnular(response[1]);
 		} catch (Exception e) {
-		
+			throw new CustomException(e.getMessage(), ErrorMessages.DATABASE_GET_ERROR);
 		}
 		return afiliado;
 	}

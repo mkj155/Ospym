@@ -612,7 +612,12 @@ div.datepicker {
 }
 
 #nav a.btn {
-	width: 35px;
+	width: 45px;
+}
+
+#nav a.btn:hover {
+	background-color: #09673E;
+	color: #fff;
 }
 
 #nav a.btn, #nav select {
@@ -644,4 +649,13 @@ input.btn-primary:disabled {
     color: #fff;
     background-color: gray;
     border-color: gray;
+}
+
+#nav-buttons {
+	display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    width: 90.5%;
+    border-right: 1px solid gray;
+    margin-right: 11px;
 }
