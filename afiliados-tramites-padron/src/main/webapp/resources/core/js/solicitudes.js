@@ -2,6 +2,7 @@ var date;
 var exportForm;
 var afiliadoAnular = {};
 var paginado;
+
 (function($) {
 	  $.fn.inputFilter = function(inputFilter) {
 	    return this.on("input keydown keyup mousedown mouseup select contextmenu drop", function() {
@@ -25,6 +26,8 @@ document.onclick = function(e) {
 		$("#error-table").hide();
 	}
 }
+
+var rows = [];
 
 $(document).ready(function () {
 	$("#error-table").hide();
@@ -60,6 +63,9 @@ $(document).ready(function () {
     });
 	
 	$("#loading").hide();
+	$("#loading-exportar").hide();
+	$("#loading-confirmar").hide();
+	
 	$("#fechaCarga").datepicker({
 		format: 'dd/mm/yyyy'
 	});
@@ -82,6 +88,11 @@ $(document).ready(function () {
             });
         }
     });
+	
+	$(document).on("click", "button", function(e) {
+		e.preventDefault();
+        $("button").attr("disabled", true);
+	});
 	
 	$( document ).on("click", "#search", function(e) {
 		search();
@@ -168,8 +179,11 @@ $(document).ready(function () {
 				    	$("#success-confirmar").html(messageSuccess);
 						$("#success-confirmar").show();
 				    }
+					 
+					 $("button").removeAttr("disabled");
 				},
 				error : function(e) {
+					$("button").removeAttr("disabled");
 					console.log("ERROR: ", e);
 				}
 			});
@@ -179,6 +193,7 @@ $(document).ready(function () {
 	$(document).on("click", "#cancel-anular", function() {
 		afiliadoAnular = {};
 		$('#anular-modal').modal('hide');
+		$("button").removeAttr("disabled");
 		return false;
 	});
 	
@@ -194,14 +209,15 @@ $(document).ready(function () {
 	    var rowsTotal = $('#table-preview tbody tr').length;
 	    var numPages = rowsTotal/rowsShown;
 	    $('#nav').append('<div id="nav-buttons"></div>');
-	    for(i = 0;i < numPages;i++) {
+	    /*for(i = 0;i < numPages;i++) {
 	        var pageNum = i + 1;
 	        $('#nav-buttons').append('<div><div><a class="btn" rel="'+i+'">'+pageNum+'</a></div></div>');
-	    }
+	    }*/
 	    $('#nav').append('<div id="paginado-select"><div class="form-group"><select id="paginado" class="form-control"><option>10</option><option>50</option><option>100</option><option>1000</option></select></div></div>');
 	    
+	    
 	    $("#paginado").val(rowsShown);
-	    $('#table-preview tbody tr').hide();
+	    /*$('#table-preview tbody tr').hide();
 	    $('#table-preview tbody tr').slice(0, rowsShown).show();
 	    
 	    var currPage = 0;
@@ -220,13 +236,26 @@ $(document).ready(function () {
 	        var endItem = startItem + rowsShown;
 	        $('#table-preview tbody tr').css('opacity','0.0').hide().slice(startItem, endItem).
 	        css('display','table-row').animate({opacity:1}, 300);
-	    });
-	});
-	
-	$(document).on("keyup", "#solicitudes-form input", function(e) {
-		if (e.keyCode == 13) {
-			search();
-		}
+	    });*/
+	    /*let rows = []
+	    $('#table-preview tbody tr').each(function(i, row) {
+	    	rows.push(row);
+	    });*/
+	    
+	    $("#nav-buttons").pagination({
+		    dataSource: rows,
+		    pageSize: rowsShown,
+		    showGoInput: false,
+	    	activeClassName: 'btn-primary',
+	    	ulClassName: 'ulnav',
+		    showGoButton: false,
+		    callback: function(data, pagination) {
+		        // template method of yourself
+		        /*var html = template(data);
+		        dataContainer.html(html);*/
+		    	$('#table-preview tbody').html(data);
+		    }
+		});
 	});
 });
 
@@ -234,11 +263,15 @@ function search(){
 	$("#error-table").hide();
 		if(!validateForm()) {
 			$("#error-date").show();
+			$("button").removeAttr("disabled");
 			return false;
 		}
-		
-		$('#content-table').hide();
+
+		$('#content-table-child').hide();
+		$(".checkbox-all").hide();
 		$("#loading").show();
+		$("#table-preview").hide();
+		$("#nav").hide();
 		var documentOptions = convertFormToJSON($("#solicitudes-form"));
 		exportForm = documentOptions;
 		$.ajax({
@@ -258,6 +291,7 @@ function search(){
 					$("#table-preview").show();
 					$('#table-preview tbody').html("");
 					$.each(data, function(key, card) {
+						$("#content-table-child").show();
 						var htmlrow = '<tr data-id="'+card.registroID+'"><td><label class="control control-checkbox">' +
 			            '<input type="checkbox" class="afiliado-check" />' +
 				        '<div class="control-indicator"></div>' +
@@ -296,14 +330,15 @@ function search(){
 				    var rowsTotal = $('#table-preview tbody tr').length;
 				    var numPages = rowsTotal/rowsShown;
 				    $('#nav').append('<div id="nav-buttons"></div>');
-				    for(i = 0;i < numPages;i++) {
+				    /*for(i = 0;i < numPages;i++) {
 				        var pageNum = i + 1;
 				        $('#nav-buttons').append('<div><div><a class="btn" rel="'+i+'">'+pageNum+'</a></div></div>');
-				    }
+				    }*/
 				    $('#nav').append('<div id="paginado-select"><div class="form-group"><select id="paginado" class="form-control"><option>10</option><option>50</option><option>100</option><option>1000</option></select></div></div>');
-
+				    
+				    
 				    $("#paginado").val(rowsShown);
-				    $('#table-preview tbody tr').hide();
+				    /*$('#table-preview tbody tr').hide();
 				    $('#table-preview tbody tr').slice(0, rowsShown).show();
 				    
 				    var currPage = 0;
@@ -322,7 +357,25 @@ function search(){
 				        var endItem = startItem + rowsShown;
 				        $('#table-preview tbody tr').css('opacity','0.0').hide().slice(startItem, endItem).
 				        css('display','table-row').animate({opacity:1}, 300);
+				    });*/
+				    $('#table-preview tbody tr').each(function(i, row) {
+				    	rows.push(row);
 				    });
+				    
+				    $("#nav-buttons").pagination({
+					    dataSource: rows,
+					    pageSize: rowsShown,
+					    activeClassName: 'btn-primary',
+					    ulClassName: 'ulnav',
+					    showGoInput: false,
+					    showGoButton: false,
+					    callback: function(data, pagination) {
+					        // template method of yourself
+					        /*var html = template(data);
+					        dataContainer.html(html);*/
+					    	$('#table-preview tbody').html(data);
+					    }
+					});
 				} else {
 					$("#table-preview").hide();
 					$("#loading").hide();
@@ -330,14 +383,18 @@ function search(){
 					$(".checkbox-all").hide();
 					$("#nav").hide();
 				}
+				$("button").removeAttr("disabled");
 			},
 			error : function(e) {
+				$("button").removeAttr("disabled");
 				console.log("ERROR: ", e);
 			}
 		});
 }
 
 function exportar(){
+	$("#loading-exportar").show();
+
 	if(exportForm) {
 		$.ajax({
 			type: "POST",
@@ -348,16 +405,22 @@ function exportar(){
 			async: true,
 			timeout : 100000,
 			success : function(data) {
-
+				$("button").removeAttr("disabled");
+				$("#loading-exportar").hide();
 			},
 			error : function(e) {
+				$("button").removeAttr("disabled");
+				$("#loading-exportar").hide();
 				console.log("ERROR: ", e);
 			}
 		});
+
 	} else {
 		$("#error-confirmar").html($("#error-exportar").val());
 		$("#error-confirmar").show();
 		$("#success-confirmar").hide();
+		$("#loading-exportar").hide();
+		$("button").removeAttr("disabled");
 	}
 }
 
@@ -373,6 +436,7 @@ function convertFormToJSON(form){
 }
 
 function confirmar() {
+	$("#loading-confirmar").show();
 	var pendings = 0;
 	var selected = $('#table-preview > tbody > tr .afiliado-check:checked').length;
 	$.each($('#table-preview > tbody > tr .afiliado-check:checked'), function(){
@@ -383,11 +447,15 @@ function confirmar() {
 		$("#error-confirmar").html($("#error-confirmar-input").val());
 		$("#error-confirmar").show();
 		$("#success-confirmar").hide();
+		$("button").removeAttr("disabled");
+		$("#loading-confirmar").hide();
 		return false;
 	} else if(selected === 0) {
 		$("#error-confirmar").html($("#error-no-seleccionado").val());
 		$("#error-confirmar").show();
 		$("#success-confirmar").hide();
+		$("button").removeAttr("disabled");
+		$("#loading-confirmar").hide();
 		return false;
 	}
 	
@@ -476,15 +544,15 @@ function confirmar() {
 		    var rowsTotal = $('#table-preview tbody tr').length;
 		    var numPages = rowsTotal/rowsShown;
 		    $('#nav').append('<div id="nav-buttons"></div>');
-		    for(i = 0;i < numPages;i++) {
+		    /*for(i = 0;i < numPages;i++) {
 		        var pageNum = i + 1;
 		        $('#nav-buttons').append('<div><div><a class="btn" rel="'+i+'">'+pageNum+'</a></div></div>');
-		    }
+		    }*/
 		    $('#nav').append('<div id="paginado-select"><div class="form-group"><select id="paginado" class="form-control"><option>10</option><option>50</option><option>100</option><option>1000</option></select></div></div>');
-
+		    
 		    
 		    $("#paginado").val(rowsShown);
-		    $('#table-preview tbody tr').hide();
+		    /*$('#table-preview tbody tr').hide();
 		    $('#table-preview tbody tr').slice(0, rowsShown).show();
 		    
 		    var currPage = 0;
@@ -503,7 +571,23 @@ function confirmar() {
 		        var endItem = startItem + rowsShown;
 		        $('#table-preview tbody tr').css('opacity','0.0').hide().slice(startItem, endItem).
 		        css('display','table-row').animate({opacity:1}, 300);
-		    });
+		    });*/
+		    
+		    
+		    $("#nav-buttons").pagination({
+			    dataSource: rows,
+			    pageSize: rowsShown,
+			    showGoInput: false,
+		    	activeClassName: 'btn-primary',
+		    	ulClassName: 'ulnav',
+			    showGoButton: false,
+			    callback: function(data, pagination) {
+			        // template method of yourself
+			        /*var html = template(data);
+			        dataContainer.html(html);*/
+			    	$('#table-preview tbody').html(data);
+			    }
+			});
 		    
 		    if(messageError) {
 		    	$("#error-confirmar").html(messageError);
@@ -514,11 +598,17 @@ function confirmar() {
 				$("#success-confirmar").show();
 				$("#error-confirmar").hide();
 		    }
+		    $("button").removeAttr("disabled");
+		    $("#loading-confirmar").hide();
 		},
 		error : function(e) {
+			$("button").removeAttr("disabled");
+			$("#loading-confirmar").hide();
 			console.log("ERROR: ", e);
 		}
 	});
+	
+	
 }
 
 function validateForm() {

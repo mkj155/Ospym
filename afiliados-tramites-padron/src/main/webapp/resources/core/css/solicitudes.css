@@ -611,16 +611,28 @@ div.datepicker {
     border-color: #15616c;
 }
 
-#nav a.btn {
+#nav li.btn {
 	width: 45px;
 }
 
-#nav a.btn:hover {
+#nav .ulnav li.btn:hover {
+  	text-decoration: inherit; /* no underline */
 	background-color: #09673E;
 	color: #fff;
 }
 
-#nav a.btn, #nav select {
+#nav .ulnav li.btn:hover a {
+  	text-decoration: inherit; /* no underline */
+	color: #fff;
+}
+
+#nav a:hover {
+	text-decoration: inherit; /* no underline */
+	background-color: #09673E;
+	color: #fff;
+}
+
+#nav li.btn, #nav select {
 	margin-top: 5px !important;
 	height: inherit;
 	margin-top: inherit;
@@ -628,8 +640,12 @@ div.datepicker {
 	margin-right: 5px;
 }
 
-#nav a.btn-primary {
+#nav li.btn-primary {
 	color: #fff;	
+}
+
+.ulnav {
+	padding-left: 0;
 }
 
 #loading {
@@ -655,7 +671,19 @@ input.btn-primary:disabled {
 	display: flex;
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
-    width: 90.5%;
     border-right: 1px solid gray;
     margin-right: 11px;
+    padding-right: 6px;
+}
+
+#loading-exportar {
+    float: left;
+    margin-top: 35px;
+    margin-right: 10px;
+}
+
+#loading-confirmar {
+    float: right;
+    margin-top: 35px;
+    margin-left: 10px;
 }

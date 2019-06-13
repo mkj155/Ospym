@@ -2,6 +2,8 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+<script src="/OSDEPYM/resources/core/js/pagination.min.js"></script>
+
 <div id="loading"><div role="status" class="spinner-border spinner-border"><span class="sr-only">Loading...</span></div></div>
 <div id="error-table" class="alert alert-info my-4"><spring:message code="error.tabla.datos.no.encontrados" /></div>
 <div id="content-table">
@@ -37,15 +39,19 @@
 	</div>
 	<div class="row">
 		<div class="col-md-12 align-middle text-left mt-2">
-        	<span class="pr-1">
+        	<div class="pr-1 float-left">
 				<button type="button" class="btn btn-primary btn-lg btn-search btn-form" id="ingreso-masivo" onclick="window.location.href = 'solicitudes/cargaMasiva'"><spring:message code="button.ingreso.masivo" /></button>
-			</span>
-            <span class="pl-1">
+			</div>
+            <div class="pl-1 float-left">
      			<button type="button" class="btn btn-primary btn-lg btn-search btn-form" id="confirmar"><spring:message code="button.confirmar" /></button>
-			</span>
-			<span class="pl-1">
+				<div id="loading-confirmar"><div role="status" class="spinner-border spinner-border"><span class="sr-only">Loading...</span></div></div>
+			</div>
+			
+			<div class="pl-1 float-right">
      			<button type="button" class="btn btn-primary btn-lg btn-search btn-form" id="exportar"><spring:message code="button.exportar" /></button>
-			</span>
+				<div id="loading-exportar"><div role="status" class="spinner-border spinner-border"><span class="sr-only">Loading...</span></div></div>
+			</div>
+			
      	</div>
     </div>
     <div id="error-confirmar" class="alert alert-danger my-4"></div>
