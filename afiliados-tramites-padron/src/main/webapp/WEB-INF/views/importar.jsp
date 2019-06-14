@@ -12,6 +12,11 @@
                 <div>
                 	<spring:url value="/solicitudes/importar" var="enviarUrl" />
                 	<spring:url value="/buscar/exportar" var="exportar" />
+                	<c:if test="${successmsg == true}">
+                    <div class="alert alert-success" role="alert">
+					Datos cargados correctamente
+</div>
+</c:if>
                 	<form:form class="form-cartilla custom-form" method="post" id="importForm" modelAttribute="importForm" action="${enviarUrl}" enctype="multipart/form-data">
                 	<spring:message code="select.label.empty" var="emptyValue" />
                     <div class="row">
@@ -84,18 +89,20 @@
                                 <form:input id="cuitId" path="cuit" type="text" class="form-control" />
                             </div>
                         </div>
+                        
                         <div class="col-md-4">
                             <!--  PAUTA -->
                             <div class="form-group">
                                 <label class="control-label">
                                     Pauta
                                 </label>
-                                <form:select path="pautaId" class="form-control" id="pautaId">
-                                	<form:option value="" label=" ${emptyValue} " />
+                                <form:select path="pautaId" class="form-control" id="pautaId" disabled="true">
                             	</form:select>
+                            	<small id="pautaHelp" class="form-text text-muted">Introduzca un CUIT válido</small>
                             </div>
                         </div>        
                     </div>
+            			
         		<button onclick="descargarPlantilla()" type="button" class="btn btn-primary btn-lg btn-search" id="ingreso-masivo">DESCARGAR PLANTILLA</button>
             	<div id="table">
             		<jsp:include page="importTable.jsp" />	

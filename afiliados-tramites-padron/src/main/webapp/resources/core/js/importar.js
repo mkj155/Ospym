@@ -38,11 +38,17 @@ function getPauta(){
 			success : function(data) {
 				if(data != null && data.length > 0){
 					$("#pautaId option[value!='']").remove();
+					$("#pautaId").html("<option value=\"\">Seleccionar</option>");
 					for(var i = 0 ; i < data.length ; i++){
 						$("#pautaId").html($("#pautaId").html() + "<option value='" + data[i].pautaId + "'>" + data[i].pauta + "</option>");
 					}
+					$("#pautaId").prop("disabled", false);
+					$("#pautaHelp").css({'display':'none'});
 				}else{
-					$("#pautaId").html('<form:option value="" label="Seleccionar" />');
+					$("#pautaId").html("");
+					$("#pautaId").prop("disabled", true);
+					$("#pautaHelp").css({'display':'block'});
+					
 				}
 				
 			
@@ -142,14 +148,22 @@ function descargarPlantilla(){
 		    method: 'POST',
 		    type: 'POST',
 			success : function(data) {
-				
+				$("#buttonUploadFile").prop("disabled", false);
+				$("#ingreso-masivo").prop("disabled", false);
+				$("#Confirmar").prop("disabled", false);
+				$("#Cancelar").prop("disabled", false);
 				
 			
 			},
 			error : function(e) {
 				console.log("ERROR: ", e);
-
+				$("#buttonUploadFile").prop("disabled", false);
+				$("#ingreso-masivo").prop("disabled", false);
+				$("#Confirmar").prop("disabled", false);
+				$("#Cancelar").prop("disabled", false);
 				
 			},
+			
 		});
+		
 	} 

@@ -60,7 +60,7 @@
 	<div class="row">
 		<div class="col-md-12 align-middle text-left mt-2">
         	<span class="pr-1">
-				<button onclick="window.location.href = '../solicitudes'" type="button" class="btn btn-primary btn-lg btn-search btn-form" id="ingreso-masivo">CANCELAR</button>
+				<button onclick="window.location.href = '../solicitudes'" type="button" class="btn btn-primary btn-lg btn-search btn-form" id="Cancelar">CANCELAR</button>
 			</span>
             <span class="pl-1">
      			<input type="submit" class="btn btn-primary btn-lg btn-search btn-form disabled" value="CARGAR" id="confirmar" disabled/>

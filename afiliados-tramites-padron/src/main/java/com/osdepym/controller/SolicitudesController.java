@@ -123,8 +123,8 @@ public class SolicitudesController {
 		FileInputStream inputStream;
 		File tempFile = new File("File1.xlsx");
 		try {
-			inputStream = new FileInputStream(new File(getClass().getResource("/File1.xlsx").toURI()));
-			tempFile = File.createTempFile(String.valueOf(inputStream.hashCode()), ".xlsx");
+			inputStream = new FileInputStream(new File(getClass().getResource("/Plantilla.xls").toURI()));
+			tempFile = File.createTempFile(String.valueOf(inputStream.hashCode()), ".xls");
 			Desktop dt = Desktop.getDesktop();
         	dt.open(tempFile);
         	inputStream.close();
@@ -203,6 +203,7 @@ public class SolicitudesController {
 				view.addObject("tipocargas", tipoCargas);
 				view.addObject("tipoafiliados", tipoAfiliados);
 				model.addAttribute("importForm", new ImportForm());
+				model.addAttribute("successmsg", true);
 			}
 		} catch (Exception e) {
 			view = new ModelAndView("error");
