@@ -40,7 +40,7 @@ public abstract class ValidateUtil {
 	
 	public static boolean validarPendientes(List<AfiliadoTableDTO> afiliados) {
 		for(AfiliadoTableDTO a : afiliados) {
-			if(1 == a.getEstadoRegistroID())
+			if(1 != a.getEstadoRegistroID())
 				return false;
 		}
 		return true;
