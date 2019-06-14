@@ -18,6 +18,8 @@ public class AfiliadoTableDTO {
 	String estadoCivil;
 	Long cuilTitular;
 	Timestamp fechaInicio;
+	Integer estadoRegistroID;
+	Integer obraSocialID;
 	String centroMedico;
 	String plan;
 	String estado;
@@ -256,5 +258,21 @@ public class AfiliadoTableDTO {
 
 	public void setMessageErrorConfirmar(String messageErrorConfirmar) {
 		this.messageErrorConfirmar = messageErrorConfirmar;
+	}
+
+	public Integer getObraSocialID() {
+		return obraSocialID;
+	}
+
+	public void setObraSocialID(Integer obraSocialID) {
+		this.obraSocialID = obraSocialID;
+	}
+
+	public void setEstadoRegistroID(Integer estadoRegistroID) {
+		this.estadoRegistroID = estadoRegistroID;
+	}
+
+	public Integer getEstadoRegistroID() {
+		return estadoRegistroID;
 	}
 }

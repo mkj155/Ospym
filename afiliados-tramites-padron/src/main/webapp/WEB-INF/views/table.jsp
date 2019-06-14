@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <script src="/OSDEPYM/resources/core/js/pagination.min.js"></script>
+<script src="/OSDEPYM/resources/core/js/floating.scroll.js"></script>
 
 <div id="loading"><div role="status" class="spinner-border spinner-border"><span class="sr-only">Loading...</span></div></div>
 <div id="error-table" class="alert alert-info my-4"><spring:message code="error.tabla.datos.no.encontrados" /></div>

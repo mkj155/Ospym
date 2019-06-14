@@ -1,6 +1,9 @@
 package com.osdepym.util;
 
 import java.util.Date;
+import java.util.List;
+
+import com.osdepym.dto.AfiliadoTableDTO;
 
 public abstract class ValidateUtil {
 	public static Boolean isEmpty(String param) {
@@ -34,4 +37,13 @@ public abstract class ValidateUtil {
 	public static Boolean isNotEmpty(Date param) {
 		return param != null;
 	}
+	
+	public static boolean validarPendientes(List<AfiliadoTableDTO> afiliados) {
+		for(AfiliadoTableDTO a : afiliados) {
+			if(1 == a.getEstadoRegistroID())
+				return false;
+		}
+		return true;
+	}
+	
 }

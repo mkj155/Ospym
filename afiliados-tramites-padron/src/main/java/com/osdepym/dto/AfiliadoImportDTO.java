@@ -1,8 +1,6 @@
 package com.osdepym.dto;
 
 public class AfiliadoImportDTO {
-
-
 	String cuil;
 	String apellido;
 	String nombre;

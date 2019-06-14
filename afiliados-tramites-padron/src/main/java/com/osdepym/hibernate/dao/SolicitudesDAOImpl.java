@@ -68,7 +68,6 @@ public class SolicitudesDAOImpl implements SolicitudesDAO {
 		List<Afiliado> aList = new ArrayList<Afiliado>();
 		try {
 			Session session = this.sessionFactory.getCurrentSession();
-			//int numberOfRecords = 500;
 			StringBuilder query = new StringBuilder("SELECT Registro_ID, ObraSocial, TipoCarga, TipoAfiliado, CUIT, CUIL, Apellido, Nombre, TipoDocumento, NroDocumento, Direccion, DireccionNumero, DireccionPiso, DireccionDepartamento, DireccionLocalidad, DireccionProvincia, CodigoPostal, Telefono, Email, FechaNacimiento, Sexo, EstadoCivil, CUILTitular, FechaInicio, CentroMedico, CodigoPlan, Estado, Solicitud_ID, Archivo, FechaCarga, CodigoError, DescripcionError, EstadoRegistro_ID, ObraSocial_ID, TipoCarga_ID, TipoAfiliado_ID, EstadoCivil_ID, Provincia_ID, Localidad_ID FROM ga.vo_solicitud");
 			Boolean isFirst = true; 
 			

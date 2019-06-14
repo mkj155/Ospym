@@ -38,7 +38,9 @@ import com.osdepym.exception.ErrorMessages;
 import com.osdepym.form.ImportForm;
 import com.osdepym.form.SolicitudesForm;
 import com.osdepym.service.SolicitudesService;
+import com.osdepym.util.Constants;
 import com.osdepym.util.ExcelWriter;
+import com.osdepym.util.ValidateUtil;
 
 @Controller
 public class SolicitudesController {
@@ -77,6 +79,45 @@ public class SolicitudesController {
 		return afiliados;	
 	}
 	
+	@RequestMapping(value = "/solicitudes/confirmar")
+	public @ResponseBody List<AfiliadoTableDTO> confirmar(@RequestBody List<AfiliadoTableDTO> afiliados) throws CustomException {
+		try {
+			if(ValidateUtil.validarPendientes(afiliados)) {
+				service.obtenerSolicitudMultiple();
+				for(AfiliadoTableDTO a : afiliados) {
+					String[] response = service.confirmarAltaAfiliado(a.getRegistroID());
+					a.setAnular(!Constants.ERROR_SP.equals(response[0]));
+					a.setErrorConfirmar(response[0]);
+					a.setMessageErrorConfirmar(response[1]);
+					if(!Constants.ERROR_SP.equals(response[0])) {
+						a.setEstado(Constants.ESTADO_AFILIADO_CONFIRMADO);
+						a.setEstadoRegistroID(3);
+					}
+				}
+			}
+			return afiliados;
+		} catch (Exception e) {
+			throw new CustomException(e.getMessage(), ErrorMessages.DATABASE_GET_ERROR);
+		}
+	}
+	
+	@RequestMapping(value = "/solicitudes/anular")
+	public @ResponseBody AfiliadoTableDTO anular(@RequestBody AfiliadoTableDTO afiliado) throws CustomException {
+		try {
+			String[] response = service.anularAfiliado(afiliado);
+			afiliado.setAnular(Constants.ERROR_SP.equals(response[0]));
+			afiliado.setErrorAnular(response[0]);
+			afiliado.setMessageErrorAnular(response[1]);
+			if(!Constants.ERROR_SP.equals(response[0])) {
+				afiliado.setEstado(Constants.ESTADO_AFILIADO_ANULADO);
+				afiliado.setEstadoRegistroID(4);
+			}
+		} catch (Exception e) {
+			throw new CustomException(e.getMessage(), ErrorMessages.DATABASE_GET_ERROR);
+		}
+		return afiliado;
+	}
+	
 	@RequestMapping(value = "/solicitudes/descargarPlantilla", method = RequestMethod.POST)
 	public @ResponseBody void descargarPlantilla(HttpServletRequest request, HttpServletResponse response) throws CustomException {
 		FileInputStream inputStream;
@@ -84,114 +125,12 @@ public class SolicitudesController {
 		try {
 			inputStream = new FileInputStream(new File(getClass().getResource("/File1.xlsx").toURI()));
 			tempFile = File.createTempFile(String.valueOf(inputStream.hashCode()), ".xlsx");
-			
 			Desktop dt = Desktop.getDesktop();
         	dt.open(tempFile);
+        	inputStream.close();
 		} catch(Exception e) {
 			throw new CustomException(e.getMessage(), ErrorMessages.DATABASE_GET_ERROR);
 		}
-		/*
-		try {
-			 String[] columns = {
-						"CUIL",
-						"APELLIDO",
-						"NOMBRES",
-						"TipoDocumento",
-						"NroDocumento",
-						"COD PARENTESCO",
-						"Direccion",
-						"N°",
-						"PISO",
-						"DPTO",
-						"LOCALIDAD",
-						"COD PROV",
-						"COD POSTAL",
-						"Telefono",
-						"FECHA NACIMIENTO",
-						"SEXO",
-						"ESTADO CIVIL",
-						"VIGENCIA",
-						"EMAIL"
-				    };
-			 // Create a Workbook
-		    	Workbook workbook = new XSSFWorkbook(); // new HSSFWorkbook() for generating `.xls` file
-
-		        Sheet sheet = workbook.createSheet("File1");
-
-		        // Create a Font for styling header cells
-		        Font headerFont = workbook.createFont();
-
-		        headerFont.setBold(true);
-		        headerFont.setColor(IndexedColors.BLACK.getIndex());
-
-		        // Create a CellStyle with the font
-		        CellStyle headerCellStyle = workbook.createCellStyle();
-
-		        headerCellStyle.setBorderBottom(BorderStyle.MEDIUM);
-
-		        headerCellStyle.setFont(headerFont);
-
-		        // Create a Row
-		        Row headerRow = sheet.createRow(0);
-
-		        // Create cells
-		        for(int i = 0; i < columns.length; i++) {
-		        	Cell cell = headerRow.createCell(i);
-		            cell.setCellValue(columns[i]);
-		            cell.setCellStyle(headerCellStyle);
-		        }
-		     // Resize all columns to fit the content size
-		        for(int i = 0; i < columns.length; i++) {
-		            sheet.autoSizeColumn(i);
-		        }
-		        
-		        try { 
-		        	// this Writes the workbook excel 
-		        	File f = new File("TitularesXLS.xls");
-		            FileOutputStream out = new FileOutputStream(tempFile); 
-		            workbook.write(out); 
-		            out.close(); 
-		            System.out.println("excel.xlsx written successfully on disk."); 
-		            
-			        /*ByteArrayOutputStream excelOutput = new ByteArrayOutputStream();
-			        byte[] byteRpt = null;
-			         
-			        workbook.write(excelOutput);
-			        byteRpt = excelOutput.toByteArray();
-			         
-			        byte[] encodedBytes = Base64.encodeBase64(byteRpt);
-			        String base64 = new String(encodedBytes);* /
-			        workbook.close();
-			        
-			        try {
-			        	Desktop dt = Desktop.getDesktop();
-			        	dt.open(tempFile);
-			        } catch (IOException e) {
-			            // TODO Auto-generated catch block
-			            e.printStackTrace();
-			        }
-		        } catch (Exception e) { 
-		            e.printStackTrace(); 
-		        } 
-		} catch (Exception e) {
-		}*/
-	}
-	
-	private ModelAndView getSolicitudesFormView(Model model, SolicitudesForm form) throws CustomException {
-		ModelAndView view = null;
-		try {
-			view = new ModelAndView("solicitudes");
-			List<ObraSocialDTO> a = service.getAllObrasSociales();
-			view.addObject("obrassociales", a);
-			List<EstadoDTO> b = service.getAllEstados();
-			view.addObject("estados", b);
-			
-			model.addAttribute("solicitudesForm", form);
-		} catch (Exception e) {
-			view = new ModelAndView("error");
-			view.addObject("error", e);
-		}
-		return view;
 	}
 	
 	@RequestMapping(value = "/solicitudes/cargaMasiva", method = RequestMethod.GET)
@@ -241,32 +180,6 @@ public class SolicitudesController {
 		return pautas;
 	}
 
-	@RequestMapping(value = "/solicitudes/confirmar")
-	public @ResponseBody List<AfiliadoTableDTO> confirmar(@RequestBody List<AfiliadoTableDTO> afiliados) throws CustomException {
-		try {
-			if(validarPendientes(afiliados)) {
-				service.obtenerSolicitudMultiple();
-				for(AfiliadoTableDTO a : afiliados) {
-					String[] response = service.confirmarAltaAfiliado(a.getRegistroID());
-					a.setAnular(!"999".equals(response[0]));
-					a.setErrorConfirmar(response[0]);
-					a.setMessageErrorConfirmar(response[1]);
-				}
-			}
-			return afiliados;
-		} catch (Exception e) {
-			throw new CustomException(e.getMessage(), ErrorMessages.DATABASE_GET_ERROR);
-		}
-	}
-	
-	public boolean validarPendientes(List<AfiliadoTableDTO> afiliados) {
-		for(AfiliadoTableDTO a : afiliados) {
-			if(!"Pendiente".equalsIgnoreCase(a.getEstado()))
-				return false;
-		}
-		return true;
-	}
-	
 	@RequestMapping(value = "/solicitudes/importar", method = RequestMethod.POST)
 	public ModelAndView importar(@RequestParam("uploadFile") MultipartFile uploadFile,
 			@ModelAttribute("importForm") @Validated ImportForm importForm, BindingResult result, Model model,
@@ -299,18 +212,20 @@ public class SolicitudesController {
 		return view;	
 	}
 	
-	
-	
-	@RequestMapping(value = "/solicitudes/anular")
-	public @ResponseBody AfiliadoTableDTO anular(@RequestBody AfiliadoTableDTO afiliado) throws CustomException {
+	private ModelAndView getSolicitudesFormView(Model model, SolicitudesForm form) throws CustomException {
+		ModelAndView view = null;
 		try {
-			String[] response = service.anularAfiliado(afiliado);
-			afiliado.setAnular("999".equals(response[0]));
-			afiliado.setErrorAnular(response[0]);
-			afiliado.setMessageErrorAnular(response[1]);
+			view = new ModelAndView("solicitudes");
+			List<ObraSocialDTO> a = service.getAllObrasSociales();
+			view.addObject("obrassociales", a);
+			List<EstadoDTO> b = service.getAllEstados();
+			view.addObject("estados", b);
+			
+			model.addAttribute("solicitudesForm", form);
 		} catch (Exception e) {
-			throw new CustomException(e.getMessage(), ErrorMessages.DATABASE_GET_ERROR);
+			view = new ModelAndView("error");
+			view.addObject("error", e);
 		}
-		return afiliado;
+		return view;
 	}
 }

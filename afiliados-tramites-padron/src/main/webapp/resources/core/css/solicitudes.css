@@ -148,16 +148,6 @@ th {
 	border-collapse:collapse; 
 }
 
-.search-table-outter {
-	overflow-x: hidden;
-	padding-bottom: 8.8px; 
-}
-
-.search-table-outter:hover {
-	overflow-x: scroll;
-	padding-bottom: 0px; 
-}
-
 #table-preview th {
 	padding:20px 7px;
 	background-color: #CCC; 
@@ -185,8 +175,8 @@ th {
 }
 
 #content-table ::-webkit-scrollbar {
-  width: 9px;
-  height: 9px;
+  width: 12px;
+  height: 12px;
 }
 #content-table ::-webkit-scrollbar-button {
   width: 0px;
@@ -195,7 +185,6 @@ th {
 #content-table ::-webkit-scrollbar-thumb {
   background: #b3b3b3;
   border: 0px none #ffffff;
-  border-radius: 50px;
 }
 #content-table ::-webkit-scrollbar-thumb:hover {
   background: #c5c5c5;
@@ -686,4 +675,47 @@ input.btn-primary:disabled {
     float: right;
     margin-top: 35px;
     margin-left: 10px;
+}
+
+/************************/
+
+#content-table-child {
+	overflow-x: hidden;
+	padding-bottom: 12px; 
+}
+
+#content-table-child:hover {
+	overflow-x: scroll;
+	padding-bottom: 0px; 
+}
+
+/* page styles */
+
+
+#content-table-child {
+  overflow-x: hidden;
+  min-height: 0.01%;
+}
+
+.wide-load {
+  background-color: #f0f0f0;
+}
+
+
+/* floating-scroll stuff */
+.fl-scrolls {
+    bottom:0;
+    height:35px;
+    overflow:auto;
+    position:fixed;
+}
+.fl-scrolls div {
+    height:1px;
+    overflow:hidden;
+}
+.fl-scrolls div:before {
+    content:""; /* fixes #6 */
+}
+.fl-scrolls-hidden {
+    bottom:9999px;
 }

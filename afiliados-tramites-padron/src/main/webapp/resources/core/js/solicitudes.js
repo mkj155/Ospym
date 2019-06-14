@@ -2,6 +2,7 @@ var date;
 var exportForm;
 var afiliadoAnular = {};
 var paginado;
+var rows = [];
 
 (function($) {
 	  $.fn.inputFilter = function(inputFilter) {
@@ -26,8 +27,6 @@ document.onclick = function(e) {
 		$("#error-table").hide();
 	}
 }
-
-var rows = [];
 
 $(document).ready(function () {
 	$("#error-table").hide();
@@ -157,14 +156,16 @@ $(document).ready(function () {
 								keys[i] !== 'errorAnular' && keys[i] !== 'messageErrorAnular') {
 							var value = data[keys[i]];
 					    
-						    if(keys[i] === 'anular' && (data.estado === 'Pendiente' && data.anular === true))
+						    if(keys[i] === 'anular' && (data.estadoRegistroID === 1 && data.anular === true))
 								htmlrow += "<td data-field='" + keys[i] + "' " + (value ? "data-value='" + value + "' " : "") + "><a href='#' class='anular-link'>Anular</a></td>";
-							else if(keys[i] === 'anular' && (data.estado !== 'Pendiente' || data.anular !== true))
+							else if(keys[i] === 'anular' && (data.estadoRegistroID !== 1 || data.anular !== true))
 								htmlrow += "<td data-field='" + keys[i] + "' " + (value ? "data-value='" + value + "' " : "") + "></td>";
 							else if(keys[i] === 'fechaCarga' || keys[i] === 'fechaInicio' || keys[i] === 'fechaNacimiento') {
 								var d = new Date(value);
 								var dString = ('0' + d.getDate()).slice(-2) + '/' + ('0' + (d.getMonth()+1)).slice(-2) + '/' + d.getFullYear();
 								htmlrow += "<td data-field='" + keys[i] + "' " + (value ? "data-value='" + value + "' " : "") + ">" + (value ? dString : "") + "</td>";
+							} else if(keys[i] === 'obraSocialID' || keys[i] === 'estadoRegistroID') {
+								htmlrow += "<td data-field='" + keys[i] + "' " + (value ? "data-value='" + value + "' " : "") + " style='display: none'>" + (value ? value : "") + "</td>";
 							} else {
 								htmlrow += "<td data-field='" + keys[i] + "' " + (value ? "data-value='" + value + "' " : "") + ">" + (value ? value : "") + "</td>";
 							}
@@ -209,38 +210,10 @@ $(document).ready(function () {
 	    var rowsTotal = $('#table-preview tbody tr').length;
 	    var numPages = rowsTotal/rowsShown;
 	    $('#nav').append('<div id="nav-buttons"></div>');
-	    /*for(i = 0;i < numPages;i++) {
-	        var pageNum = i + 1;
-	        $('#nav-buttons').append('<div><div><a class="btn" rel="'+i+'">'+pageNum+'</a></div></div>');
-	    }*/
 	    $('#nav').append('<div id="paginado-select"><div class="form-group"><select id="paginado" class="form-control"><option>10</option><option>50</option><option>100</option><option>1000</option></select></div></div>');
 	    
 	    
 	    $("#paginado").val(rowsShown);
-	    /*$('#table-preview tbody tr').hide();
-	    $('#table-preview tbody tr').slice(0, rowsShown).show();
-	    
-	    var currPage = 0;
-        var startItem = currPage * rowsShown;
-        var endItem = startItem + rowsShown;
-        $('#table-preview tbody tr').css('opacity','0.0').hide().slice(startItem, endItem).
-        css('display','table-row').animate({opacity:1}, 300);
-        
-	    $('#nav-buttons a').addClass('btn');
-	    $('#nav-buttons a:first').addClass('btn btn-primary');
-	    $('#nav-buttons a').bind('click', function(){
-	        $('#nav-buttons a').removeClass('btn-primary');
-	        $(this).addClass('btn-primary');
-	        var currPage = $(this).attr('rel');
-	        var startItem = currPage * rowsShown;
-	        var endItem = startItem + rowsShown;
-	        $('#table-preview tbody tr').css('opacity','0.0').hide().slice(startItem, endItem).
-	        css('display','table-row').animate({opacity:1}, 300);
-	    });*/
-	    /*let rows = []
-	    $('#table-preview tbody tr').each(function(i, row) {
-	    	rows.push(row);
-	    });*/
 	    
 	    $("#nav-buttons").pagination({
 		    dataSource: rows,
@@ -250,9 +223,6 @@ $(document).ready(function () {
 	    	ulClassName: 'ulnav',
 		    showGoButton: false,
 		    callback: function(data, pagination) {
-		        // template method of yourself
-		        /*var html = template(data);
-		        dataContainer.html(html);*/
 		    	$('#table-preview tbody').html(data);
 		    }
 		});
@@ -304,14 +274,16 @@ function search(){
 								keys[i] !== 'errorAnular' && keys[i] !== 'messageErrorAnular') {
 							    var value = card[keys[i]];
 							    
-							    if(card.estado === 'Pendiente' && keys[i] === 'anular')
+							    if(card.estadoRegistroID === 1 && keys[i] === 'anular')
 									htmlrow += "<td data-field='" + keys[i] + "' " + (value ? "data-value='" + value + "' " : "") + "><a href='#' class='anular-link'>Anular</a></td>";
-								else if(card.estado !== 'Pendiente' && keys[i] === 'anular')
+								else if(card.estadoRegistroID !== 1 && keys[i] === 'anular')
 									htmlrow += "<td data-field='" + keys[i] + "' " + (value ? "data-value='" + value + "' " : "") + "></td>";
 								else if(keys[i] === 'fechaCarga' || keys[i] === 'fechaInicio' || keys[i] === 'fechaNacimiento') {
 									var d = new Date(value);
 									var dString = ('0' + d.getDate()).slice(-2) + '/' + ('0' + (d.getMonth()+1)).slice(-2) + '/' + d.getFullYear();
 									htmlrow += "<td data-field='" + keys[i] + "' " + (value ? "data-value='" + value + "' " : "") + ">" + (value ? dString : "") + "</td>";
+								} else if(keys[i] === 'obraSocialID' || keys[i] === 'estadoRegistroID') {
+									htmlrow += "<td data-field='" + keys[i] + "' " + (value ? "data-value='" + value + "' " : "") + " style='display: none'>" + (value ? value : "") + "</td>";
 								} else {
 									htmlrow += "<td data-field='" + keys[i] + "' " + (value ? "data-value='" + value + "' " : "") + ">" + (value ? value : "") + "</td>";
 								}
@@ -358,6 +330,7 @@ function search(){
 				        $('#table-preview tbody tr').css('opacity','0.0').hide().slice(startItem, endItem).
 				        css('display','table-row').animate({opacity:1}, 300);
 				    });*/
+				    rows = [];
 				    $('#table-preview tbody tr').each(function(i, row) {
 				    	rows.push(row);
 				    });
@@ -384,6 +357,7 @@ function search(){
 					$("#nav").hide();
 				}
 				$("button").removeAttr("disabled");
+				$("#content-table-child").floatingScroll();
 			},
 			error : function(e) {
 				$("button").removeAttr("disabled");
@@ -391,6 +365,7 @@ function search(){
 			}
 		});
 }
+
 
 function exportar(){
 	$("#loading-exportar").show();
@@ -440,7 +415,7 @@ function confirmar() {
 	var pendings = 0;
 	var selected = $('#table-preview > tbody > tr .afiliado-check:checked').length;
 	$.each($('#table-preview > tbody > tr .afiliado-check:checked'), function(){
-		pendings += $(this).parent().parent().parent().children('td[data-value="Pendiente"]').length;
+		pendings += $(this).parent().parent().parent().children('td[data-field="estadoRegistroID"][data-value="1"]').length;
 	}); 
 	
 	if((pendings > 0 || selected > 0) && pendings !== selected) {
@@ -462,7 +437,7 @@ function confirmar() {
 	var obj = [];
 	$.each($('#table-preview > tbody > tr .afiliado-check:checked'), function(){
 		index = 0;
-	    if($(this).parent().parent().parent().children('td[data-value="Pendiente"]')) {
+	    if($(this).parent().parent().parent().children('td[data-field="estadoRegistroID"][data-value="1"]')) {
 	    	var field;
 	    	var value;
 	        $td = $(this).parent().parent().parent().find('td');
@@ -508,14 +483,16 @@ function confirmar() {
 							keys[i] !== 'errorAnular' && keys[i] !== 'messageErrorAnular') {
 						var value = card[keys[i]];
 				    
-					    if(keys[i] === 'anular' && (card.estado === 'Pendiente' && card.anular === true))
+					    if(keys[i] === 'anular' && (card.estadoRegistroID === 1 && card.anular === true))
 							htmlrow += "<td data-field='" + keys[i] + "' " + (value ? "data-value='" + value + "' " : "") + "><a href='#' class='anular-link'>Anular</a></td>";
-						else if(keys[i] === 'anular' && (card.estado !== 'Pendiente' || card.anular !== true))
+						else if(keys[i] === 'anular' && (card.estadoRegistroID !== 1 || card.anular !== true))
 							htmlrow += "<td data-field='" + keys[i] + "' " + (value ? "data-value='" + value + "' " : "") + "></td>";
 						else if(keys[i] === 'fechaCarga' || keys[i] === 'fechaInicio' || keys[i] === 'fechaNacimiento') {
 							var d = new Date(value);
 							var dString = ('0' + d.getDate()).slice(-2) + '/' + ('0' + (d.getMonth()+1)).slice(-2) + '/' + d.getFullYear();
 							htmlrow += "<td data-field='" + keys[i] + "' " + (value ? "data-value='" + value + "' " : "") + ">" + (value ? dString : "") + "</td>";
+						} else if(keys[i] === 'obraSocialID' || keys[i] === 'estadoRegistroID') {
+							htmlrow += "<td data-field='" + keys[i] + "' " + (value ? "data-value='" + value + "' " : "") + " style='display: none'>" + (value ? value : "") + "</td>";
 						} else {
 							htmlrow += "<td data-field='" + keys[i] + "' " + (value ? "data-value='" + value + "' " : "") + ">" + (value ? value : "") + "</td>";
 						}
@@ -607,8 +584,6 @@ function confirmar() {
 			console.log("ERROR: ", e);
 		}
 	});
-	
-	
 }
 
 function validateForm() {
