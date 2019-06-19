@@ -5,7 +5,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <html>
 	<jsp:include page="./header.jsp" />
-	<script src="/OSDEPYM/resources/core/js/importar.js"></script>
+	<script src="/afiliados-tramites-padron/resources/core/js/importar.js"></script>
     <body>
         <section id="main" class="bg-gray">
             <div class="container page page-cartilla">
