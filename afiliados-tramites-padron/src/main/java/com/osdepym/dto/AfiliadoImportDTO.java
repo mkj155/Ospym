@@ -1,27 +1,35 @@
 package com.osdepym.dto;
 
 public class AfiliadoImportDTO {
-	String cuil;
-	String apellido;
-	String nombre;
-	String tipoDocumento;
-	String nroDocumento;
-	String codParentesco;
-	String direccion;
-	String numero;
-	String piso;
-	String departamento;
-	String localidad;
-	String provincia;
-	String codigoPostal;
-	String telefono;
-	String fechaNacimiento;
-	String sexo;
-	String estadoCivil;
-	String cuilTitular;
-	String fechaInicioCobertura;
-	String email;
-	Boolean errorValidacion;
+	private String cuil;
+	private String apellido;
+	private String nombre;
+	private String tipoDocumento;
+	private String nroDocumento;
+	private String codParentesco;
+	private String direccion;
+	private String numero;
+	private String piso;
+	private String departamento;
+	private String localidad;
+	private String provincia;
+	private String codigoPostal;
+	private String telefono;
+	private String fechaNacimiento;
+	private String sexo;
+	private String estadoCivil;
+	private String cuilTitular;
+	private String fechaInicioCobertura;
+	private String email;
+	private String errorMensaje;
+	private Long idArchivo;
+	
+	public Long getIdArchivo() {
+		return idArchivo;
+	}
+	public void setIdArchivo(Long idArchivo) {
+		this.idArchivo = idArchivo;
+	}
 	public String getCuil() {
 		return cuil;
 	}
@@ -136,11 +144,12 @@ public class AfiliadoImportDTO {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public Boolean getErrorValidacion() {
-		return errorValidacion;
+	
+	public String getErrorMensaje() {
+		return errorMensaje;
 	}
-	public void setErrorValidacion(Boolean errorValidacion) {
-		this.errorValidacion = errorValidacion;
+	public void setErrorMensaje(String errorMensaje) {
+		this.errorMensaje = errorMensaje;
 	}
 	public String getCodParentesco() {
 		return codParentesco;

@@ -264,8 +264,6 @@ public class ExcelWriter {
 		}
 
 		for (int r = 1; r < rows; r++) {
-
-			Boolean hasError = new Boolean(false);
 			row = sheet.getRow(r);
 			if (row != null && !ExcelWriter.isRowEmpty(row)) {
 				AfiliadoImportDTO afiliado = new AfiliadoImportDTO();
@@ -281,34 +279,19 @@ public class ExcelWriter {
 					switch (c) {
 					case 0:
 						afiliado.setCuil(cellValue);
-						if (cellValue == null || cellValue.equals("")) {
-							hasError = true;
-						}
 						break;
 
 					case 1:
 						afiliado.setApellido(cellValue);
-						if (cellValue == null || cellValue.equals("")) {
-							hasError = true;
-						}
 						break;
 					case 2:
 						afiliado.setNombre(cellValue);
-						if (cellValue == null || cellValue.equals("")) {
-							hasError = true;
-						}
 						break;
 					case 3:
 						afiliado.setTipoDocumento(cellValue);
-						if (cellValue == null || cellValue.equals("")) {
-							hasError = true;
-						}
 						break;
 					case 4:
 						afiliado.setNroDocumento(cellValue);
-						if (cellValue == null || cellValue.equals("")) {
-							hasError = true;
-						}
 						break;
 					case 5:
 						afiliado.setCodParentesco(cellValue);
@@ -340,12 +323,10 @@ public class ExcelWriter {
 					case 14:
 						if (cellValue == null || cellValue.equals("")) {
 							afiliado.setFechaNacimiento(cellValue);
-							hasError = true;
 						}else {
 							try {
 								afiliado.setFechaNacimiento(dateFormatter.format(cell.getDateCellValue()));
 							}catch(Exception e) {
-								hasError = true;
 								afiliado.setFechaNacimiento(cellValue);
 							}
 							
@@ -353,25 +334,17 @@ public class ExcelWriter {
 						break;
 					case 15:
 						afiliado.setSexo(cellValue);
-						if (cellValue == null || cellValue.equals("")) {
-							hasError = true;
-						}
 						break;
 					case 16:
 						afiliado.setEstadoCivil(cellValue);
-						if (cellValue == null || cellValue.equals("")) {
-							hasError = true;
-						}
 						break;
 					case 17:
 						if (cellValue == null || cellValue.equals("")) {
 							afiliado.setFechaInicioCobertura(cellValue);
-							hasError = true;
 						}else {
 							try {
 								afiliado.setFechaInicioCobertura(dateFormatter.format(cell.getDateCellValue()));
 							}catch(Exception e) {
-								hasError = true;
 								afiliado.setFechaInicioCobertura(cellValue);
 							}
 							
@@ -383,10 +356,6 @@ public class ExcelWriter {
 					}
 				}
 
-				if (hasError)
-					afiliado.setErrorValidacion(true);
-				else
-					afiliado.setErrorValidacion(false);
 				afiliados.add(afiliado);
 			}
 		}
@@ -427,8 +396,6 @@ public class ExcelWriter {
 		}
 
 		for (int r = 1; r < rows; r++) {
-
-			Boolean hasError = new Boolean(false);
 			row = sheet.getRow(r);
 			if (row != null && !ExcelWriter.isRowEmpty(row)) {
 				AfiliadoImportDTO afiliado = new AfiliadoImportDTO();
@@ -444,34 +411,18 @@ public class ExcelWriter {
 					switch (c) {
 					case 0:
 						afiliado.setCuil(cellValue);
-						if (cellValue == null || cellValue.equals("")) {
-							hasError = true;
-						}
 						break;
-
 					case 1:
 						afiliado.setApellido(cellValue);
-						if (cellValue == null || cellValue.equals("")) {
-							hasError = true;
-						}
 						break;
 					case 2:
 						afiliado.setNombre(cellValue);
-						if (cellValue == null || cellValue.equals("")) {
-							hasError = true;
-						}
 						break;
 					case 3:
 						afiliado.setTipoDocumento(cellValue);
-						if (cellValue == null || cellValue.equals("")) {
-							hasError = true;
-						}
 						break;
 					case 4:
 						afiliado.setNroDocumento(cellValue);
-						if (cellValue == null || cellValue.equals("")) {
-							hasError = true;
-						}
 						break;
 					case 5:
 						afiliado.setCodParentesco(cellValue);
@@ -503,12 +454,10 @@ public class ExcelWriter {
 					case 14:
 						if (cellValue == null || cellValue.equals("")) {
 							afiliado.setFechaNacimiento(cellValue);
-							hasError = true;
 						}else {
 							try {
 								afiliado.setFechaNacimiento(dateFormatter.format(cell.getDateCellValue()));
 							}catch(Exception e) {
-								hasError = true;
 								afiliado.setFechaNacimiento(cellValue);
 							}
 							
@@ -516,25 +465,17 @@ public class ExcelWriter {
 						break;
 					case 15:
 						afiliado.setSexo(cellValue);
-						if (cellValue == null || cellValue.equals("")) {
-							hasError = true;
-						}
 						break;
 					case 16:
 						afiliado.setEstadoCivil(cellValue);
-						if (cellValue == null || cellValue.equals("")) {
-							hasError = true;
-						}
 						break;
 					case 17:
 						if (cellValue == null || cellValue.equals("")) {
 							afiliado.setFechaInicioCobertura(cellValue);
-							hasError = true;
 						}else {
 							try {
 								afiliado.setFechaInicioCobertura(dateFormatter.format(cell.getDateCellValue()));
 							}catch(Exception e) {
-								hasError = true;
 								afiliado.setFechaInicioCobertura(cellValue);
 							}
 							
@@ -546,10 +487,6 @@ public class ExcelWriter {
 					}
 				}
 
-				if (hasError)
-					afiliado.setErrorValidacion(true);
-				else
-					afiliado.setErrorValidacion(false);
 				afiliados.add(afiliado);
 			}
 		}

@@ -14,6 +14,7 @@ public class ImportForm {
 	private Long pautaId;
 	private List<AfiliadoImportDTO> afiliados;
 	private MultipartFile uploadFile;
+	private Long idArchivo;
 	
 
 	
@@ -67,6 +68,12 @@ public class ImportForm {
 
 	public void setUploadFile(MultipartFile uploadFile) {
 		this.uploadFile = uploadFile;
+	}
+	public Long getIdArchivo() {
+		return idArchivo;
+	}
+	public void setIdArchivo(Long idArchivo) {
+		this.idArchivo = idArchivo;
 	}
 
 }

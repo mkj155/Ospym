@@ -17,6 +17,8 @@ import com.osdepym.dto.AfiliadoTableDTO;
 import com.osdepym.dto.EstadoDTO;
 import com.osdepym.dto.ObraSocialDTO;
 import com.osdepym.dto.PautaDTO;
+import com.osdepym.dto.ResultadoImportarDTO;
+import com.osdepym.dto.SPResponseDTO;
 import com.osdepym.dto.TipoAfiliadoDTO;
 import com.osdepym.dto.TipoCargaDTO;
 import com.osdepym.exception.CustomException;
@@ -31,6 +33,7 @@ import com.osdepym.hibernate.entity.Afiliado;
 import com.osdepym.hibernate.entity.Estado;
 import com.osdepym.hibernate.entity.ObraSocial;
 import com.osdepym.hibernate.entity.Pauta;
+import com.osdepym.hibernate.entity.PreSolicitud;
 import com.osdepym.hibernate.entity.TipoAfiliado;
 import com.osdepym.hibernate.entity.TipoCarga;
 import com.osdepym.util.EntityToDTOUtil;
@@ -114,7 +117,7 @@ public class SolicitudesServiceImpl implements SolicitudesService{
 		} catch (Exception e) {
 			SessionUtil.rollbackTransaction(session, tx);
 			e.printStackTrace();
-			throw new CustomException(e.getMessage(), ErrorMessages.LOAD_CONTACT_ERROR);
+			throw new CustomException(e.getMessage(), ErrorMessages.DATABASE_SP_ERROR);
 		}
 		return afiliadosDTO;
 	}
@@ -140,7 +143,7 @@ public class SolicitudesServiceImpl implements SolicitudesService{
 		} catch (Exception e) {
 			SessionUtil.rollbackTransaction(session, tx);
 			e.printStackTrace();
-			throw new CustomException(e.getMessage(), ErrorMessages.LOAD_CONTACT_ERROR);
+			throw new CustomException(e.getMessage(), ErrorMessages.DATABASE_SP_ERROR);
 		}
 		return afiliadosDTO;
 	}
@@ -167,7 +170,7 @@ public class SolicitudesServiceImpl implements SolicitudesService{
 		} catch (Exception e) {
 			SessionUtil.rollbackTransaction(session, tx);
 			e.printStackTrace();
-			throw new CustomException(e.getMessage(), ErrorMessages.LOAD_CONTACT_ERROR);
+			throw new CustomException(e.getMessage(), ErrorMessages.DATABASE_SP_ERROR);
 		}
 		return osDTOList;
 	}
@@ -194,7 +197,7 @@ public class SolicitudesServiceImpl implements SolicitudesService{
 		} catch (Exception e) {
 			SessionUtil.rollbackTransaction(session, tx);
 			e.printStackTrace();
-			throw new CustomException(e.getMessage(), ErrorMessages.LOAD_CONTACT_ERROR);
+			throw new CustomException(e.getMessage(), ErrorMessages.DATABASE_SP_ERROR);
 		}
 		return estadoDTOList;
 	}
@@ -221,7 +224,7 @@ public class SolicitudesServiceImpl implements SolicitudesService{
 		} catch (Exception e) {
 			SessionUtil.rollbackTransaction(session, tx);
 			e.printStackTrace();
-			throw new CustomException(e.getMessage(), ErrorMessages.LOAD_CONTACT_ERROR);
+			throw new CustomException(e.getMessage(), ErrorMessages.DATABASE_SP_ERROR);
 		}
 		return tipoCargaDTOList;
 	}
@@ -248,7 +251,7 @@ public class SolicitudesServiceImpl implements SolicitudesService{
 		} catch (Exception e) {
 			SessionUtil.rollbackTransaction(session, tx);
 			e.printStackTrace();
-			throw new CustomException(e.getMessage(), ErrorMessages.LOAD_CONTACT_ERROR);
+			throw new CustomException(e.getMessage(), ErrorMessages.DATABASE_SP_ERROR);
 		}
 		return tipoAfiliadoDTOList;
 	}
@@ -275,7 +278,7 @@ public class SolicitudesServiceImpl implements SolicitudesService{
 		} catch (Exception e) {
 			SessionUtil.rollbackTransaction(session, tx);
 			e.printStackTrace();
-			throw new CustomException(e.getMessage(), ErrorMessages.LOAD_CONTACT_ERROR);
+			throw new CustomException(e.getMessage(), ErrorMessages.DATABASE_SP_ERROR);
 		}
 		return pautaDTOList;
 	}
@@ -297,7 +300,7 @@ public class SolicitudesServiceImpl implements SolicitudesService{
 		} catch (Exception e) {
 			SessionUtil.rollbackTransaction(session, tx);
 			e.printStackTrace();
-			throw new CustomException(e.getMessage(), ErrorMessages.LOAD_CONTACT_ERROR);
+			throw new CustomException(e.getMessage(), ErrorMessages.DATABASE_SP_ERROR);
 		}
 	}
 	
@@ -317,7 +320,7 @@ public class SolicitudesServiceImpl implements SolicitudesService{
 		} catch (Exception e) {
 			SessionUtil.rollbackTransaction(session, tx);
 			e.printStackTrace();
-			throw new CustomException(e.getMessage(), ErrorMessages.LOAD_CONTACT_ERROR);
+			throw new CustomException(e.getMessage(), ErrorMessages.DATABASE_SP_ERROR);
 		}
 	}
 
@@ -339,34 +342,71 @@ public class SolicitudesServiceImpl implements SolicitudesService{
 		} catch (Exception e) {
 			SessionUtil.rollbackTransaction(session, tx);
 			e.printStackTrace();
-			throw new CustomException(e.getMessage(), ErrorMessages.LOAD_CONTACT_ERROR);
+			throw new CustomException(e.getMessage(), ErrorMessages.DATABASE_SP_ERROR);
 		}
 	}
 
 	@Override
-	public Boolean procesarArchivoXLS(ImportForm form, String fileName) throws CustomException{
+	public ResultadoImportarDTO procesarArchivoXLS(ImportForm form, String fileName, List<AfiliadoImportDTO> afiliados) throws CustomException{
 		Session session = null;
 		Transaction tx = null;
 		Long archivoId;
+		ResultadoImportarDTO result = new ResultadoImportarDTO();
 		try {
 			session = this.sessionFactory.getCurrentSession();
 			tx = session.beginTransaction();
-			archivoId = solicitudesDAO.archivoCargaMasivaObtenerIdentificar(form.getObraSocialId(), form.getTipoCargaId(), form.getTipoAfiliadoId(), form.getCuit(),
+			SPResponseDTO spResponse = solicitudesDAO.archivoCargaMasivaObtenerIdentificar(form.getObraSocialId(), form.getTipoCargaId(), form.getTipoAfiliadoId(), form.getCuit(),
 					form.getPautaId(), fileName);
-			for(AfiliadoImportDTO afiliado : form.getAfiliados()) {
-				solicitudesDAO.archivoCargaMasivaCargarRegistro(archivoId, afiliado);
+			if(!spResponse.getMensaje().equals("") && !spResponse.getMensaje().equals("0")) {
+				result.setError(spResponse.getMensaje());
+				result.setAfiliados(new ArrayList<AfiliadoImportDTO>());
+				return result;
 			}
-			
+			archivoId = spResponse.getIdArchivo();
+			for(int i = 0; i < afiliados.size(); i++) {
+				AfiliadoImportDTO afiliado = afiliados.get(i);
+				spResponse = solicitudesDAO.archivoCargaMasivaCargarRegistro(archivoId, afiliado);
+			}
+			List <PreSolicitud> preSolicitudesEntity = solicitudesDAO.getPreSolicitudes(archivoId);
+			afiliados.clear();
+			for(PreSolicitud entity : preSolicitudesEntity) {
+				AfiliadoImportDTO afiliado = EntityToDTOUtil.entityToDTO(entity);
+				afiliados.add(afiliado);
+			}
+			result.setAfiliados(afiliados);
 			tx.commit();
 			session.close();
-			return true; 
+			return result; 
 		} catch (CustomException e) {
 			SessionUtil.rollbackTransaction(session, tx);
 			throw e;
 		} catch (Exception e) {
 			SessionUtil.rollbackTransaction(session, tx);
 			e.printStackTrace();
-			throw new CustomException(e.getMessage(), ErrorMessages.LOAD_CONTACT_ERROR);
+			throw new CustomException(e.getMessage(), ErrorMessages.DATABASE_SP_ERROR);
+		}
+	}
+	
+	@Override
+	public SPResponseDTO confirmarCargaMasiva(Long idArchivo) throws CustomException{
+		Session session = null;
+		Transaction tx = null;
+		Long archivoId;
+		SPResponseDTO response = new SPResponseDTO();
+		try {
+			session = this.sessionFactory.getCurrentSession();
+			tx = session.beginTransaction();
+			response = solicitudesDAO.archivoCargaMasivaConfirmar(idArchivo);
+			tx.commit();
+			session.close();
+			return response; 
+		} catch (CustomException e) {
+			SessionUtil.rollbackTransaction(session, tx);
+			throw e;
+		} catch (Exception e) {
+			SessionUtil.rollbackTransaction(session, tx);
+			e.printStackTrace();
+			throw new CustomException(e.getMessage(), ErrorMessages.DATABASE_SP_ERROR);
 		}
 	}
 }

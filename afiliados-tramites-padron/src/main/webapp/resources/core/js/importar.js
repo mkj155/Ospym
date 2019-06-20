@@ -79,6 +79,14 @@ function getPauta(){
 
 
 function uploadFile(){
+	if($('#cuitId').val() == null || $('#cuitId').val() == '' || $("#pautaId").val() == null || $("#pautaId").val() == ''  || $("#tipoAfiliado").val() == null || $("#tipoAfiliado").val() == ''){
+		$("#errorRequeridos").css("display", "");
+		$('#uploadFile').val(null);
+		return;
+	}else{
+		$("#errorRequeridos").css("display", "none");
+	}	
+	
 	if($('#uploadFile').val() != null && $('#uploadFile').val() != ''){
 		var form = $('#importForm')[0];
 	    var formData = new FormData(form);
@@ -93,40 +101,45 @@ function uploadFile(){
 		    method: 'POST',
 		    type: 'POST',
 			success : function(data) {
-				if(data != null && data.length > 0){
+				if(data.error && data.error != ""){
+					$("#errorCargarArchivo").html(data.error);
+					$("#errorCargarArchivo").css("display", "");
+					return;
+				}
+				if(data != null && data.afiliados != null && data.afiliados.length > 0){
+					$("#errorCargarArchivo").html("");
+					$("#errorCargarArchivo").css("display", "none");
 					var hasError = false;
 					//$("#pautaId option[value!='']").remove();
 					$("#tableBody").html('');
-					for(var i = 0 ; i < data.length ; i++){
+					for(var i = 0 ; i < data.afiliados.length ; i++){
 						var row = '';
-						if(data[i].errorValidacion)
-							row = '<tr style="background-color:FF9494;color:white;">'
-						else
-							row = '<tr>'	
+						var afiliado = data.afiliados[i];
+						row = '<tr>'	
 						$("#tableBody").html($("#tableBody").html() +
 						row + 
-						"<td>" + data[i].cuil + "</td>"+
-						"<td>" + data[i].apellido + "</td>"+
-						"<td>" + data[i].nombre + "</td>"+
-						"<td>" + data[i].tipoDocumento + "</td>"+
-						"<td>" + data[i].nroDocumento + "</td>"+
-						"<td>" + data[i].direccion + "</td>"+
-						"<td>" + data[i].numero + "</td>"+
-						"<td>" + data[i].piso + "</td>"+
-						"<td>" + data[i].departamento + "</td>"+
-						"<td>" + data[i].localidad + "</td>"+
-						"<td>" + data[i].provincia + "</td>"+
-						"<td>" + data[i].codigoPostal + "</td>"+
-						"<td>" + data[i].telefono + "</td>"+
-						"<td>" + data[i].fechaNacimiento + "</td>"+
-						"<td>" + data[i].sexo + "</td>"+
-						"<td>" + data[i].estadoCivil + "</td>"+
-						"<td>" + data[i].fechaInicioCobertura + "</td>"+
-						"<td>" + data[i].email + "</td>"+
-						"<td>" + data[i].errorValidacion + "</td>"+
+						"<td>" + afiliado.cuil + "</td>"+
+						"<td>" + afiliado.apellido + "</td>"+
+						"<td>" + afiliado.nombre + "</td>"+
+						"<td>" + afiliado.tipoDocumento + "</td>"+
+						"<td>" + afiliado.nroDocumento + "</td>"+
+						"<td>" + afiliado.direccion + "</td>"+
+						"<td>" + afiliado.numero + "</td>"+
+						"<td>" + afiliado.piso + "</td>"+
+						"<td>" + afiliado.departamento + "</td>"+
+						"<td>" + afiliado.localidad + "</td>"+
+						"<td>" + afiliado.provincia + "</td>"+
+						"<td>" + afiliado.codigoPostal + "</td>"+
+						"<td>" + afiliado.telefono + "</td>"+
+						"<td>" + afiliado.fechaNacimiento + "</td>"+
+						"<td>" + afiliado.sexo + "</td>"+
+						"<td>" + afiliado.estadoCivil + "</td>"+
+						"<td>" + afiliado.fechaInicioCobertura + "</td>"+
+						"<td>" + afiliado.email + "</td>"+
+						"<td>" + afiliado.errorMensaje + "</td>"+
 						"</tr>"
 						);
-						if(data[i].errorValidacion){
+						if(afiliado.errorMensaje != "OK"){
 							hasError = true;
 						}
 					}
@@ -137,6 +150,7 @@ function uploadFile(){
 					}
 					
 					$("button").prop("disabled", false);
+					$("#idArchivo").val(data.afiliados[0].idArchivo);
 					cargarEnable();
 				}else{
 					$("button").prop("disabled", false);

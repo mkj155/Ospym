@@ -15,12 +15,14 @@ import org.springframework.stereotype.Repository;
 
 import com.osdepym.dto.AfiliadoImportDTO;
 import com.osdepym.dto.AfiliadoTableDTO;
+import com.osdepym.dto.SPResponseDTO;
 import com.osdepym.exception.CustomException;
 import com.osdepym.exception.ErrorMessages;
 import com.osdepym.form.SolicitudesForm;
 import com.osdepym.hibernate.entity.Afiliado;
 import com.osdepym.hibernate.entity.Estado;
 import com.osdepym.hibernate.entity.ObraSocial;
+import com.osdepym.hibernate.entity.PreSolicitud;
 import com.osdepym.util.ValidateUtil;
 
 @Repository
@@ -235,10 +237,8 @@ public class SolicitudesDAOImpl implements SolicitudesDAO {
 	}
 	
 	@Override
-	public Long archivoCargaMasivaObtenerIdentificar(Long obraSocial, Long tipoCarga, Long tipoAfiliado, String cuit, Long pauta, String nombreArchivo) throws CustomException {
-		Long archivoId;
-		String error;
-		String mensaje;
+	public SPResponseDTO archivoCargaMasivaObtenerIdentificar(Long obraSocial, Long tipoCarga, Long tipoAfiliado, String cuit, Long pauta, String nombreArchivo) throws CustomException {
+		SPResponseDTO response = new SPResponseDTO();
 		try {
 			Session session = this.sessionFactory.getCurrentSession();
 			StoredProcedureQuery storedProcedure = session.createStoredProcedureQuery("ga.spo_ArchivoCargaMasivaObtenerIdentificar");
@@ -258,17 +258,17 @@ public class SolicitudesDAOImpl implements SolicitudesDAO {
 			storedProcedure.setParameter("Pauta_ID", 		pauta);
 			storedProcedure.setParameter("ArchivoNombre", 	nombreArchivo);
 			storedProcedure.execute();
-			archivoId = (Long)storedProcedure.getOutputParameterValue("Archivo_id");
-			error     = (String) storedProcedure.getOutputParameterValue("Error");
-			mensaje   = (String) storedProcedure.getOutputParameterValue("Mensaje");
-			return archivoId;
+			response.setIdArchivo((Long)storedProcedure.getOutputParameterValue("Archivo_id"));
+			response.setError((String) storedProcedure.getOutputParameterValue("Error"));
+			response.setMensaje((String) storedProcedure.getOutputParameterValue("Mensaje"));
+			return response;
 		} catch(Exception e){
 			throw new CustomException(e.getMessage(), ErrorMessages.DATABASE_GET_ERROR);
 		}
 	}
 
 	@Override
-	public boolean archivoCargaMasivaCargarRegistro(Long archivoId, AfiliadoImportDTO afiliado) throws CustomException {
+	public SPResponseDTO archivoCargaMasivaCargarRegistro(Long archivoId, AfiliadoImportDTO afiliado) throws CustomException {
 		String error;
 		String mensaje;
 		try {
@@ -317,9 +317,33 @@ public class SolicitudesDAOImpl implements SolicitudesDAO {
 			storedProcedure.execute();
 			error   = (String) storedProcedure.getOutputParameterValue("Error");
 			mensaje = (String) storedProcedure.getOutputParameterValue("Mensaje");
-			return true;
+			SPResponseDTO response = new SPResponseDTO(error, mensaje);
+			return response;
 		} catch(Exception e){
-			throw new CustomException(e.getMessage(), ErrorMessages.DATABASE_GET_ERROR);
+			throw new CustomException(e.getMessage(), ErrorMessages.DATABASE_SP_ERROR);
+		}
+	}
+	
+	
+	@Override
+	public SPResponseDTO archivoCargaMasivaConfirmar(Long archivoId) throws CustomException {
+		String error;
+		String mensaje;
+		SPResponseDTO response;
+		try {
+			Session session = this.sessionFactory.getCurrentSession();
+			StoredProcedureQuery storedProcedure = session.createStoredProcedureQuery("ga.spo_ArchivoCargaMasivaConfirmar");
+			storedProcedure.registerStoredProcedureParameter("Archivo_ID",				Long.class, ParameterMode.IN);
+			storedProcedure.registerStoredProcedureParameter("Error",					String.class,  ParameterMode.OUT);
+			storedProcedure.registerStoredProcedureParameter("Mensaje",					String.class,  ParameterMode.OUT);
+			storedProcedure.setParameter("Archivo_ID", 				archivoId);
+			storedProcedure.execute();
+			error   = (String) storedProcedure.getOutputParameterValue("Error");
+			mensaje = (String) storedProcedure.getOutputParameterValue("Mensaje");
+			response = new SPResponseDTO(error, mensaje);
+			return response;
+		} catch(Exception e){
+			throw new CustomException(e.getMessage(), ErrorMessages.DATABASE_SP_ERROR);
 		}
 	}
 
@@ -337,8 +361,21 @@ public class SolicitudesDAOImpl implements SolicitudesDAO {
 			response[0]		= (String)storedProcedure.getOutputParameterValue("Error");
 			response[1]		= (String)storedProcedure.getOutputParameterValue("Mensaje");
 		} catch(Exception e){
-			throw new CustomException(e.getMessage(), ErrorMessages.DATABASE_GET_ERROR);
+			throw new CustomException(e.getMessage(), ErrorMessages.DATABASE_SP_ERROR);
 		}
 		return response;
+	}
+	
+	@Override
+	public List<PreSolicitud> getPreSolicitudes(Long idArchivo) throws CustomException {
+		List<PreSolicitud> preSolicitudes = new ArrayList<PreSolicitud>();
+		try {
+			Session session = this.sessionFactory.getCurrentSession();
+			String sqlString = "SELECT * FROM ga.PreSolicitudesCargaMasiva WHERE Archivo_ID = '" + idArchivo + "'";
+			preSolicitudes = session.createNativeQuery(sqlString, PreSolicitud.class).getResultList();
+		} catch (Exception e) {
+			throw new CustomException(e.getMessage(), ErrorMessages.DATABASE_GET_ERROR);
+		}
+		return preSolicitudes;
 	}
 }

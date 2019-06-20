@@ -13,10 +13,22 @@
                 	<spring:url value="/solicitudes/importar" var="enviarUrl" />
                 	<spring:url value="/buscar/exportar" var="exportar" />
                 	<c:if test="${successmsg == true}">
-                    <div class="alert alert-success" role="alert">
-					Datos cargados correctamente
-</div>
-</c:if>
+	                    <div class="alert alert-success" role="alert">
+							Datos cargados correctamente
+						</div>
+					</c:if>
+					<c:if test="${errormsg != null}">
+	                    <div class="alert alert-danger" role="alert">
+							${errormsg}
+							</div>
+					</c:if>
+	               <div id="errorRequeridos" class="alert alert-danger" role="alert" style="display:none;">
+						Introduzca los datos requeridos y vuelva a cargar el archivo.
+					</div>
+					<div id="errorCargarArchivo" class="alert alert-danger" role="alert" style="display:none;">
+						
+					</div>
+					
                 	<form:form class="form-cartilla custom-form" method="post" id="importForm" modelAttribute="importForm" action="${enviarUrl}" enctype="multipart/form-data">
                 	<spring:message code="select.label.empty" var="emptyValue" />
                     <div class="row">
@@ -102,7 +114,7 @@
                             </div>
                         </div>        
                     </div>
-            			
+            	<form:input id="idArchivo" path="idArchivo" type="hidden" class="form-control" />
         		<button onclick="descargarPlantilla()" type="button" class="btn btn-primary btn-lg btn-search" id="ingreso-masivo">DESCARGAR PLANTILLA</button>
             	<div id="table">
             		<jsp:include page="importTable.jsp" />	
