@@ -9,6 +9,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -121,13 +122,15 @@ public class SolicitudesController {
 	@RequestMapping(value = "/solicitudes/descargarPlantilla", method = RequestMethod.POST)
 	public @ResponseBody void descargarPlantilla(HttpServletRequest request, HttpServletResponse response) throws CustomException {
 		FileInputStream inputStream;
-		File tempFile = new File("File1.xlsx");
 		try {
 			inputStream = new FileInputStream(new File(getClass().getResource("/Plantilla.xls").toURI()));
-			tempFile = File.createTempFile(String.valueOf(inputStream.hashCode()), ".xls");
+			File tempFile = File.createTempFile(String.valueOf(inputStream.hashCode()), ".xls");
+			
+			FileUtils.copyInputStreamToFile(inputStream, tempFile);
+			inputStream.close();
+        	tempFile.deleteOnExit();
 			Desktop dt = Desktop.getDesktop();
-        	dt.open(tempFile);
-        	inputStream.close();
+        	dt.open(tempFile);        	
 		} catch(Exception e) {
 			throw new CustomException(e.getMessage(), ErrorMessages.DATABASE_GET_ERROR);
 		}

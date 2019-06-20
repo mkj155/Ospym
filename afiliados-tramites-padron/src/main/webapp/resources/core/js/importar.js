@@ -1,6 +1,4 @@
-
-
-
+var varUploadFile = false;
 $(document).ready(function() {
 	$('#tipoCarga').change(function(){
 	    if($('#tipoCarga-' + $(this).val()).val() === '1'){
@@ -9,20 +7,36 @@ $(document).ready(function() {
 	    	$('#tipoAfiliadoDiv').css("display", "none")
 	    	$('#tipoAfiliadoDiv').val("")
 	    }
+	    
+	    cargarEnable();
 	});
 	
-	$('#cuitId').blur(function(){
+	$('#cuitId').change(function(){
 		getPauta();
 	});
 	
-	$('#uploadFile').change(function(){
+	$('#uploadFile').on('change', function(changeEvent) {
 		uploadFile();
+		cargarEnable();
 	});
 	
-	$('#buttonUploadFile').on('click', function() {
-		  var fileSelector = document.getElementById('uploadFile');
+	$('#obraSocial').change(function(){
+		cargarEnable();
+	});
+	
+	$('#pautaId').change(function(){
+		cargarEnable();
+	});
+	
+	$('#cuitId').keyup(function(){
+		getPauta();
+	});
+	
+	$(document).on('click', '#buttonUploadFile', function() {
+		  var fileSelector = $('#uploadFile');
 		  fileSelector.click();
-	     return false;	
+		  $("button").prop("disabled", false);
+		  return false;
 	});
 });
 
@@ -44,19 +58,19 @@ function getPauta(){
 					}
 					$("#pautaId").prop("disabled", false);
 					$("#pautaHelp").css({'display':'none'});
+					cargarEnable();
 				}else{
 					$("#pautaId").html("");
+					$("#pautaId").val("");
 					$("#pautaId").prop("disabled", true);
 					$("#pautaHelp").css({'display':'block'});
-					
+					cargarEnable();
 				}
-				
-			
 			},
 			error : function(e) {
 				console.log("ERROR: ", e);
 
-				
+				cargarEnable();
 			},
 		});
 	} 
@@ -117,22 +131,23 @@ function uploadFile(){
 						}
 					}
 					if(!hasError){
-						$("#confirmar").prop("disabled", false);
-						$("#confirmar").removeClass( "disabled" );
+						varUploadFile = true;	
 					}else{
-						$("#confirmar").prop("disabled", true);
-						$("#confirmar").addClass( "disabled" );
+						varUploadFile = false;
 					}
-				}else{
 					
+					$("button").prop("disabled", false);
+					cargarEnable();
+				}else{
+					$("button").prop("disabled", false);
+					cargarEnable();
 				}
-				
-			
 			},
 			error : function(e) {
 				console.log("ERROR: ", e);
 
-				
+				$("button").prop("disabled", false);
+				cargarEnable();
 			},
 		});
 	} 
@@ -167,3 +182,17 @@ function descargarPlantilla(){
 		});
 		
 	} 
+
+function cargarEnable() {
+	if($('#cuitId').val() != null && $('#cuitId').val() != '' && 
+		$("#pautaId").val() != null && $("#pautaId").val() != '' && 
+		$("#obraSocial").val() != null && $("#obraSocial").val() != '' && 
+		$("#tipoCarga").val() != null && $("#tipoCarga").val() != '' && 
+		varUploadFile) {
+		$("#confirmar").prop("disabled", false);
+		$("#confirmar").removeClass("disabled");
+	} else {
+		$("#confirmar").prop("disabled", true);
+		$("#confirmar").addClass("disabled");
+	}
+}
