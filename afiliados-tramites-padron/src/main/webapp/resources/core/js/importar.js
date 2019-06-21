@@ -73,6 +73,12 @@ function getPauta(){
 				cargarEnable();
 			},
 		});
+	}else{
+		$("#pautaId").html("");
+		$("#pautaId").val("");
+		$("#pautaId").prop("disabled", true);
+		$("#pautaHelp").css({'display':'block'});
+		cargarEnable();
 	} 
 }
 
