@@ -31,6 +31,11 @@
 				<value>com.osdepym.hibernate.entity.Afiliado</value>
 				<value>com.osdepym.hibernate.entity.ObraSocial</value>
 				<value>com.osdepym.hibernate.entity.Estado</value>
+				<value>com.osdepym.hibernate.entity.TipoAfiliado</value>
+				<value>com.osdepym.hibernate.entity.TipoCarga</value>
+				<value>com.osdepym.hibernate.entity.Pauta</value>
+				<value>com.osdepym.hibernate.entity.ErrorValidacion</value>
+				<value>com.osdepym.hibernate.entity.PreSolicitud</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">

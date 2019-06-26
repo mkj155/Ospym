@@ -1,6 +1,6 @@
 package com.osdepym.hibernate.entity;
 
-import java.util.Date;
+import java.sql.Timestamp;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,8 +12,8 @@ import org.hibernate.annotations.Immutable;
 @Immutable
 public class Afiliado {
 	@Id
-	@Column(name = "registro_ID", updatable = false, nullable = false)
-	String registroID;
+	@Column(name = "Registro_ID", updatable = false, nullable = false)
+	int registroID;
 	 
 	@Column(name = "ObraSocial", updatable = false)
 	String obraSocial;
@@ -40,16 +40,16 @@ public class Afiliado {
 	String tipoDocumento;
 	
 	@Column(name = "NroDocumento", updatable = false)
-	Long nroDocumento;
+	String nroDocumento;
 	
 	@Column(name = "Direccion", updatable = false)
 	String direccion;
 	
 	@Column(name = "DireccionNumero", updatable = false)
-	int direccionNumero;
+	String direccionNumero;
 	
 	@Column(name = "DireccionPiso", updatable = false)
-	int direccionPiso;
+	String direccionPiso;
 	
 	@Column(name = "DireccionDepartamento", updatable = false)
 	String direccionDepartamento;
@@ -64,13 +64,13 @@ public class Afiliado {
 	String codigoPostal;
 	
 	@Column(name = "Telefono", updatable = false)
-	int telefono;
+	String telefono;
 	
 	@Column(name = "Email", updatable = false)
 	String email;
 	
 	@Column(name = "FechaNacimiento", updatable = false)
-	Date fechaNacimiento;
+	Timestamp fechaNacimiento;
 	
 	@Column(name = "Sexo", updatable = false)
 	String sexo;
@@ -79,10 +79,10 @@ public class Afiliado {
 	String estadoCivil;
 	
 	@Column(name = "CUILTitular", updatable = false)
-	String cuilTitular;
+	Long cuilTitular;
 	
 	@Column(name = "FechaInicio", updatable = false)
-	Date fechaInicio;
+	Timestamp fechaInicio;
 	
 	@Column(name = "CentroMedico", updatable = false)
 	String centroMedico;
@@ -91,355 +91,355 @@ public class Afiliado {
 	String plan;
 	
 	@Column(name = "Estado", updatable = false)
-	Long estado;
+	String estado;
 	
 	@Column(name = "Solicitud_ID", updatable = false)
-	Long solicitudID;
+	Integer solicitudID;
 	
 	@Column(name = "Archivo", updatable = false)
 	String archivo;
 	
 	@Column(name = "FechaCarga", updatable = false)
-	Date fechaCarga;
+	Timestamp fechaCarga;
 	
 	@Column(name = "CodigoError", updatable = false)
-	String codigoError;
+	Integer codigoError;
 	
 	@Column(name = "DescripcionError", updatable = false)
 	String descripcionError;
 	
 	@Column(name = "EstadoRegistro_ID", updatable = false)
-	Long estadoRegistroID;
+	Integer estadoRegistroID;
 	
 	@Column(name = "ObraSocial_ID", updatable = false)
-	Long obraSocialID;
+	Integer obraSocialID;
 	
 	@Column(name = "TipoCarga_ID", updatable = false)
-	Long tipoCargaID;
+	Integer tipoCargaID;
 	
 	@Column(name = "TipoAfiliado_ID", updatable = false)
-	Long tipoAfiliadoID;
+	Integer tipoAfiliadoID;
 	
 	@Column(name = "EstadoCivil_ID", updatable = false)
-	Long estadoCivilID;
+	Integer estadoCivilID;
 	
 	@Column(name = "Provincia_ID", updatable = false)
-	Long provinciaID;
+	Integer provinciaID;
 	
 	@Column(name = "Localidad_ID", updatable = false)
-	Long localidadID;
+	Integer localidadID;
 
 	public Afiliado() {}
 
-	public String getRegistroID() {
-	  return this.registroID;
+	public int getRegistroID() {
+		return registroID;
 	}
 
-	public void setRegistroID(String value) {
-	  this.registroID = value;
+	public void setRegistroID(int registroID) {
+		this.registroID = registroID;
 	}
 
 	public String getObraSocial() {
-	  return this.obraSocial;
+		return obraSocial;
 	}
 
-	public void setObraSocial(String value) {
-	  this.obraSocial = value;
+	public void setObraSocial(String obraSocial) {
+		this.obraSocial = obraSocial;
 	}
 
 	public String getTipoCarga() {
-	  return this.tipoCarga;
+		return tipoCarga;
 	}
 
-	public void setTipoCarga(String value) {
-	  this.tipoCarga = value;
+	public void setTipoCarga(String tipoCarga) {
+		this.tipoCarga = tipoCarga;
 	}
 
 	public String getTipoAfiliado() {
-	  return this.tipoAfiliado;
+		return tipoAfiliado;
 	}
 
-	public void setTipoAfiliado(String value) {
-	  this.tipoAfiliado = value;
+	public void setTipoAfiliado(String tipoAfiliado) {
+		this.tipoAfiliado = tipoAfiliado;
 	}
 
 	public Long getCuit() {
-	  return this.cuit;
+		return cuit;
 	}
 
-	public void setCuit(Long value) {
-	  this.cuit = value;
+	public void setCuit(Long cuit) {
+		this.cuit = cuit;
 	}
 
 	public Long getCuil() {
-	  return this.cuil;
+		return cuil;
 	}
 
-	public void setCuil(Long value) {
-	  this.cuil = value;
+	public void setCuil(Long cuil) {
+		this.cuil = cuil;
 	}
 
 	public String getApellido() {
-	  return this.apellido;
+		return apellido;
 	}
 
-	public void setApellido(String value) {
-	  this.apellido = value;
+	public void setApellido(String apellido) {
+		this.apellido = apellido;
 	}
 
 	public String getNombre() {
-	  return this.nombre;
+		return nombre;
 	}
 
-	public void setNombre(String value) {
-	  this.nombre = value;
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 
 	public String getTipoDocumento() {
-	  return this.tipoDocumento;
+		return tipoDocumento;
 	}
 
-	public void setTipoDocumento(String value) {
-	  this.tipoDocumento = value;
+	public void setTipoDocumento(String tipoDocumento) {
+		this.tipoDocumento = tipoDocumento;
 	}
 
-	public Long getNroDocumento() {
-	  return this.nroDocumento;
+	public String getNroDocumento() {
+		return nroDocumento;
 	}
 
-	public void setNroDocumento(Long value) {
-	  this.nroDocumento = value;
+	public void setNroDocumento(String nroDocumento) {
+		this.nroDocumento = nroDocumento;
 	}
 
 	public String getDireccion() {
-	  return this.direccion;
+		return direccion;
 	}
 
-	public void setDireccion(String value) {
-	  this.direccion = value;
+	public void setDireccion(String direccion) {
+		this.direccion = direccion;
 	}
 
-	public int getDireccionNumero() {
-	  return this.direccionNumero;
+	public String getDireccionNumero() {
+		return direccionNumero;
 	}
 
-	public void setDireccionNumero(int value) {
-	  this.direccionNumero = value;
+	public void setDireccionNumero(String direccionNumero) {
+		this.direccionNumero = direccionNumero;
 	}
 
-	public int getDireccionPiso() {
-	  return this.direccionPiso;
+	public String getDireccionPiso() {
+		return direccionPiso;
 	}
 
-	public void setDireccionPiso(int value) {
-	  this.direccionPiso = value;
+	public void setDireccionPiso(String direccionPiso) {
+		this.direccionPiso = direccionPiso;
 	}
 
 	public String getDireccionDepartamento() {
-	  return this.direccionDepartamento;
+		return direccionDepartamento;
 	}
 
-	public void setDireccionDepartamento(String value) {
-	  this.direccionDepartamento = value;
+	public void setDireccionDepartamento(String direccionDepartamento) {
+		this.direccionDepartamento = direccionDepartamento;
 	}
 
 	public String getDireccionLocalidad() {
-	  return this.direccionLocalidad;
+		return direccionLocalidad;
 	}
 
-	public void setDireccionLocalidad(String value) {
-	  this.direccionLocalidad = value;
+	public void setDireccionLocalidad(String direccionLocalidad) {
+		this.direccionLocalidad = direccionLocalidad;
 	}
 
 	public String getDireccionProvincia() {
-	  return this.direccionProvincia;
+		return direccionProvincia;
 	}
 
-	public void setDireccionProvincia(String value) {
-	  this.direccionProvincia = value;
+	public void setDireccionProvincia(String direccionProvincia) {
+		this.direccionProvincia = direccionProvincia;
 	}
 
 	public String getCodigoPostal() {
-	  return this.codigoPostal;
+		return codigoPostal;
 	}
 
-	public void setCodigoPostal(String value) {
-	  this.codigoPostal = value;
+	public void setCodigoPostal(String codigoPostal) {
+		this.codigoPostal = codigoPostal;
 	}
 
-	public int getTelefono() {
-	  return this.telefono;
+	public String getTelefono() {
+		return telefono;
 	}
 
-	public void setTelefono(int value) {
-	  this.telefono = value;
+	public void setTelefono(String telefono) {
+		this.telefono = telefono;
 	}
 
 	public String getEmail() {
-	  return this.email;
+		return email;
 	}
 
-	public void setEmail(String value) {
-	  this.email = value;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
-	public Date getFechaNacimiento() {
-	  return this.fechaNacimiento;
+	public Timestamp getFechaNacimiento() {
+		return fechaNacimiento;
 	}
 
-	public void setFechaNacimiento(Date value) {
-	  this.fechaNacimiento = value;
+	public void setFechaNacimiento(Timestamp fechaNacimiento) {
+		this.fechaNacimiento = fechaNacimiento;
 	}
 
 	public String getSexo() {
-	  return this.sexo;
+		return sexo;
 	}
 
-	public void setSexo(String value) {
-	  this.sexo = value;
+	public void setSexo(String sexo) {
+		this.sexo = sexo;
 	}
 
 	public String getEstadoCivil() {
-	  return this.estadoCivil;
+		return estadoCivil;
 	}
 
-	public void setEstadoCivil(String value) {
-	  this.estadoCivil = value;
+	public void setEstadoCivil(String estadoCivil) {
+		this.estadoCivil = estadoCivil;
 	}
 
-	public String getCuilTitular() {
-	  return this.cuilTitular;
+	public Long getCuilTitular() {
+		return cuilTitular;
 	}
 
-	public void setCuilTitular(String value) {
-	  this.cuilTitular = value;
+	public void setCuilTitular(Long cuilTitular) {
+		this.cuilTitular = cuilTitular;
 	}
 
-	public Date getFechaInicio() {
-	  return this.fechaInicio;
+	public Timestamp getFechaInicio() {
+		return fechaInicio;
 	}
 
-	public void setFechaInicio(Date value) {
-	  this.fechaInicio = value;
+	public void setFechaInicio(Timestamp fechaInicio) {
+		this.fechaInicio = fechaInicio;
 	}
 
 	public String getCentroMedico() {
-	  return this.centroMedico;
+		return centroMedico;
 	}
 
-	public void setCentroMedico(String value) {
-	  this.centroMedico = value;
+	public void setCentroMedico(String centroMedico) {
+		this.centroMedico = centroMedico;
 	}
 
 	public String getPlan() {
-	  return this.plan;
+		return plan;
 	}
 
-	public void setPlan(String value) {
-	  this.plan = value;
+	public void setPlan(String plan) {
+		this.plan = plan;
 	}
 
-	public Long getEstado() {
-	  return this.estado;
+	public String getEstado() {
+		return estado;
 	}
 
-	public void setEstado(Long value) {
-	  this.estado = value;
+	public void setEstado(String estado) {
+		this.estado = estado;
 	}
 
-	public Long getSolicitudID() {
-	  return this.solicitudID;
+	public Integer getSolicitudID() {
+		return solicitudID;
 	}
 
-	public void setSolicitudID(Long value) {
-	  this.solicitudID = value;
+	public void setSolicitudID(Integer solicitudID) {
+		this.solicitudID = solicitudID;
 	}
 
 	public String getArchivo() {
-	  return this.archivo;
+		return archivo;
 	}
 
-	public void setArchivo(String value) {
-	  this.archivo = value;
+	public void setArchivo(String archivo) {
+		this.archivo = archivo;
 	}
 
-	public Date getFechaCarga() {
-	  return this.fechaCarga;
+	public Timestamp getFechaCarga() {
+		return fechaCarga;
 	}
 
-	public void setFechaCarga(Date value) {
-	  this.fechaCarga = value;
+	public void setFechaCarga(Timestamp fechaCarga) {
+		this.fechaCarga = fechaCarga;
 	}
 
-	public String getCodigoError() {
-	  return this.codigoError;
+	public Integer getCodigoError() {
+		return codigoError;
 	}
 
-	public void setCodigoError(String value) {
-	  this.codigoError = value;
+	public void setCodigoError(Integer codigoError) {
+		this.codigoError = codigoError;
 	}
 
 	public String getDescripcionError() {
-	  return this.descripcionError;
+		return descripcionError;
 	}
 
-	public void setDescripcionError(String value) {
-	  this.descripcionError = value;
+	public void setDescripcionError(String descripcionError) {
+		this.descripcionError = descripcionError;
 	}
 
-	public Long getEstadoRegistroID() {
-	  return this.estadoRegistroID;
+	public Integer getEstadoRegistroID() {
+		return estadoRegistroID;
 	}
 
-	public void setEstadoRegistroID(Long value) {
-	  this.estadoRegistroID = value;
+	public void setEstadoRegistroID(Integer estadoRegistroID) {
+		this.estadoRegistroID = estadoRegistroID;
 	}
 
-	public Long getObraSocialID() {
-	  return this.obraSocialID;
+	public Integer getObraSocialID() {
+		return obraSocialID;
 	}
 
-	public void setObraSocialID(Long value) {
-	  this.obraSocialID = value;
+	public void setObraSocialID(Integer obraSocialID) {
+		this.obraSocialID = obraSocialID;
 	}
 
-	public Long getTipoCargaID() {
-	  return this.tipoCargaID;
+	public Integer getTipoCargaID() {
+		return tipoCargaID;
 	}
 
-	public void setTipoCargaID(Long value) {
-	  this.tipoCargaID = value;
+	public void setTipoCargaID(Integer tipoCargaID) {
+		this.tipoCargaID = tipoCargaID;
 	}
 
-	public Long getTipoAfiliadoID() {
-	  return this.tipoAfiliadoID;
+	public Integer getTipoAfiliadoID() {
+		return tipoAfiliadoID;
 	}
 
-	public void setTipoAfiliadoID(Long value) {
-	  this.tipoAfiliadoID = value;
+	public void setTipoAfiliadoID(Integer tipoAfiliadoID) {
+		this.tipoAfiliadoID = tipoAfiliadoID;
 	}
 
-	public Long getEstadoCivilID() {
-	  return this.estadoCivilID;
+	public Integer getEstadoCivilID() {
+		return estadoCivilID;
 	}
 
-	public void setEstadoCivilID(Long value) {
-	  this.estadoCivilID = value;
+	public void setEstadoCivilID(Integer estadoCivilID) {
+		this.estadoCivilID = estadoCivilID;
 	}
 
-	public Long getProvinciaID() {
-	  return this.provinciaID;
+	public Integer getProvinciaID() {
+		return provinciaID;
 	}
 
-	public void setProvinciaID(Long value) {
-	  this.provinciaID = value;
+	public void setProvinciaID(Integer provinciaID) {
+		this.provinciaID = provinciaID;
 	}
 
-	public Long getLocalidadID() {
-	  return this.localidadID;
+	public Integer getLocalidadID() {
+		return localidadID;
 	}
 
-	public void setLocalidadID(Long value) {
-	  this.localidadID = value;
+	public void setLocalidadID(Integer localidadID) {
+		this.localidadID = localidadID;
 	}
 }

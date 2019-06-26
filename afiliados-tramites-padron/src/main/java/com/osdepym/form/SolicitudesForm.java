@@ -1,8 +1,10 @@
 package com.osdepym.form;
 
 import java.util.Date;
+import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.osdepym.dto.AfiliadoDTO;
 
 public class SolicitudesForm {
 	private Long cuil;
@@ -12,10 +14,12 @@ public class SolicitudesForm {
 	private String nombre;
 	private String estado;
 	
+	private List<AfiliadoDTO> afiliadoList;
+	
 	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd/MM/yyyy")
 	private Date fechaCarga;
 	private Long numeroSolicitud;
-	private Long dni;
+	private String dni;
 	private Long cuit;
 	
 	public SolicitudesForm() {}
@@ -68,10 +72,10 @@ public class SolicitudesForm {
 	public void setNumeroSolicitud(Long numeroSolicitud) {
 		this.numeroSolicitud = numeroSolicitud;
 	}
-	public Long getDni() {
+	public String getDni() {
 		return dni;
 	}
-	public void setDni(Long dni) {
+	public void setDni(String dni) {
 		this.dni = dni;
 	}
 	public Long getCuit() {
@@ -80,5 +84,12 @@ public class SolicitudesForm {
 	public void setCuit(Long cuit) {
 		this.cuit = cuit;
 	}
+	
+	public List<AfiliadoDTO> getAfiliadoList() {
+		return afiliadoList;
+	}
 
+	public void setAfiliadoList(List<AfiliadoDTO> afiliadoList) {
+		this.afiliadoList = afiliadoList;
+	}
 }

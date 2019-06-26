@@ -14,6 +14,6 @@ public class ErrorMessages {
 	
 	public static final String PROCESS_CONTACT_ERROR = "Se ha producido un error al procesar el formulario, intentelo de nuevo mas tarde.";
 	
-	
+	public static final String DATABASE_SP_ERROR = "Error al procesar los datos.";
 	
 }

@@ -10,7 +10,7 @@
 <body>
     <section id="error" class="bg-gray">
         <div class="container text-center">
-            <img src="/OSDEPYM/resources/core/img/error-green.png">
+            <img src="/afiliados-tramites-padron/resources/core/img/error-green.png">
             <h2>${error.customMessage}</h2>
         </div>
     </section>

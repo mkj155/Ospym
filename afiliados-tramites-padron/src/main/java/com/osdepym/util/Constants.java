@@ -18,5 +18,7 @@ public class Constants {
 	public static final String EMAIL = "Email";
 	public static final String TELEFONO_CASA = "Teléfono Casa";
 	public static final String TELEFONO_TRABAJO = "Teléfono Trabajo";
-	
+	public static final String ERROR_SP = "999";
+	public static final String ESTADO_AFILIADO_CONFIRMADO = "Confirmado";
+	public static final String ESTADO_AFILIADO_ANULADO = "Anulado";
 }

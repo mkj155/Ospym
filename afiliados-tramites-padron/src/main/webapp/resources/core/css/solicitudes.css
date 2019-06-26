@@ -1,5 +1,5 @@
-input[type=number]::-webkit-inner-spin-button, 
-input[type=number]::-webkit-outer-spin-button { 
+#solicitudes-form input[type=number]::-webkit-inner-spin-button, 
+#solicitudes-form input[type=number]::-webkit-outer-spin-button { 
   -webkit-appearance: none; 
   margin: 0; 
 }
@@ -19,7 +19,7 @@ input[type=number]::-webkit-outer-spin-button {
     padding: 13px;
 }
 
-div.datepicker {
+div.datepicker-input {
 	padding: 0;
 }
 
@@ -33,12 +33,14 @@ div.datepicker {
     cursor: pointer;
     font-size: 16px;
 }
-    .control input {
+
+.control input {
         position: absolute;
         z-index: -1;
         opacity: 0;
-    }
-.control_indicator {
+}
+
+.control-indicator {
     position: absolute;
     top: 2px;
     left: 0;
@@ -47,37 +49,42 @@ div.datepicker {
     background: #ffffff;
     border: 1px solid #c5c5c5;
 }
-.control-radio .control_indicator {
+.control-radio .control-indicator {
     border-radius: undefined%;
 }
 
-.control:hover input ~ .control_indicator,
-.control input:focus ~ .control_indicator {
+.control:hover input ~ .control-indicator,
+.control input:focus ~ .control-indicator {
     background: #fbfbfb;
 }
 
-.control input:checked ~ .control_indicator {
+.control input:checked ~ .control-indicator {
     background: #ffffff;
 }
-.control:hover input:not([disabled]):checked ~ .control_indicator,
-.control input:checked:focus ~ .control_indicator {
+
+.control:hover input:not([disabled]):checked ~ .control-indicator,
+.control input:checked:focus ~ .control-indicator {
     background: #ffffff;
 }
-.control input:disabled ~ .control_indicator {
+
+.control input:disabled ~ .control-indicator {
     background: #e6e6e6;
     opacity: 0.6;
     pointer-events: none;
 }
-.control_indicator:after {
+
+.control-indicator:after {
     box-sizing: unset;
     content: '';
     position: absolute;
     display: none;
 }
-.control input:checked ~ .control_indicator:after {
+
+.control input:checked ~ .control-indicator:after {
     display: block;
 }
-.control-checkbox .control_indicator:after {
+
+.control-checkbox .control-indicator:after {
     left: 8px;
     top: 4px;
     width: 3px;
@@ -86,6 +93,629 @@ div.datepicker {
     border-width: 0 2px 2px 0;
     transform: rotate(45deg);
 }
-.control-checkbox input:disabled ~ .control_indicator:after {
+
+.control-checkbox input:disabled ~ .control-indicator:after {
     border-color: #7b7b7b;
+}
+
+#content-buttons a.button {
+    white-space: normal;
+    word-wrap: break-word;
+    height: 100px;
+    position: absolute;
+ 	top: 50%;
+ 	padding-top: 30px;
+ 	width: 200px;
+}
+   
+#content-buttons .buttons {
+   	width: auto;
+    position: absolute;
+    left: 50%;
+    margin-left: -50px;
+}
+  	
+#content-buttons  {
+   	width: 200px;
+    height: 100px;
+    margin: auto;
+}
+  	
+#content-buttons i.block {
+   	display: block;
+}
+
+th {
+	width: 100px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+  
+.checkbox-all {
+	margin-left: 11px;
+}
+  
+#table-preview td, #table-preview th {
+	border: 1px solid gray;
+}
+   
+.search-table {
+	table-layout: fixed; 
+}
+
+.search-table, td, th {
+	border-collapse:collapse; 
+}
+
+#table-preview th {
+	padding:20px 7px;
+	background-color: #CCC; 
+}
+
+#table-preview td {
+	padding: 10px; 
+}
+
+#table-preview th, #table-preview td { 
+	width: 100%; 
+}
+
+#table-preview {
+	margin-bottom: inherit;
+	width: inherit;
+}
+
+#solicitudes-form .btn-search {
+	margin-top: 27px
+}
+
+#content-table .btn-form {
+	width: inherit;
+}
+
+#content-table ::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+#content-table ::-webkit-scrollbar-button {
+  width: 0px;
+  height: 0px;
+}
+#content-table ::-webkit-scrollbar-thumb {
+  background: #b3b3b3;
+  border: 0px none #ffffff;
+}
+#content-table ::-webkit-scrollbar-thumb:hover {
+  background: #c5c5c5;
+}
+#content-table ::-webkit-scrollbar-thumb:active {
+  background: #919191;
+}
+#content-table ::-webkit-scrollbar-track {
+  border: 0px none #ffffff;
+  border-radius: 50px;
+}
+#content-table ::-webkit-scrollbar-track:hover {
+}
+#content-table ::-webkit-scrollbar-track:active {
+}
+#content-table ::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+/******************************************/
+
+div.datepicker div.datepicker-days table.table-condensed td.active  {
+	background-color: #09673E;
+	background-image: none;
+	-webkit-text-fill-color: #fff;
+}
+
+div.datepicker {
+	align-content: normal;
+	align-items: normal;
+	align-self: auto;
+	alignment-baseline: auto;
+	all: ;
+	animation-delay: 0s;
+	animation-direction: normal;
+	animation-duration: 0s;
+	animation-fill-mode: none;
+	animation-iteration-count: 1;
+	animation-name: none;
+	animation-play-state: running;
+	animation-timing-function: ease;
+	backface-visibility: visible;
+	background-attachment: scroll;
+	background-blend-mode: normal;
+	background-clip: padding-box;
+	background-color: rgb(255, 255, 255);
+	background-image: none;
+	background-origin: padding-box;
+	background-position-x: 0%;
+	background-position-y: 0%;
+	background-repeat-x: ;
+	background-repeat-y: ;
+	background-size: auto;
+	baseline-shift: 0px;
+	block-size: 195.6px;
+	border-block-end-color: rgba(0, 0, 0, 0.15);
+	border-block-end-style: solid;
+	border-block-end-width: 1px;
+	border-block-start-color: rgba(0, 0, 0, 0.15);
+	border-block-start-style: solid;
+	border-block-start-width: 1px;
+	border-bottom-color: rgba(0, 0, 0, 0.15);
+	border-bottom-left-radius: 4px;
+	border-bottom-right-radius: 4px;
+	border-bottom-style: solid;
+	border-bottom-width: 1px;
+	border-collapse: separate;
+	border-image-outset: 0px;
+	border-image-repeat: stretch;
+	border-image-slice: 100%;
+	border-image-source: none;
+	border-image-width: 1;
+	border-inline-end-color: rgba(0, 0, 0, 0.15);
+	border-inline-end-style: solid;
+	border-inline-end-width: 1px;
+	border-inline-start-color: rgba(0, 0, 0, 0.15);
+	border-inline-start-style: solid;
+	border-inline-start-width: 1px;
+	border-left-color: rgba(0, 0, 0, 0.15);
+	border-left-style: solid;
+	border-left-width: 1px;
+	border-right-color: rgba(0, 0, 0, 0.15);
+	border-right-style: solid;
+	border-right-width: 1px;
+	border-top-color: rgba(0, 0, 0, 0.15);
+	border-top-left-radius: 4px;
+	border-top-right-radius: 4px;
+	border-top-style: solid;
+	border-top-width: 1px;
+	bottom: 195.6px;
+	box-shadow: none;
+	box-sizing: border-box;
+	break-after: auto;
+	break-before: auto;
+	break-inside: auto;
+	buffered-rendering: auto;
+	caption-side: top;
+	caret-color: rgb(33, 37, 41);
+	clear: none;
+	clip: auto;
+	clip-path: none;
+	clip-rule: nonzero;
+	color: #495057;
+	color-interpolation: srgb;
+	color-interpolation-filters: linearrgb;
+	color-rendering: auto;
+	column-count: auto;
+	column-fill: balance;
+	column-gap: normal;
+	column-rule-color: rgb(33, 37, 41);
+	column-rule-style: none;
+	column-rule-width: 0px;
+	column-span: none;
+	column-width: auto;
+	contain: none;
+	content: normal;
+	counter-increment: none;
+	counter-reset: none;
+	cursor: auto;
+	cx: 0px;
+	cy: 0px;
+	d: none;
+	direction: ltr;
+	
+	dominant-baseline: auto;
+	empty-cells: show;
+	fill: rgb(0, 0, 0);
+	fill-opacity: 1;
+	fill-rule: nonzero;
+	filter: none;
+	flex-basis: auto;
+	flex-direction: row;
+	flex-grow: 0;
+	flex-shrink: 1;
+	flex-wrap: nowrap;
+	float: none;
+	flood-color: rgb(0, 0, 0);
+	flood-opacity: 1;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+	font-feature-settings: normal;
+	font-kerning: auto;
+	font-size: 16px;
+	font-stretch: 100%;
+	font-style: normal;
+	font-variant-caps: normal;
+	font-variant-east-asian: normal;
+	font-variant-ligatures: normal;
+	font-variant-numeric: normal;
+	font-variation-settings: normal;
+	font-weight: 400;
+	grid-auto-columns: auto;
+	grid-auto-flow: row;
+	grid-auto-rows: auto;
+	grid-column-end: auto;
+	grid-column-start: auto;
+	grid-row-end: auto;
+	grid-row-start: auto;
+	grid-template-areas: none;
+	grid-template-columns: none;
+	grid-template-rows: none;
+	height: 200px;
+	hyphens: manual;
+	image-rendering: auto;
+	inline-size: 196.4px;
+	isolation: auto;
+	justify-content: normal;
+	justify-items: normal;
+	justify-self: auto;
+	left: 0px;
+	letter-spacing: normal;
+	lighting-color: rgb(255, 255, 255);
+	line-break: auto;
+	line-height: 24px;
+	list-style-image: none;
+	list-style-position: outside;
+	list-style-type: none;
+	margin-block-end: 0px;
+	margin-block-start: 2px;
+	margin-bottom: 0px;
+	margin-inline-end: 0px;
+	margin-inline-start: 0px;
+	margin-left: 0px;
+	margin-right: 0px;
+	margin-top: 2px;
+	marker-end: none;
+	marker-mid: none;
+	marker-start: none;
+	mask: none;
+	mask-type: luminance;
+	max-block-size: none;
+	max-height: none;
+	max-inline-size: none;
+	max-width: none;
+	min-block-size: 0px;
+	min-height: 0px;
+	min-inline-size: 160px;
+	min-width: 160px;
+	mix-blend-mode: normal;
+	object-fit: fill;
+	object-position: 50% 50%;
+	offset-distance: 0px;
+	offset-path: none;
+	offset-rotate: auto 0deg;
+	opacity: 1;
+	order: 0;
+	orphans: 2;
+	outline-color: rgb(33, 37, 41);
+	outline-offset: 0px;
+	outline-style: none;
+	outline-width: 0px;
+	overflow-anchor: auto;
+	overflow-wrap: normal;
+	overflow-x: visible;
+	overflow-y: visible;
+	overscroll-behavior-x: auto;
+	overscroll-behavior-y: auto;
+	padding-block-end: 4px;
+	padding-block-start: 4px;
+	padding-bottom: 4px;
+	padding-inline-end: 4px;
+	padding-inline-start: 4px;
+	padding-left: 4px;
+	padding-right: 4px;
+	padding-top: 4px;
+	page: ;
+	paint-order: normal;
+	perspective: none;
+	perspective-origin: 98.2px 97.8px;
+	pointer-events: auto;
+	position: absolute;
+	quotes: ;
+	r: 0px;
+	resize: none;
+	right: 1339.6px;
+	row-gap: normal;
+	rx: auto;
+	ry: auto;
+	scroll-behavior: auto;
+	scroll-margin-block-end: 0px;
+	scroll-margin-block-start: 0px;
+	scroll-margin-bottom: 0px;
+	scroll-margin-inline-end: 0px;
+	scroll-margin-inline-start: 0px;
+	scroll-margin-left: 0px;
+	scroll-margin-right: 0px;
+	scroll-margin-top: 0px;
+	scroll-padding-block-end: auto;
+	scroll-padding-block-start: auto;
+	scroll-padding-bottom: auto;
+	scroll-padding-inline-end: auto;
+	scroll-padding-inline-start: auto;
+	scroll-padding-left: auto;
+	scroll-padding-right: auto;
+	scroll-padding-top: auto;
+	scroll-snap-align: none;
+	scroll-snap-stop: normal;
+	scroll-snap-type: none;
+	shape-image-threshold: 0;
+	shape-margin: 0px;
+	shape-outside: none;
+	shape-rendering: auto;
+	size: ;
+	speak: normal;
+	stop-color: rgb(0, 0, 0);
+	stop-opacity: 1;
+	stroke: none;
+	stroke-dasharray: none;
+	stroke-dashoffset: 0px;
+	stroke-linecap: butt;
+	stroke-linejoin: miter;
+	stroke-miterlimit: 4;
+	stroke-opacity: 1;
+	stroke-width: 1px;
+	tab-size: 8;
+	table-layout: auto;
+	text-align: left;
+	text-align-last: auto;
+	text-anchor: start;
+	text-combine-upright: none;
+	text-decoration-color: rgb(33, 37, 41);
+	text-decoration-line: none;
+	text-decoration-skip-ink: auto;
+	text-decoration-style: solid;
+	text-indent: 0px;
+	text-orientation: mixed;
+	text-overflow: clip;
+	text-rendering: auto;
+	text-shadow: none;
+	text-size-adjust: 100%;
+	text-transform: none;
+	text-underline-position: auto;
+	top: 38px;
+	touch-action: auto;
+	transform: none;
+	transform-box: view-box;
+	transform-origin: 98.2px 97.8px;
+	transform-style: flat;
+	transition-delay: 0s;
+	transition-duration: 0s;
+	transition-property: all;
+	transition-timing-function: ease;
+	unicode-bidi: normal;
+	user-select: auto;
+	vector-effect: none;
+	vertical-align: baseline;
+	visibility: visible;
+	white-space: normal;
+	widows: 2;
+	width: 196.4px;
+	will-change: auto;
+	word-break: normal;
+	word-spacing: 0px;
+	writing-mode: horizontal-tb;
+	x: 0px;
+	y: 0px;
+	z-index: 100;
+	zoom: 1;
+	-webkit-app-region: none;
+	-webkit-appearance: none;
+	-webkit-border-horizontal-spacing: 0px;
+	-webkit-border-vertical-spacing: 0px;
+	-webkit-box-align: stretch;
+	-webkit-box-decoration-break: slice;
+	-webkit-box-direction: normal;
+	-webkit-box-flex: 0;
+	-webkit-box-ordinal-group: 1;
+	-webkit-box-orient: horizontal;
+	-webkit-box-pack: start;
+	-webkit-box-reflect: none;
+	-webkit-font-size-delta: ;
+	-webkit-font-smoothing: auto;
+	-webkit-highlight: none;
+	-webkit-hyphenate-character: auto;
+	-webkit-line-clamp: none;
+	-webkit-locale: auto;
+	-webkit-margin-after-collapse: collapse;
+	-webkit-margin-before-collapse: collapse;
+	-webkit-margin-bottom-collapse: collapse;
+	-webkit-margin-top-collapse: collapse;
+	-webkit-mask-box-image-outset: 0px;
+	-webkit-mask-box-image-repeat: stretch;
+	-webkit-mask-box-image-slice: 0 fill;
+	-webkit-mask-box-image-source: none;
+	-webkit-mask-box-image-width: auto;
+	-webkit-mask-clip: border-box;
+	-webkit-mask-composite: source-over;
+	-webkit-mask-image: none;
+	-webkit-mask-origin: border-box;
+	-webkit-mask-position-x: 0%;
+	-webkit-mask-position-y: 0%;
+	-webkit-mask-repeat-x: ;
+	-webkit-mask-repeat-y: ;
+	-webkit-mask-size: auto;
+	-webkit-perspective-origin-x: ;
+	-webkit-perspective-origin-y: ;
+	-webkit-print-color-adjust: economy;
+	-webkit-rtl-ordering: logical;
+	-webkit-ruby-position: before;
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+	-webkit-text-combine: none;
+	-webkit-text-decorations-in-effect: none;
+	-webkit-text-emphasis-color: rgb(33, 37, 41);
+	-webkit-text-emphasis-position: over right;
+	-webkit-text-emphasis-style: none;
+	-webkit-text-fill-color: rgb(33, 37, 41);
+	-webkit-text-security: none;
+	-webkit-text-stroke-color: rgb(33, 37, 41);
+	-webkit-text-stroke-width: 0px;
+	-webkit-transform-origin-x: ;
+	-webkit-transform-origin-y: ;
+	-webkit-transform-origin-z: ;
+	-webkit-user-drag: auto;
+	-webkit-user-modify: read-only;
+	-webkit-border-image: none;
+	-webkit-text-orientation: vertical-right;
+	--blue: #007bff;
+	--breakpoint-lg: 992px;
+	--breakpoint-md: 768px;
+	--breakpoint-sm: 576px;
+	--breakpoint-xl: 1200px;
+	--breakpoint-xs: 0;
+	--cyan: #17a2b8;
+	--danger: #dc3545;
+	--dark: #343a40;
+	--font-family-monospace: SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
+	--font-family-sans-serif: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+	--gray: #6c757d;
+	--gray-dark: #343a40;
+	--green: #28a745;
+	--indigo: #6610f2;
+	--info: #17a2b8;
+	--light: #f8f9fa;
+	--orange: #fd7e14;
+	--pink: #e83e8c;
+	--primary: #007bff;
+	--purple: #6f42c1;
+	--red: #dc3545;
+	--secondary: #6c757d;
+	--success: #28a745;
+	--teal: #20c997;
+	--warning: #ffc107;
+	--white: #fff;
+	--yellow: #ffc107;
+}
+
+#exportar {
+	float: right;	
+}
+
+.btn-outline-secondary:hover {
+    color: #fff;
+    background-color: #15616c;
+    border-color: #15616c;
+}
+
+#nav li.btn {
+	width: 45px;
+}
+
+#nav .ulnav li.btn:hover {
+  	text-decoration: inherit; /* no underline */
+	background-color: #09673E;
+	color: #fff;
+}
+
+#nav .ulnav li.btn:hover a {
+  	text-decoration: inherit; /* no underline */
+	color: #fff;
+}
+
+#nav a:hover {
+	text-decoration: inherit; /* no underline */
+	background-color: #09673E;
+	color: #fff;
+}
+
+#nav li.btn, #nav select {
+	margin-top: 5px !important;
+	height: inherit;
+	margin-top: inherit;
+	border: 1px solid rgb(9, 103, 62);	
+	margin-right: 5px;
+}
+
+#nav li.btn-primary {
+	color: #fff;	
+}
+
+.ulnav {
+	padding-left: 0;
+}
+
+#loading {
+    margin: auto;
+    width: 2rem;
+}
+
+.filenameupload {
+	line-height: 2em;
+}
+
+input[type=file] {
+    display: none;
+}
+
+input.btn-primary:disabled {
+    color: #fff;
+    background-color: gray;
+    border-color: gray;
+}
+
+#nav-buttons {
+	display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    border-right: 1px solid gray;
+    margin-right: 11px;
+    padding-right: 6px;
+}
+
+#loading-exportar {
+    float: left;
+    margin-top: 35px;
+    margin-right: 10px;
+}
+
+#loading-confirmar {
+    float: right;
+    margin-top: 35px;
+    margin-left: 10px;
+}
+
+/************************/
+
+#content-table-child {
+	overflow-x: hidden;
+	padding-bottom: 12px; 
+}
+
+#content-table-child:hover {
+	overflow-x: scroll;
+	padding-bottom: 0px; 
+}
+
+/* page styles */
+
+
+#content-table-child {
+  overflow-x: hidden;
+  min-height: 0.01%;
+}
+
+.wide-load {
+  background-color: #f0f0f0;
+}
+
+
+/* floating-scroll stuff */
+.fl-scrolls {
+    bottom:0;
+    height:35px;
+    overflow:auto;
+    position:fixed;
+}
+.fl-scrolls div {
+    height:1px;
+    overflow:hidden;
+}
+.fl-scrolls div:before {
+    content:""; /* fixes #6 */
+}
+.fl-scrolls-hidden {
+    bottom:9999px;
 }
