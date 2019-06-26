@@ -68,7 +68,7 @@ public class PlanItemDAOImpl implements PlanItemDAO{
 		List<PlanItem> items = null;
 		try {
 			Session session = this.sessionFactory.getCurrentSession();
-			String sqlString = "FROM com.osdepym.hibernate.entity.PlanItem WHERE ID_PLAN = %s ORDER BY ID_PLAN_ITEM";
+			String sqlString = "FROM com.osdepym.hibernate.entity.PlanItem WHERE ID_PLAN = '%s' ORDER BY ID_PLAN_ITEM";
 			sqlString = String.format(sqlString, idPlan);
 			Query query = session.createQuery(sqlString, PlanItem.class);
 			items = query.getResultList();
