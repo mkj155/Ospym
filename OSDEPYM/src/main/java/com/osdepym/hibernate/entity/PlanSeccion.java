@@ -10,8 +10,8 @@ import javax.persistence.Table;
 @Entity
 @Table(name="PLAN_SECCIONES", schema = "tramites_online")
 public class PlanSeccion {
-	
-	private int idPlanSeccion;
+
+	private Long idPlanSeccion;
 	private String titulo;
 	private String subtitulo;
 	
@@ -25,10 +25,10 @@ public class PlanSeccion {
 	@Id
 	@Column(name="ID_PLAN_SECCION")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	public int getIdPlanSeccion() {
+	public Long getIdPlanSeccion() {
 		return idPlanSeccion;
 	}
-	public void setIdPlanSeccion(int idPlanSeccion) {
+	public void setIdPlanSeccion(Long idPlanSeccion) {
 		this.idPlanSeccion = idPlanSeccion;
 	}
 	public String getTitulo() {

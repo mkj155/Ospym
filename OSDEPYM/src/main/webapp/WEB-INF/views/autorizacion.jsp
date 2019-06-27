@@ -37,7 +37,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <!-- PRESTACIONES -->
+                        <!-- ESPECIALIDAD -->
                         <div class="col-md-12">
                             <div class="form-group ${status.error ? 'has-error' : ''}">
                                 <label class="control-label">
@@ -52,7 +52,7 @@
                         </div>
                     </div>
                     <div class="row">
-                    <!-- COMENTARIO -->
+                    <!-- PRESTACION -->
                     <div class="col-md-12">
                         <div class="form-group ${status.error ? 'has-error' : ''}" id="divIdPrestacion" style="display:none" >
                             <label class="control-label">

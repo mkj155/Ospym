@@ -51,7 +51,7 @@ public class BeneficiarioServiceREST extends RestTemplate{
 	
 	@RequestMapping(value="/getBeneficiarios", method = RequestMethod.GET)
 	@ResponseStatus(HttpStatus.OK)
-	public BeneficiariosResponse getBeneficiarios(@RequestParam(value="idAfiliado") String idAfiliado) throws CustomException {
+	public BeneficiariosResponse getBeneficiarios(@RequestParam(value="idAfiliado") Long idAfiliado) throws CustomException {
 		List<BeneficiarioDTO> beneficiariosList = new ArrayList<BeneficiarioDTO>();
 		BeneficiariosResponse beneficiariosResponse = new BeneficiariosResponse(beneficiariosList);
 		Session session = null;
@@ -59,7 +59,7 @@ public class BeneficiarioServiceREST extends RestTemplate{
 		try {
 			session = this.sessionFactory.getCurrentSession();
 			tx = session.beginTransaction();
-			List<Beneficiario> beneficiarios = beneficiarioDAO.getBeneficiariosByIdAfiliado(Integer.valueOf(idAfiliado));
+			List<Beneficiario> beneficiarios = beneficiarioDAO.getBeneficiariosByIdAfiliado(idAfiliado);
 			if (beneficiarios != null) {
 				for (Beneficiario element : beneficiarios) {
 					beneficiariosList.add(entityToDTO(element));

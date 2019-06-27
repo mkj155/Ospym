@@ -5,6 +5,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -19,6 +21,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
+import com.osdepym.exception.CustomException;
 import com.osdepym.rest.dao.ModeloPersonaDAO;
 import com.osdepym.rest.entity.AfiliadoCompleto;
 import com.osdepym.rest.json.BusquedaPersonaFullResponse;
@@ -59,34 +62,44 @@ public class BusquedaPersonaREST extends RestTemplate {
 	
 	@RequestMapping(value="/api-modelopersona-rest/buscarPersona", method = RequestMethod.GET)
 	@ResponseStatus(HttpStatus.OK)
-	public BusquedaPersonaFullResponse testJson(@RequestBody BusquedaPersonaRequest jsonBody)  {
+	public BusquedaPersonaFullResponse testJson(@RequestBody BusquedaPersonaRequest jsonBody, HttpServletResponse response) throws CustomException{
+		if(!jsonBody.getTipoMensaje().equals("BUSQUEDA")) {
+			throw new CustomException();
+		}
+		
 		Session session = null;
 		Transaction tx = null;
-		BusquedaPersonaFullResponse response = new BusquedaPersonaFullResponse();
+		BusquedaPersonaFullResponse jsonResponse = new BusquedaPersonaFullResponse();
 		try {
 			session = this.sessionFactory.getCurrentSession();
 			tx = session.beginTransaction();
 			List<AfiliadoCompleto> afiliados = modeloPersonaDAO.getPersona(jsonBody.getPersonaFisica());
-			response.setRespuesta(getResponse(afiliados));
-			
+			jsonResponse.setRespuesta(getResponse(afiliados));
 			tx.commit();
 			session.close();
+		}catch(CustomException e) {
+			tx.rollback();
+			session.close();
+			throw e;
+			
 		}catch(Exception e) {
 			tx.rollback();
 			session.close();
-			logger.error(e.getMessage().toString());
-			response.setRespuesta(getErrorResponse());
-		}finally {
-			response.setPersonaFisica(jsonBody.getPersonaFisica());
-			response.setSender(jsonBody.getSender());
-			response.setTipoMensaje(jsonBody.getTipoMensaje());
+			logger.error(e.getStackTrace().toString());
+			logger.error(e.getMessage());
+			throw new CustomException();
 			
+		}finally {
+			jsonResponse.setPersonaFisica(jsonBody.getPersonaFisica());
+			jsonResponse.setSender(jsonBody.getSender());
+			jsonResponse.setTipoMensaje(jsonBody.getTipoMensaje());
 		}
-		return response;
+		return jsonResponse;
+		
 	}
 	
 	private BusquedaPersonaResponse getResponse(List<AfiliadoCompleto> afiliados) {
-		DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		BusquedaPersonaResponse busquedaPersonaResponse = new BusquedaPersonaResponse();
 		Mensaje mensaje = new Mensaje();
 		if(afiliados.size() > 0) {
@@ -126,22 +139,5 @@ public class BusquedaPersonaREST extends RestTemplate {
 		busquedaPersonaResponse.setPersonas(personas);
 		return busquedaPersonaResponse;
 	}
-	
-	private BusquedaPersonaResponse getErrorResponse() {
-		BusquedaPersonaResponse busquedaPersonaResponse = new BusquedaPersonaResponse();
-		Mensaje mensaje = new Mensaje();
-		
-			busquedaPersonaResponse.setEncontrada(false);
-			mensaje.setCodigo("002");
-			mensaje.setMensaje("Error al intentar realizar la búsqueda, verifique los datos enviados");
-		
-		busquedaPersonaResponse.setMensaje(mensaje);
-		
-		
-		return busquedaPersonaResponse;
-	}
-	
-	
-	
 }
 

@@ -23,7 +23,7 @@ public class AutorizacionDocDAOImpl implements AutorizacionDocDAO{
 	}
 	
 	@Override
-	public AutorizacionDoc get(Integer id) throws CustomException {
+	public AutorizacionDoc get(Long id) throws CustomException {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -53,7 +53,7 @@ public class AutorizacionDocDAOImpl implements AutorizacionDocDAO{
 	}
 
 	@Override
-	public List<String> getDocumentosByIdEspecialidadYIdPrestacion(int idEspecialidad, int idPrestacion) throws CustomException {
+	public List<String> getDocumentosByIdEspecialidadYIdPrestacion(Long idEspecialidad, Long idPrestacion) throws CustomException {
 		try {
 			List<String> documentos = new ArrayList<String>();
 			Session session = this.sessionFactory.getCurrentSession();

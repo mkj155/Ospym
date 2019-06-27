@@ -9,10 +9,10 @@ import com.osdepym.hibernate.entity.Prestacion;
 
 public interface EspecialidadPrestacionDAO extends Dao<EspecialidadPrestacion>{
 
-	public List<Prestacion> getPrestacionesByEspecialidadId(int idEspecialidad) throws CustomException;
+	public List<Prestacion> getPrestacionesByEspecialidadId(Long idEspecialidad) throws CustomException;
 	public Integer getSecuence() throws CustomException;
 	public void saveContacto(Contacto contacto) throws CustomException;
-	public String getMailByIds(String idEspecialidad, String idPrestacion) throws CustomException;
-	public String getEspecialidadById(String idEspecialidad) throws CustomException;
-	public String getPrestacionById(String idPrestacion) throws CustomException;
+	public String getMailByIds(Long idEspecialidad, Long idPrestacion) throws CustomException;
+	public String getEspecialidadById(Long idEspecialidad) throws CustomException;
+	public String getPrestacionById(Long idPrestacion) throws CustomException;
 }

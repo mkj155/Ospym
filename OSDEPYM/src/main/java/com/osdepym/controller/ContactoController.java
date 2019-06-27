@@ -72,7 +72,7 @@ public class ContactoController {
 	public @ResponseBody List<CategoriaDTO> getCategoriasByMotivoId(@RequestBody String idMotivo) {
 		List<CategoriaDTO> categorias = null;
 		try {
-			categorias = service.getCategoriasByMotivoId(Integer.parseInt(idMotivo));
+			categorias = service.getCategoriasByMotivoId(Long.valueOf(idMotivo));
 		} catch (Exception e) {
 		}
 		return categorias;
@@ -82,7 +82,7 @@ public class ContactoController {
 	public @ResponseBody List<CategoriaDTO> getCategoriasByMotivoIdAfterError(@RequestBody String idMotivo) {
 		List<CategoriaDTO> categorias = null;
 		try {
-			categorias = service.getCategoriasByMotivoId(Integer.parseInt(idMotivo));
+			categorias = service.getCategoriasByMotivoId(Long.valueOf(idMotivo));
 		} catch (Exception e) {
 			
 		}

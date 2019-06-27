@@ -6,6 +6,6 @@ import com.osdepym.exception.CustomException;
 
 public interface PlanWebService {
 
-	public List<PlanSeccionDTO> getSeccionesByPlan(String idPlan) throws CustomException;
+	public List<PlanSeccionDTO> getSeccionesByPlan(Long idPlan) throws CustomException;
 	
 }

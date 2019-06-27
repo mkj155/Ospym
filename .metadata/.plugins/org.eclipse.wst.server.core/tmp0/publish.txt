@@ -1,3 +1,7 @@
 #Tomcat publish data
+<<<<<<< HEAD
 #Thu Jun 06 02:34:01 ART 2019
+=======
+#Thu May 16 12:45:16 ART 2019
+>>>>>>> AS-Branch
 org.eclipse.jst.jee.server\:/binary\:C\:\\Users\\PC\\.m2\\repository\\org\\springframework\\spring-web\\4.3.20.RELEASE\\spring-web-4.3.20.RELEASE.jar=WEB-INF/lib/spring-web-4.3.20.RELEASE.jar

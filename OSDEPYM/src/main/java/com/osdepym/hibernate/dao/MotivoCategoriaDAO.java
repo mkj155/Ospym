@@ -11,9 +11,9 @@ public interface MotivoCategoriaDAO extends Dao<MotivoCategoria> {
 	
 	public Integer getSecuence() throws CustomException;
 	public void saveContacto(Contacto contacto) throws CustomException;
-	public List<Categoria> getCategoriasByMotivoId(int idMotivo) throws CustomException;
-	public String getMailByIds(String idMotivo, String idCategoria) throws CustomException;
-	public String getMotivoById(String idMotivo) throws CustomException;
-	public String getCategoriaById(String idCategoria) throws CustomException;
+	public List<Categoria> getCategoriasByMotivoId(Long idMotivo) throws CustomException;
+	public String getMailByIds(Long idMotivo, Long idCategoria) throws CustomException;
+	public String getMotivoById(Long idMotivo) throws CustomException;
+	public String getCategoriaById(Long idCategoria) throws CustomException;
 	
 }

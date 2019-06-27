@@ -124,7 +124,11 @@
              Note: The pattern used is equivalent to using pattern="common" -->
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
 
+<<<<<<< HEAD
       <Context docBase="C:\Users\PC\Documents\PiTu^^\Laburo\VAS\Proyectos\OSDEPYM\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\ROOT" path="" reloadable="false"/><Context docBase="C:\Users\PC\Documents\PiTu^^\Laburo\VAS\Proyectos\OSDEPYM\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\afiliados-tramites-padron" path="/OSDEPYM" reloadable="true" source="org.eclipse.jst.jee.server:afiliados-tramites-padron"/></Host>
+=======
+      <Context docBase="C:\Users\PC\Documents\PiTu^^\Laburo\VAS\Proyectos\OSDEPYM\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\ROOT" path="" reloadable="false"/><Context docBase="C:\Users\PC\Documents\PiTu^^\Laburo\VAS\Proyectos\OSDEPYM\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\OSDEPYM" path="/OSDEPYM" reloadable="true" source="org.eclipse.jst.jee.server:OSDEPYM"/></Host>
+>>>>>>> AS-Branch
     </Engine>
   </Service>
 </Server>

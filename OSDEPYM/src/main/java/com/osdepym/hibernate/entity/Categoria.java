@@ -15,7 +15,7 @@ import javax.persistence.Table;
 @Table(name = "CATEGORIAS", schema = "tramites_online")
 public class Categoria {
 	
-	private int idCategoria;
+	private Long idCategoria;
 	private String etiqueta;
 	private Set<MotivoCategoria> motivoCategorias = new HashSet<MotivoCategoria>();
 	
@@ -33,11 +33,11 @@ public class Categoria {
 	@Id
 	@Column(name="ID_CATEGORIA")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	public int getIdCategoria() {
+	public Long getIdCategoria() {
 		return idCategoria;
 	}
 
-	public void setIdCategoria(int idCategoria) {
+	public void setIdCategoria(Long idCategoria) {
 		this.idCategoria = idCategoria;
 	}
 

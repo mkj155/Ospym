@@ -25,18 +25,18 @@ public class Motivo {
 		this.motivoCategorias = motivoCategorias;
 	}
 	
-	private int idMotivo;
+	private Long idMotivo;
 	private String etiqueta;
 	private Set<MotivoCategoria> motivoCategorias;
     
 	@Id
 	@Column(name="ID_MOTIVO")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	public int getIdMotivo() {
+	public Long getIdMotivo() {
 		return idMotivo;
 	}
 
-	public void setIdMotivo(int idMotivo) {
+	public void setIdMotivo(Long idMotivo) {
 		this.idMotivo = idMotivo;
 	}
 

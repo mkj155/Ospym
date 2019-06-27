@@ -6,24 +6,24 @@ import com.osdepym.hibernate.entity.EspecialidadPrestacion;
 
 public class EspecialidadDTO {
 
-	private int idEspecialidad;
+	private Long idEspecialidad;
 	
 	private String etiqueta;
 	
 	private Set<EspecialidadPrestacion> especialidadPrestacions;
 
-	public EspecialidadDTO(int idEspecialidad, String etiqueta) {
+	public EspecialidadDTO(Long idEspecialidad, String etiqueta) {
 		this.idEspecialidad = idEspecialidad;
 		this.etiqueta = etiqueta;
 	}
 	
 	public EspecialidadDTO() {}
 	
-	public int getIdEspecialidad() {
+	public Long getIdEspecialidad() {
 		return idEspecialidad;
 	}
 
-	public void setIdEspecialidad(int idEspecialidad) {
+	public void setIdEspecialidad(Long idEspecialidad) {
 		this.idEspecialidad = idEspecialidad;
 	}
 

@@ -29,7 +29,7 @@ public class EspecialidadPrestacionDAOImpl implements EspecialidadPrestacionDAO{
 	
 	
 	@Override
-	public EspecialidadPrestacion get(Integer id) throws CustomException {
+	public EspecialidadPrestacion get(Long id) throws CustomException {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -65,7 +65,7 @@ public class EspecialidadPrestacionDAOImpl implements EspecialidadPrestacionDAO{
 	}
 
 	@Override
-	public List<Prestacion> getPrestacionesByEspecialidadId(int idEspecialidad) throws CustomException {
+	public List<Prestacion> getPrestacionesByEspecialidadId(Long idEspecialidad) throws CustomException {
 		try {
 			List<Prestacion> prestaciones = new ArrayList<Prestacion>();
 			Session session = this.sessionFactory.getCurrentSession();
@@ -101,7 +101,7 @@ public class EspecialidadPrestacionDAOImpl implements EspecialidadPrestacionDAO{
 	}
 	
 	@Override
-	public String getMailByIds(String idEspecialidad, String idPrestacion) throws CustomException {
+	public String getMailByIds(Long idEspecialidad, Long idPrestacion) throws CustomException {
 		String mail = "";
 		try {
 			Session session = this.sessionFactory.getCurrentSession();
@@ -117,7 +117,7 @@ public class EspecialidadPrestacionDAOImpl implements EspecialidadPrestacionDAO{
 	}
 
 	@Override
-	public String getEspecialidadById(String idEspecialidad) throws CustomException {
+	public String getEspecialidadById(Long idEspecialidad) throws CustomException {
 		String especialidad = null;
 		try {
 			Session session = this.sessionFactory.getCurrentSession();
@@ -132,7 +132,7 @@ public class EspecialidadPrestacionDAOImpl implements EspecialidadPrestacionDAO{
 	}
 
 	@Override
-	public String getPrestacionById(String idPrestacion) throws CustomException {
+	public String getPrestacionById(Long idPrestacion) throws CustomException {
 		String prestacion = null;
 		try {
 			Session session = this.sessionFactory.getCurrentSession();

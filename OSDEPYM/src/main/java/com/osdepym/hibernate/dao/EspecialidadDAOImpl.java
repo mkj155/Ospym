@@ -6,7 +6,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
+ 
 import com.osdepym.exception.CustomException;
 import com.osdepym.exception.ErrorMessages;
 import com.osdepym.hibernate.entity.Especialidad;
@@ -23,7 +23,7 @@ public class EspecialidadDAOImpl implements EspecialidadDAO{
 	}
 	
 	@Override
-	public Especialidad get(Integer id) throws CustomException {
+	public Especialidad get(Long id) throws CustomException {
 		// TODO Auto-generated method stub
 		return null;
 	}

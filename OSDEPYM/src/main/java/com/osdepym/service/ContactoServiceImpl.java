@@ -103,7 +103,7 @@ public class ContactoServiceImpl implements ContactoService {
 		String secuence = "";
 		try {
 			Integer result = motivoCategoriaDAO.getSecuence();
-			secuence = Integer.toString(result);
+			secuence = Long.toString(result);
 			String year = String.format("%04d", LocalDate.now().getYear());
 			String month = String.format("%02d", LocalDate.now().getMonthValue());
 			String day = String.format("%02d", LocalDate.now().getDayOfMonth());
@@ -128,7 +128,7 @@ public class ContactoServiceImpl implements ContactoService {
 	}
 
 	@Transactional
-	public List<CategoriaDTO> getCategoriasByMotivoId(int idMotivo) throws CustomException {
+	public List<CategoriaDTO> getCategoriasByMotivoId(Long idMotivo) throws CustomException {
 		List<CategoriaDTO> categoriasDTO = new ArrayList<CategoriaDTO>();
 		Session session = null;
 		Transaction tx = null;
@@ -168,11 +168,11 @@ public class ContactoServiceImpl implements ContactoService {
 			session = this.sessionFactory.getCurrentSession();
 			tx = session.beginTransaction();
 
-			String correo = getMailByIds(contactoForm.getIdMotivo(), contactoForm.getIdCategoria());
-			String motivo = getMotivoById(contactoForm.getIdMotivo());
+			String correo = getMailByIds(Long.valueOf(contactoForm.getIdMotivo()), Long.valueOf(contactoForm.getIdCategoria()));
+			String motivo = getMotivoById(Long.valueOf(contactoForm.getIdMotivo()));
 			String categoria = null;
 			if (contactoForm.getIdCategoria() != null && !contactoForm.getIdCategoria().equals(""))
-				categoria = getCategoriaById(contactoForm.getIdCategoria());
+				categoria = getCategoriaById(Long.valueOf(contactoForm.getIdCategoria()));
 			String message = getMessage(contactoForm, motivo, categoria);
 			nroTramite = getSecuence();
 			String subject = getSubject(contactoForm, nroTramite);
@@ -198,7 +198,7 @@ public class ContactoServiceImpl implements ContactoService {
 	}
 
 	@Transactional
-	private String getMotivoById(String idMotivo) throws CustomException {
+	private String getMotivoById(Long idMotivo) throws CustomException {
 		String motivo = null;
 		try {
 			motivo = motivoCategoriaDAO.getMotivoById(idMotivo);
@@ -211,7 +211,7 @@ public class ContactoServiceImpl implements ContactoService {
 	}
 
 	@Transactional
-	private String getCategoriaById(String idCategoria) throws CustomException {
+	private String getCategoriaById(Long idCategoria) throws CustomException {
 		String categoria = null;
 		try {
 			categoria = motivoCategoriaDAO.getCategoriaById(idCategoria);
@@ -241,7 +241,7 @@ public class ContactoServiceImpl implements ContactoService {
 	}
 
 	@Transactional
-	public String getMailByIds(String idMotivo, String idCategoria) throws CustomException {
+	public String getMailByIds(Long idMotivo, Long idCategoria) throws CustomException {
 		String correo = null;
 		try {
 			correo = motivoCategoriaDAO.getMailByIds(idMotivo, idCategoria);

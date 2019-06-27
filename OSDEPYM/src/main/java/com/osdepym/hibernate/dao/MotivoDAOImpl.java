@@ -22,7 +22,7 @@ public class MotivoDAOImpl implements MotivoDAO{
 	}
 	
 	@Override
-	public Motivo get(Integer id) throws CustomException {
+	public Motivo get(Long id) throws CustomException {
 		// TODO Auto-generated method stub
 		return null;
 	}

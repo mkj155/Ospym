@@ -11,7 +11,7 @@ public interface Dao<T>{
 	 * @return specified entity
 	 * @throws CustomException
 	 */
-	T get(Integer id) throws CustomException;
+	T get(Long id) throws CustomException;
     
     /**
      * @return list of specified entities

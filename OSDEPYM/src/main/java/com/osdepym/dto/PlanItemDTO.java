@@ -4,7 +4,7 @@ package com.osdepym.dto;
 import java.util.List;
 
 public class PlanItemDTO {
-	private String id;
+	private Long id;
 	private String title;
 	private String value;
 	private List<PlanItemDTO> subitemsList;
@@ -28,16 +28,16 @@ public class PlanItemDTO {
 		this.subitemsList = subitemsList;
 	}
 	
-	public PlanItemDTO(String id, String title, String value, List<PlanItemDTO> subitemsList){
+	public PlanItemDTO(Long id, String title, String value, List<PlanItemDTO> subitemsList){
 		this.id = id;
 		this.title = title;
 		this.value = value;
 		this.subitemsList = subitemsList;
 	}
-	public String getId() {
+	public Long getId() {
 		return id;
 	}
-	public void setId(String id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 }

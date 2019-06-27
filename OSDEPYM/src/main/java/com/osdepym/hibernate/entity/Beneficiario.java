@@ -12,10 +12,10 @@ public class Beneficiario {
 	
 	@Id
 	@Column(name = "id_Afiliado", updatable = false, nullable = false)
-	private int idAfiliado;
+	private Long idAfiliado;
 	
 	@Column(name = "id_Titular", updatable = false)
-	private int idTitular;
+	private Long idTitular;
 	
 	@Column(name = "Apellido", updatable = false)
 	private String apellido;
@@ -23,19 +23,19 @@ public class Beneficiario {
 	@Column(name = "Nombre", updatable = false)
 	private String nombre;
 	
-	public int getIdAfiliado() {
+	public Long getIdAfiliado() {
 		return idAfiliado;
 	}
 
-	public void setIdAfiliado(int idAfiliado) {
+	public void setIdAfiliado(Long idAfiliado) {
 		this.idAfiliado = idAfiliado;
 	}
 
-	public int getIdTitular() {
+	public Long getIdTitular() {
 		return idTitular;
 	}
 
-	public void setIdTitular(int idTitular) {
+	public void setIdTitular(Long idTitular) {
 		this.idTitular = idTitular;
 	}
 

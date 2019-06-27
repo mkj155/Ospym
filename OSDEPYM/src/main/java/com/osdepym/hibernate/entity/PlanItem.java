@@ -15,7 +15,7 @@ import javax.persistence.Table;
 public class PlanItem{
 	
 
-	private int idPlanItem;
+	private Long idPlanItem;
 	private PlanSeccion seccion;
 	private PlanItem itemPadre;
 	private String titulo;
@@ -25,10 +25,10 @@ public class PlanItem{
 	@Id
 	@Column(name="ID_PLAN_ITEM")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	public int getIdPlanItem() {
+	public Long getIdPlanItem() {
 		return idPlanItem;
 	}
-	public void setIdPlanItem(int idPlanItem) {
+	public void setIdPlanItem(Long idPlanItem) {
 		this.idPlanItem = idPlanItem;
 	}
 	
