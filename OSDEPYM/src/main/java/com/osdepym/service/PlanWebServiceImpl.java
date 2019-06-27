@@ -45,7 +45,7 @@ public class PlanWebServiceImpl implements PlanWebService {
 	}
 
 	@Override
-	public List<PlanSeccionDTO> getSeccionesByPlan(Long idPlan) throws CustomException {
+	public List<PlanSeccionDTO> getSeccionesByPlan(String idPlan) throws CustomException {
 		List<PlanSeccionDTO> secciones = null;
 		Session session = null;
 		Transaction tx = null;
